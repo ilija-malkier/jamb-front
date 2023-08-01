@@ -1,4 +1,4 @@
-@import "../colors.scss";
+@import "src/colors.scss";
 
 body {
   background-color: #fff; }
@@ -202,3 +202,5 @@ h2 {
 .register-text{
   color: var(--red-color);
 }
+
+
