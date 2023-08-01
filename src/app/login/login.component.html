@@ -10,6 +10,8 @@
         <div class="col-md-7">
           <div class="mb-4">
             <h3 class="header-login"><b>Sign In</b></h3>
+            <app-error-baner></app-error-baner>
+
           </div>
           <form (ngSubmit)="login(form)"  #form="ngForm" ngForm action="#" method="post">
             <div class="form-group first">
