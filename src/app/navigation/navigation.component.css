@@ -1,0 +1,19 @@
+.nav-item-p{
+  transition: 300ms;
+  color: var(--gray-color);
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+}
+.nav-item-p.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px; /* Adjust the distance of the line from the text */
+  width: 100%;
+  height: 2px; /* Adjust the thickness of the line */
+  background-color: var(--bs-black); /* Set the color of the line */
+}
+.nav-item-p:hover{
+  color: var(--bs-black);
+}
