@@ -14,6 +14,7 @@ import { GameListComponent } from './game-list/game-list.component';
 import { ButtonIconComponent } from './button-icon/button-icon.component';
 import { StatisticCardComponent } from './statistic-card/statistic-card.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { RestartPasswordComponent } from './restart-password/restart-password.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { NavigationComponent } from './navigation/navigation.component';
     ButtonIconComponent,
     StatisticCardComponent,
     NavigationComponent,
+    RestartPasswordComponent,
   ],
   imports: [
     BrowserModule,
