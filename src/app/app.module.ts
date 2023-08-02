@@ -19,6 +19,7 @@ import { ModalComponent } from './modal/modal.component';
 import { UploadSheetComponent } from './upload-sheet/upload-sheet.component';
 import { CreateGameModalComponent } from './create-game-modal/create-game-modal.component';
 import { ChipComponent } from './chip/chip.component';
+import { FindFriendsModalComponent } from './find-friends-modal/find-friends-modal.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ChipComponent } from './chip/chip.component';
     UploadSheetComponent,
     CreateGameModalComponent,
     ChipComponent,
+    FindFriendsModalComponent,
   ],
   imports: [
     BrowserModule,
