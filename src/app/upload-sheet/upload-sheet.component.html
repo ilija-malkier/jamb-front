@@ -1,0 +1,20 @@
+<app-modal [modalid]="uploadSheetModalId" [title]="uploadSheetModalTitle">
+  <form class="d-flex flex-column justify-content-around">
+
+
+    <div (click)="openFile(fileInput)" class="file-input d-flex flex-column justify-content-center align-items-center">
+      <i class="fa-solid fa-arrow-up-from-bracket fa-2xl"></i>
+      <input id="upload_image_background" #fileInput  class="position-absolute z-1  bg-info invisible" type="file" multiple accept="image/jpeg, image/png, image/svg+xml" />
+
+    </div>
+    <input class="input-group my-4 py-2 px-3" placeholder="Sheet Name" type="text" id="name" name="name">
+
+    <div class="d-flex justify-content-end">
+      <button class="btn">Cancel</button>
+      <button class="btn text-white px-3"  style="background: var(--primary-color)">Upload</button>
+
+    </div>
+   </form>
+
+
+</app-modal>

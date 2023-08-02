@@ -1,0 +1,12 @@
+
+.file-input{
+  transition: 300ms;
+  border: dashed 1px var(--primary-color);
+  height: 150px;
+  border-radius: 10px;
+  border-width: 2px;
+}
+.file-input:hover{
+  background: #e6e6e6;
+  opacity: 0.8;
+}

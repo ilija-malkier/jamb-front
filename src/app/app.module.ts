@@ -15,6 +15,8 @@ import { ButtonIconComponent } from './button-icon/button-icon.component';
 import { StatisticCardComponent } from './statistic-card/statistic-card.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { RestartPasswordComponent } from './restart-password/restart-password.component';
+import { ModalComponent } from './modal/modal.component';
+import { UploadSheetComponent } from './upload-sheet/upload-sheet.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { RestartPasswordComponent } from './restart-password/restart-password.co
     StatisticCardComponent,
     NavigationComponent,
     RestartPasswordComponent,
+    ModalComponent,
+    UploadSheetComponent,
   ],
   imports: [
     BrowserModule,
