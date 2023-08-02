@@ -20,6 +20,7 @@ import { UploadSheetComponent } from './upload-sheet/upload-sheet.component';
 import { CreateGameModalComponent } from './create-game-modal/create-game-modal.component';
 import { ChipComponent } from './chip/chip.component';
 import { FindFriendsModalComponent } from './find-friends-modal/find-friends-modal.component';
+import { FriendsSettingsComponent } from './friends-settings/friends-settings.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { FindFriendsModalComponent } from './find-friends-modal/find-friends-mod
     CreateGameModalComponent,
     ChipComponent,
     FindFriendsModalComponent,
+    FriendsSettingsComponent,
   ],
   imports: [
     BrowserModule,
