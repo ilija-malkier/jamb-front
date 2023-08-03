@@ -196,7 +196,7 @@ h2 {
   font-size: large;
 }
 .header-login{
-  color: var(--primary-color);
+  color: var(--bs-black);
   margin-bottom: 50px;
 }
 .register-text{

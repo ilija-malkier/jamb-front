@@ -1,15 +1,15 @@
 <div class="p-3 d-flex justify-content-end align-items-center">
-  <p class="mx-3 nav-item-p active">Home</p>
-  <p class="mx-3 nav-item-p">Logout</p>
-  <p class="mx-3 nav-item-p">Login</p>
+  <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='home'}" (click)="changeActiveNav('home')" routerLink="/home">Home</p>
+  <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='login'}" (click)="changeActiveNav('login')" routerLink="/login">Login</p>
+  <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='register'}" (click)="changeActiveNav('register')" routerLink="/register">Register</p>
   <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Dropdown button
-    </button>
+    <p  class="nav-item-p mx-3  dropdown-toggle" [ngClass]="{'active':activeRoute==='account'}"  data-bs-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
+      Account
+    </p>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
+      <a class="dropdown-item"  (click)="changeActiveNav('account')" routerLink="/account/friends">Friends</a>
+      <a class="dropdown-item"   (click)="changeActiveNav('account')" routerLink="/account/settings">Settings</a>
+      <a class="dropdown-item" routerLink="/logout">Logout</a>
     </div>
   </div>
   <p class="mx-4 nav-item-p"></p>

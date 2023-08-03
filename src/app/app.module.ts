@@ -21,7 +21,19 @@ import { CreateGameModalComponent } from './create-game-modal/create-game-modal.
 import { ChipComponent } from './chip/chip.component';
 import { FindFriendsModalComponent } from './find-friends-modal/find-friends-modal.component';
 import { FriendsSettingsComponent } from './friends-settings/friends-settings.component';
+import {Router, RouterModule, RouterOutlet, Routes} from "@angular/router";
 
+
+const routes:Routes=[
+  {path:'login',component:LoginComponent},
+  {path:'register',component:RegisterComponent},
+  {path:'home',component:HomeComponent},
+  {path:'account',children:[
+      {path:'settings',component:NotFoundPageComponent},
+      {path:'friends',component:FriendsSettingsComponent}
+    ]},
+  {path:"*",component:NotFoundPageComponent}
+]
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +58,9 @@ import { FriendsSettingsComponent } from './friends-settings/friends-settings.co
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterOutlet,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

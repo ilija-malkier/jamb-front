@@ -1,9 +1,12 @@
 .nav-item-p{
   transition: 300ms;
-  color: var(--gray-color);
+  color: var(--link-inactive);
   cursor: pointer;
   display: inline-block;
   position: relative;
+}
+.nav-item-p.active{
+  color:var(--bs-black)
 }
 .nav-item-p.active::after {
   content: "";

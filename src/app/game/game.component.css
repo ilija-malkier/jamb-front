@@ -3,7 +3,7 @@
   border-radius: 50%; /* This value creates a circle as the border radius is set to 50% of the container's width and height */
   overflow: hidden; /* Clip the image within the rounded container */
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Optional: Add a shadow effect */
-  border: solid var(--primary-color);
+  border: solid var(--primary-color-darker);
 }
 
 img {
@@ -16,7 +16,7 @@ img {
   height: 60px;
   border-radius: 50%;
  border: solid var(--white-color);
-  background: var(--primary-color);
+  background: var(--primary-color-darker);
   font-size: x-large;
 }
 .custom-status{

@@ -1,4 +1,10 @@
-<div >
-  <app-navigation></app-navigation>
-  <app-friends-settings></app-friends-settings>
+<div class="d-flex vh-100 flex-column">
+  <div class="flex-grow-0">
+    <app-navigation ></app-navigation>
+  </div>
+
+  <div class="flex-grow-1">
+    <router-outlet ></router-outlet>
+  </div>
+
 </div>
