@@ -26,6 +26,7 @@ import { SupportComponent } from './support/support.component';
 import { SetNewPasswordComponent } from './set-new-password/set-new-password.component';
 import { GameRequestComponent } from './game-request/game-request.component';
 import { CalculateGameComponent } from './calculate-game/calculate-game.component';
+import { FilterModalComponent } from './filter-modal/filter-modal.component';
 
 
 const routes:Routes=[
@@ -69,6 +70,7 @@ const routes:Routes=[
     SetNewPasswordComponent,
     GameRequestComponent,
     CalculateGameComponent,
+    FilterModalComponent,
   ],
   imports: [
     BrowserModule,
