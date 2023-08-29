@@ -22,15 +22,18 @@ import { ChipComponent } from './chip/chip.component';
 import { FindFriendsModalComponent } from './find-friends-modal/find-friends-modal.component';
 import { FriendsSettingsComponent } from './friends-settings/friends-settings.component';
 import {Router, RouterModule, RouterOutlet, Routes} from "@angular/router";
+import { SupportComponent } from './support/support.component';
 
 
 const routes:Routes=[
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
   {path:'home',component:HomeComponent},
+  {path:'support',component:SupportComponent},
   {path:'account',children:[
       {path:'settings',component:NotFoundPageComponent},
-      {path:'friends',component:FriendsSettingsComponent}
+      {path:'friends',component:FriendsSettingsComponent},
+      {path:'activate',component:VerifyEmailComponent}
     ]},
   {path:"*",component:NotFoundPageComponent}
 ]
@@ -55,6 +58,7 @@ const routes:Routes=[
     ChipComponent,
     FindFriendsModalComponent,
     FriendsSettingsComponent,
+    SupportComponent,
   ],
   imports: [
     BrowserModule,
