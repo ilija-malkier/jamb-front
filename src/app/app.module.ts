@@ -25,6 +25,7 @@ import {Router, RouterModule, RouterOutlet, Routes} from "@angular/router";
 import { SupportComponent } from './support/support.component';
 import { SetNewPasswordComponent } from './set-new-password/set-new-password.component';
 import { GameRequestComponent } from './game-request/game-request.component';
+import { CalculateGameComponent } from './calculate-game/calculate-game.component';
 
 
 const routes:Routes=[
@@ -37,6 +38,9 @@ const routes:Routes=[
       {path:'game',component:GameRequestComponent},
       {path:'friends',component:FriendsSettingsComponent},
       {path:'activate',component:VerifyEmailComponent}
+    ]},
+  {path:'game',children:[
+      {path: 'create',component: CalculateGameComponent}
     ]},
   {path:"*",component:NotFoundPageComponent}
 ]
@@ -64,6 +68,7 @@ const routes:Routes=[
     SupportComponent,
     SetNewPasswordComponent,
     GameRequestComponent,
+    CalculateGameComponent,
   ],
   imports: [
     BrowserModule,
