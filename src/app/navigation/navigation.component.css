@@ -5,6 +5,12 @@
   display: inline-block;
   position: relative;
 }
+.dropdown.active{
+  color:red;
+}
+.dropdown{
+  color: var(--link-inactive);
+}
 .nav-item-p.active{
   color:var(--bs-black)
 }
@@ -19,4 +25,15 @@
 }
 .nav-item-p:hover{
   color: var(--bs-black);
+}
+.circle {
+  width: 35px;
+  height: 25px;
+  background-color: var(--bs-danger); /* Change this to your desired background color */
+  color: #fff; /* Change this to your desired text color */
+  border-radius: 50%; /* Makes it a circle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px; /* Change this to your desired font size */
 }

@@ -13,6 +13,7 @@ export class NavigationComponent implements OnInit{
   constructor(private router:Router) {}
 
   public changeActiveNav(active:string){
+    console.log(active)
     this.activeRoute=active;
   }
 

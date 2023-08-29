@@ -1,6 +1,6 @@
 .input-holder{
   border:solid 1px var(--primary-color);
-  border-radius: 10px;
+  border-radius: 5px;
 }
 .chip-holder{
   overflow-x: auto; /* Enable horizontal scrolling */
@@ -17,3 +17,8 @@
 ::-webkit-scrollbar-track {
   background-color: #f1f1f1;
 }
+.form-control:focus {
+  border-color: #ced4da; /* Change the border color to the default */
+  box-shadow: none; /* Remove the box shadow */
+}
+

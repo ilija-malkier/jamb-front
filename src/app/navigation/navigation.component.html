@@ -3,12 +3,18 @@
   <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='login'}" (click)="changeActiveNav('login')" routerLink="/login">Login</p>
   <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='register'}" (click)="changeActiveNav('register')" routerLink="/register">Register</p>
   <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='support'}" (click)="changeActiveNav('support')" routerLink="/support">Support</p>
-  <div class="dropdown">
-    <p  class="nav-item-p mx-3  dropdown-toggle" [ngClass]="{'active':activeRoute==='account'}"  data-bs-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
+  <div class="dropdown" [ngClass]="{'active':activeRoute==='account'}" >
+    <p  class=" mx-3  dropdown-toggle"  data-bs-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
       Account
     </p>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <a class="dropdown-item"  (click)="changeActiveNav('account')" routerLink="/account/friends">Friends</a>
+      <div class="d-flex w-100 align-items-center ">
+        <a class="dropdown-item"  (click)="changeActiveNav('account')" routerLink="/account/game">Game</a>
+        <div class="circle me-2">
+          1
+        </div>
+      </div>
       <a class="dropdown-item"   (click)="changeActiveNav('account')" routerLink="/account/settings">Settings</a>
       <a class="dropdown-item" routerLink="/logout">Logout</a>
     </div>

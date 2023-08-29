@@ -23,6 +23,8 @@ import { FindFriendsModalComponent } from './find-friends-modal/find-friends-mod
 import { FriendsSettingsComponent } from './friends-settings/friends-settings.component';
 import {Router, RouterModule, RouterOutlet, Routes} from "@angular/router";
 import { SupportComponent } from './support/support.component';
+import { SetNewPasswordComponent } from './set-new-password/set-new-password.component';
+import { GameRequestComponent } from './game-request/game-request.component';
 
 
 const routes:Routes=[
@@ -32,6 +34,7 @@ const routes:Routes=[
   {path:'support',component:SupportComponent},
   {path:'account',children:[
       {path:'settings',component:NotFoundPageComponent},
+      {path:'game',component:GameRequestComponent},
       {path:'friends',component:FriendsSettingsComponent},
       {path:'activate',component:VerifyEmailComponent}
     ]},
@@ -59,6 +62,8 @@ const routes:Routes=[
     FindFriendsModalComponent,
     FriendsSettingsComponent,
     SupportComponent,
+    SetNewPasswordComponent,
+    GameRequestComponent,
   ],
   imports: [
     BrowserModule,
