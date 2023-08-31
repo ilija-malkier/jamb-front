@@ -2,6 +2,12 @@ import {Component, ElementRef, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {UserLoginRequest} from "../model/user-login-request";
+import {DataState} from "../model/data-state";
+import {AppState} from "../model/app-state";
+import {CustomResponse} from "../model/custom-response";
+import {RegistrationModalComponent} from "../registration-modal/registration-modal.component";
+import {ModalService} from "../../services/modal.service";
+import {delay} from "rxjs";
 
 
 @Component({
@@ -13,6 +19,7 @@ export class LoginComponent{
 
    errorMessage='';
    showErrorMessage=false;
+  appState:AppState<CustomResponse>={dataState: DataState.INIT};
   constructor(private auth:AuthService) {
   }
 
@@ -23,12 +30,30 @@ export class LoginComponent{
 
 
     this.checkForErrors(form);
-    if(!this.showErrorMessage)
-      this.auth.login(loginRequest);
+    if(!this.showErrorMessage){
+
+      this.appState={dataState: DataState.LOADING}
+      delay(1000)
+
+      this.auth.login(loginRequest).subscribe(
+        (next)=>{},
+        error => {
+          this.appState={dataState:DataState.ERROR}
+          this.showErrorMessage=true;
+          this.errorMessage="Could not perform wanted operation.Please try again later."
+        },
+        ()=>{
+          this.appState={dataState:DataState.DONE}
+          form.resetForm()
+        }
+      )
+    }
 
   }
   private checkForErrors(form: NgForm) {
     this.showErrorMessage=form.submitted &&  form.invalid
     this.errorMessage='Please insert valid values.'
   }
+
+  protected readonly DataState = DataState;
 }

@@ -29,8 +29,18 @@
               <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>
             </div>
 
-            <button  type="submit"  class="btn  w-100 btn-block login-btn" >Log In</button>
-            <div class="d-flex justify-content-center mt-3">
+            <button [ngClass]="{'disabled': form.invalid && showErrorMessage}"  type="submit" value="Sign Up" class="btn  w-100 btn-block login-btn" >
+
+              <ng-container *ngIf="(appState.dataState === DataState.LOADING) ;else textContainerBtn">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+              </ng-container>
+              <ng-template #textContainerBtn>
+                Log In
+              </ng-template>
+
+
+            </button>            <div class="d-flex justify-content-center mt-3">
               <p>Dont have an account? <a> <span class="register-text" routerLink="/register" style="cursor:pointer;"> Register now!</span></a></p>
             </div>
 

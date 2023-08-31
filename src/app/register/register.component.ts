@@ -25,7 +25,6 @@ export class RegisterComponent implements OnInit{
     this.checkForErrors(form);
     if( !this.showErrorMessage){
       this.appState={dataState: DataState.LOADING}
-      console.log(form)
       delay(1000)
       this.auth.register(userRegisterRequest).subscribe(
         (next)=>{},

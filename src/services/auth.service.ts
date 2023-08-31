@@ -19,11 +19,7 @@ export class AuthService {
   $register:Observable<CustomResponse>;
   public login(loginRequest: UserLoginRequest){
 
-    this.http.post("http://localhost:8081/user/login",loginRequest).subscribe(
-      (value)=>{
-        console.log(value)
-      }
-    );
+    return this.http.post("http://localhost:8081/user/login",loginRequest);
 
   }
 
