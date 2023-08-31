@@ -29,7 +29,11 @@ export class RegisterComponent implements OnInit{
       delay(1000)
       this.auth.register(userRegisterRequest).subscribe(
         (next)=>{},
-        error => {this.appState={dataState:DataState.ERROR}},
+        error => {
+          this.appState={dataState:DataState.ERROR}
+          this.showErrorMessage=true;
+          this.errorMessage="Could not perform wanted operation.Please try again later."
+        },
         ()=>{
           this.appState={dataState:DataState.DONE}
           this.modalService.toggleModal(RegistrationModalComponent.registerModalId);
@@ -37,7 +41,6 @@ export class RegisterComponent implements OnInit{
         }
       )
     }
-
   }
 
   private checkForErrors(form: NgForm) {
