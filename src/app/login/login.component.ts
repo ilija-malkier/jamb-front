@@ -28,7 +28,7 @@ export class LoginComponent{
 
   }
   private checkForErrors(form: NgForm) {
-    this.showErrorMessage=form.submitted && form.dirty! && form.invalid! && form.touched!
+    this.showErrorMessage=form.submitted &&  form.invalid
     this.errorMessage='Please insert valid values.'
   }
 }

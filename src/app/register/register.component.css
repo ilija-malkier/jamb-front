@@ -200,7 +200,14 @@ h2 {
   margin-bottom: 50px;
 }
 .register-text{
-  color: var(--red-color);
+  color: var(--text-dark);
+  font-weight: 500;
+  text-decoration: underline;
 }
-
+.register-text:hover{
+  text-decoration: none;
+}
+.invalid-input {
+  border: solid 1px var(--red-color) !important;
+}
 

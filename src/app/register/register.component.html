@@ -10,53 +10,53 @@
         <div class="col-md-7">
           <div class="mb-4">
             <h3 class="header-login">Sign Up</h3>
-            <app-error-baner></app-error-baner>
+            <app-error-baner [show]="showErrorMessage" [text]="errorMessage"></app-error-baner>
           </div>
           <form  (ngSubmit)="register(form)"  #form="ngForm" ngForm action="#" method="post">
             <div class="d-flex">
-              <div class="form-group first col-6 ">
-                <input type="text"  placeholder="First Name" class="form-control" id="first-name">
+              <div class="form-group first col-6 " [ngClass]="{'invalid-input': showErrorMessage}">
+                <input required type="text" ngModel name="first_name"  placeholder="First Name" class="form-control" id="first-name">
               </div>
-              <div class="form-group first col-6 ">
-                <input type="text"  placeholder="Last Name" class="form-control" id="last-name">
+              <div class="form-group first col-6 " [ngClass]="{'invalid-input': showErrorMessage}">
+                <input required type="text"  ngModel name="last_name" placeholder="Last Name"  class="form-control" id="last-name">
               </div>
             </div>
 
-            <div class="form-group ">
-              <input type="text"  placeholder="Username" class="form-control" id="username">
+            <div class="form-group"  [ngClass]="{'invalid-input': showErrorMessage}">
+              <input  required type="text" ngModel name="username"  placeholder="Username" class="form-control" id="username">
             </div>
-            <div class="form-group ">
-              <input type="email"  placeholder="Email" class="form-control" id="email">
+            <div class="form-group"  [ngClass]="{'invalid-input': showErrorMessage}">
+              <input required email type="email" ngModel name="email" placeholder="Email" class="form-control" id="email">
             </div>
-            <div class="form-group  ">
-              <input type="password" placeholder="Password" class="form-control" id="password">
+            <div class="form-group"  [ngClass]="{'invalid-input': showErrorMessage}">
+              <input required minlength="5" type="password" ngModel name="password" placeholder="Password" class="form-control" id="password">
             </div>
-            <div class="form-group last mb-3">
-              <input type="password" placeholder="Confirm Password" class="form-control" id="confirmpassword">
+            <div class="form-group last mb-3"  [ngClass]="{'invalid-input': showErrorMessage}">
+              <input required minlength="5" type="password" ngModel name="confirm_password" placeholder="Confirm Password" class="form-control" id="confirmpassword">
             </div>
 
-            <input   type="submit" value="Sign Up" class="btn  w-100 btn-block login-btn" >
+            <button [ngClass]="{'disabled': form.invalid && showErrorMessage}"  type="submit" value="Sign Up" class="btn  w-100 btn-block login-btn" >
+
+                <ng-container *ngIf="(appState.dataState === DataState.LOADING) ;else textContainerBtn">
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  Loading...
+                </ng-container>
+                <ng-template #textContainerBtn>
+                  Sign Up
+                </ng-template>
+
+
+            </button>
             <div class="d-flex justify-content-center mt-3">
               <p>Already have an account? <a> <span class="register-text" routerLink="/login" style="cursor:pointer;"> Login now!</span></a></p>
             </div>
-            <!--            <span class="d-block text-center my-4 text-muted">&mdash; or &mdash;</span>-->
 
-            <!--            <div class="social-login">-->
-            <!--              <a href="#" class="facebook btn d-flex justify-content-center align-items-center">-->
-            <!--                <span class="icon-facebook mr-3"></span> Login with Facebook-->
-            <!--              </a>-->
-            <!--              <a href="#" class="twitter btn d-flex justify-content-center align-items-center">-->
-            <!--                <span class="icon-twitter mr-3"></span> Login with  Twitter-->
-            <!--              </a>-->
-            <!--              <a href="#" class="google btn d-flex justify-content-center align-items-center">-->
-            <!--                <span class="icon-google mr-3"></span> Login with  Google-->
-            <!--              </a>-->
-            <!--            </div>-->
           </form>
+
         </div>
       </div>
     </div>
   </div>
 
-
 </div>
+<app-registration-modal #registrationMoal></app-registration-modal>

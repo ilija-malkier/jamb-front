@@ -28,6 +28,7 @@ import { GameRequestComponent } from './game-request/game-request.component';
 import { CalculateGameComponent } from './calculate-game/calculate-game.component';
 import { FilterModalComponent } from './filter-modal/filter-modal.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { RegistrationModalComponent } from './registration-modal/registration-modal.component';
 
 
 const routes:Routes=[
@@ -72,6 +73,7 @@ const routes:Routes=[
     GameRequestComponent,
     CalculateGameComponent,
     FilterModalComponent,
+    RegistrationModalComponent,
 
   ],
   imports: [
