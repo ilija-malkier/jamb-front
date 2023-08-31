@@ -27,6 +27,7 @@ import { SetNewPasswordComponent } from './set-new-password/set-new-password.com
 import { GameRequestComponent } from './game-request/game-request.component';
 import { CalculateGameComponent } from './calculate-game/calculate-game.component';
 import { FilterModalComponent } from './filter-modal/filter-modal.component';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 
 const routes:Routes=[
@@ -71,14 +72,16 @@ const routes:Routes=[
     GameRequestComponent,
     CalculateGameComponent,
     FilterModalComponent,
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterOutlet,
+    HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
