@@ -8,6 +8,8 @@ import {CustomResponse} from "../model/custom-response";
 import {RegistrationModalComponent} from "../registration-modal/registration-modal.component";
 import {ModalService} from "../../services/modal.service";
 import {delay} from "rxjs";
+import {LoginResponse} from "../model/login-response";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -20,7 +22,7 @@ export class LoginComponent{
    errorMessage='';
    showErrorMessage=false;
   appState:AppState<CustomResponse>={dataState: DataState.INIT};
-  constructor(private auth:AuthService) {
+  constructor(private auth:AuthService,private router:Router) {
   }
 
 
@@ -36,7 +38,12 @@ export class LoginComponent{
       delay(1000)
 
       this.auth.login(loginRequest).subscribe(
-        (next)=>{},
+        (next)=>{
+          console.log(next)
+         let customResponse=<CustomResponse> next;
+         let loginResponse=<LoginResponse>customResponse.data;
+          localStorage.setItem("access_token",loginResponse.access_token)
+        },
         error => {
           this.appState={dataState:DataState.ERROR}
           this.showErrorMessage=true;
@@ -45,6 +52,8 @@ export class LoginComponent{
         ()=>{
           this.appState={dataState:DataState.DONE}
           form.resetForm()
+          if(localStorage.getItem("access_token"))
+              this.router.navigate(["home"])
         }
       )
     }

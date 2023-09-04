@@ -29,6 +29,7 @@ import { CalculateGameComponent } from './calculate-game/calculate-game.componen
 import { FilterModalComponent } from './filter-modal/filter-modal.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { RegistrationModalComponent } from './registration-modal/registration-modal.component';
+import {JwtInterceptor, JwtInterceptorConst} from "./interceptor/jwt-interceptor.service";
 
 
 const routes:Routes=[
@@ -84,7 +85,7 @@ const routes:Routes=[
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [HttpClient],
+  providers: [HttpClient,JwtInterceptorConst],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
