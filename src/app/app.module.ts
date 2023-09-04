@@ -45,6 +45,7 @@ const routes:Routes=[
   {path:'game',children:[
       {path: 'create',component: CalculateGameComponent}
     ]},
+  {path:"",redirectTo:"/login",pathMatch:"full"},
   {path:"*",component:NotFoundPageComponent}
 ]
 @NgModule({

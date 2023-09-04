@@ -10,3 +10,16 @@
   background: #e6e6e6;
   opacity: 0.8;
 }
+.shrink {
+  transition: 500ms ease-in;
+  height: 0px;
+  opacity: 0;
+}
+.custom-outter-progress-bar{
+  height: 25px;
+}
+.custom-inner-progress-bar{
+  transition: 300ms ease-in;
+  height: 25px;
+  width: var(--progress) !important;
+}
