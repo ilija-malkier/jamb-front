@@ -43,8 +43,17 @@ export class RegisterComponent implements OnInit{
   }
 
   private checkForErrors(form: NgForm) {
-    this.showErrorMessage=form.submitted &&  form.invalid
-    this.errorMessage='Please insert valid values.'
+    let arePasswordTheSame=form.value.confirm_password===form.value.password && form.value.confirm_password.length>=5 && form.value.password.length>=5
+
+    if(!arePasswordTheSame)
+    {
+      this.showErrorMessage=true
+      this.errorMessage='Password are not the same'
+    }else{
+      this.showErrorMessage=form.submitted &&  form.invalid
+      this.errorMessage='Please insert valid values.'
+
+    }
   }
 
   ngOnInit(): void {
