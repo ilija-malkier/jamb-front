@@ -57,6 +57,7 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
 
      this.isFileSelected=true;
     this.sheetToUpload=$event.target.files[0];
+
     await new Promise(f => setTimeout(f, 1000));
     this.showProgress=true
     this.interval = setInterval(this.notifyEverySecond, 1000);

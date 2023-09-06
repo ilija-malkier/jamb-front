@@ -1,9 +1,9 @@
 <div class="p-3 d-flex justify-content-end align-items-center">
-  <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='home'}" (click)="changeActiveNav('home')" routerLink="/home">Home</p>
-  <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='login'}" (click)="changeActiveNav('login')" routerLink="/login">Login</p>
-  <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='register'}" (click)="changeActiveNav('register')" routerLink="/register">Register</p>
-  <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='support'}" (click)="changeActiveNav('support')" routerLink="/support">Support</p>
-  <div class="dropdown" [ngClass]="{'active':activeRoute==='account'}" >
+  <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='home'}" (click)="changeActiveNav('home')" *ngIf="auth.$isLogin |async " routerLink="/home">Home</p>
+  <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='login'}" (click)="changeActiveNav('login')"  *ngIf="!(auth.$isLogin |async)"  routerLink="/login">Login</p>
+  <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='register'}" (click)="changeActiveNav('register')"  *ngIf="!(auth.$isLogin |async)"  routerLink="/register">Register</p>
+  <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='support'}" (click)="changeActiveNav('support')"  *ngIf="(auth.$isLogin |async)"  routerLink="/support">Support</p>
+  <div class="dropdown" [ngClass]="{'active':activeRoute==='account'}"  *ngIf="(auth.$isLogin |async)"  >
     <p  class=" mx-3  dropdown-toggle"  data-bs-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
       Account
     </p>
@@ -16,7 +16,7 @@
         </div>
       </div>
       <a class="dropdown-item"   (click)="changeActiveNav('account')" routerLink="/account/settings">Settings</a>
-      <a class="dropdown-item" routerLink="/logout">Logout</a>
+      <a class="dropdown-item" (click)="auth.logout()"  *ngIf="auth.$isLogin |async " >Logout</a>
     </div>
   </div>
   <p class="mx-4 nav-item-p"></p>

@@ -1,5 +1,12 @@
-<div class="d-flex flex-column w-100  justify-content-center align-items-center">
-  <app-game></app-game>
-  <app-game></app-game>
-  <app-game></app-game>
+<div *ngIf="gameLists | async as games">
+  <div  class="d-flex flex-column w-100  justify-content-center align-items-center">
+    <app-game *ngFor="let game of games?.appData"></app-game>
+  </div>
+  <div *ngIf="games.dataState===DataState.LOADING">
+    <p>Loading</p>
+  </div>
+  <div *ngIf="games.dataState===DataState.SUCCESS">
+    <p>SUCCESS</p>
+  </div>
 </div>
+

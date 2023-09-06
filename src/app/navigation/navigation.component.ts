@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from "@angular/router";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-navigation',
@@ -9,8 +10,11 @@ import {NavigationEnd, Router} from "@angular/router";
 export class NavigationComponent implements OnInit{
 
   activeRoute:string="login";
+  isLogin=false
 
-  constructor(private router:Router) {}
+  constructor(private router:Router,public auth:AuthService) {
+
+  }
 
   public changeActiveNav(active:string){
     console.log(active)
@@ -18,6 +22,7 @@ export class NavigationComponent implements OnInit{
   }
 
   ngOnInit(): void {
+
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         // Your code to handle the URL change

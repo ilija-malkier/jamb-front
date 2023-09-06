@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-chip',
@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class ChipComponent {
 
+  @Input("chipName") chipName:string=""
+  @Output() removeChipEmmiter:EventEmitter<string> =new EventEmitter<string>()
+  removeChip() {
+    this.removeChipEmmiter.emit(this.chipName)
+  }
 }

@@ -30,23 +30,25 @@ import { FilterModalComponent } from './filter-modal/filter-modal.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { RegistrationModalComponent } from './registration-modal/registration-modal.component';
 import {JwtInterceptor, JwtInterceptorConst} from "./interceptor/jwt-interceptor.service";
+import {navigationRouteGuard} from "./navigation-route.guard";
 
 
 const routes:Routes=[
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
-  {path:'home',component:HomeComponent},
-  {path:'support',component:SupportComponent},
+  {path:'home',component:HomeComponent,canActivate:[navigationRouteGuard]},
+  {path:'support',component:SupportComponent,canActivate:[navigationRouteGuard]},
   {path:'account',children:[
       {path:'settings',component:NotFoundPageComponent},
       {path:'game',component:GameRequestComponent},
       {path:'friends',component:FriendsSettingsComponent},
       {path:'activate',component:VerifyEmailComponent}
-    ]},
+    ],canActivate:[navigationRouteGuard]},
   {path:'game',children:[
       {path: 'create',component: CalculateGameComponent}
-    ]},
+    ],canActivate:[navigationRouteGuard]},
   {path:"",redirectTo:"/login",pathMatch:"full"},
+  {path:"logout",redirectTo:"/login",pathMatch:"full"},
   {path:"*",component:NotFoundPageComponent}
 ]
 @NgModule({

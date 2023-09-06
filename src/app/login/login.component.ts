@@ -43,6 +43,8 @@ export class LoginComponent{
          let customResponse=<CustomResponse> next;
          let loginResponse=<LoginResponse>customResponse.data;
           localStorage.setItem("access_token",loginResponse.access_token)
+          localStorage.setItem("refresh_token",loginResponse.refresh_token)
+          this.auth.$isLogin.next(true)
         },
         error => {
           this.appState={dataState:DataState.ERROR}
