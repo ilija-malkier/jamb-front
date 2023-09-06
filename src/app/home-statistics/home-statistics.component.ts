@@ -20,17 +20,12 @@ export class HomeStatisticsComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.http.get<CustomResponse>("http://localhost:8081/player/game/total").subscribe(
-      (data)=>{
-        console.log(data)
-      }
-    )
+
     this.statisticsService.$homeStatistics.subscribe(
       next=>{
         this.$statistics=next.pipe(
           startWith({dataState: DataState.LOADING}),
           map((response:CustomResponse )=>{
-            console.log(response.data.total_games)
             return {
               dataState:DataState.SUCCESS,
               appData: response.data?.total_games

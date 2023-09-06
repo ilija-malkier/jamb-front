@@ -33,6 +33,7 @@ import {JwtInterceptor, JwtInterceptorConst} from "./interceptor/jwt-interceptor
 import {navigationRouteGuard} from "./navigation-route.guard";
 import { CustomImageComponent } from './custom-image/custom-image.component';
 import { HomeStatisticsComponent } from './home-statistics/home-statistics.component';
+import { CapitalizeFirstLetterPipe } from './capitalize-first-letter.pipe';
 
 
 const routes:Routes=[
@@ -82,6 +83,7 @@ const routes:Routes=[
     RegistrationModalComponent,
     CustomImageComponent,
     HomeStatisticsComponent,
+    CapitalizeFirstLetterPipe,
 
   ],
   imports: [

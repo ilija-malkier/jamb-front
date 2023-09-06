@@ -17,7 +17,6 @@ export class NavigationComponent implements OnInit{
   }
 
   public changeActiveNav(active:string){
-    console.log(active)
     this.activeRoute=active;
   }
 

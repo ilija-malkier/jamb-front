@@ -42,10 +42,8 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
   uploadSheet(form: NgForm) {
     const formData = new FormData();
     formData.append('file', this.sheetToUpload);
-    console.log("pozivam send")
     this.httpClient.post("http://localhost:8081/sheet/upload",formData).subscribe(
       next=>{
-        console.log(next)
       },
       error => console.log(error),
       ()=>console.log("finished")
@@ -53,7 +51,6 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
   }
 
    async change($event: any) {
-     console.log("pozivam change")
 
      this.isFileSelected=true;
     this.sheetToUpload=$event.target.files[0];
@@ -65,13 +62,11 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
   }
 
    notifyEverySecond = () => {
-    console.log(`Remaining time: ${this.remainingTime} seconds`);
     this.remainingTime--;
     this.progress+=25;
     this.progressPercentString=this.progress+"%"
     if (this.remainingTime < 0) {
       clearInterval(this.interval);
-      console.log('Countdown complete!');
     }
   };
 

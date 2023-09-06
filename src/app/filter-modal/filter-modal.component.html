@@ -19,7 +19,7 @@
         <select [(ngModel)]="filterRequest.game_status" name="game_status" class="form-select form-select " aria-label=".form-select-lg example">
           <option selected>Select</option>
           <option value="{{GameStatus.in_progress.toString() }}">{{GameStatus.in_progress.toString()}}</option>
-          <option value="{{GameStatus.compleated.toString() }}">{{GameStatus.compleated.toString()}}</option>
+          <option value="{{GameStatus.completed.toString() }}">{{GameStatus.completed.toString()}}</option>
         </select>
     </div>
     <div class="d-flex mt-3 flex-column justify-content-start align-items-center w-100">
@@ -68,7 +68,7 @@
         <div class=" h-100 align-items-center d-flex chip-holder ">
 
           <div *ngFor="let chip of filterWiners" class="col mx-2 my-2 d-flex justify-content-start align-content-center ">
-            <app-chip chipName="{{chip}}" (removeChipEmmiter)="removeFilterWiners($event)"  ></app-chip>
+            <app-chip chipName="{{chip}}" (removeChipEmmiter)="removeFilterWinners($event)"  ></app-chip>
           </div>
         </div>
 

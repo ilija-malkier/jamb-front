@@ -17,7 +17,7 @@
       <p class="mx-4"  style="cursor: pointer" (click)="openFilter()">Filter</p>
 
       <p  class=" mx-3  dropdown-toggle"  data-bs-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
-        Sort
+        {{sortField? (sortField | capitalizeFirstLetter) +" "+ (sortDirection.toString() | uppercase) : "Sort"}}
       </p>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" (click)="setSort('date',SortDirection.asc)">Date asc</a>
@@ -25,12 +25,11 @@
       </div>
     </div>
     <div class="d-flex col-1   justify-content-end">
-
     </div>
   </div>
 
 
-  <app-game-list>
+  <app-game-list #gameList>
 
   </app-game-list>
 

@@ -3,8 +3,13 @@
     <app-game  [game]="game" *ngFor="let game of games?.appData"></app-game>
   </div>
   <div *ngIf="games.dataState===DataState.LOADING">
-    <p>Loading</p>
+    <div class="spinner-grow" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
   </div>
+  <ng-container *ngIf="games.appData?.length==0" class="bg-danger">
+    <img src="assets/images/no_data.png">
+  </ng-container>
 
 </div>
 

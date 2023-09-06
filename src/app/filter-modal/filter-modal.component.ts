@@ -16,7 +16,7 @@ export class FilterModalComponent  implements OnInit,OnDestroy{
   filterModalTitle="Filter"
   filterFriends:string[]=[]
   filterWiners:string[]=[]
-   filterRequest:FilterRequest={date_from:new Date("2020-05-05"),date_to:null,game_status:null,player_names:this.filterFriends,winner_names:this.filterWiners}
+   filterRequest:FilterRequest={date_from:null,date_to:null,game_status:null,player_names:this.filterFriends,winner_names:this.filterWiners}
   @Output() filterRequestEmmiter:EventEmitter<FilterRequest>=new EventEmitter<FilterRequest>();
 
   constructor(private modalService:ModalService) {}
@@ -37,11 +37,9 @@ export class FilterModalComponent  implements OnInit,OnDestroy{
   }
 
   removeFilterFriends(username:string){
-    console.log(username)
    this.filterFriends= this.filterFriends.filter(playerUsername=>playerUsername!==username);
   }
-  removeFilterWiners(username:string){
-    console.log(username)
+  removeFilterWinners(username:string){
    this.filterWiners= this.filterWiners.filter(playerUsername=>playerUsername!==username);
   }
   ngOnDestroy(): void {
@@ -53,7 +51,8 @@ export class FilterModalComponent  implements OnInit,OnDestroy{
   }
 
   filterHistory(form: NgForm) {
-    console.log(this.filterRequest)
+    this.filterRequest.player_names=this.filterFriends
+    this.filterRequest.winner_names=this.filterWiners
     this.filterRequestEmmiter.emit(this.filterRequest);
     this.modalService.closeModal(this.filterModelId)
   }

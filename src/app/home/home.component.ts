@@ -1,12 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ModalService} from "../../services/modal.service";
 import {UploadSheetComponent} from "../upload-sheet/upload-sheet.component";
-import {HttpClient} from "@angular/common/http";
 import {FilterModalComponent} from "../filter-modal/filter-modal.component";
 import {FilterRequest} from "../model/filter-request";
 import {SortDirection} from "../model/sort-direction";
-import {CustomResponse} from "../model/custom-response";
-import {StatisticsService} from "../../services/statistics.service";
+import {GameListComponent} from "../game-list/game-list.component";
 
 @Component({
   selector: 'app-home',
@@ -17,14 +15,14 @@ export class HomeComponent implements OnInit{
 
   private pageSize=10
   private pageNumber=0
-  private sortField=""
-  private sortDirection=""
+  protected sortField="date"
+  protected sortDirection:SortDirection=SortDirection.desc
+
+  @ViewChild("gameList") gameList:GameListComponent
 
 
-  private sort:string=null
-  private filterRequest:FilterRequest={date_from:new Date(),date_to:new Date(),game_status:"",player_names:null,winner_names:null}
+  private filterRequest:FilterRequest={date_from:null,date_to:null,game_status:null,player_names:null,winner_names:null}
   constructor(private modalService:ModalService) {
-
 
 
   }
@@ -48,13 +46,12 @@ export class HomeComponent implements OnInit{
   }
 
   filterGames(){
-
-
+    this.gameList.filter(this.filterRequest,this.sortField,this.sortDirection)
   }
 
   setSort(sort: string, sortDirection: SortDirection) {
-      this.sort=sort
-      this.sortDirection=sortDirection.toString()
+      this.sortField=sort
+      this.sortDirection=sortDirection
       this.filterGames()
   }
 
