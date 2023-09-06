@@ -1,40 +1,37 @@
-  <div style="width: 1000px;border: solid 1px black" class="d-flex my-2 position-relative justify-content-around align-items-center px-4   py-2 rounded-3 border-dark">
+  <div style="width: 1000px;border: solid 1px black;height: 120px" class="d-flex my-2 position-relative justify-content-around align-items-center px-4   py-2 rounded-3 border-dark">
 
-    <div class="d-flex col-3 justify-content-start  overflow-visible position-relative ">
-      <div class="image-container position-absolute " style="left: 10%">
-        <img src="assets/images/404.png" >
+    <div class="d-flex col-3  justify-content-start  overflow-visible position-relative" style="height: 60px">
+
+
+
+      <app-custom-image  *ngFor="let player of game.players.slice(0,3);let i=index;" [left]="(i*30).toString()" username="{{player.username | uppercase}}"></app-custom-image>
+      <div *ngIf="game?.players?.length>3" class=" p-0 m-0 text-white d-flex justify-content-center align-items-center  number-container position-absolute " style="left: 90px">
+        <p >+{{game?.players.length - 3}}</p>
       </div>
-      <div class="image-container position-absolute " style="left: 20%">
-        <img src="assets/images/404.png" >
-      </div>
-      <div class=" p-0 m-0 text-white d-flex justify-content-center align-items-center  number-container position-absolute " style="left: 30%">
-        <p >5+</p>
-      </div>
-      <div class="image-container">
-        <img src="assets/images/avatar.png" >
-      </div>
+
     </div>
 
   <div class="col-3  d-flex justify-content-center" style="font-size: large">
-    <p>20.04.2022</p>
-
+    <p>{{game?.datePlayed | date}}</p>
   </div>
 
     <div class="d-flex  col-3 flex-column justify-content-center align-items-center " >
-      <div class="d-flex  justify-content-center  position-relative w-100">
-        <div class="image-container">
-          <img src="assets/images/avatar.png" >
-        </div>
-        <div class="position-absolute " style="left: 62%">
-          <img src="/assets/images/medal.png" class="w-100">
+     <ng-container *ngIf="game.winner">
+       <div class="d-flex  justify-content-center  position-relative w-100">
+         <div class="image-container">
+           <img src="assets/images/avatar.png" >
+         </div>
+         <div class="position-absolute " style="left: 62%">
+           <img src="/assets/images/medal.png" class="w-100">
 
-        </div>
-      </div>
+         </div>
+       </div>
+       <p>{{game?.winner?.firstName+game?.winner?.lastName}}</p>
+     </ng-container>
 
-      <p>Nova Voasic</p>
     </div>
     <div  class="col-3 justify-content-end  d-flex">
       <p style="cursor:pointer;" >View</p>
-      <div class="custom-status"></div>
+      <div class="custom-status"style="--game-state-color:{{game.gameStatus===GameStatus.compleated? '#6DFF73' : '#FFC56D'}}"></div>
     </div>
   </div>

@@ -1,4 +1,6 @@
 import {Component, Input} from '@angular/core';
+import {GameFilterResponse} from "../model/game-filter-response";
+import {GameStatus} from "../model/game-status";
 
 @Component({
   selector: 'app-game',
@@ -7,5 +9,8 @@ import {Component, Input} from '@angular/core';
 })
 export class GameComponent {
 
+  @Input() game:GameFilterResponse=null
 
+  protected readonly top = top;
+  protected readonly GameStatus = GameStatus;
 }

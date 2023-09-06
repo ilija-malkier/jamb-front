@@ -4,6 +4,7 @@
   overflow: hidden; /* Clip the image within the rounded container */
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Optional: Add a shadow effect */
   border: solid var(--primary-color-darker);
+  overflow: auto;
 }
 
 img {
@@ -22,7 +23,7 @@ img {
 .custom-status{
   position: absolute;
   width: 10px;
-  background: #6DFF73;
+  background: var(--game-state-color);
   height: 80px;
   bottom: 10px;
   left: 99.5%;

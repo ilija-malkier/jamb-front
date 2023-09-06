@@ -31,6 +31,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { RegistrationModalComponent } from './registration-modal/registration-modal.component';
 import {JwtInterceptor, JwtInterceptorConst} from "./interceptor/jwt-interceptor.service";
 import {navigationRouteGuard} from "./navigation-route.guard";
+import { CustomImageComponent } from './custom-image/custom-image.component';
 
 
 const routes:Routes=[
@@ -78,6 +79,7 @@ const routes:Routes=[
     CalculateGameComponent,
     FilterModalComponent,
     RegistrationModalComponent,
+    CustomImageComponent,
 
   ],
   imports: [
