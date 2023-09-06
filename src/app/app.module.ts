@@ -34,6 +34,7 @@ import {navigationRouteGuard} from "./navigation-route.guard";
 import { CustomImageComponent } from './custom-image/custom-image.component';
 import { HomeStatisticsComponent } from './home-statistics/home-statistics.component';
 import { CapitalizeFirstLetterPipe } from './capitalize-first-letter.pipe';
+import {StatisticsService} from "../services/statistics.service";
 
 
 const routes:Routes=[
@@ -93,7 +94,7 @@ const routes:Routes=[
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [HttpClient,JwtInterceptorConst],
+  providers: [HttpClient,JwtInterceptorConst,StatisticsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

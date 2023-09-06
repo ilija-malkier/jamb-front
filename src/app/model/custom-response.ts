@@ -8,8 +8,8 @@ export interface CustomResponse {
   status:string;
   message:string;
   developerMessage:string;
-  data:{gameFilterResponses?:GameFilterResponse[]
-    ,total_games?:HomeStatistics,
+  data:{gameFilterResponses?:GameFilterResponse[],
+    total_games?:HomeStatistics,
     access_token?:string,
     refresh_token?:string,
 

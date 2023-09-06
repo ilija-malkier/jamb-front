@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {StatisticsService} from "../../services/statistics.service";
-import {catchError, map, Observable, of, startWith} from "rxjs";
+import {async, catchError, delay, map, Observable, of, startWith, tap} from "rxjs";
 import {AppState} from "../model/app-state";
 import {HomeStatistics} from "../model/home-statistics";
 import {DataState} from "../model/data-state";
@@ -17,28 +17,38 @@ export class HomeStatisticsComponent implements OnInit{
   $statistics:Observable<AppState<HomeStatistics>> = new Observable<AppState<HomeStatistics>>()
   constructor(private statisticsService:StatisticsService,private http:HttpClient) {
 
-  }
-
-  ngOnInit(): void {
-
     this.statisticsService.$homeStatistics.subscribe(
+
       next=>{
-        this.$statistics=next.pipe(
+        this.$statistics=  next.pipe(
+
+          tap(console.log),
           startWith({dataState: DataState.LOADING}),
-          map((response:CustomResponse )=>{
+           map(  (response:CustomResponse )=>{
+
             return {
               dataState:DataState.SUCCESS,
               appData: response.data?.total_games
             }
           }),
-        catchError(err => {
-          return of({dataState:DataState.ERROR,error:err})
-        }),
+          catchError(err => {
+            console.log(err)
+            return of({dataState:DataState.ERROR,error:err})
+          }),
+
         )
       }
     )
+  }
+
+  public g(){
+    this.statisticsService.getHomeStatistic()
+  }
+  ngOnInit(): void {
+
 
   }
+
 
 
   protected readonly DataState = DataState;
