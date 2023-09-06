@@ -30,7 +30,7 @@ export class AuthService {
   $register:Observable<CustomResponse>;
   public login(loginRequest: UserLoginRequest){
 
-    return this.http.post("http://localhost:8081/user/login",loginRequest)
+    return this.http.post<CustomResponse>("http://localhost:8081/user/login",loginRequest)
 
   }
 

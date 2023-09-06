@@ -38,10 +38,11 @@ export class LoginComponent{
       delay(1000)
 
       this.auth.login(loginRequest).subscribe(
-        (next)=>{
-          console.log(next)
-         let customResponse=<CustomResponse> next;
-         let loginResponse=<LoginResponse>customResponse.data;
+        (customResponse)=>{
+          console.log(customResponse)
+
+
+         let loginResponse=customResponse.data ;
           localStorage.setItem("access_token",loginResponse.access_token)
           localStorage.setItem("refresh_token",loginResponse.refresh_token)
           this.auth.$isLogin.next(true)
