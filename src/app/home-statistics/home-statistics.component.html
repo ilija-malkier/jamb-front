@@ -1,0 +1,12 @@
+<div class=" py-4 d-flex" *ngIf="$statistics |async as stats">
+
+  <app-statistic-card   class="mx-4" title="Total Games" [value]="stats.appData?.totalGames" percent="50%" image="assets/images/dice.png">
+  </app-statistic-card>
+  <app-statistic-card class="mx-4" title="Games Won" [value]="stats.appData?.gamesWon" percent="20%" image="assets/images/rook.png">
+  </app-statistic-card>
+  <app-statistic-card class="mx-4" title="Games Lost" [value]="stats.appData?.gamesLost" percent="30%" image="assets/images/broken-queen.png">
+  </app-statistic-card>
+  <div *ngIf="stats.dataState===DataState.LOADING"><p>cao</p></div>
+
+</div>
+

@@ -39,7 +39,6 @@ export class LoginComponent{
 
       this.auth.login(loginRequest).subscribe(
         (customResponse)=>{
-          console.log(customResponse)
 
 
          let loginResponse=customResponse.data ;

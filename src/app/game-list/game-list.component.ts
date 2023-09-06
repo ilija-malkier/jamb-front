@@ -14,7 +14,7 @@ import {DataState} from "../model/data-state";
   styleUrls: ['./game-list.component.css']
 })
 export class GameListComponent implements OnInit{
-  gameLists:Observable<AppState<GameFilterResponse[]>> = new Observable<AppState<GameFilterResponse[]>>(null);
+  gameLists:Observable<AppState<GameFilterResponse[]>> = new Observable<AppState<GameFilterResponse[]>>();
   constructor(private gameService:GameService) {
   }
   ngOnInit(): void {
@@ -26,7 +26,6 @@ export class GameListComponent implements OnInit{
               return of({dataState:DataState.ERROR,error:err})
             }),
             map((element:CustomResponse )=>{
-              console.log(element)
               return {
                 dataState:DataState.SUCCESS,
                 appData:element.data?.gameFilterResponses

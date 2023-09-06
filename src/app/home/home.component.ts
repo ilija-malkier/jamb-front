@@ -6,6 +6,7 @@ import {FilterModalComponent} from "../filter-modal/filter-modal.component";
 import {FilterRequest} from "../model/filter-request";
 import {SortDirection} from "../model/sort-direction";
 import {CustomResponse} from "../model/custom-response";
+import {StatisticsService} from "../../services/statistics.service";
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,11 @@ export class HomeComponent implements OnInit{
 
   private sort:string=null
   private filterRequest:FilterRequest={date_from:new Date(),date_to:new Date(),game_status:"",player_names:null,winner_names:null}
-  constructor(private modalService:ModalService,private http:HttpClient) {}
+  constructor(private modalService:ModalService) {
+
+
+
+  }
 
   openModal() {
     this.modalService.toggleModal(UploadSheetComponent.uploadSheetModalId);
@@ -30,6 +35,7 @@ export class HomeComponent implements OnInit{
 
   ngOnInit(): void {
     this.filterGames()
+
   }
 
   openFilter() {
@@ -53,4 +59,6 @@ export class HomeComponent implements OnInit{
   }
 
   protected readonly SortDirection = SortDirection;
+
+
 }

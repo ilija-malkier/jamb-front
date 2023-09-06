@@ -8,6 +8,6 @@ import {Component, Input} from '@angular/core';
 export class StatisticCardComponent {
   @Input() title:string='';
   @Input() percent:string='';
-  @Input() value:string='';
+  @Input("value") value:string='';
   @Input() image:string='assets/images/rook.png';
 }

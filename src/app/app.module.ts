@@ -32,6 +32,7 @@ import { RegistrationModalComponent } from './registration-modal/registration-mo
 import {JwtInterceptor, JwtInterceptorConst} from "./interceptor/jwt-interceptor.service";
 import {navigationRouteGuard} from "./navigation-route.guard";
 import { CustomImageComponent } from './custom-image/custom-image.component';
+import { HomeStatisticsComponent } from './home-statistics/home-statistics.component';
 
 
 const routes:Routes=[
@@ -80,6 +81,7 @@ const routes:Routes=[
     FilterModalComponent,
     RegistrationModalComponent,
     CustomImageComponent,
+    HomeStatisticsComponent,
 
   ],
   imports: [
