@@ -1,0 +1,17 @@
+.invalid-cell{
+  background: var(--red-color) !important;
+  color:var(--white-color)
+}
+.cell-input{
+
+  border: none;
+}
+.cell-input.invalid-cell{
+
+  background: var(--red-color) !important;
+  color:var(--white-color);
+}
+.form-control:focus{
+  border-color: #ced4da; /* Change the border color to the default */
+  box-shadow: none; /* Remove the box shadow */
+}

@@ -16,10 +16,16 @@
   opacity: 0;
 }
 .custom-outter-progress-bar{
-  height: 25px;
+  height: 27px;
+  border: solid 1px var(--link-inactive);
 }
 .custom-inner-progress-bar{
   transition: 300ms ease-in;
   height: 25px;
   width: var(--progress) !important;
+  background: var(--primary-color);
+}
+.disable{
+  background: var(--primary-color-inactive) !important;
+
 }

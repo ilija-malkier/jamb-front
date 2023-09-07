@@ -3,6 +3,7 @@ import {ModalService} from "../../services/modal.service";
 import {NgForm} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {delay} from "rxjs";
+import {NavigationExtras, Router} from "@angular/router";
 
 
 @Component({
@@ -22,7 +23,9 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
    progressPercentString="0%"
   progress=0
   showProgress=false;
-  constructor(private modalService:ModalService,private httpClient:HttpClient) {}
+   isLoadingImage=false;
+   isLoading=false;
+  constructor(private modalService:ModalService,private httpClient:HttpClient,private router:Router) {}
 
   ngOnInit(): void {
     this.modalService.register(this.uploadSheetModalId)
@@ -40,19 +43,33 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
 
 
   uploadSheet(form: NgForm) {
+    this.isLoading=true
     const formData = new FormData();
     formData.append('file', this.sheetToUpload);
     this.httpClient.post("http://localhost:8081/sheet/upload",formData).subscribe(
       next=>{
+        const navigationExtras: NavigationExtras = {
+          state: {
+            data: next
+          }
+        };
+        this.router.navigate(["game/create"],navigationExtras)
       },
-      error => console.log(error),
-      ()=>console.log("finished")
+      error => {
+        this.isLoading=false
+        console.log(error)
+      },
+      ()=>{
+        console.log("finished")
+        this.isLoading=false
+      }
     )
   }
 
    async change($event: any) {
 
      this.isFileSelected=true;
+     this.isLoadingImage=true;
     this.sheetToUpload=$event.target.files[0];
 
     await new Promise(f => setTimeout(f, 1000));
@@ -66,7 +83,9 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
     this.progress+=25;
     this.progressPercentString=this.progress+"%"
     if (this.remainingTime < 0) {
+      this.isLoadingImage=false;
       clearInterval(this.interval);
+
     }
   };
 
@@ -81,6 +100,7 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
     this.progressPercentString="0%"
     this.isFileSelected=false
     this.remainingTime = 3;
+    this.isLoading=false
     form.resetForm()
     clearInterval(this.interval);
   }

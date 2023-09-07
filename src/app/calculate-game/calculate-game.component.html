@@ -2,7 +2,7 @@
 <div class="container mt-5">
   <div class="w-100 d-flex justify-content-between  mb-3">
     <div class="">
-      <button class="btn btn-link text-decoration-none text-primary">Calculate</button>
+      <button class="btn btn-link text-decoration-none text-primary" (click)="calculateSheet()">Calculate</button>
     </div>
     <div class="d-flex">
       <button class="btn btn-outline-dark mx-2">Cancel</button>
@@ -13,37 +13,23 @@
     <table class="table table-bordered">
       <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th class="text-center" *ngFor="let i of numberArray"  scope="col">{{i+1}}</th>
+
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td >Larry the Bird</td>
-        <td>@twitter</td>
-        <td>@twitter</td>
+
+      <tr *ngFor="let data of sheetData; let rowIndex = index">
+        <td  [ngClass]="{'invalid-cell':!cell.valid}" *ngFor="let cell of data; let columnIndex = index">
+          <input #input (focusout)="validateCell(rowIndex,columnIndex,data.length,input.value)"  [ngClass]="{'invalid-cell':!cell.valid}" class="form-control cell-input text-center" [value]="cell.value">
+        </td>
       </tr>
       </tbody>
     </table>
 
   </div>
   <div>
-    <label>5000</label>
+<!--    <label *ngIf="currentScore.result">{{currentScore.result}}</label>-->
   </div>
 <app-filter-modal></app-filter-modal>
 

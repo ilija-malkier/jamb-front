@@ -2,6 +2,7 @@
 :root
 {
   --primary-color: #2997E7;
+  --primary-color-inactive: rgb(41,151,231,0.5);
   --link-inactive: rgb(0,0,0,0.2);
   --text-dark: #3E4145;
   --text-light: #FFFFFF;
@@ -12,6 +13,7 @@
   --accent-color:#9329E7;
   --gray-color:#F0F3F6;
   --red-color:#FD6060;
+  --red-color-transparent:rgb(253,96,96,0.7);;
   --green-color:#6DFF73;
   --yellow-color:#FFC56D;
 }
