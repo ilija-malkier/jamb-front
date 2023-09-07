@@ -11,6 +11,7 @@ export interface CustomResponse {
   data:{gameFilterResponses?:GameFilterResponse[],
     total_games?:HomeStatistics,
     access_token?:string,
+    gameCount?:number,
     refresh_token?:string,
 
 

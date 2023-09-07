@@ -17,7 +17,6 @@
     </div>
     <div class=" input-group">
         <select [(ngModel)]="filterRequest.game_status" name="game_status" class="form-select form-select " aria-label=".form-select-lg example">
-          <option selected>Select</option>
           <option value="{{GameStatus.in_progress.toString() }}">{{GameStatus.in_progress.toString()}}</option>
           <option value="{{GameStatus.completed.toString() }}">{{GameStatus.completed.toString()}}</option>
         </select>

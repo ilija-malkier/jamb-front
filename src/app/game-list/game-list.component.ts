@@ -38,7 +38,7 @@ export class GameListComponent implements OnInit{
 
               return {
                 dataState:DataState.SUCCESS,
-                appData:element.data?.gameFilterResponses
+                appData:element?.data?.gameFilterResponses
               }
             })
       )

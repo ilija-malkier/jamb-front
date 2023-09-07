@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {UserLoginRequest} from "../app/model/user-login-request";
 import {UserRegisterRequest} from "../app/model/user-register-request";
@@ -13,17 +13,13 @@ import {Route, Router} from "@angular/router";
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements OnInit{
 
   public $isLogin:BehaviorSubject<boolean>=new BehaviorSubject<boolean>(false);
 
   constructor(private http:HttpClient,private modalService:ModalService,private router:Router) {
 
-    if(localStorage.getItem("access_token")){
-      this.$isLogin.next(true)
-      this.router.navigate(["home"])
 
-    }
 
   }
 
@@ -43,5 +39,9 @@ export class AuthService {
     localStorage.setItem("refresh_token",null)
     this.$isLogin.next(false)
       this.router.navigate(["login"])
+  }
+
+  ngOnInit(): void {
+
   }
 }

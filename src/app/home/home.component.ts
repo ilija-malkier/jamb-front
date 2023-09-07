@@ -13,8 +13,7 @@ import {GameListComponent} from "../game-list/game-list.component";
 })
 export class HomeComponent implements OnInit{
 
-  private pageSize=10
-  private pageNumber=0
+
   protected sortField="date"
   protected sortDirection:SortDirection=SortDirection.desc
 
@@ -23,8 +22,6 @@ export class HomeComponent implements OnInit{
 
   private filterRequest:FilterRequest={date_from:null,date_to:null,game_status:null,player_names:null,winner_names:null}
   constructor(private modalService:ModalService) {
-
-
   }
 
   openModal() {

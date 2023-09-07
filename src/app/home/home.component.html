@@ -9,11 +9,15 @@
   <app-home-statistics></app-home-statistics>
 
 
-  <div class="d-flex  w-100 justify-content-around">
-   <div class="col-4">
+  <div class="d-flex   w-100 justify-content-around">
+   <div class="col-4 ">
      <h5 class="">History</h5>
    </div>
-    <div class="d-flex col-6  justify-content-end">
+    <div class="d-flex text-center justify-content-center col-5 ">
+      <app-game-list-pagination></app-game-list-pagination>
+
+    </div>
+    <div class="d-flex col-3 justify-content-end">
       <p class="mx-4"  style="cursor: pointer" (click)="openFilter()">Filter</p>
 
       <p  class=" mx-3  dropdown-toggle"  data-bs-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
