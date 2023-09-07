@@ -36,6 +36,8 @@ import { HomeStatisticsComponent } from './home-statistics/home-statistics.compo
 import { CapitalizeFirstLetterPipe } from './capitalize-first-letter.pipe';
 import {StatisticsService} from "../services/statistics.service";
 import { GameListPaginationComponent } from './game-list-pagination/game-list-pagination.component';
+import { FriendsListPaginationComponent } from './friends-list-pagination/friends-list-pagination.component';
+import { FriendsRequestsListPaginationComponent } from './friends-requests-list-pagination/friends-requests-list-pagination.component';
 
 
 const routes:Routes=[
@@ -87,6 +89,8 @@ const routes:Routes=[
     HomeStatisticsComponent,
     CapitalizeFirstLetterPipe,
     GameListPaginationComponent,
+    FriendsListPaginationComponent,
+    FriendsRequestsListPaginationComponent,
 
   ],
   imports: [

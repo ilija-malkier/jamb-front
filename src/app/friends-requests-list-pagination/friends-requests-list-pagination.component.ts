@@ -1,35 +1,30 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {GameService} from "../../services/game.service";
-import {catchError, map, Observable, of, startWith, tap} from "rxjs";
-import {AppState} from "../model/app-state";
-import {DataState} from "../model/data-state";
-import {CustomResponse} from "../model/custom-response";
+import { Component } from '@angular/core';
+import {FriendsService} from "../../services/friends.service";
 
 @Component({
-  selector: 'app-game-list-pagination',
-  templateUrl: './game-list-pagination.component.html',
-  styleUrls: ['./game-list-pagination.component.css']
+  selector: 'app-friends-requests-list-pagination',
+  templateUrl: './friends-requests-list-pagination.component.html',
+  styleUrls: ['./friends-requests-list-pagination.component.css']
 })
-export class GameListPaginationComponent implements OnInit{
+export class FriendsRequestsListPaginationComponent {
 
-
-   itemsPerPage:number=9;
+  itemsPerPage:number=9;
   totalPages:number=0;
   currentPage:number =1;
   ngOnInit(): void {
     this.getPageNumber();
   }
 
-  constructor(private gameService:GameService) {}
+  constructor(private friendsService:FriendsService) {}
 
   get numberArray(): number[] {
     return Array.from({ length: this.totalPages  }, (_, index) => index);
   }
   public getPageNumber(){
-    this.gameService.getPages().subscribe((total)=>{
-      let totalItems=total.data.gameCount as number;
-      this.totalPages=this.customRound(totalItems/this.itemsPerPage);
-    });
+    // this.friendsService.getPages().subscribe((total)=>{
+    //   let totalItems=total.data.gameCount as number;
+    //   this.totalPages=this.customRound(totalItems/this.itemsPerPage);
+    // });
   }
 
 
@@ -61,7 +56,7 @@ export class GameListPaginationComponent implements OnInit{
   }
 
   private getNotesForCurrPage(){
-    this.gameService.filterForPage(this.currentPage);
+    this.friendsService.filterForPage(this.currentPage);
   }
   private customRound(number: number): number {
     const decimalPart = number - Math.floor(number);

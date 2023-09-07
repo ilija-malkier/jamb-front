@@ -6,32 +6,30 @@
     <h4>My Friends</h4>
   </div>
   <div class="mt-4" >
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th class="text-center" scope="col">Firstname</th>
-        <th class="text-center" scope="col">Username</th>
-        <th class="text-center" scope="col">Action</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td class="text-center">Mark</td>
-        <td class="text-center">Otto</td>
-        <td class="text-center">@mdo</td>
-      </tr>
-      <tr>
-        <td class="text-center">Jacob</td>
-        <td class="text-center">Thornton</td>
-        <td class="text-center">@fat</td>
-      </tr>
-      <tr>
-        <td class="text-center">Larry</td>
-        <td class="text-center">the Bird</td>
-        <td class="text-center">@twitter</td>
-      </tr>
-      </tbody>
-    </table>
+    <ng-container *ngIf="$friends | async as friends">
+
+
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th class="text-center" scope="col">Fullname</th>
+          <th class="text-center" scope="col">Username</th>
+          <th class="text-center" scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let friend of friends?.appData | slice:0:maxFriends">
+          <td class="text-center">Mark</td>
+          <td class="text-center">{{friend.username}}</td>
+          <td class="text-center">@mdo</td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="w-100  d-flex justify-content-end">
+        <app-friends-list-pagination ></app-friends-list-pagination>
+      </div>
+
+    </ng-container>
   </div>
 
   <div class="dropdown-divider"></div>
@@ -39,6 +37,7 @@
     <h4>Friends Request</h4>
   </div>
   <div class="mt-4" >
+    <ng-container *ngIf="$friendsRequests | async as friendsRequests">
     <table class="table table-striped">
       <thead>
       <tr>
@@ -48,25 +47,10 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td class="text-center">Mark</td>
-        <td class="text-center">Otto</td>
-        <td class="text-center">  <div>
-          <button class="btn text-white" style="background: var(--primary-color)">Accept</button>
-          <button class="btn">Decline</button>
-        </div></td>
-      </tr>
-      <tr>
-        <td class="text-center">Jacob</td>
-        <td class="text-center">Thornton</td>
-        <td class="text-center">  <div>
-          <button class="btn text-white" style="background: var(--primary-color)">Accept</button>
-          <button class="btn">Decline</button>
-        </div></td>
-      </tr>
-      <tr>
+
+      <tr *ngFor="let friendRequest of friendsRequests?.appData | slice:0:maxFriends">
         <td class="text-center">Larry</td>
-        <td class="text-center">the Bird</td>
+        <td class="text-center">{{friendRequest.sender}}</td>
         <td class="text-center">
           <div>
           <button class="btn text-white" style="background: var(--primary-color)">Accept</button>
@@ -76,6 +60,11 @@
       </tr>
       </tbody>
     </table>
+      <div class="w-100  d-flex justify-content-end">
+        <app-friends-requests-list-pagination ></app-friends-requests-list-pagination>
+      </div>
+
+    </ng-container>
   </div>
 
 </div>
