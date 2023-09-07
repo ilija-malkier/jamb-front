@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {CustomResponse} from "../app/model/custom-response";
-import {BehaviorSubject, delay, Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class StatisticsService {
   }
 
   getHomeStatistic(){
-    this.$homeStatistics.next(this.http.get<CustomResponse>("http://localhost:8081/player/game/total").pipe(delay(2000)))
+    this.$homeStatistics.next(this.http.get<CustomResponse>("http://localhost:8081/player/game/total"))
 
   }
 

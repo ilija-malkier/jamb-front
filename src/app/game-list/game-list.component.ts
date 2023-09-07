@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {BehaviorSubject, catchError, delay, map, Observable, of, startWith, timer} from "rxjs";
+import {BehaviorSubject, catchError, map, Observable, of, startWith, timer} from "rxjs";
 import {GameFilterResponse} from "../model/game-filter-response";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 import {CustomResponse} from "../model/custom-response";
