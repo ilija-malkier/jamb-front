@@ -1,4 +1,4 @@
-<app-modal (closeEventEmitter)="closeModal(form)" [modalid]="uploadSheetModalId" [title]="uploadSheetModalTitle">
+<app-modal [disableExit]="isLoadingImage|| isLoading" (closeEventEmitter)="closeModal(form)" [modalid]="uploadSheetModalId" [title]="uploadSheetModalTitle">
   <form class="d-flex flex-column justify-content-around" (ngSubmit)="uploadSheet(form)" #form="ngForm" enctype="multipart/form-data">
 
 
@@ -31,8 +31,16 @@
 
     <input ngModel class="input-group my-4 py-2 px-3" placeholder="Sheet Name" type="text" id="name" name="sheet_name">
     <div class="d-flex justify-content-end">
-      <button class="btn" (click)="closeModal(form)" [disabled]="isLoading || isLoadingImage" type="button" >Cancel</button>
-      <button class="btn text-white px-3" [ngClass]="{'disable':isLoading || isLoadingImage}"   type="submit" style="background: var(--primary-color)">Upload</button>
+      <button class="btn mx-2 border-0" (click)="closeModal(form)" [disabled]="isLoading || isLoadingImage" type="button" >Cancel</button>
+      <button class="btn text-white px-3" [ngClass]="{'disable':isLoading || isLoadingImage}"   type="submit" style="background: var(--primary-color)">
+        <ng-container *ngIf="(isLoading || isLoadingImage) ;else textContainerBtn">
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Loading...
+        </ng-container>
+        <ng-template #textContainerBtn>
+          Upload
+        </ng-template>
+      </button>
     </div>
    </form>
 

@@ -10,7 +10,7 @@ export class ModalComponent {
   @Input() modalid='';
   @Input() title='';
   @Output() closeEventEmitter:EventEmitter<void>=new EventEmitter<void>()
-
+  @Input() disableExit:boolean=false
 
   constructor(public modalService:ModalService) {
   }

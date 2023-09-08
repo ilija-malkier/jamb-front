@@ -6,7 +6,7 @@
     <div class="modal-content">
       <div class="modal-header  rounded-top-3  p-3 " style="background: var(--primary-color-darker);">
         <h5 class="modal-title text-white" id="exampleModalLabel">{{title}}</h5>
-        <button type="button"  (click)="closeModal($event)" class="btn-close btn-close-white" aria-label="Close"></button>
+        <button type="button" [disabled]="disableExit"  (click)="closeModal($event)" class="btn-close btn-close-white" aria-label="Close"></button>
       </div>
       <div class=" bg-white p-3">
         <ng-content>

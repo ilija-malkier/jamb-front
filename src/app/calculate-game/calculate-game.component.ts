@@ -12,6 +12,8 @@ import {ResultResponse} from "../model/result-response";
 export class CalculateGameComponent {
   sheetData:[Cell[]]
   currentScore:ResultResponse
+  isLoading: boolean=false;
+  isCalculating: boolean=false;
 
   constructor(private router:Router,private sheetService:SheetService) {
     const dataObject = this.router.getCurrentNavigation().extras.state['data']
@@ -46,5 +48,21 @@ export class CalculateGameComponent {
         this.currentScore=data.data?.result
       }
     )
+  }
+
+  cancelGameCreation() {
+    this.restartData()
+    this.router.navigate(['home'])
+  }
+
+  private restartData() {
+    this.isCalculating=false;
+    this.isLoading=false;
+    this.sheetData=null;
+    this.currentScore=null;
+  }
+
+  saveGame() {
+
   }
 }

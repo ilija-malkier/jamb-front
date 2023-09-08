@@ -1,4 +1,6 @@
 @import "colors.scss";
+@import "../node_modules/font-awesome/css/font-awesome.css";
+
 *{
   font-family: "Raleway", sans-serif !important;
 }

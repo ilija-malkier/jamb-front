@@ -4,6 +4,7 @@ import {NgForm} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {delay} from "rxjs";
 import {NavigationExtras, Router} from "@angular/router";
+import {DataState} from "../model/data-state";
 
 
 @Component({
@@ -108,4 +109,6 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
   deleteSelectedImage(form:NgForm) {
     this.restartVariables(form)
   }
+
+    protected readonly DataState = DataState;
 }
