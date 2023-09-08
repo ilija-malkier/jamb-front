@@ -3,6 +3,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Cell} from "../model/cell";
 import {SheetService} from "../../services/sheet.service";
 import {ResultResponse} from "../model/result-response";
+import {GameService} from "../../services/game.service";
+import {ModalService} from "../../services/modal.service";
+import {CreateGameModalComponent} from "../create-game-modal/create-game-modal.component";
 
 @Component({
   selector: 'app-calculate-game',
@@ -15,7 +18,7 @@ export class CalculateGameComponent {
   isLoading: boolean=false;
   isCalculating: boolean=false;
 
-  constructor(private router:Router,private sheetService:SheetService) {
+  constructor(private router:Router,private sheetService:SheetService,private gameService:GameService,private modalService:ModalService) {
     const dataObject = this.router.getCurrentNavigation().extras.state['data']
     this.sheetData=dataObject
     console.log(this.sheetData)
@@ -63,6 +66,7 @@ export class CalculateGameComponent {
   }
 
   saveGame() {
+    this.modalService.toggleModal(CreateGameModalComponent.createGameModalId)
 
   }
 }

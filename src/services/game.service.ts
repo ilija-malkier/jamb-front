@@ -82,4 +82,8 @@ export class GameService {
     this.sortField=sortField
     this.sortDirection=sortDirection
   }
+
+  saveGame() {
+    // this.httpClient.post<CustomResponse>("http://localhost:8081/game",)
+  }
 }
