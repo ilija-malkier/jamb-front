@@ -33,7 +33,7 @@
         <div class="w-100 h-100  align-items-center d-flex chip-holder ">
           <input #playerNameInput type="text" class="form-control w-100" name="player_name_input" id="player_name_input">
           <div (click)="addFilterFriends(playerNameInput)" class="col-1 d-flex justify-content-center align-items-center">
-            <i class="fa-solid fa-circle-plus fa-2xl" style="color: var(--primary-color)"></i>
+            <i class="bi bi-plus" style="color: var(--primary-color);font-size:40px"></i>
           </div>
 
         </div>
@@ -60,11 +60,11 @@
         <div class="w-100 h-100  align-items-center d-flex chip-holder ">
           <input #winnerNameInput type="text" class="form-control w-100" name="player_name_input" id="winner_name_input">
           <div (click)="addFilterWiners(winnerNameInput)" class="col-1 d-flex justify-content-center align-items-center">
-            <i class="fa-solid fa-circle-plus fa-2xl" style="color: var(--primary-color)"></i>
+            <i class="bi   bi-plus " style="color: var(--primary-color);font-size:40px"></i>
           </div>
 
         </div>
-        <div class=" h-100 align-items-center d-flex chip-holder ">
+        <div class=" h-100  align-items-center d-flex chip-holder ">
 
           <div *ngFor="let chip of filterWiners" class="col mx-2 my-2 d-flex justify-content-start align-content-center ">
             <app-chip chipName="{{chip}}" (removeChipEmmiter)="removeFilterWinners($event)"  ></app-chip>

@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div>
-    <app-button-icon icon="fa-solid fa-magnifying-glass" text="Find Friends"></app-button-icon>
+    <app-button-icon icon="bi bi-search" (click)="openFindFriendsModal()" text="Find Friends"></app-button-icon>
   </div>
   <div class="mt-4">
     <h4>My Friends</h4>
@@ -67,4 +67,5 @@
     </ng-container>
   </div>
 
+  <app-find-friends-modal></app-find-friends-modal>
 </div>

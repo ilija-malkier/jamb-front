@@ -93,13 +93,14 @@ const routes:Routes=[
     FriendsRequestsListPaginationComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    RouterOutlet,
-    HttpClientModule,
-    RouterModule.forRoot(routes)
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        RouterOutlet,
+        HttpClientModule,
+        RouterModule.forRoot(routes),
+
+    ],
   providers: [HttpClient,JwtInterceptorConst,StatisticsService],
   bootstrap: [AppComponent]
 })

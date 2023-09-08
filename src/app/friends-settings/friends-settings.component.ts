@@ -6,6 +6,8 @@ import {PlayerFriend} from "../model/player-friend";
 import {CustomResponse} from "../model/custom-response";
 import {DataState} from "../model/data-state";
 import {PlayerFriendRequest} from "../model/player-friend-request";
+import {ModalService} from "../../services/modal.service";
+import {FindFriendsModalComponent} from "../find-friends-modal/find-friends-modal.component";
 
 @Component({
   selector: 'app-friends-settings',
@@ -19,7 +21,7 @@ export class FriendsSettingsComponent implements OnInit{
   $friends:Observable<AppState<PlayerFriend[]>> = new Observable<AppState<PlayerFriend[]>>()
   $friendsRequests:Observable<AppState<PlayerFriendRequest[]>> = new Observable<AppState<PlayerFriendRequest[]>>()
 
-  constructor(private friendsService:FriendsService) {
+  constructor(private friendsService:FriendsService,private modalService:ModalService) {
   }
   ngOnInit(): void {
     this.friendsService.getFriends()
@@ -63,5 +65,9 @@ export class FriendsSettingsComponent implements OnInit{
         })
       )
     })
+  }
+
+  openFindFriendsModal() {
+    this.modalService.toggleModal(FindFriendsModalComponent.findFriendsModalId)
   }
 }

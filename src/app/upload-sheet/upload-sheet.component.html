@@ -3,7 +3,7 @@
 
 
     <div (click)="openFile(fileInput)" class="file-input d-flex flex-column justify-content-center align-items-center" [ngClass]="{'shrink':isFileSelected}">
-      <i class="fa-solid fa-arrow-up-from-bracket fa-2xl "></i>
+      <i class="bi bi-box-arrow-in-down " style="font-size: 50px;color: var(--secondary-color)"></i>
       <input ngModel name="image_sheet"  id="upload_image_background" #fileInput  (change)="change($event)"  class="position-absolute z-1  bg-info invisible" type="file" multiple accept="image/jpeg, image/png" />
 
     </div>
@@ -13,7 +13,7 @@
         <div class="custom-inner-progress-bar  border-dark rounded-3 "  style="--progress:{{ progressPercentString }}" ></div>
       </div>
       <div class="px-1">
-        <i class="fa-solid fa-trash" (click)="deleteSelectedImage(form)" [ngStyle]="{'color':progress!=100? 'rgba(0, 0, 0, 0.2)' : 'black'}"></i>
+        <i class="bi bi-trash-fill" style="font-size: 20px;color: var(--secondary-color) !important;cursor: pointer" (click)="deleteSelectedImage(form)" [ngStyle]="{'color':progress!=100? 'rgba(0, 0, 0, 0.2)' : 'black'}"></i>
       </div>
     </div>
 

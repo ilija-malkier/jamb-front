@@ -15,7 +15,7 @@ export class StatisticsService {
   }
 
   getHomeStatistic(){
-    this.$homeStatistics.next(this.http.get<CustomResponse>("http://localhost:8081/player/game/total"))
+    this.$homeStatistics.next(this.http.get<CustomResponse>("http://localhost:8081/games/total"))
 
   }
 

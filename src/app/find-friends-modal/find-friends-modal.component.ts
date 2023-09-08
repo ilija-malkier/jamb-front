@@ -9,12 +9,12 @@ import {ModalService} from "../../services/modal.service";
 export class FindFriendsModalComponent implements OnInit,OnDestroy{
 
   findFriendsModalId="find-friends"
+  static findFriendsModalId="find-friends"
   findFriendsModalTitle="Find Friends"
   constructor(private modalService:ModalService) {}
 
   ngOnInit(): void {
     this.modalService.register(this.findFriendsModalId)
-    this.modalService.toggleModal(this.findFriendsModalId)
   }
 
   ngOnDestroy(): void {

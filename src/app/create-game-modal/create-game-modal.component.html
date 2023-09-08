@@ -1,36 +1,39 @@
 <app-modal [modalid]="createGameModalId" [title]="createGameModalTitle">
   <form class="d-flex flex-column justify-content-center align-items-center" (ngSubmit)="saveGame(form)" #form=ngForm>
 
-    <div class="d-flex flex-column justify-content-start align-items-center w-100">
+    <div class="d-flex mt-3 flex-column justify-content-start align-items-center w-100">
 
-        <div class="w-100 d-flex justify-content-start">
-          <p>Add Fiends</p>
+      <div class="w-100 d-flex justify-content-start">
+        <p>Fiends Name</p>
+      </div>
+      <div
+        class="row justify-content-center
+             w-100">
+
+        <div class="w-100 h-100  align-items-center d-flex chip-holder ">
+          <input #playerNameInput type="text" class="form-control w-100" name="player_name_input" id="player_name_input">
+          <div (click)="addFilterFriends(playerNameInput)" class="col-1 d-flex justify-content-center align-items-center">
+            <i class="bi bi-plus" style="color: var(--primary-color);font-size:40px"></i>
+          </div>
+
         </div>
-        <div style="height: 50px"
-             class="row justify-content-center
-             input-holder align-content-center px-2 w-100">
-          <div class=" h-100 align-items-center d-flex chip-holder ">
-            <div *ngFor="let chip of filterFriends"
-                 class="col mx-2 my-2 d-flex justify-content-start align-content-center ">
-              <app-chip chipName="{{chip}}" (removeChipEmmiter)="removeFilterFriends($event)"></app-chip>
-            </div>
+        <div class=" h-100 align-items-center d-flex chip-holder ">
+
+          <div *ngFor="let chip of filterFriends" class="col mx-2 my-2 d-flex justify-content-start align-content-center ">
+            <app-chip chipName="{{chip}}" (removeChipEmmiter)="removeFilterFriends($event)"  ></app-chip>
           </div>
         </div>
 
-        <div class="col-1 d-flex justify-content-center align-items-center">
-          <i class="fa-solid fa-circle-plus fa-2xl" style="color: var(--primary-color)"></i>
-        </div>
-
-
 
       </div>
+    </div>
 
 
 
 
     <div class="d-flex justify-content-center mt-3 align-items-start flex-column  w-100 ">
       <label for="numofplayers">Add Game Set</label>
-      <input  ngModel style="border: solid 1px var(--primary-color)" class="form-control px-3 py-2 rounded-1 mt-1  p-1" type="text" id="gameset" name="gameset">
+      <input  ngModel  class="form-control px-3 py-2 rounded-1 mt-1  p-1" type="text" id="gameset" name="gameset">
 
 
     </div>
@@ -40,7 +43,7 @@
 
     <div class="d-flex justify-content-center mt-3 align-items-start flex-column  w-100 ">
       <label for="numofplayers">Add Number Of Players</label>
-      <input value="1" ngModel style="border: solid 1px var(--primary-color)" class="form-control px-3 py-2 rounded-1 mt-1  p-1" type="number" id="numofplayers" name="numofplayers">
+      <input value="1" ngModel class="form-control px-3 py-2 rounded-1 mt-1  p-1" type="number" id="numofplayers" name="numofplayers">
 
 
     </div>

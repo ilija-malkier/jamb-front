@@ -6,7 +6,7 @@
     </div>
     <div class="d-flex">
       <button class="btn mx-2 border-0" (click)="cancelGameCreation()" [disabled]="isLoading || isCalculating" type="button" >Cancel</button>
-      <app-button-icon text="Save" (click)="saveGame()" icon="fa-regular fa-floppy-disk"></app-button-icon>
+      <app-button-icon text="Save" (click)="saveGame()" icon="bi bi-save"></app-button-icon>
     </div>
   </div>
   <div>
@@ -31,7 +31,7 @@
   <div class="w-100 d-flex justify-content-end">
     <label class="fw-bold" *ngIf="currentScore && currentScore.result">{{currentScore.result}}</label>
   </div>
-<app-create-game-modal></app-create-game-modal>
+<app-create-game-modal [score]="currentScore?.result"></app-create-game-modal>
 
 </div>
 

@@ -22,3 +22,11 @@
   border-color: #ced4da; /* Change the border color to the default */
   box-shadow: none; /* Remove the box shadow */
 }
+.add-button{
+  transition:500ms ease-in;
+  border-radius: 50%;
+
+}
+.add-button:hover{
+  border:solid 1px var(--secondary-color) !important;
+}

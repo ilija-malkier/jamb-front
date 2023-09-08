@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../services/auth.service";
 
 @Component({
@@ -10,18 +10,27 @@ import {AuthService} from "../services/auth.service";
 export class AppComponent implements OnInit{
   title = 'Jamb';
 
-  constructor(private router:Router,private auth:AuthService) {}
+  constructor(private activeRoute:ActivatedRoute,private router:Router,private auth:AuthService) {}
 
   ngOnInit(): void {
 
-    let token = localStorage.getItem("access_token");
-    if(token){
-      this.auth.$isLogin.next(true)
-      this.router.navigate(["home"])
-    }else{
-      this.auth.$isLogin.next(false)
-      this.router.navigate(["login"])
+    let token = localStorage.getItem("access_token")
 
+    if(this.router.url.includes("/account/activate")){
+
+      console.log("cao")
+      return
     }
+
+
+    // if(token ){
+    //   console.log(token)
+    //   this.auth.$isLogin.next(true)
+    //   this.router.navigate(["home"])
+    // }else{
+    //   this.auth.$isLogin.next(false)
+    //   this.router.navigate(["login"])
+    //
+    // }
   }
 }

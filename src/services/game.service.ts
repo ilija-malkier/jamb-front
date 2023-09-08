@@ -7,6 +7,7 @@ import {FilterRequest} from "../app/model/filter-request";
 import {SortDirection} from "../app/model/sort-direction";
 import { format, parseISO } from 'date-fns';
 import {da} from "date-fns/locale";
+import {GameCreateRequest} from "../app/model/game-create-request";
 @Injectable({
   providedIn: 'root'
 })
@@ -17,11 +18,11 @@ export class GameService {
   protected sortDirection:SortDirection=SortDirection.desc
   games$:BehaviorSubject<Observable<CustomResponse>> = new BehaviorSubject<Observable<CustomResponse>>( new Observable<CustomResponse>())
   constructor(private httpClient:HttpClient) {
-    this.games$.next( this.httpClient.get<CustomResponse>("http://localhost:8081/game/filter"))
+    this.games$.next( this.httpClient.get<CustomResponse>("http://localhost:8081/games/filter"))
   }
 
   getPages(){
-    return  this.httpClient.get<CustomResponse>("http://localhost:8081/game/count")
+    return  this.httpClient.get<CustomResponse>("http://localhost:8081/games/count")
   }
 
 
@@ -29,7 +30,7 @@ export class GameService {
     let params = this.createParams();
     params= {... params,pageNumber:page}
     this.games$.next(
-      this.httpClient.get<CustomResponse>("http://localhost:8081/game/filter",{
+      this.httpClient.get<CustomResponse>("http://localhost:8081/games/filter",{
         params:params
       })
     )
@@ -39,7 +40,7 @@ export class GameService {
 
     let params = this.createParams();
     this.games$.next(
-        this.httpClient.get<CustomResponse>("http://localhost:8081/game/filter",{
+        this.httpClient.get<CustomResponse>("http://localhost:8081/games/filter",{
           params:params
         })
       )
@@ -83,7 +84,8 @@ export class GameService {
     this.sortDirection=sortDirection
   }
 
-  saveGame() {
+  saveGame(gameCreateRequest:GameCreateRequest) {
+    console.log(gameCreateRequest)
     // this.httpClient.post<CustomResponse>("http://localhost:8081/game",)
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {CustomResponse} from "../app/model/custom-response";
 import {RequestResetPasswordRequest} from "../app/model/request-reset-password-request";
 import {da} from "date-fns/locale";
@@ -20,6 +20,14 @@ export class UserService {
   sendRequestForResetPassword(requestResetPassword:RequestResetPasswordRequest){
     console.log(requestResetPassword)
     this.http.post<CustomResponse>("http://localhost:8081/user/password/reset", requestResetPassword).subscribe(data=>{
+      console.log(data)
+    })
+  }
+
+  activateAccount(token: string) {
+    let params = new HttpParams().set('token', token);
+
+    this.http.get<CustomResponse>("http://localhost:8081/user/activate",{ params: params }).subscribe(data=>{
       console.log(data)
     })
   }
