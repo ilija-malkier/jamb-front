@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-statistic-card',
@@ -10,4 +10,9 @@ export class StatisticCardComponent {
   @Input() percent:string='';
   @Input("value") value:string='';
   @Input() image:string='assets/images/rook.png';
+  protected readonly isFinite = isFinite;
+  protected readonly parseInt = parseInt;
+  protected readonly isNaN = isNaN;
+
+
 }

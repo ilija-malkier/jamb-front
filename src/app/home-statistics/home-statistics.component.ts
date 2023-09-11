@@ -47,4 +47,5 @@ export class HomeStatisticsComponent implements OnInit{
 
 
   protected readonly DataState = DataState;
+  protected readonly parseInt = parseInt;
 }
