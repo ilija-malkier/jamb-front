@@ -1,16 +1,16 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {catchError, map, Observable, of, startWith} from "rxjs";
-import {AppState} from "../model/app-state";
-import {Friend} from "../model/friend";
-import {PlayerFriendRequest} from "../model/player-friend-request";
-import {FriendsService} from "../../services/friends.service";
-import {ModalService} from "../../services/modal.service";
-import {DataState} from "../model/data-state";
-import {CustomResponse} from "../model/custom-response";
-import {FindFriendsModalComponent} from "../find-friends-modal/find-friends-modal.component";
-import {GameService} from "../../services/game.service";
-import {GameRequestResponse} from "../model/game-request-response";
-import {PagedGameRequestResponse} from "../model/paged-game-request-response";
+import {AppState} from "../../model/app-state";
+import {Friend} from "../../model/friend";
+import {PlayerFriendRequest} from "../../model/player-friend-request";
+import {FriendsService} from "../../../services/friends.service";
+import {ModalService} from "../../../services/modal.service";
+import {DataState} from "../../model/data-state";
+import {CustomResponse} from "../../model/custom-response";
+import {FindFriendsModalComponent} from "../../modals/find-friends-modal/find-friends-modal.component";
+import {GameService} from "../../../services/game.service";
+import {GameRequestResponse} from "../../model/game-request-response";
+import {PagedGameRequestResponse} from "../../model/paged-game-request-response";
 
 @Component({
   selector: 'app-game-request',

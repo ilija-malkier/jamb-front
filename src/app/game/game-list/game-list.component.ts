@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, catchError, map, Observable, of, startWith, timer} from "rxjs";
-import {GameFilterResponse} from "../model/game-filter-response";
+import {GameFilterResponse} from "../../model/game-filter-response";
 import {error} from "@angular/compiler-cli/src/transformers/util";
-import {CustomResponse} from "../model/custom-response";
-import {AppState} from "../model/app-state";
-import {GameService} from "../../services/game.service";
-import {DataState} from "../model/data-state";
-import {FilterRequest} from "../model/filter-request";
-import {SortDirection} from "../model/sort-direction";
+import {CustomResponse} from "../../model/custom-response";
+import {AppState} from "../../model/app-state";
+import {GameService} from "../../../services/game.service";
+import {DataState} from "../../model/data-state";
+import {FilterRequest} from "../../model/filter-request";
+import {SortDirection} from "../../model/sort-direction";
 
 @Component({
   selector: 'app-game-list',

@@ -7,7 +7,7 @@ import {CustomResponse} from "../model/custom-response";
 import {DataState} from "../model/data-state";
 import {delay} from "rxjs";
 import {ModalService} from "../../services/modal.service";
-import {RegistrationModalComponent} from "../registration-modal/registration-modal.component";
+import {RegistrationModalComponent} from "../modals/registration-modal/registration-modal.component";
 
 @Component({
   selector: 'app-register',

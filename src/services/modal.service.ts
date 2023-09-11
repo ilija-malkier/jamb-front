@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {IModal} from "../app/models/imodal";
+import {IModal} from "../app/model/imodal";
 
 @Injectable({
   providedIn: 'root'

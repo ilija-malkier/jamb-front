@@ -1,9 +1,9 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
-import {ModalService} from "../../services/modal.service";
+import {ModalService} from "../../../services/modal.service";
 import {NgForm} from "@angular/forms";
-import {FilterRequest} from "../model/filter-request";
-import {SortDirection} from "../model/sort-direction";
-import {GameStatus} from "../model/game-status";
+import {FilterRequest} from "../../model/filter-request";
+import {SortDirection} from "../../model/sort-direction";
+import {GameStatus} from "../../model/game-status";
 
 @Component({
   selector: 'app-filter-modal',

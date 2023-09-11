@@ -1,30 +1,35 @@
-import {Component, EventEmitter, Output} from '@angular/core';
-import {FriendsService} from "../../services/friends.service";
+import {Component, Input, OnInit} from '@angular/core';
+import {GameService} from "../../../services/game.service";
+import {catchError, map, Observable, of, startWith, tap} from "rxjs";
+import {AppState} from "../../model/app-state";
+import {DataState} from "../../model/data-state";
+import {CustomResponse} from "../../model/custom-response";
 
 @Component({
-  selector: 'app-friends-requests-list-pagination',
-  templateUrl: './friends-requests-list-pagination.component.html',
-  styleUrls: ['./friends-requests-list-pagination.component.css']
+  selector: 'app-game-list-pagination',
+  templateUrl: './game-list-pagination.component.html',
+  styleUrls: ['./game-list-pagination.component.css']
 })
-export class FriendsRequestsListPaginationComponent {
+export class GameListPaginationComponent implements OnInit{
 
 
-  totalPages:number=0;
+  @Input() totalPages:number=0
+   itemsPerPage:number=9;
   currentPage:number =1;
   ngOnInit(): void {
     this.getPageNumber();
   }
 
-  constructor(private friendsService:FriendsService) {}
+  constructor(private gameService:GameService) {}
 
   get numberArray(): number[] {
     return Array.from({ length: this.totalPages  }, (_, index) => index);
   }
   public getPageNumber(){
-    // this.friendsService.getPages().subscribe((total)=>{
-    //   let totalItems=total.data.gameCount as number;
-    //   this.totalPages=this.customRound(totalItems/this.itemsPerPage);
-    // });
+    this.gameService.getPages().subscribe((total)=>{
+      let totalItems=total.data.gameCount as number;
+      this.totalPages=this.customRound(totalItems/this.itemsPerPage);
+    });
   }
 
 
@@ -50,14 +55,13 @@ export class FriendsRequestsListPaginationComponent {
   }
 
 
-
   toPage(i: number) {
     this.currentPage=i;
     this.getNotesForCurrPage();
   }
 
   private getNotesForCurrPage(){
-    this.friendsService.filterForPage(this.currentPage);
+    this.gameService.filterForPage(this.currentPage);
   }
   private customRound(number: number): number {
     const decimalPart = number - Math.floor(number);

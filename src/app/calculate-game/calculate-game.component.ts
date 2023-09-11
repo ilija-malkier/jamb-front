@@ -5,7 +5,7 @@ import {SheetService} from "../../services/sheet.service";
 import {ResultResponse} from "../model/result-response";
 import {GameService} from "../../services/game.service";
 import {ModalService} from "../../services/modal.service";
-import {CreateGameModalComponent} from "../create-game-modal/create-game-modal.component";
+import {CreateGameModalComponent} from "../modals/create-game-modal/create-game-modal.component";
 
 @Component({
   selector: 'app-calculate-game',

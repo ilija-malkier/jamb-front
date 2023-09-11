@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {FriendsService} from "../../services/friends.service";
+import {FriendsService} from "../../../services/friends.service";
 import {catchError, map, Observable, of, startWith} from "rxjs";
-import {AppState} from "../model/app-state";
-import {PlayerFriend} from "../model/player-friend";
-import {CustomResponse} from "../model/custom-response";
-import {DataState} from "../model/data-state";
-import {PlayerFriendRequest} from "../model/player-friend-request";
-import {ModalService} from "../../services/modal.service";
-import {FindFriendsModalComponent} from "../find-friends-modal/find-friends-modal.component";
+import {AppState} from "../../model/app-state";
+import {PlayerFriend} from "../../model/player-friend";
+import {CustomResponse} from "../../model/custom-response";
+import {DataState} from "../../model/data-state";
+import {PlayerFriendRequest} from "../../model/player-friend-request";
+import {ModalService} from "../../../services/modal.service";
+import {FindFriendsModalComponent} from "../../modals/find-friends-modal/find-friends-modal.component";
 import {el} from "date-fns/locale";
-import {Friend} from "../model/friend";
+import {Friend} from "../../model/friend";
 
 @Component({
   selector: 'app-friends-settings',

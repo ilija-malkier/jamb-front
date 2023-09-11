@@ -5,40 +5,40 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import {FormsModule} from "@angular/forms";
 import { RegisterComponent } from './register/register.component';
-import { ErrorBanerComponent } from './error-baner/error-baner.component';
+import { ErrorBanerComponent } from './reusables/error-baner/error-baner.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 import { HomeComponent } from './home/home.component';
-import { GameComponent } from './game/game.component';
-import { GameListComponent } from './game-list/game-list.component';
-import { ButtonIconComponent } from './button-icon/button-icon.component';
+import { GameHistoryCard } from './game/game-history-card/game-history-card.component';
+import { GameListComponent } from './game/game-list/game-list.component';
+import { ButtonIconComponent } from './reusables/button-icon/button-icon.component';
 import { StatisticCardComponent } from './statistic-card/statistic-card.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { RestartPasswordComponent } from './restart-password/restart-password.component';
-import { ModalComponent } from './modal/modal.component';
+import { ModalComponent } from './reusables/modal/modal.component';
 import { UploadSheetComponent } from './upload-sheet/upload-sheet.component';
-import { CreateGameModalComponent } from './create-game-modal/create-game-modal.component';
-import { ChipComponent } from './chip/chip.component';
-import { FindFriendsModalComponent } from './find-friends-modal/find-friends-modal.component';
-import { FriendsSettingsComponent } from './friends-settings/friends-settings.component';
+import { CreateGameModalComponent } from './modals/create-game-modal/create-game-modal.component';
+import { ChipComponent } from './reusables/chip/chip.component';
+import { FindFriendsModalComponent } from './modals/find-friends-modal/find-friends-modal.component';
+import { FriendsSettingsComponent } from './friends/friends-settings/friends-settings.component';
 import {Router, RouterModule, RouterOutlet, Routes} from "@angular/router";
 import { SupportComponent } from './support/support.component';
 import { SetNewPasswordComponent } from './set-new-password/set-new-password.component';
-import { GameRequestComponent } from './game-request/game-request.component';
+import { GameRequestComponent } from './game/game-request/game-request.component';
 import { CalculateGameComponent } from './calculate-game/calculate-game.component';
-import { FilterModalComponent } from './filter-modal/filter-modal.component';
+import { FilterModalComponent } from './modals/filter-modal/filter-modal.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-import { RegistrationModalComponent } from './registration-modal/registration-modal.component';
+import { RegistrationModalComponent } from './modals/registration-modal/registration-modal.component';
 import {JwtInterceptor, JwtInterceptorConst} from "./interceptor/jwt-interceptor.service";
-import {navigationRouteGuard} from "./navigation-route.guard";
-import { CustomImageComponent } from './custom-image/custom-image.component';
+import {navigationRouteGuard} from "./route-guards/navigation-route.guard";
+import { CustomImageComponent } from './reusables/custom-image/custom-image.component';
 import { HomeStatisticsComponent } from './home-statistics/home-statistics.component';
-import { CapitalizeFirstLetterPipe } from './capitalize-first-letter.pipe';
+import { CapitalizeFirstLetterPipe } from './pipes/capitalize-first-letter.pipe';
 import {StatisticsService} from "../services/statistics.service";
-import { GameListPaginationComponent } from './game-list-pagination/game-list-pagination.component';
-import { FriendsListPaginationComponent } from './friends-list-pagination/friends-list-pagination.component';
-import { FriendsRequestsListPaginationComponent } from './friends-requests-list-pagination/friends-requests-list-pagination.component';
-import { StopTypingDirective } from './stop-typing.directive';
+import { GameListPaginationComponent } from './game/game-list-pagination/game-list-pagination.component';
+import { FriendsListPaginationComponent } from './friends/friends-list-pagination/friends-list-pagination.component';
+import { FriendsRequestsListPaginationComponent } from './friends/friends-requests-list-pagination/friends-requests-list-pagination.component';
+import { StopTypingDirective } from './directive/stop-typing.directive';
 
 
 const routes:Routes=[
@@ -68,7 +68,7 @@ const routes:Routes=[
     VerifyEmailComponent,
     NotFoundPageComponent,
     HomeComponent,
-    GameComponent,
+    GameHistoryCard,
     GameListComponent,
     ButtonIconComponent,
     StatisticCardComponent,

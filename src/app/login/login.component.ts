@@ -5,7 +5,7 @@ import {UserLoginRequest} from "../model/user-login-request";
 import {DataState} from "../model/data-state";
 import {AppState} from "../model/app-state";
 import {CustomResponse} from "../model/custom-response";
-import {RegistrationModalComponent} from "../registration-modal/registration-modal.component";
+import {RegistrationModalComponent} from "../modals/registration-modal/registration-modal.component";
 import {ModalService} from "../../services/modal.service";
 import {delay} from "rxjs";
 import {LoginResponse} from "../model/login-response";

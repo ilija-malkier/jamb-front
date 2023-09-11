@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {UserLoginRequest} from "../app/model/user-login-request";
 import {UserRegisterRequest} from "../app/model/user-register-request";
 import {ModalService} from "./modal.service";
-import {RegistrationModalComponent} from "../app/registration-modal/registration-modal.component";
+import {RegistrationModalComponent} from "../app/modals/registration-modal/registration-modal.component";
 import {BehaviorSubject, Observable} from "rxjs";
 import {AppState} from "../app/model/app-state";
 import {CustomResponse} from "../app/model/custom-response";

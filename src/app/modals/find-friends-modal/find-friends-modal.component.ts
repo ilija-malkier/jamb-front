@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ModalService} from "../../services/modal.service";
-import {FriendsService} from "../../services/friends.service";
-import {FindFriends} from "../model/find-friends";
+import {ModalService} from "../../../services/modal.service";
+import {FriendsService} from "../../../services/friends.service";
+import {FindFriends} from "../../model/find-friends";
 import {da} from "date-fns/locale";
-import {Friend} from "../model/friend";
+import {Friend} from "../../model/friend";
 
 @Component({
   selector: 'app-find-friends-modal',

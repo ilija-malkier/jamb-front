@@ -1,10 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ModalService} from "../../services/modal.service";
 import {UploadSheetComponent} from "../upload-sheet/upload-sheet.component";
-import {FilterModalComponent} from "../filter-modal/filter-modal.component";
+import {FilterModalComponent} from "../modals/filter-modal/filter-modal.component";
 import {FilterRequest} from "../model/filter-request";
 import {SortDirection} from "../model/sort-direction";
-import {GameListComponent} from "../game-list/game-list.component";
+import {GameListComponent} from "../game/game-list/game-list.component";
 
 @Component({
   selector: 'app-home',

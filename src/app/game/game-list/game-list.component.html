@@ -1,6 +1,6 @@
 <div *ngIf="gameLists | async as games">
   <div  class="d-flex flex-column w-100  justify-content-center align-items-center">
-    <app-game  [game]="game" *ngFor="let game of games?.appData"></app-game>
+    <app-game-history-card [game]="game" *ngFor="let game of games?.appData"></app-game-history-card>
   </div>
   <div *ngIf="games.dataState===DataState.LOADING">
     <div class="spinner-grow" role="status">
@@ -8,7 +8,7 @@
     </div>
   </div>
   <ng-container *ngIf="games.appData?.length==0" class="bg-danger">
-    <img src="assets/images/no_data.png">
+    <img src="../../../assets/images/no_data.png">
   </ng-container>
 
 </div>

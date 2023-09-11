@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {GameService} from "../../services/game.service";
-import {FriendsService} from "../../services/friends.service";
+import {GameService} from "../../../services/game.service";
+import {FriendsService} from "../../../services/friends.service";
 
 @Component({
   selector: 'app-friends-list-pagination',

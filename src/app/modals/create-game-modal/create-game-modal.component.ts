@@ -1,8 +1,8 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {ModalService} from "../../services/modal.service";
-import {PlayerFriend} from "../model/player-friend";
+import {ModalService} from "../../../services/modal.service";
+import {PlayerFriend} from "../../model/player-friend";
 import {NgForm} from "@angular/forms";
-import {GameService} from "../../services/game.service";
+import {GameService} from "../../../services/game.service";
 
 @Component({
   selector: 'app-create-game-modal',
