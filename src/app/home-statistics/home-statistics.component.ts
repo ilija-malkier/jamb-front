@@ -5,7 +5,6 @@ import {AppState} from "../model/app-state";
 import {HomeStatistics} from "../model/home-statistics";
 import {DataState} from "../model/data-state";
 import {CustomResponse} from "../model/custom-response";
-import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-home-statistics',
