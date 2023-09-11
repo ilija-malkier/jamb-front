@@ -38,6 +38,7 @@ import {StatisticsService} from "../services/statistics.service";
 import { GameListPaginationComponent } from './game-list-pagination/game-list-pagination.component';
 import { FriendsListPaginationComponent } from './friends-list-pagination/friends-list-pagination.component';
 import { FriendsRequestsListPaginationComponent } from './friends-requests-list-pagination/friends-requests-list-pagination.component';
+import { StopTypingDirective } from './stop-typing.directive';
 
 
 const routes:Routes=[
@@ -91,6 +92,7 @@ const routes:Routes=[
     GameListPaginationComponent,
     FriendsListPaginationComponent,
     FriendsRequestsListPaginationComponent,
+    StopTypingDirective,
 
   ],
     imports: [

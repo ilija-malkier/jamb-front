@@ -33,4 +33,12 @@ export class FriendsService {
   getPages() {
 
   }
+
+  findFriends(value: string) {
+   return this.http.get<CustomResponse>("http://localhost:8081/player/friends/new/find",{
+      params:{
+        find:value
+      }
+    })
+  }
 }

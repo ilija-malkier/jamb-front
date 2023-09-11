@@ -2,10 +2,10 @@
 
     <div class="d-flex justify-content-center flex-column w-100 align-items-end">
       <div class="container mt-4 w-100 ">
-        <input type="text" id="searchInput" class="form-control w-100" placeholder="Type to see suggestions">
-        <div class="d-flex friends-list justify-content-center align-items-start flex-column w-100">
+        <input type="text" appStopTyping (stopTyping)="onStopTyping($event)"  #input id="searchInput" class="form-control w-100" placeholder="Type to see suggestions">
+        <div class="d-flex friends-list justify-content-center align-items-start flex-column w-100" *ngFor="let friend of foundFriends">
           <div class="p-2 d-flex w-100  justify-content-center align-items-center">
-            <p class="flex-grow-1">cao</p>
+            <p class="flex-grow-1">{{friend.username}}</p>
             <button class="btn col flex-grow-0">Add</button>
           </div>
         </div>

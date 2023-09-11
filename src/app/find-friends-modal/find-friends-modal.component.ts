@@ -1,5 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ModalService} from "../../services/modal.service";
+import {FriendsService} from "../../services/friends.service";
+import {FindFriends} from "../model/find-friends";
+import {da} from "date-fns/locale";
+import {Friend} from "../model/friend";
 
 @Component({
   selector: 'app-find-friends-modal',
@@ -11,7 +15,8 @@ export class FindFriendsModalComponent implements OnInit,OnDestroy{
   findFriendsModalId="find-friends"
   static findFriendsModalId="find-friends"
   findFriendsModalTitle="Find Friends"
-  constructor(private modalService:ModalService) {}
+  foundFriends:Friend[]=[]
+  constructor(private modalService:ModalService,private friendsService:FriendsService) {}
 
   ngOnInit(): void {
     this.modalService.register(this.findFriendsModalId)
@@ -22,7 +27,19 @@ export class FindFriendsModalComponent implements OnInit,OnDestroy{
 
   }
 
+  onStopTyping(value: string) {
+    if(value===''){
+      this.foundFriends=[]
+      return
+    }
+    this.friendsService.findFriends(value).subscribe(data=>{
+      console.log(data)
+      this.foundFriends= <Friend[]>(<FindFriends> data.data).matching_usernames
+    })
+  }
   closeModal() {
     this.modalService.closeModal(this.findFriendsModalId)
   }
+
+
 }
