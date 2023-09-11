@@ -33,7 +33,6 @@ export class FindFriendsModalComponent implements OnInit,OnDestroy{
       return
     }
     this.friendsService.findFriends(value).subscribe(data=>{
-      console.log(data)
       this.foundFriends= <Friend[]>(<FindFriends> data.data).matching_usernames
     })
   }

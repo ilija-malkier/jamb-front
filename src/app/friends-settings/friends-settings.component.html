@@ -26,7 +26,7 @@
         </tbody>
       </table>
       <div class="w-100  d-flex justify-content-end">
-        <app-friends-list-pagination [totalElements]="this.customRound(this.totalElements/this.maxFriends)"></app-friends-list-pagination>
+        <app-friends-list-pagination [totalPages]="this.customRound(this.totalElements/this.maxFriends)"></app-friends-list-pagination>
       </div>
 
     </ng-container>
@@ -61,7 +61,7 @@
       </tbody>
     </table>
       <div class="w-100  d-flex justify-content-end">
-        <app-friends-requests-list-pagination (nextPageEmmiter)="handleNextPage($event)" ></app-friends-requests-list-pagination>
+        <app-friends-requests-list-pagination ></app-friends-requests-list-pagination>
       </div>
 
     </ng-container>

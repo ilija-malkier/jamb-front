@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {GameService} from "../../services/game.service";
 import {FriendsService} from "../../services/friends.service";
 
@@ -10,10 +10,10 @@ import {FriendsService} from "../../services/friends.service";
 export class FriendsListPaginationComponent {
 
 
-  itemsPerPage:number=10;
-  totalPages:number=0;
+
   currentPage:number =1;
-  @Input() totalElements=0
+  @Input() totalPages=0
+  @Output() friendsPageEmitter:EventEmitter<number>=new EventEmitter()
   ngOnInit(): void {
     this.getPageNumber();
   }
@@ -21,7 +21,7 @@ export class FriendsListPaginationComponent {
   constructor(private friendsService:FriendsService) {}
 
   get numberArray(): number[] {
-    return  Array.from({ length: this.totalElements  }, (_, index) => index);
+    return  Array.from({ length: this.totalPages  }, (_, index) => index);
 
   }
   public getPageNumber(){
@@ -36,6 +36,7 @@ export class FriendsListPaginationComponent {
     return 0 != this.currentPage - 1
   }
   canGoForward(){
+
     return this.totalPages>=this.currentPage+1
   }
 
@@ -60,6 +61,7 @@ export class FriendsListPaginationComponent {
   }
 
   private getNotesForCurrPage(){
+
     this.friendsService.filterForPage(this.currentPage);
   }
 

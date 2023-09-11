@@ -19,7 +19,7 @@ import {Friend} from "../model/friend";
 export class FriendsSettingsComponent implements OnInit{
 
 
-  maxFriends=10;
+  maxFriends=3;
   $friends:Observable<AppState<Friend[]>> = new Observable<AppState<Friend[]>>()
   $friendsRequests:Observable<AppState<PlayerFriendRequest[]>> = new Observable<AppState<PlayerFriendRequest[]>>()
   currentPage=0
@@ -50,6 +50,7 @@ export class FriendsSettingsComponent implements OnInit{
         }),
         map((element: CustomResponse) => {
           this.totalElements=element?.data?.friends.totalElements
+          console.log(element)
           return {
             dataState: DataState.SUCCESS,
             appData: element?.data?.friends.friends
@@ -80,8 +81,5 @@ export class FriendsSettingsComponent implements OnInit{
     this.modalService.toggleModal(FindFriendsModalComponent.findFriendsModalId)
   }
 
-  handleNextPage(page: number) {
-    this.friendsService.getFriends(this.currentPage)
 
-  }
 }
