@@ -1,7 +1,7 @@
 export interface GameCreateRequest {
   numberOfPlayers:string,
   players:string[],
-  image:any,
+  image:Uint8Array,
   score:number
 
 }

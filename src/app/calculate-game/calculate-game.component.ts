@@ -17,11 +17,14 @@ export class CalculateGameComponent {
   currentScore:ResultResponse
   isLoading: boolean=false;
   isCalculating: boolean=false;
+  image:Uint8Array
 
   constructor(private router:Router,private sheetService:SheetService,private gameService:GameService,private modalService:ModalService) {
-    const dataObject = this.router.getCurrentNavigation().extras.state['data']
+    const dataObject = this.router.getCurrentNavigation().extras.state['table']
+    const dataImage = this.router.getCurrentNavigation().extras.state['image']
     this.sheetData=dataObject
-    console.log(this.sheetData)
+    this.image=dataImage
+
   }
 
   get numberArray(): number[] {
@@ -34,7 +37,6 @@ export class CalculateGameComponent {
     if(sheetDatumElement.value!=valueNumber){
       sheetDatumElement.value=valueNumber
        this.sheetData[rowIndex][columnIndex]=sheetDatumElement
-      console.log(sheetDatumElement)
       this.sheetService.validateCell(rowIndex,columnIndex,rowLength,sheetDatumElement).subscribe(data=>{
 
         sheetDatumElement.valid=data.data.isValid

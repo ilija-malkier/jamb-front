@@ -17,7 +17,7 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
   uploadSheetModalId="upload-sheet"
   uploadSheetModalTitle="Upload Sheet"
   static uploadSheetModalId="upload-sheet"
-  sheetToUpload;
+  sheetToUpload:File;
   isFileSelected=false
    remainingTime = 3;
    interval;
@@ -26,6 +26,7 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
   showProgress=false;
    isLoadingImage=false;
    isLoading=false;
+  sheetToUploadBytes:Uint8Array
   constructor(private modalService:ModalService,private httpClient:HttpClient,private router:Router) {}
 
   ngOnInit(): void {
@@ -42,7 +43,17 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
       fileInput.click();
   }
 
+  private readFileAsUint8Array(file: File): void {
+    const reader = new FileReader();
 
+    reader.onload = (event) => {
+      const arrayBuffer = reader.result as ArrayBuffer;
+      const uint8Array = new Uint8Array(arrayBuffer);
+      this.sheetToUploadBytes=uint8Array
+    };
+
+    reader.readAsArrayBuffer(file);
+  }
   uploadSheet(form: NgForm) {
     this.isLoading=true
     const formData = new FormData();
@@ -51,7 +62,8 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
       next=>{
         const navigationExtras: NavigationExtras = {
           state: {
-            data: next
+            table: next,
+            image:this.sheetToUploadBytes
           }
         };
         this.router.navigate(["game/create"],navigationExtras)
@@ -72,7 +84,7 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
      this.isFileSelected=true;
      this.isLoadingImage=true;
     this.sheetToUpload=$event.target.files[0];
-
+     this.readFileAsUint8Array(this.sheetToUpload)
     await new Promise(f => setTimeout(f, 1000));
     this.showProgress=true
     this.interval = setInterval(this.notifyEverySecond, 1000);

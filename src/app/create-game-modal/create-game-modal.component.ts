@@ -16,6 +16,7 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
   isLoading: boolean;
   filterFriends:string[]=[]
   @Input() score:number=0;
+  @Input() image:Uint8Array
   constructor(private modalService:ModalService,private gameService:GameService) {}
   ngOnDestroy(): void {
     this.modalService.unregister(this.createGameModalId);
@@ -36,7 +37,7 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
   saveGame(form: NgForm) {
     let gameSet=form.value['gameset']
     let numberOfPlayers=form.value['numofplayers']
-    this.gameService.saveGame({players:this.filterFriends,numberOfPlayers:numberOfPlayers,image:null,score:this.score})
+    this.gameService.saveGame({players:this.filterFriends,numberOfPlayers:numberOfPlayers,image:this.image,score:this.score})
   }
   addFilterFriends(inputUsename: HTMLInputElement){
 

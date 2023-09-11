@@ -29,8 +29,8 @@
 
 
 
-    <input ngModel class="input-group my-4 py-2 px-3" placeholder="Sheet Name" type="text" id="name" name="sheet_name">
-    <div class="d-flex justify-content-end">
+
+    <div class="d-flex justify-content-end mt-3">
       <button class="btn mx-2 border-0" (click)="closeModal(form)" [disabled]="isLoading || isLoadingImage" type="button" >Cancel</button>
       <button class="btn text-white px-3" [ngClass]="{'disable':isLoading || isLoadingImage}"   type="submit" style="background: var(--primary-color)">
         <ng-container *ngIf="(isLoading || isLoadingImage) ;else textContainerBtn">
