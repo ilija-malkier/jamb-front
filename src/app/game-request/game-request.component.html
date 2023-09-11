@@ -21,8 +21,8 @@
           <td class="text-center">{{gameRequest.gameDate | date}}</td>
           <td class="text-center">
             <div class="d-flex justify-content-center">
-              <button class="btn btn-link" style="color:var(--primary-color)"> Accept</button>
-              <button class="btn btn-link text-dark"  > Decline</button>
+              <button class="btn btn-link" (click)="acceptGame(gameRequest.gameId)" style="color:var(--primary-color)"> Accept</button>
+              <button class="btn btn-link text-dark"  (click)="declineGame(gameRequest.gameId)"> Decline</button>
             </div>
           </td>
         </tr>

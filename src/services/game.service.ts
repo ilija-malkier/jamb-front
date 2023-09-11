@@ -103,4 +103,10 @@ export class GameService {
       }
     }))
   }
+
+  declineGame(gameId: number) {
+    this.httpClient.put<CustomResponse>("http://localhost:8081/games/request/decline",{gameId:gameId}).subscribe(data=>{
+      console.log(data)
+    })
+  }
 }

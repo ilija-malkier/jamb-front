@@ -65,4 +65,13 @@ export class GameRequestComponent implements OnInit{
     this.modalService.toggleModal(FindFriendsModalComponent.findFriendsModalId)
   }
 
+  acceptGame(gameId: number) {
+
+  }
+
+  declineGame(gameId:number){
+      this.gameService.declineGame(gameId)
+      this.currentPage=0
+      this.gameService.getGameRequests(this.currentPage)
+  }
 }
