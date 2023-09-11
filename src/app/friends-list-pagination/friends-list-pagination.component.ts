@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {GameService} from "../../services/game.service";
 import {FriendsService} from "../../services/friends.service";
 
@@ -10,9 +10,10 @@ import {FriendsService} from "../../services/friends.service";
 export class FriendsListPaginationComponent {
 
 
-  itemsPerPage:number=9;
+  itemsPerPage:number=10;
   totalPages:number=0;
   currentPage:number =1;
+  @Input() totalElements=0
   ngOnInit(): void {
     this.getPageNumber();
   }
@@ -20,7 +21,8 @@ export class FriendsListPaginationComponent {
   constructor(private friendsService:FriendsService) {}
 
   get numberArray(): number[] {
-    return Array.from({ length: this.totalPages  }, (_, index) => index);
+    return  Array.from({ length: this.totalElements  }, (_, index) => index);
+
   }
   public getPageNumber(){
     // this.friendsService.getPages().subscribe((total)=>{
@@ -60,11 +62,6 @@ export class FriendsListPaginationComponent {
   private getNotesForCurrPage(){
     this.friendsService.filterForPage(this.currentPage);
   }
-  private customRound(number: number): number {
-    const decimalPart = number - Math.floor(number);
-    const roundedDecimal = Math.ceil(decimalPart);
-    // console.log(decimalPart +"-"+roundedDecimal)
-    return Math.floor(number) + roundedDecimal;
-  }
+
 
 }

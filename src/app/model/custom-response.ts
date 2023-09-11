@@ -16,7 +16,7 @@ export interface CustomResponse {
     access_token?:string,
     gameCount?:number,
     refresh_token?:string,
-    friends?:PlayerFriend[],
+    friends?:PlayerFriend,
     friend_requests?:PlayerFriendRequest[],
     isValid?:boolean,
     result?:ResultResponse

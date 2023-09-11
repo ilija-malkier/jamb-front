@@ -37,10 +37,12 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
   saveGame(form: NgForm) {
     let gameSet=form.value['gameset']
     let numberOfPlayers=form.value['numofplayers']
-    this.gameService.saveGame({players:this.filterFriends,numberOfPlayers:numberOfPlayers,image:this.image,score:this.score})
+    const textDecoder = new TextDecoder('utf-8');
+    const text = textDecoder.decode(this.image);
+
+    this.gameService.saveGame({players:this.filterFriends,numberOfPlayers:parseInt(numberOfPlayers),image:text,score:this.score,gameSetId:1})
   }
   addFilterFriends(inputUsename: HTMLInputElement){
-
     if(this.filterFriends.includes(inputUsename.value)) return;
     //maybe notify user
     this.filterFriends.push(inputUsename.value)

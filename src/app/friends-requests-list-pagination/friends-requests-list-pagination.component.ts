@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FriendsService} from "../../services/friends.service";
 
 @Component({
@@ -11,6 +11,7 @@ export class FriendsRequestsListPaginationComponent {
   itemsPerPage:number=9;
   totalPages:number=0;
   currentPage:number =1;
+  @Output() nextPageEmmiter:EventEmitter<number>=new EventEmitter<number>()
   ngOnInit(): void {
     this.getPageNumber();
   }
@@ -41,18 +42,26 @@ export class FriendsRequestsListPaginationComponent {
 
     this.currentPage--;
     this.getNotesForCurrPage();
+    this.emitPage()
   }
 
   nextPage() {
     if(!this.canGoForward()) return;
     this.currentPage++;
     this.getNotesForCurrPage();
+    this.emitPage()
+  }
+
+  private emitPage() {
+    this.nextPageEmmiter.next(this.currentPage)
+
   }
 
 
   toPage(i: number) {
     this.currentPage=i;
     this.getNotesForCurrPage();
+    this.emitPage()
   }
 
   private getNotesForCurrPage(){

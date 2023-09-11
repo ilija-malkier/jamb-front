@@ -1,3 +1,8 @@
+import {Friend} from "./friend";
+
 export interface PlayerFriend {
-  username:string
+  friends:Friend[],
+  pageNumber:number,
+  pageSize:number,
+  totalElements:number
 }

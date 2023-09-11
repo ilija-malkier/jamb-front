@@ -17,8 +17,12 @@ export class FriendsService {
     this.$friendRequest.next(this.http.get<CustomResponse>("http://localhost:8081/player/requests/received"))
   }
 
-  getFriends(){
-    this.$friends.next(this.http.get<CustomResponse>("http://localhost:8081/player/friends"))
+  getFriends(page:number){
+    this.$friends.next(this.http.get<CustomResponse>("http://localhost:8081/player/friends",{
+      params:{
+        pageNumber:page
+      }
+    }))
   }
 
 

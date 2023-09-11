@@ -85,6 +85,7 @@ export class GameService {
   }
 
   saveGame(gameCreateRequest:GameCreateRequest) {
+    console.log(gameCreateRequest)
     this.httpClient.post<CustomResponse>("http://localhost:8081/games",gameCreateRequest).subscribe(
       data=>{
         console.log(data)

@@ -8,6 +8,8 @@ import {DataState} from "../model/data-state";
 import {PlayerFriendRequest} from "../model/player-friend-request";
 import {ModalService} from "../../services/modal.service";
 import {FindFriendsModalComponent} from "../find-friends-modal/find-friends-modal.component";
+import {el} from "date-fns/locale";
+import {Friend} from "../model/friend";
 
 @Component({
   selector: 'app-friends-settings',
@@ -17,21 +19,28 @@ import {FindFriendsModalComponent} from "../find-friends-modal/find-friends-moda
 export class FriendsSettingsComponent implements OnInit{
 
 
-  maxFriends=4;
-  $friends:Observable<AppState<PlayerFriend[]>> = new Observable<AppState<PlayerFriend[]>>()
+  maxFriends=10;
+  $friends:Observable<AppState<Friend[]>> = new Observable<AppState<Friend[]>>()
   $friendsRequests:Observable<AppState<PlayerFriendRequest[]>> = new Observable<AppState<PlayerFriendRequest[]>>()
-
+  currentPage=0
+  totalElements=0
   constructor(private friendsService:FriendsService,private modalService:ModalService) {
   }
   ngOnInit(): void {
-    this.friendsService.getFriends()
+    this.friendsService.getFriends(this.currentPage)
     this.friendsService.getFriendRequests()
     this.handleFriends();
     this.handleFriendRequests();
 
 
   }
+   customRound(number: number): number {
+    const decimalPart = number - Math.floor(number);
 
+     const roundedDecimal = Math.ceil(decimalPart);
+    console.log(decimalPart +"-"+roundedDecimal)
+    return Math.floor(number) + roundedDecimal;
+  }
 
   private handleFriends() {
     this.friendsService.$friends.subscribe(data => {
@@ -41,9 +50,10 @@ export class FriendsSettingsComponent implements OnInit{
           return of({dataState: DataState.ERROR, error: err})
         }),
         map((element: CustomResponse) => {
+          this.totalElements=element?.data?.friends.totalElements
           return {
             dataState: DataState.SUCCESS,
-            appData: element?.data?.friends
+            appData: element?.data?.friends.friends
           }
         })
       )
@@ -69,5 +79,10 @@ export class FriendsSettingsComponent implements OnInit{
 
   openFindFriendsModal() {
     this.modalService.toggleModal(FindFriendsModalComponent.findFriendsModalId)
+  }
+
+  handleNextPage(page: number) {
+    this.friendsService.getFriends(this.currentPage)
+
   }
 }

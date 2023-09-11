@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {delay} from "rxjs";
 import {NavigationExtras, Router} from "@angular/router";
 import {DataState} from "../model/data-state";
+import {fi} from "date-fns/locale";
 
 
 @Component({
@@ -83,7 +84,11 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
 
      this.isFileSelected=true;
      this.isLoadingImage=true;
+
+
+
     this.sheetToUpload=$event.target.files[0];
+     console.log(this.sheetToUpload)
      this.readFileAsUint8Array(this.sheetToUpload)
     await new Promise(f => setTimeout(f, 1000));
     this.showProgress=true
