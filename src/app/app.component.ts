@@ -23,14 +23,15 @@ export class AppComponent implements OnInit{
     }
 
 
-    // if(token ){
-    //   console.log(token)
-    //   this.auth.$isLogin.next(true)
-    //   this.router.navigate(["home"])
-    // }else{
-    //   this.auth.$isLogin.next(false)
-    //   this.router.navigate(["login"])
-    //
-    // }
+    if(token){
+      //need to se if token is valid
+      console.log(token)
+      this.auth.$isLogin.next(true)
+      this.router.navigate(["home"])
+    }else{
+      this.auth.$isLogin.next(false)
+      this.router.navigate(["login"])
+
+    }
   }
 }

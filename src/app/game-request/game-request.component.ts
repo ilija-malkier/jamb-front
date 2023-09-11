@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {catchError, map, Observable, of, startWith} from "rxjs";
 import {AppState} from "../model/app-state";
 import {Friend} from "../model/friend";
@@ -41,7 +41,6 @@ export class GameRequestComponent implements OnInit{
 
   private handleGames() {
     this.gameService.$gameRequests.subscribe(data => {
-      console.log(data)
       this.$games = data.pipe(
         startWith({dataState: DataState.LOADING}),
         catchError(err => {
@@ -50,6 +49,7 @@ export class GameRequestComponent implements OnInit{
         map((element: CustomResponse) => {
           this.totalElements=element?.data?.game_requests.totalElements
           console.log(element)
+          this.gameService.emitTotalGameRequests(this.totalElements)
           return {
             dataState: DataState.SUCCESS,
             appData: element?.data?.game_requests.friends

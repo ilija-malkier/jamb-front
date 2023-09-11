@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
+import {GameService} from "../../services/game.service";
 
 @Component({
   selector: 'app-navigation',
@@ -11,8 +12,12 @@ export class NavigationComponent implements OnInit{
 
   activeRoute:string="login";
   isLogin=false
+  totalGameRequests=0;
 
-  constructor(private router:Router,public auth:AuthService) {
+  constructor(private router:Router,public auth:AuthService,private  gameService:GameService) {
+  // gameService.totalGameRequests$.subscribe(data=>{
+  //   this.totalGameRequests=data
+  // })
 
   }
 
