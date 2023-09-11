@@ -42,4 +42,8 @@ export class FindFriendsModalComponent implements OnInit,OnDestroy{
   }
 
 
+  addFriend(username: string) {
+    this.friendsService.sendFriendRequest(username)
+    this.foundFriends=this.foundFriends.filter(element=>element.username!==username)
+  }
 }

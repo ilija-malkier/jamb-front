@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {CustomResponse} from "../app/model/custom-response";
 import {BehaviorSubject, Observable} from "rxjs";
+import {FriendRequestRequest} from "../app/model/friend-request-request";
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,10 @@ export class FriendsService {
         find:value
       }
     })
+  }
+
+  sendFriendRequest(username: string) {
+  let friendRequest=<FriendRequestRequest>{username:username}
+    this.http.post<CustomResponse>("http://localhost:8081/player/request/send",friendRequest)
   }
 }

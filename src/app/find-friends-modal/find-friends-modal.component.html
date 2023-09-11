@@ -6,7 +6,7 @@
         <div class="d-flex friends-list justify-content-center align-items-start flex-column w-100" *ngFor="let friend of foundFriends">
           <div class="p-2 d-flex w-100  justify-content-center align-items-center">
             <p class="flex-grow-1">{{friend.username}}</p>
-            <button class="btn col flex-grow-0">Add</button>
+            <button (click)="addFriend(friend.username)" class="btn col flex-grow-0">Add</button>
           </div>
         </div>
       </div>
