@@ -17,6 +17,7 @@ export class GameService {
   protected sortField="date"
   protected sortDirection:SortDirection=SortDirection.desc
   games$:BehaviorSubject<Observable<CustomResponse>> = new BehaviorSubject<Observable<CustomResponse>>( new Observable<CustomResponse>())
+  $gameRequests:BehaviorSubject<Observable<CustomResponse>> = new BehaviorSubject(new Observable<CustomResponse>())
   constructor(private httpClient:HttpClient) {
     this.games$.next( this.httpClient.get<CustomResponse>("http://localhost:8081/games/filter"))
   }
@@ -91,5 +92,15 @@ export class GameService {
         console.log(data)
       }
     )
+  }
+
+  getGameRequests(page:number){
+    console.log("zovem")
+    this.$gameRequests.next(
+    this.httpClient.get<CustomResponse>("http://localhost:8081/games/requests",{
+      params:{
+        pageNumber:page
+      }
+    }))
   }
 }

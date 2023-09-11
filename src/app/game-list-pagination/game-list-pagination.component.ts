@@ -13,8 +13,8 @@ import {CustomResponse} from "../model/custom-response";
 export class GameListPaginationComponent implements OnInit{
 
 
+  @Input() totalPages:number=0
    itemsPerPage:number=9;
-  totalPages:number=0;
   currentPage:number =1;
   ngOnInit(): void {
     this.getPageNumber();

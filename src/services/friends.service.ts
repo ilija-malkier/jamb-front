@@ -11,6 +11,8 @@ export class FriendsService {
 
   $friendRequest:BehaviorSubject<Observable<CustomResponse>> =new BehaviorSubject(new Observable<CustomResponse>())
   $friends:BehaviorSubject<Observable<CustomResponse>> =new BehaviorSubject(new Observable<CustomResponse>())
+   maxFriends=3;
+
   constructor(private http:HttpClient) { }
 
 
@@ -18,10 +20,11 @@ export class FriendsService {
     this.$friendRequest.next(this.http.get<CustomResponse>("http://localhost:8081/player/requests/received"))
   }
 
-  getFriends(page:number){
+  getFriends(page: number){
     this.$friends.next(this.http.get<CustomResponse>("http://localhost:8081/player/friends",{
       params:{
-        pageNumber:page
+        pageNumber:page,
+        pageSize:this.maxFriends
       }
     }))
   }
@@ -29,7 +32,7 @@ export class FriendsService {
 
   filterForPage(currentPage: number) {
 
-    this.getFriends(currentPage-1)
+    this.getFriends(currentPage - 1)
   }
 
   getPages() {
@@ -47,5 +50,12 @@ export class FriendsService {
   sendFriendRequest(username: string) {
   let friendRequest=<FriendRequestRequest>{username:username}
     this.http.post<CustomResponse>("http://localhost:8081/player/request/send",friendRequest)
+  }
+
+  unfriend(username: string) {
+
+    this.http.delete<CustomResponse>("http://localhost:8081/player/friends/"+username).subscribe(date=>{
+      console.log(date)
+    })
   }
 }

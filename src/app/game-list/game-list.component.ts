@@ -22,7 +22,6 @@ export class GameListComponent implements OnInit{
   }
 
   public filter(filterRequest:FilterRequest,sortField:string,sortDirection:SortDirection){
-
     this.gameService.filter(filterRequest,sortField,sortDirection);
   }
   ngOnInit(): void {

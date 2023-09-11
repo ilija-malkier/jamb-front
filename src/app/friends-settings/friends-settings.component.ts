@@ -19,7 +19,6 @@ import {Friend} from "../model/friend";
 export class FriendsSettingsComponent implements OnInit{
 
 
-  maxFriends=3;
   $friends:Observable<AppState<Friend[]>> = new Observable<AppState<Friend[]>>()
   $friendsRequests:Observable<AppState<PlayerFriendRequest[]>> = new Observable<AppState<PlayerFriendRequest[]>>()
   currentPage=0
@@ -31,8 +30,6 @@ export class FriendsSettingsComponent implements OnInit{
     this.friendsService.getFriendRequests()
     this.handleFriends();
     this.handleFriendRequests();
-
-
   }
    customRound(number: number): number {
     const decimalPart = number - Math.floor(number);
@@ -49,8 +46,8 @@ export class FriendsSettingsComponent implements OnInit{
           return of({dataState: DataState.ERROR, error: err})
         }),
         map((element: CustomResponse) => {
-          this.totalElements=element?.data?.friends.totalElements
           console.log(element)
+          this.totalElements=element?.data?.friends.totalElements
           return {
             dataState: DataState.SUCCESS,
             appData: element?.data?.friends.friends
@@ -82,4 +79,13 @@ export class FriendsSettingsComponent implements OnInit{
   }
 
 
+  unfriend(username: string) {
+    this.friendsService.unfriend(username)
+    this.currentPage=0
+    this.friendsService.getFriends(this.currentPage)
+  }
+
+  getMaxFriends(){
+    return this.friendsService.maxFriends
+  }
 }
