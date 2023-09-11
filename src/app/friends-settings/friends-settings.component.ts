@@ -38,7 +38,6 @@ export class FriendsSettingsComponent implements OnInit{
     const decimalPart = number - Math.floor(number);
 
      const roundedDecimal = Math.ceil(decimalPart);
-    console.log(decimalPart +"-"+roundedDecimal)
     return Math.floor(number) + roundedDecimal;
   }
 
