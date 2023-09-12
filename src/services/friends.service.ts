@@ -16,8 +16,13 @@ export class FriendsService {
   constructor(private http:HttpClient) { }
 
 
-  getFriendRequests(){
-    this.$friendRequest.next(this.http.get<CustomResponse>("http://localhost:8081/player/requests/received"))
+  getFriendRequests(page: number){
+    this.$friendRequest.next(this.http.get<CustomResponse>("http://localhost:8081/player/requests/received",{
+      params:{
+        pageNumber:page,
+        pageSize:this.maxFriends
+      }
+    }))
   }
 
   getFriends(page: number){

@@ -88,7 +88,6 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
 
 
     this.sheetToUpload=$event.target.files[0];
-     console.log(this.sheetToUpload)
      this.readFileAsUint8Array(this.sheetToUpload)
     await new Promise(f => setTimeout(f, 1000));
     this.showProgress=true

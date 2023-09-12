@@ -26,7 +26,7 @@
         </tbody>
       </table>
       <div class="w-100  d-flex justify-content-end">
-        <app-friends-list-pagination [totalPages]="this.customRound(this.totalElements/getMaxFriends())"></app-friends-list-pagination>
+        <app-friends-list-pagination [totalPages]="this.customRound(this.totalElementsFriends/getMaxFriends())"></app-friends-list-pagination>
       </div>
 
     </ng-container>
@@ -41,7 +41,7 @@
     <table class="table table-striped">
       <thead>
       <tr>
-        <th class="text-center" scope="col">Firstname</th>
+        <th class="text-center" scope="col">Fullname</th>
         <th class="text-center" scope="col">Username</th>
         <th class="text-center" scope="col">Action</th>
       </tr>
@@ -49,8 +49,8 @@
       <tbody>
 
       <tr *ngFor="let friendRequest of friendsRequests?.appData | slice:0:getMaxFriends()">
-        <td class="text-center">Larry</td>
-        <td class="text-center">{{friendRequest.sender}}</td>
+        <td class="text-center">{{friendRequest?.firstname+ ' ' + friendRequest?.lastname}}</td>
+        <td class="text-center">{{friendRequest?.username}}</td>
         <td class="text-center">
           <div>
           <button class="btn text-white" style="background: var(--primary-color)">Accept</button>
@@ -61,7 +61,7 @@
       </tbody>
     </table>
       <div class="w-100  d-flex justify-content-end">
-        <app-friends-requests-list-pagination ></app-friends-requests-list-pagination>
+        <app-friends-requests-list-pagination [totalPages]="this.customRound(this.totalElementsFriendsRequests/getMaxFriends())"></app-friends-requests-list-pagination>
       </div>
 
     </ng-container>

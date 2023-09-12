@@ -48,7 +48,6 @@ export class GameRequestComponent implements OnInit{
         }),
         map((element: CustomResponse) => {
           this.totalElements=element?.data?.game_requests.totalElements
-          console.log(element)
           this.gameService.emitTotalGameRequests(this.totalElements)
           return {
             dataState: DataState.SUCCESS,

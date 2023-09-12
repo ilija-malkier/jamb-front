@@ -20,14 +20,16 @@ export class FriendsSettingsComponent implements OnInit{
 
 
   $friends:Observable<AppState<Friend[]>> = new Observable<AppState<Friend[]>>()
-  $friendsRequests:Observable<AppState<PlayerFriendRequest[]>> = new Observable<AppState<PlayerFriendRequest[]>>()
-  currentPage=0
-  totalElements=0
+  $friendsRequests:Observable<AppState<Friend[]>> = new Observable<AppState<Friend[]>>()
+  currentPageFriends=0
+  currentPageFriendsRequests=0
+  totalElementsFriends=0
+  totalElementsFriendsRequests=0
   constructor(private friendsService:FriendsService,private modalService:ModalService) {
   }
   ngOnInit(): void {
-    this.friendsService.getFriends(this.currentPage)
-    this.friendsService.getFriendRequests()
+    this.friendsService.getFriends(this.currentPageFriends)
+    this.friendsService.getFriendRequests(this.currentPageFriendsRequests)
     this.handleFriends();
     this.handleFriendRequests();
   }
@@ -46,8 +48,7 @@ export class FriendsSettingsComponent implements OnInit{
           return of({dataState: DataState.ERROR, error: err})
         }),
         map((element: CustomResponse) => {
-          console.log(element)
-          this.totalElements=element?.data?.friends.totalElements
+          this.totalElementsFriends=element?.data?.friends.totalElements
           return {
             dataState: DataState.SUCCESS,
             appData: element?.data?.friends.friends
@@ -65,9 +66,10 @@ export class FriendsSettingsComponent implements OnInit{
           return of({dataState: DataState.ERROR, error: err})
         }),
         map((element: CustomResponse) => {
+          this.totalElementsFriendsRequests=element?.data?.friend_requests.totalElements
           return {
             dataState: DataState.SUCCESS,
-            appData: element?.data?.friend_requests
+            appData: element?.data?.friend_requests?.friends
           }
         })
       )
@@ -81,8 +83,8 @@ export class FriendsSettingsComponent implements OnInit{
 
   unfriend(username: string) {
     this.friendsService.unfriend(username)
-    this.currentPage=0
-    this.friendsService.getFriends(this.currentPage)
+    this.currentPageFriends=0
+    this.friendsService.getFriends(this.currentPageFriends)
   }
 
   getMaxFriends(){

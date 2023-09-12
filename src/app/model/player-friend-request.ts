@@ -1,3 +1,9 @@
+import {GameRequestResponse} from "./game-request-response";
+import {Friend} from "./friend";
+
 export interface PlayerFriendRequest {
-  sender:string
+  friends:Friend[],
+  pageNumber:number,
+  pageSize:number,
+  totalElements:number
 }

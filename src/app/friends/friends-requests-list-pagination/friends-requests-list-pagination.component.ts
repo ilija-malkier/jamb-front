@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FriendsService} from "../../../services/friends.service";
 
 @Component({
@@ -9,7 +9,7 @@ import {FriendsService} from "../../../services/friends.service";
 export class FriendsRequestsListPaginationComponent {
 
 
-  totalPages:number=0;
+  @Input() totalPages=0
   currentPage:number =1;
   ngOnInit(): void {
     this.getPageNumber();

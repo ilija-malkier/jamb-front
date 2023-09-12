@@ -21,7 +21,6 @@ export class VerifyEmailComponent implements  OnInit{
     let param = this.activateRoute.queryParams.subscribe(data=>
     {
       let token=data['token']
-      console.log(token)
       this.userService.activateAccount(token)
     })
 
