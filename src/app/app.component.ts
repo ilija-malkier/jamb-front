@@ -18,14 +18,12 @@ export class AppComponent implements OnInit{
 
     if(this.router.url.includes("/account/activate")){
 
-      console.log("cao")
       return
     }
 
 
     if(token){
       //need to se if token is valid
-      console.log(token)
       this.auth.$isLogin.next(true)
       this.router.navigate(["home"])
     }else{

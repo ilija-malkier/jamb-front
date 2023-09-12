@@ -21,7 +21,8 @@ export interface CustomResponse {
     friend_requests?:PlayerFriendRequest[],
     isValid?:boolean,
     result?:ResultResponse,
-    game_requests?:PagedGameRequestResponse
+    game_requests?:PagedGameRequestResponse,
+
 
 
 
