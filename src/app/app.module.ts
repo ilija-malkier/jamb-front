@@ -25,7 +25,7 @@ import {Router, RouterModule, RouterOutlet, Routes} from "@angular/router";
 import { SupportComponent } from './support/support.component';
 import { SetNewPasswordComponent } from './set-new-password/set-new-password.component';
 import { GameRequestComponent } from './game/game-request/game-request.component';
-import { CalculateGameComponent } from './calculate-game/calculate-game.component';
+import { CalculateGameComponent } from './game/calculate-game/calculate-game.component';
 import { FilterModalComponent } from './modals/filter-modal/filter-modal.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { RegistrationModalComponent } from './modals/registration-modal/registration-modal.component';

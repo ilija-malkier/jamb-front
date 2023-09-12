@@ -31,7 +31,7 @@
   <div class="w-100 d-flex justify-content-end">
     <label class="fw-bold" *ngIf="currentScore && currentScore.result">{{currentScore.result}}</label>
   </div>
-<app-create-game-modal [image]="image" [score]="currentScore?.result"></app-create-game-modal>
+<app-create-game-modal [gameId]="this.gameId" [joinGame]="joinGame" [image]="image" [score]="currentScore?.result"></app-create-game-modal>
 
 </div>
 

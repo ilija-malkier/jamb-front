@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ModalService} from "../../services/modal.service";
 import {NgForm} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
@@ -28,34 +28,32 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
    isLoadingImage=false;
    isLoading=false;
   sheetToUploadBytes:Uint8Array
+  @Input() joinGame=false
+  @Input() gameId:number=-1
   constructor(private modalService:ModalService,private httpClient:HttpClient,private router:Router) {}
-
   ngOnInit(): void {
     this.modalService.register(this.uploadSheetModalId)
   }
 
   ngOnDestroy(): void {
     this.modalService.unregister(this.uploadSheetModalId)
-
   }
-
-
   openFile(fileInput: HTMLInputElement) {
       fileInput.click();
   }
 
   private readFileAsUint8Array(file: File): void {
     const reader = new FileReader();
-
     reader.onload = (event) => {
       const arrayBuffer = reader.result as ArrayBuffer;
       const uint8Array = new Uint8Array(arrayBuffer);
       this.sheetToUploadBytes=uint8Array
     };
-
     reader.readAsArrayBuffer(file);
   }
   uploadSheet(form: NgForm) {
+    if(!this.isFileSelected || this.isLoading) return
+
     this.isLoading=true
     const formData = new FormData();
     formData.append('file', this.sheetToUpload);
@@ -64,7 +62,9 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
         const navigationExtras: NavigationExtras = {
           state: {
             table: next,
-            image:this.sheetToUploadBytes
+            image:this.sheetToUploadBytes,
+            joinGame:this.joinGame,
+            gameId:this.gameId
           }
         };
         this.router.navigate(["game/create"],navigationExtras)

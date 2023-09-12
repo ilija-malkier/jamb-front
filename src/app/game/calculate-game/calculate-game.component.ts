@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {Cell} from "../model/cell";
-import {SheetService} from "../../services/sheet.service";
-import {ResultResponse} from "../model/result-response";
-import {GameService} from "../../services/game.service";
-import {ModalService} from "../../services/modal.service";
-import {CreateGameModalComponent} from "../modals/create-game-modal/create-game-modal.component";
+import {Cell} from "../../model/cell";
+import {SheetService} from "../../../services/sheet.service";
+import {ResultResponse} from "../../model/result-response";
+import {GameService} from "../../../services/game.service";
+import {ModalService} from "../../../services/modal.service";
+import {CreateGameModalComponent} from "../../modals/create-game-modal/create-game-modal.component";
 
 @Component({
   selector: 'app-calculate-game',
@@ -18,12 +18,18 @@ export class CalculateGameComponent {
   isLoading: boolean=false;
   isCalculating: boolean=false;
   image:Uint8Array
+  joinGame:boolean=false
+  gameId:number=-1
 
   constructor(private router:Router,private sheetService:SheetService,private gameService:GameService,private modalService:ModalService) {
     const dataObject = this.router.getCurrentNavigation().extras.state['table']
     const dataImage = this.router.getCurrentNavigation().extras.state['image']
+    const joinGame = this.router.getCurrentNavigation().extras.state['joinGame']
+    const gameId = this.router.getCurrentNavigation().extras.state['gameId']
     this.sheetData=dataObject
     this.image=dataImage
+    this.joinGame=joinGame
+    this.gameId=gameId
 
   }
 
@@ -68,6 +74,7 @@ export class CalculateGameComponent {
   }
 
   saveGame() {
+
     this.modalService.toggleModal(CreateGameModalComponent.createGameModalId)
 
   }

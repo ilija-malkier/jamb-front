@@ -113,4 +113,11 @@ export class GameService {
       console.log(data)
     })
   }
+
+  joinGame(gameId:number,image:string,score:number) {
+
+    this.httpClient.put<CustomResponse>("http://localhost:8081/games/request/approve",{gameId:gameId,image:image,score:score}).subscribe(data=>{
+      console.log(data)
+    })
+  }
 }

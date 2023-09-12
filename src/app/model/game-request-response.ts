@@ -1,6 +1,6 @@
 export interface GameRequestResponse {
 
-  username:string,
+   username:string,
    gameId:number,
    gameDate:Date
 }

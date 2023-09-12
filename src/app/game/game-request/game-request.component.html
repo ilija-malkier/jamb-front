@@ -25,6 +25,8 @@
               <button class="btn btn-link text-dark"  (click)="declineGame(gameRequest.gameId)"> Decline</button>
             </div>
           </td>
+          <app-upload-sheet [gameId]="gameRequest.gameId" [joinGame]="true" ></app-upload-sheet>
+
         </tr>
         </tbody>
       </table>
@@ -34,7 +36,6 @@
 
     </ng-container>
   </div>
-
 
 
 

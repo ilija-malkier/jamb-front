@@ -11,6 +11,7 @@ import {FindFriendsModalComponent} from "../../modals/find-friends-modal/find-fr
 import {GameService} from "../../../services/game.service";
 import {GameRequestResponse} from "../../model/game-request-response";
 import {PagedGameRequestResponse} from "../../model/paged-game-request-response";
+import {UploadSheetComponent} from "../../upload-sheet/upload-sheet.component";
 
 @Component({
   selector: 'app-game-request',
@@ -63,9 +64,8 @@ export class GameRequestComponent implements OnInit{
   openFindFriendsModal() {
     this.modalService.toggleModal(FindFriendsModalComponent.findFriendsModalId)
   }
-
   acceptGame(gameId: number) {
-
+    this.modalService.toggleModal(UploadSheetComponent.uploadSheetModalId)
   }
 
   declineGame(gameId:number){
