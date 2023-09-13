@@ -16,10 +16,7 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     let token = localStorage.getItem("access_token")
 
-    if(this.router.url.includes("/account/activate")){
 
-      return
-    }
     if(token){
       //need to se if token is valid
       this.auth.$isLogin.next(true)

@@ -27,7 +27,6 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
   showProgress=false;
    isLoadingImage=false;
    isLoading=false;
-  sheetToUploadBytes:Uint8Array
   @Input() joinGame=false
   @Input() gameId:number=-1
   constructor(private modalService:ModalService,private httpClient:HttpClient,private router:Router) {}
@@ -42,15 +41,15 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
       fileInput.click();
   }
 
-  private readFileAsUint8Array(file: File): void {
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const arrayBuffer = reader.result as ArrayBuffer;
-      const uint8Array = new Uint8Array(arrayBuffer);
-      this.sheetToUploadBytes=uint8Array
-    };
-    reader.readAsArrayBuffer(file);
-  }
+  // private readFileAsUint8Array(file: File): void {
+  //   const reader = new FileReader();
+  //   reader.onload = (event) => {
+  //     const arrayBuffer = reader.result as ArrayBuffer;
+  //     const uint8Array = new Uint8Array(arrayBuffer);
+  //     this.sheetToUploadBytes=uint8Array
+  //   };
+  //   reader.readAsArrayBuffer(file);
+  // }
   uploadSheet(form: NgForm) {
     if(!this.isFileSelected || this.isLoading) return
 
@@ -62,7 +61,7 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
         const navigationExtras: NavigationExtras = {
           state: {
             table: next,
-            image:this.sheetToUploadBytes,
+            image:this.sheetToUpload,
             joinGame:this.joinGame,
             gameId:this.gameId
           }
@@ -88,7 +87,7 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
 
 
     this.sheetToUpload=$event.target.files[0];
-     this.readFileAsUint8Array(this.sheetToUpload)
+
     await new Promise(f => setTimeout(f, 1000));
     this.showProgress=true
     this.interval = setInterval(this.notifyEverySecond, 1000);

@@ -5,9 +5,10 @@ import {HttpClient} from "@angular/common/http";
 import {GameFilterResponse} from "../app/model/game-filter-response";
 import {FilterRequest} from "../app/model/filter-request";
 import {SortDirection} from "../app/model/sort-direction";
-import { format, parseISO } from 'date-fns';
+import {format, parseISO, parseJSON} from 'date-fns';
 import {da} from "date-fns/locale";
 import {GameCreateRequest} from "../app/model/game-create-request";
+import {GamesetDropdown} from "../app/model/gameset-dropdown";
 @Injectable({
   providedIn: 'root'
 })
@@ -89,9 +90,15 @@ export class GameService {
     this.sortDirection=sortDirection
   }
 
-  saveGame(gameCreateRequest:GameCreateRequest) {
+  saveGame(gameCreateRequest:GameCreateRequest,image:File) {
     console.log(gameCreateRequest)
-    this.httpClient.post<CustomResponse>("http://localhost:8081/games",gameCreateRequest).subscribe(
+    const form = new FormData();
+    form.append('file', image);
+    form.append('request',  new Blob([JSON.stringify(gameCreateRequest)], {
+      type: "application/json"
+    }));
+
+    this.httpClient.post("http://localhost:8081/games",form).subscribe(
       data=>{
         console.log(data)
       }
@@ -118,6 +125,13 @@ export class GameService {
 
     this.httpClient.put<CustomResponse>("http://localhost:8081/games/request/approve",{gameId:gameId,image:image,score:score}).subscribe(data=>{
       console.log(data)
+    })
+  }
+
+  getGameSets() {
+    this.httpClient.get<CustomResponse>("http://localhost:8081/gameSets").subscribe(data=>{
+
+      // console.log(data.data.gamesets)
     })
   }
 }

@@ -16,7 +16,7 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
   isLoading: boolean;
   filterFriends:string[]=[]
   @Input() score:number=0;
-  @Input() image:Uint8Array
+  @Input() image:File
   @Input() joinGame:boolean=false
   @Input() gameId:number=-1
   constructor(private modalService:ModalService,private gameService:GameService) {}
@@ -26,6 +26,9 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
 
   ngOnInit(): void {
     this.modalService.register(this.createGameModalId);
+    this.modalService.toggleModal(this.createGameModalId);
+    this.gameService.getGameSets();
+
   }
 
   cancelGameCreation() {
@@ -40,12 +43,12 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
 
     let gameSet=form.value['gameset']
     let numberOfPlayers=form.value['numofplayers']
-    const textDecoder = new TextDecoder('utf-8');
-    const textImage = textDecoder.decode(this.image);
-    if(this.joinGame)
-      this.gameService.joinGame(this.gameId,textImage,this.score)
-    else
-      this.gameService.saveGame({players:this.filterFriends,numberOfPlayers:parseInt(numberOfPlayers),image:textImage,score:this.score,gameSetId:1})
+    // const textDecoder = new TextDecoder('utf-8');
+    // const textImage = textDecoder.decode(this.image);
+    // if(this.joinGame)
+      // this.gameService.joinGame(this.gameId,this.image,this.score)
+    // else
+      this.gameService.saveGame({players:this.filterFriends,numberOfPlayers:parseInt(numberOfPlayers),score:this.score,gameSetId:1},this.image)
   }
   addFilterFriends(inputUsename: HTMLInputElement){
     if(this.filterFriends.includes(inputUsename.value)) return;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Cell} from "../../model/cell";
 import {SheetService} from "../../../services/sheet.service";
@@ -11,16 +11,17 @@ import {CreateGameModalComponent} from "../../modals/create-game-modal/create-ga
   templateUrl: './calculate-game.component.html',
   styleUrls: ['./calculate-game.component.css']
 })
-export class CalculateGameComponent {
+export class CalculateGameComponent implements OnInit{
   sheetData:[Cell[]]
   currentScore:ResultResponse
   isLoading: boolean=false;
   isCalculating: boolean=false;
-  image:Uint8Array
+  image:File
   joinGame:boolean=false
   gameId:number=-1
 
   constructor(private router:Router,private sheetService:SheetService,private gameService:GameService,private modalService:ModalService) {
+
     const dataObject = this.router.getCurrentNavigation().extras.state['table']
     const dataImage = this.router.getCurrentNavigation().extras.state['image']
     const joinGame = this.router.getCurrentNavigation().extras.state['joinGame']
@@ -76,5 +77,8 @@ export class CalculateGameComponent {
 
     this.modalService.toggleModal(CreateGameModalComponent.createGameModalId)
 
+  }
+
+  ngOnInit(): void {
   }
 }
