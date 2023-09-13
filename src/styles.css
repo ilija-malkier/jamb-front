@@ -1,5 +1,8 @@
 @import "colors.scss";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+@import "../node_modules/alertifyjs/build/css/alertify.css";
+@import "../node_modules/alertifyjs/build/css/themes/bootstrap.min.css";
+@import "../node_modules/alertifyjs//build/css/themes/default.min.css";
 
 *{
   font-family: "Raleway", sans-serif !important;

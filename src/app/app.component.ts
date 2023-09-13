@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../services/auth.service";
+import alertifyjs from "alertifyjs";
 
 @Component({
   selector: 'app-root',
@@ -13,15 +14,12 @@ export class AppComponent implements OnInit{
   constructor(private activeRoute:ActivatedRoute,private router:Router,private auth:AuthService) {}
 
   ngOnInit(): void {
-
     let token = localStorage.getItem("access_token")
 
     if(this.router.url.includes("/account/activate")){
 
       return
     }
-
-
     if(token){
       //need to se if token is valid
       this.auth.$isLogin.next(true)

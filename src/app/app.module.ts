@@ -39,6 +39,10 @@ import { GameListPaginationComponent } from './game/game-list-pagination/game-li
 import { FriendsListPaginationComponent } from './friends/friends-list-pagination/friends-list-pagination.component';
 import { FriendsRequestsListPaginationComponent } from './friends/friends-requests-list-pagination/friends-requests-list-pagination.component';
 import { StopTypingDirective } from './directive/stop-typing.directive';
+import { GameDetailsComponent } from './game/game-details/game-details.component';
+import { WinCardComponent } from './game/win-card/win-card.component';
+import { WinListComponent } from './game/win-list/win-list.component';
+import {GameDetailsResolver} from "./route-guards/game-details-resolver.service";
 
 
 const routes:Routes=[
@@ -53,7 +57,9 @@ const routes:Routes=[
       {path:'activate',component:VerifyEmailComponent}
     ],canActivate:[navigationRouteGuard]},
   {path:'game',children:[
-      {path: 'create',component: CalculateGameComponent}
+      {path: 'create',component: CalculateGameComponent},
+      {path:':id',component:GameDetailsComponent,resolve:{data:GameDetailsResolver}},
+
     ],canActivate:[navigationRouteGuard]},
   {path:"",redirectTo:"/login",pathMatch:"full"},
   {path:"logout",redirectTo:"/login",pathMatch:"full"},
@@ -93,6 +99,9 @@ const routes:Routes=[
     FriendsListPaginationComponent,
     FriendsRequestsListPaginationComponent,
     StopTypingDirective,
+    GameDetailsComponent,
+    WinCardComponent,
+    WinListComponent,
 
   ],
     imports: [
