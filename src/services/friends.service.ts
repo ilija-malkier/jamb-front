@@ -54,13 +54,11 @@ export class FriendsService {
 
   sendFriendRequest(username: string) {
   let friendRequest=<FriendRequestRequest>{username:username}
-    this.http.post<CustomResponse>("http://localhost:8081/player/request/send",friendRequest)
+   return  this.http.post<CustomResponse>("http://localhost:8081/player/request/send",friendRequest)
   }
 
   unfriend(username: string) {
 
-    this.http.delete<CustomResponse>("http://localhost:8081/player/friends/"+username).subscribe(date=>{
-      console.log(date)
-    })
+   return  this.http.delete<CustomResponse>("http://localhost:8081/player/friends/"+username)
   }
 }

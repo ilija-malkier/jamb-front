@@ -18,10 +18,7 @@ export class UserService {
   }
 
   sendRequestForResetPassword(requestResetPassword:RequestResetPasswordRequest){
-    console.log(requestResetPassword)
-    this.http.post<CustomResponse>("http://localhost:8081/user/password/reset", requestResetPassword).subscribe(data=>{
-      console.log(data)
-    })
+   return  this.http.post<CustomResponse>("http://localhost:8081/user/password/reset", requestResetPassword)
   }
 
   activateAccount(token: string) {

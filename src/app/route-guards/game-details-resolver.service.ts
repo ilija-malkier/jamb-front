@@ -14,7 +14,7 @@ export class GameDetailsResolver implements Resolve<Observable<CustomResponse>>
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Observable<CustomResponse>> | Promise<Observable<CustomResponse>> | Observable<CustomResponse> {
    let gameId=    route.paramMap.get('id');
 
-    console.log(gameId)
+
     //this.http.get<CustomResponse>("http://localhost:8081/games/"+gameId)
 
 

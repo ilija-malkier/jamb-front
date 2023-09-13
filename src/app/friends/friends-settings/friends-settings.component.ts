@@ -10,6 +10,7 @@ import {ModalService} from "../../../services/modal.service";
 import {FindFriendsModalComponent} from "../../modals/find-friends-modal/find-friends-modal.component";
 import {el} from "date-fns/locale";
 import {Friend} from "../../model/friend";
+import alertifyjs from "alertifyjs";
 
 @Component({
   selector: 'app-friends-settings',
@@ -82,7 +83,12 @@ export class FriendsSettingsComponent implements OnInit{
 
 
   unfriend(username: string) {
-    this.friendsService.unfriend(username)
+    this.friendsService.unfriend(username).subscribe(data=>{
+      alertifyjs.success(username +' unfriended')
+    },error => {
+      alertifyjs.error('Could not unfriend ' + username+',try again later.')
+
+    })
     this.currentPageFriends=0
     this.friendsService.getFriends(this.currentPageFriends)
   }

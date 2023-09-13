@@ -4,6 +4,7 @@ import {FriendsService} from "../../../services/friends.service";
 import {FindFriends} from "../../model/find-friends";
 import {da} from "date-fns/locale";
 import {Friend} from "../../model/friend";
+import alertifyjs from "alertifyjs";
 
 @Component({
   selector: 'app-find-friends-modal',
@@ -42,7 +43,12 @@ export class FindFriendsModalComponent implements OnInit,OnDestroy{
 
 
   addFriend(username: string) {
-    this.friendsService.sendFriendRequest(username)
+    this.friendsService.sendFriendRequest(username).subscribe(data=>{
+      alertifyjs.success('Friend request send to '+ username)
+    },error => {
+      alertifyjs.error('Could not add '+username+' to friends.')
+
+    })
     this.foundFriends=this.foundFriends.filter(element=>element.username!==username)
   }
 }
