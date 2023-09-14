@@ -6,6 +6,7 @@ import {PlayerFriendRequest} from "./player-friend-request";
 import {ResultResponse} from "./result-response";
 import {PagedGameRequestResponse} from "./paged-game-request-response";
 import {GamesetDropdown} from "./gameset-dropdown";
+import {GameDetailsResponse} from "./game-details-response";
 
 export interface CustomResponse {
   timeStamp:Date;
@@ -23,7 +24,8 @@ export interface CustomResponse {
     isValid?:boolean,
     result?:ResultResponse,
     game_requests?:PagedGameRequestResponse
-    gamesets?:GamesetDropdown[]
+    gamesets?:GamesetDropdown[],
+    game?:GameDetailsResponse
 
 
 

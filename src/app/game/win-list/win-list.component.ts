@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {PlayerGameDetailsResponse} from "../../model/player-game-details-response";
 
 @Component({
   selector: 'app-win-list',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class WinListComponent {
 
+  @Input() players:PlayerGameDetailsResponse[]
 }

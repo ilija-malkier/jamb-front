@@ -1,0 +1,12 @@
+
+.image-container {
+  width: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  border: solid var(--primary-color-darker);
+  height: 40px;
+}
+.text-image{
+  font-size: 30px;
+}

@@ -11,14 +11,12 @@ export class GameDetailsResolver implements Resolve<Observable<CustomResponse>>
 {
   constructor(private http:HttpClient) {
   }
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Observable<CustomResponse>> | Promise<Observable<CustomResponse>> | Observable<CustomResponse> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):  Observable<CustomResponse> {
    let gameId=    route.paramMap.get('id');
 
 
-    //this.http.get<CustomResponse>("http://localhost:8081/games/"+gameId)
+    return this.http.get<CustomResponse>("http://localhost:8081/games/"+gameId)
 
-
-    return undefined;
   }
 
 }
