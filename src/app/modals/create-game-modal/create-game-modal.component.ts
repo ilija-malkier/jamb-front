@@ -3,6 +3,9 @@ import {ModalService} from "../../../services/modal.service";
 import {PlayerFriend} from "../../model/player-friend";
 import {NgForm} from "@angular/forms";
 import {GameService} from "../../../services/game.service";
+import {FindFriendsModalComponent} from "../find-friends-modal/find-friends-modal.component";
+import {GameSetCreateRequest} from "../../model/game-set-create-request";
+import * as alertifyjs from "alertifyjs";
 
 @Component({
   selector: 'app-create-game-modal',
@@ -19,6 +22,7 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
   @Input() image:File
   @Input() joinGame:boolean=false
   @Input() gameId:number=-1
+  createNewGamesetContent:boolean=false
   constructor(private modalService:ModalService,private gameService:GameService) {}
   ngOnDestroy(): void {
     this.modalService.unregister(this.createGameModalId);
@@ -58,4 +62,22 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
   }
 
 
+  createNewGameset() {
+    this.createNewGamesetContent=true;
+  }
+
+  saveGameset(formCreateGameset: NgForm) {
+   let gamesetCreateRequest=<GameSetCreateRequest> formCreateGameset.value
+    gamesetCreateRequest={... gamesetCreateRequest,gameIds:[]}
+    this.gameService.createGameset(gamesetCreateRequest).subscribe(data=>{
+      this.createNewGamesetContent=false
+      alertifyjs.success("Gameset "+ gamesetCreateRequest.name +" created.")
+    },error => {
+      alertifyjs.error("Gameset with that name already exists")
+    })
+  }
+
+  exitGameset() {
+    this.createNewGamesetContent=false
+  }
 }

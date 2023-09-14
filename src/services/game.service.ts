@@ -1,23 +1,29 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {CustomResponse} from "../app/model/custom-response";
-import {BehaviorSubject, Observable, of, tap} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {GameFilterResponse} from "../app/model/game-filter-response";
+import {BehaviorSubject, Observable} from "rxjs";
 import {FilterRequest} from "../app/model/filter-request";
 import {SortDirection} from "../app/model/sort-direction";
-import {format, parseISO, parseJSON} from 'date-fns';
-import {da} from "date-fns/locale";
+import {format, parseISO} from 'date-fns';
 import {GameCreateRequest} from "../app/model/game-create-request";
-import {GamesetDropdown} from "../app/model/gameset-dropdown";
+import {GameSetCreateRequest} from "../app/model/game-set-create-request";
+import {error} from "@angular/compiler-cli/src/transformers/util";
+import {HttpClient} from "@angular/common/http";
+
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
 
-  private filterRequest:FilterRequest={date_from:null,date_to:null,game_status:null,player_names:null,winner_names:null}
-  protected sortField="date"
-  protected sortDirection:SortDirection=SortDirection.desc
-  games$:BehaviorSubject<Observable<CustomResponse>> = new BehaviorSubject<Observable<CustomResponse>>( new Observable<CustomResponse>())
+  private filterRequest: FilterRequest = {
+    date_from: null,
+    date_to: null,
+    game_status: null,
+    player_names: null,
+    winner_names: null
+  }
+  protected sortField = "date"
+  protected sortDirection: SortDirection = SortDirection.desc
+  games$: BehaviorSubject<Observable<CustomResponse>> = new BehaviorSubject<Observable<CustomResponse>>(new Observable<CustomResponse>())
   $gameRequests:BehaviorSubject<Observable<CustomResponse>> = new BehaviorSubject(new Observable<CustomResponse>())
   totalGameRequests$:BehaviorSubject<number> = new BehaviorSubject<number>(0);
   constructor(private httpClient:HttpClient) {
@@ -129,9 +135,13 @@ export class GameService {
   }
 
   getGameSets() {
-    this.httpClient.get<CustomResponse>("http://localhost:8081/gameSets").subscribe(data=>{
+    this.httpClient.get<CustomResponse>("http://localhost:8081/gameSets").subscribe(data => {
 
       // console.log(data.data.gamesets)
     })
+  }
+
+  createGameset(gamesetCreateRequest: GameSetCreateRequest) {
+   return this.httpClient.post<CustomResponse>("http://localhost:8081/gameSets", gamesetCreateRequest)
   }
 }
