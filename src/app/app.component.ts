@@ -15,16 +15,16 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     let token = localStorage.getItem("access_token")
+    console.log("cao")
 
-
-    if(token){
-      //need to se if token is valid
-      this.auth.$isLogin.next(true)
-      this.router.navigate(["home"])
-    }else{
-      this.auth.$isLogin.next(false)
-      this.router.navigate(["login"])
-
-    }
+    // if(token){
+    //   //need to se if token is valid
+    //   this.auth.$isLogin.next(true)
+    //   this.router.navigate(["home"])
+    // }else{
+    //   this.auth.$isLogin.next(false)
+    //   this.router.navigate(["login"])
+    //
+    // }
   }
 }

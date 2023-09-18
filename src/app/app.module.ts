@@ -54,7 +54,8 @@ const routes:Routes=[
       {path:'settings',component:NotFoundPageComponent},
       {path:'game',component:GameRequestComponent},
       {path:'friends',component:FriendsSettingsComponent},
-      {path:'activate',component:VerifyEmailComponent}
+      {path:'activate',component:VerifyEmailComponent},
+      {path: 'password/reset',component: SetNewPasswordComponent}
     ],canActivate:[navigationRouteGuard]},
   {path:'game',children:[
       {path: 'create',component: CalculateGameComponent},

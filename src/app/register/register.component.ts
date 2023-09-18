@@ -31,6 +31,11 @@ export class RegisterComponent implements OnInit{
         error => {
           this.appState={dataState:DataState.ERROR}
           this.showErrorMessage=true;
+
+          if(error.status===409){
+            this.errorMessage="User with that username already exists."
+
+          }else
           this.errorMessage="Could not perform wanted operation.Please try again later."
         },
         ()=>{

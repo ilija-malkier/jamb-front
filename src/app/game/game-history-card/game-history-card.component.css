@@ -6,6 +6,12 @@
   border: solid var(--primary-color-darker);
   overflow: auto;
 }
+.img-winner{
+  width: 60px;
+  overflow: hidden; /* Clip the image within the rounded container */
+  overflow: auto;
+}
+
 
 img {
   width: 100%;

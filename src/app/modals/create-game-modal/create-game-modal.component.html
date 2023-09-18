@@ -12,7 +12,7 @@
              w-100 ">
 
           <div class="w-100 h-100 p-0  align-items-center d-flex chip-holder ">
-            <input #playerNameInput type="text" class="form-control m-0 w-100" name="player_name_input" id="player_name_input">
+            <input required [ngClass]="{'invalid': form.submitted && form.invalid}" #playerNameInput type="text" class="form-control m-0 w-100" name="player_name_input" id="player_name_input">
             <div (click)="addFilterFriends(playerNameInput)" class="col-1 d-flex justify-content-center align-items-center">
               <i class="bi bi-plus" style="color: var(--primary-color);font-size:40px"></i>
             </div>
@@ -32,11 +32,11 @@
 
 
       <div class="dropdown w-100 d-flex align-items-center ">
-        <button  type="button" style="border: solid 1px var(--link-inactive);height: 40px" class="btn col-11  text-start  dropdown-toggle"  data-bs-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
-          Gameset
+        <button  type="button"  style="border: solid 1px var(--link-inactive);height: 40px" class="btn col-11  text-start  dropdown-toggle"  data-bs-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
+          {{selectedGamesetName}}
         </button>
         <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
-          <li><a class="dropdown-item" >Action</a></li>
+          <li *ngFor="let gameset of gameSets"><a  (click)="setGameset(gameset.gameSetId)" class="dropdown-item" >{{gameset.gameSetName}}</a></li>
           <div class="d-flex w-100  align-items-center ">
 
           </div>
@@ -51,7 +51,7 @@
 
       <div class="d-flex justify-content-center mt-3 align-items-start flex-column  w-100 ">
         <label for="numofplayers">Add Number Of Players</label>
-        <input value="1" ngModel class="form-control px-3 py-2 rounded-1 mt-1  p-1" type="number" id="numofplayers" name="numofplayers">
+        <input  required [ngClass]="{'invalid': form.submitted && form.invalid}"  value="1" ngModel class="form-control px-3 py-2 rounded-1 mt-1  p-1" type="number" id="numofplayers" name="numofplayers">
       </div>
 
       <div class="d-flex mt-5 justify-content-end w-100 align-items-center">
@@ -67,13 +67,13 @@
 
       <div>
         <label for="gameset_name">Name</label>
-        <input ngModel #gamesetName type="text" class="form-control m-0 w-100" name="name" id="gameset_name">
+        <input required ngModel [ngClass]="{'invalid': formCreateGameset.submitted && formCreateGameset.invalid}" #gamesetName type="text" class="form-control m-0 w-100" name="name" id="gameset_name">
 
       </div>
 
       <div class="mt-2">
         <label for="gameset_desc">Description</label>
-        <input ngModel #gamesetDescription type="text" class="form-control m-0 w-100" name="description" id="gameset_desc">
+        <input required  ngModel [ngClass]="{'invalid': formCreateGameset.submitted && formCreateGameset.invalid}" #gamesetDescription type="text" class="form-control m-0 w-100" name="description" id="gameset_desc">
 
       </div>
 

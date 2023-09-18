@@ -104,11 +104,7 @@ export class GameService {
       type: "application/json"
     }));
 
-    this.httpClient.post("http://localhost:8081/games",form).subscribe(
-      data=>{
-        console.log(data)
-      }
-    )
+    return this.httpClient.post("http://localhost:8081/games",form)
   }
 
   getGameRequests(page:number){
@@ -135,10 +131,7 @@ export class GameService {
   }
 
   getGameSets() {
-    this.httpClient.get<CustomResponse>("http://localhost:8081/gameSets").subscribe(data => {
-
-      // console.log(data.data.gamesets)
-    })
+  return  this.httpClient.get<CustomResponse>("http://localhost:8081/gameSets/info")
   }
 
   createGameset(gamesetCreateRequest: GameSetCreateRequest) {

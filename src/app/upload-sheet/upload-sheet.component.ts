@@ -6,6 +6,7 @@ import {delay} from "rxjs";
 import {NavigationExtras, Router} from "@angular/router";
 import {DataState} from "../model/data-state";
 import {fi} from "date-fns/locale";
+import {Ng2ImgMaxService} from "ng2-img-max";
 
 
 @Component({
@@ -29,7 +30,7 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
    isLoading=false;
   @Input() joinGame=false
   @Input() gameId:number=-1
-  constructor(private modalService:ModalService,private httpClient:HttpClient,private router:Router) {}
+  constructor(private modalService:ModalService,private httpClient:HttpClient,private router:Router,private ng2ImgMax: Ng2ImgMaxService) {}
   ngOnInit(): void {
     this.modalService.register(this.uploadSheetModalId)
   }
@@ -78,6 +79,18 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
       }
     )
   }
+  resizeImage(file: File, targetSizeInKB: number) {
+    this.ng2ImgMax.resizeImage(file, targetSizeInKB * 1024,targetSizeInKB * 1024).subscribe(
+      (result) => {
+        const resizedImage: File = new File([result], result.name);
+        // Handle the resized image, e.g., upload it or display it.
+        this.sheetToUpload=resizedImage
+      },
+      (error) => {
+        console.error('Error resizing image:', error);
+      }
+    );
+  }
 
    async change($event: any) {
 
@@ -86,11 +99,15 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
 
 
 
-    this.sheetToUpload=$event.target.files[0];
+    let file=$event.target.files[0];
+    this.sheetToUpload=file
+    if(file){
+    // this.resizeImage(file,1024)
+      await new Promise(f => setTimeout(f, 1000));
+      this.showProgress=true
+      this.interval = setInterval(this.notifyEverySecond, 1000);
+    }
 
-    await new Promise(f => setTimeout(f, 1000));
-    this.showProgress=true
-    this.interval = setInterval(this.notifyEverySecond, 1000);
 
   }
 

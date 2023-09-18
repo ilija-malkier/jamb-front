@@ -21,4 +21,7 @@
   border-color: #ced4da; /* Change the border color to the default */
   box-shadow: none; /* Remove the box shadow */
 }
+.invalid{
+  border:solid 1px var(--red-color) !important;
 
+}

@@ -18,15 +18,13 @@
     <div class="d-flex  col-3 flex-column justify-content-center align-items-center " >
      <ng-container *ngIf="game.winner">
        <div class="d-flex  justify-content-center  position-relative w-100">
-         <div class="image-container">
-           <img src="../../../assets/images/avatar.png" >
+         <div class="img-winner">
+           <img src="assets/images/trophy.png" >
          </div>
-         <div class="position-absolute " style="left: 62%">
-           <img src="/src/assets/images/medal.png" class="w-100">
 
-         </div>
        </div>
-       <p>{{game?.winner?.firstName+game?.winner?.lastName}}</p>
+       <p>{{game?.winner?.firstName+ ' '+game?.winner?.lastName}}</p>
+       <p>{{game?.winner?.username}}</p>
      </ng-container>
 
     </div>

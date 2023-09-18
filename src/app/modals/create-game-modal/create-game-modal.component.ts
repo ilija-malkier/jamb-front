@@ -6,6 +6,8 @@ import {GameService} from "../../../services/game.service";
 import {FindFriendsModalComponent} from "../find-friends-modal/find-friends-modal.component";
 import {GameSetCreateRequest} from "../../model/game-set-create-request";
 import * as alertifyjs from "alertifyjs";
+import {GameSetInfo} from "../../model/game-set-info";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-game-modal',
@@ -18,20 +20,24 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
   createGameModalTitle="Create Game"
   isLoading: boolean;
   filterFriends:string[]=[]
+  gameSets:GameSetInfo[]=[]
   @Input() score:number=0;
   @Input() image:File
   @Input() joinGame:boolean=false
   @Input() gameId:number=-1
   createNewGamesetContent:boolean=false
-  constructor(private modalService:ModalService,private gameService:GameService) {}
+  selectedGamesetId:number=-1
+  selectedGamesetName:string='Select'
+  constructor(private modalService:ModalService,private gameService:GameService,private router:Router) {}
   ngOnDestroy(): void {
     this.modalService.unregister(this.createGameModalId);
   }
 
   ngOnInit(): void {
     this.modalService.register(this.createGameModalId);
-    this.modalService.toggleModal(this.createGameModalId);
-    this.gameService.getGameSets();
+    this.gameService.getGameSets().subscribe(data=>{
+      this.gameSets=data.data.gameSetResponseList
+    });
 
   }
 
@@ -52,7 +58,11 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
     // if(this.joinGame)
       // this.gameService.joinGame(this.gameId,this.image,this.score)
     // else
-      this.gameService.saveGame({players:this.filterFriends,numberOfPlayers:parseInt(numberOfPlayers),score:this.score,gameSetId:1},this.image)
+    if(form.invalid ) return
+      this.gameService.saveGame({players:this.filterFriends,numberOfPlayers:parseInt(numberOfPlayers),score:this.score,gameSetId:1},this.image).subscribe(data=>{
+        this.modalService.toggleModal(CreateGameModalComponent.createGameModalId)
+        this.router.navigate(['home'])
+      })
   }
   addFilterFriends(inputUsename: HTMLInputElement){
     if(this.filterFriends.includes(inputUsename.value)) return;
@@ -67,6 +77,7 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
   }
 
   saveGameset(formCreateGameset: NgForm) {
+    if(formCreateGameset.invalid) return
    let gamesetCreateRequest=<GameSetCreateRequest> formCreateGameset.value
     gamesetCreateRequest={... gamesetCreateRequest,gameIds:[]}
     this.gameService.createGameset(gamesetCreateRequest).subscribe(data=>{
@@ -79,5 +90,10 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
 
   exitGameset() {
     this.createNewGamesetContent=false
+  }
+
+  setGameset(gameSetId: number) {
+      this.selectedGamesetId=gameSetId
+    this.selectedGamesetName=this.gameSets.filter(x=>x.gameSetId===gameSetId)[0].gameSetName
   }
 }
