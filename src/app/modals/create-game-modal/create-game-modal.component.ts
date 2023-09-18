@@ -28,16 +28,18 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
   createNewGamesetContent:boolean=false
   selectedGamesetId:number=-1
   selectedGamesetName:string='Select'
+  showError=false
+  errorMessage=''
   constructor(private modalService:ModalService,private gameService:GameService,private router:Router) {}
   ngOnDestroy(): void {
     this.modalService.unregister(this.createGameModalId);
   }
 
+  isModalOpen(){
+  }
   ngOnInit(): void {
     this.modalService.register(this.createGameModalId);
-    this.gameService.getGameSets().subscribe(data=>{
-      this.gameSets=data.data.gameSetResponseList
-    });
+    this.getGameSets()
 
   }
 
@@ -62,6 +64,10 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
       this.gameService.saveGame({players:this.filterFriends,numberOfPlayers:parseInt(numberOfPlayers),score:this.score,gameSetId:1},this.image).subscribe(data=>{
         this.modalService.toggleModal(CreateGameModalComponent.createGameModalId)
         this.router.navigate(['home'])
+      },error => {
+        this.showError=true
+        this.errorMessage="Could not create the game.Please try again later."
+        console.log("error")
       })
   }
   addFilterFriends(inputUsename: HTMLInputElement){
@@ -71,7 +77,12 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
     inputUsename.value=""
   }
 
+getGameSets(){
+  this.gameService.getGameSets().subscribe(data=>{
+    this.gameSets=data.data.gameSetResponseList
+  });
 
+}
   createNewGameset() {
     this.createNewGamesetContent=true;
   }
@@ -82,6 +93,8 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
     gamesetCreateRequest={... gamesetCreateRequest,gameIds:[]}
     this.gameService.createGameset(gamesetCreateRequest).subscribe(data=>{
       this.createNewGamesetContent=false
+      this.getGameSets()
+
       alertifyjs.success("Gameset "+ gamesetCreateRequest.name +" created.")
     },error => {
       alertifyjs.error("Gameset with that name already exists")

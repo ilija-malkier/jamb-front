@@ -7,19 +7,32 @@ import {
 } from '@angular/common/http';
 import {catchError, Observable, switchMap, throwError} from 'rxjs';
 import {TokenService} from "../../services/token.service";
+import {Router} from "@angular/router";
+import {AuthService} from "../../services/auth.service";
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
 
-  constructor(private tokenService:TokenService) {
+  constructor(private tokenService:TokenService,private router:Router,private authService:AuthService) {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if (!request.url.includes('auth')) {
+    if(request.url.includes('login') || request.url.includes('register')){
+      return next.handle(request)
+
+    }
+    if (!request.url.includes('login') || !request.url.includes('register')) {
       let token =this.tokenService.getAccessToken();
         request = request.clone({
         headers: request.headers.set("Authorization", `Bearer ${token}`)
       })
+    }
+    if(localStorage.getItem('refresh_token')==null){
+      console.log("ovs")
+      this.router.navigate(['login']);
+      this.authService.$isLogin.next(false)
+      return next.handle(request)
+
     }
     return next.handle(request).pipe(
       catchError((error:HttpErrorResponse)=>{

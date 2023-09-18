@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../services/auth.service";
 import alertifyjs from "alertifyjs";
+import {ModalService} from "../services/modal.service";
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,13 @@ import alertifyjs from "alertifyjs";
 export class AppComponent implements OnInit{
   title = 'Jamb';
 
-  constructor(private activeRoute:ActivatedRoute,private router:Router,private auth:AuthService) {}
+  constructor(private modalService:ModalService) {}
 
+  isModalOpen(){
+    return this.modalService.isAnyModalOpen()
+  }
   ngOnInit(): void {
     let token = localStorage.getItem("access_token")
-    console.log("cao")
 
     // if(token){
     //   //need to se if token is valid

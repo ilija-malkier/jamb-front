@@ -1,5 +1,6 @@
 <app-modal [modalid]="createGameModalId" [title]="createGameModalTitle">
   <div *ngIf="!createNewGamesetContent ; else gameset">
+    <app-error-baner [text]="errorMessage" [show]="showError" ></app-error-baner>
     <form class="d-flex flex-column justify-content-center align-items-center" (ngSubmit)="saveGame(form)" #form=ngForm>
 
       <div class="d-flex mt-3 flex-column justify-content-start align-items-center w-100">
@@ -63,6 +64,7 @@
     </form>
   </div>
   <ng-template #gameset >
+
     <form #formCreateGameset="ngForm" (ngSubmit)="saveGameset(formCreateGameset)">
 
       <div>

@@ -42,4 +42,8 @@ export class ModalService {
 
     this.modals= this.modals.filter(element=>element.id!==id);
   }
+
+  isAnyModalOpen() {
+   return  this.modals.filter(x=> x.visible).length>0
+  }
 }
