@@ -28,6 +28,8 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
   showProgress=false;
    isLoadingImage=false;
    isLoading=false;
+   showError=false
+  errorMessage=''
   @Input() joinGame=false
   @Input() gameId:number=-1
   constructor(private modalService:ModalService,private httpClient:HttpClient,private router:Router,private ng2ImgMax: Ng2ImgMaxService) {}
@@ -52,8 +54,14 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
   //   reader.readAsArrayBuffer(file);
   // }
   uploadSheet(form: NgForm) {
-    if(!this.isFileSelected || this.isLoading) return
+    if(!this.isFileSelected || this.isLoading) {
+      this.showError=true
+      this.errorMessage='You must select the image you want to upload.'
+      return
+    }
 
+    this.showError=false
+    this.errorMessage=''
     this.isLoading=true
     const formData = new FormData();
     formData.append('file', this.sheetToUpload);
@@ -96,7 +104,8 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
 
      this.isFileSelected=true;
      this.isLoadingImage=true;
-
+     this.showError=false
+     this.errorMessage=''
 
 
     let file=$event.target.files[0];
@@ -134,6 +143,9 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
     this.isFileSelected=false
     this.remainingTime = 3;
     this.isLoading=false
+    this.isLoadingImage=false
+    this.showError=false
+    this.errorMessage=''
     form.resetForm()
     clearInterval(this.interval);
   }
