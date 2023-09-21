@@ -29,7 +29,10 @@
 
       </div>
 
+    <div  class="w-100 d-flex justify-content-center align-items-center" *ngIf="!this.isLoadingImage && this.sheetToUpload">
+      <img [src]="this.imageUrl" class="w-25" >
 
+    </div>
 
 
     <div class="d-flex justify-content-end mt-3">

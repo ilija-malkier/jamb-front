@@ -28,7 +28,6 @@ export class JwtInterceptor implements HttpInterceptor {
       })
     }
     if(localStorage.getItem('refresh_token')==null){
-      console.log("ovs")
       this.router.navigate(['login']);
       this.authService.$isLogin.next(false)
       return next.handle(request)

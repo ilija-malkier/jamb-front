@@ -23,7 +23,7 @@ export interface CustomResponse {
     friends?:PlayerFriend,
     friend_requests?:PlayerFriendRequest,
     isValid?:boolean,
-    result?:ResultResponse,
+    results?:ResultResponse,
     game_requests?:PagedGameRequestResponse
     gameSetResponseList?:GameSetInfo[],
     game?:GameDetailsResponse

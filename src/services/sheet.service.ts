@@ -16,7 +16,9 @@ export class SheetService {
     return this.http.post<CustomResponse>("http://localhost:8081/sheet/validate-cell",cellValidationRequest)
   }
 
-  calculateSheet(sheetData: [Cell[]]) {
+  calculateSheet(sheetData: Cell[][]) {
     return this.http.post<CustomResponse>("http://localhost:8081/sheet/result",{"numbers":sheetData})
   }
+
+
 }

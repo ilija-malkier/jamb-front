@@ -7,6 +7,7 @@ import {NavigationExtras, Router} from "@angular/router";
 import {DataState} from "../model/data-state";
 import {fi} from "date-fns/locale";
 import {Ng2ImgMaxService} from "ng2-img-max";
+import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 
 
 @Component({
@@ -30,9 +31,10 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
    isLoading=false;
    showError=false
   errorMessage=''
+  imageUrl:SafeResourceUrl
   @Input() joinGame=false
   @Input() gameId:number=-1
-  constructor(private modalService:ModalService,private httpClient:HttpClient,private router:Router,private ng2ImgMax: Ng2ImgMaxService) {}
+  constructor(private sanitizer: DomSanitizer,private modalService:ModalService,private httpClient:HttpClient,private router:Router,private ng2ImgMax: Ng2ImgMaxService) {}
   ngOnInit(): void {
     this.modalService.register(this.uploadSheetModalId)
   }
@@ -54,19 +56,23 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
   //   reader.readAsArrayBuffer(file);
   // }
   uploadSheet(form: NgForm) {
-    if(!this.isFileSelected || this.isLoading) {
+    this.isLoading=true
+    this.showError=false
+    this.errorMessage=''
+
+    if(!this.isFileSelected && this.isLoading) {
+      this.isLoading=false
       this.showError=true
       this.errorMessage='You must select the image you want to upload.'
       return
     }
 
-    this.showError=false
-    this.errorMessage=''
-    this.isLoading=true
+
     const formData = new FormData();
     formData.append('file', this.sheetToUpload);
     this.httpClient.post("http://localhost:8081/sheet/upload",formData).subscribe(
       next=>{
+        console.log(next)
         const navigationExtras: NavigationExtras = {
           state: {
             table: next,
@@ -103,8 +109,7 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
 
    async change($event: any) {
 
-     this.isFileSelected=true;
-     this.isLoadingImage=true;
+
      this.showError=false
      this.errorMessage=''
 
@@ -112,12 +117,28 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
     let file=$event.target.files[0];
     this.sheetToUpload=file
     if(file){
+      const fileSizeInBytes = this.sheetToUpload.size;
+      const fileSizeInKilobytes = fileSizeInBytes / (1024); // Convert to KB
+
+      // You can now check the image size and take appropriate action
+      // if (fileSizeInKilobytes < 1) {
+      //   this.showError=true
+      //   this.errorMessage="Image must be less bigger then 1kb"
+      // } else {
+        this.isFileSelected=true;
+        this.isLoadingImage=true;
+
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(e.target.result);
+      };
+      reader.readAsDataURL(file);
     // this.resizeImage(file,1024)
       await new Promise(f => setTimeout(f, 1000));
       this.showProgress=true
       this.interval = setInterval(this.notifyEverySecond, 1000);
     }
-
+    // }
 
   }
 
@@ -147,6 +168,7 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
     this.isLoadingImage=false
     this.showError=false
     this.errorMessage=''
+    this.imageUrl=null
     form.resetForm()
     clearInterval(this.interval);
   }

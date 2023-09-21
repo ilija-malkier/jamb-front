@@ -29,17 +29,35 @@ export class SetNewPasswordComponent {
 
     this.userService.restartPassword(password,this.token)
   }
+   hasDigit(inputString: string): boolean {
+    const digitRegex = /\d/;
+    return digitRegex.test(inputString);
+  }
+   hasSpecialCharacter(inputString: string): boolean {
+    const specialCharacterRegex = /[^a-zA-Z0-9]/;
+    return specialCharacterRegex.test(inputString);
+  }
+  private validatePasswords(password: string, confirmPassword: string){
 
-  private validatePasswords(passwords: string, confirmPassword: string) {
-    if(passwords == passwords){
-      this.showError=false
-      this.errorMessage=''
-      return true
-    }
-    else{
+    if(password != confirmPassword){
       this.showError=true
       this.errorMessage='Password are not the same'
       return false
     }
+    if(!this.hasDigit(password)){
+      this.showError=true
+      this.errorMessage='Password must contain a digit'
+      return false
+    }
+    if(!this.hasSpecialCharacter(password)) {
+      this.showError = true
+      this.errorMessage = 'Password must contain a special character'
+      return false
+    }
+    this.showError=false
+    this.errorMessage=''
+    return true
+
+
   }
 }

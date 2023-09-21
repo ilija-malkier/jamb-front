@@ -1,3 +1,7 @@
 .disable-scroll {
   overflow: hidden;
 }
+.center-absolute{
+  top: 5%;
+  left: 25%;
+}
