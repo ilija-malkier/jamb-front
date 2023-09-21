@@ -1,5 +1,5 @@
 .image-container {
-  width: 60px;
+  width: 50px;
   border-radius: 50%; /* This value creates a circle as the border radius is set to 50% of the container's width and height */
   overflow: hidden; /* Clip the image within the rounded container */
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Optional: Add a shadow effect */
@@ -7,7 +7,7 @@
   overflow: auto;
 }
 .img-winner{
-  width: 60px;
+  width: 30px;
   overflow: hidden; /* Clip the image within the rounded container */
   overflow: auto;
 }
@@ -19,18 +19,18 @@ img {
   object-fit: cover; /* This ensures the image covers the entire container without distorting its aspect ratio */
 }
 .number-container{
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
  border: solid var(--white-color);
   background: var(--primary-color-darker);
-  font-size: x-large;
+  font-size: medium;
 }
 .custom-status{
   position: absolute;
   width: 10px;
   background: var(--game-state-color);
-  height: 100px;
+  height: 80px;
   bottom: 10px;
   left: 99.5%;
   border-radius: 10px;

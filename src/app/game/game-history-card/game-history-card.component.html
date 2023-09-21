@@ -1,17 +1,17 @@
-  <div style="width: 1000px;border: solid 1px black;height: 120px" class="d-flex my-2 position-relative justify-content-around align-items-center px-4   py-2 rounded-3 border-dark">
+  <div style="width: 800px;border: solid 1px black;height: 100px" class="d-flex my-2 position-relative justify-content-around align-items-center px-4   py-2 rounded-3 border-dark">
 
     <div class="d-flex col-3  justify-content-start  overflow-visible position-relative" style="height: 60px">
 
 
 
-      <app-custom-image  *ngFor="let player of game.players.slice(0,3);let i=index;" [left]="(i*30).toString()" username="{{player.username | uppercase}}"></app-custom-image>
-      <div *ngIf="game?.players?.length>3" class=" p-0 m-0 text-white d-flex justify-content-center align-items-center  number-container position-absolute " style="left: 90px">
+      <app-custom-image  *ngFor="let player of game.players.slice(0,3);let i=index;" [left]="(i*28).toString()" username="{{player.username | uppercase}}"></app-custom-image>
+      <div *ngIf="game?.players?.length>3" class=" p-0 m-0 text-white d-flex justify-content-center align-items-center  number-container position-absolute " style="left: 80px">
         <p >+{{game?.players.length - 3}}</p>
       </div>
 
     </div>
 
-  <div class="col-3  d-flex justify-content-center" style="font-size: large">
+  <div class="col-3  d-flex justify-content-center" style="font-size: medium">
     <p>{{game?.datePlayed | date}}</p>
   </div>
 
@@ -29,7 +29,7 @@
 
     </div>
     <div  class="col-3 justify-content-end  d-flex">
-      <p (click)="navigateToGameDetails()" style="cursor:pointer;" >View</p>
+      <p (click)="navigateToGameDetails()" style="cursor:pointer;font-size: medium" >View</p>
       <div class="custom-status"style="--game-state-color:{{game.gameStatus===GameStatus.completed? '#6DFF73' : '#FFC56D'}}"></div>
     </div>
   </div>
