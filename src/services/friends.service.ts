@@ -14,7 +14,12 @@ export class FriendsService {
    maxFriends=3;
 
   constructor(private http:HttpClient) { }
+  private baseURL = 'https://jsonplaceholder.typicode.com/users';
 
+
+  getData() {
+    return this.http.get(this.baseURL);
+  }
 
   getFriendRequests(page: number){
     this.$friendRequest.next(this.http.get<CustomResponse>("http://localhost:8081/player/requests/received",{
@@ -60,5 +65,9 @@ export class FriendsService {
   unfriend(username: string) {
 
    return  this.http.delete<CustomResponse>("http://localhost:8081/player/friends/"+username)
+  }
+
+  serachFriends(friendSearchText: string) {
+    return this.http.get<CustomResponse>("http://localhost:8081/player/friends/find",{params:{name:friendSearchText}})
   }
 }

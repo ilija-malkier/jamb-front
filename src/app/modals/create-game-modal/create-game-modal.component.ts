@@ -19,7 +19,6 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
   static createGameModalId="create-game"
   createGameModalTitle="Create Game"
   isLoading: boolean;
-  filterFriends:string[]=[]
   gameSets:GameSetInfo[]=[]
   @Input() score:number=0;
   @Input() image:File
@@ -30,6 +29,8 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
   selectedGamesetName:string='Select'
   showError=false
   errorMessage=''
+  filterFriends:string[]=[]
+
   constructor(private modalService:ModalService,private gameService:GameService,private router:Router) {}
   ngOnDestroy(): void {
     this.modalService.unregister(this.createGameModalId);
@@ -47,9 +48,7 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
     this.modalService.closeModal(this.createGameModalId)
   }
 
-  removeFilterFriends(username:string){
-    this.filterFriends= this.filterFriends.filter(playerUsername=>playerUsername!==username);
-  }
+
 
   saveGame(form: NgForm) {
 
@@ -70,12 +69,12 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
         console.log("error")
       })
   }
-  addFilterFriends(inputUsename: HTMLInputElement){
-    if(this.filterFriends.includes(inputUsename.value)) return;
-    //maybe notify user
-    this.filterFriends.push(inputUsename.value)
-    inputUsename.value=""
-  }
+  // addFilterFriends(inputUsename: HTMLInputElement){
+  //   if(this.filterFriends.includes(inputUsename.value)) return;
+  //   //maybe notify user
+  //   this.filterFriends.push(inputUsename.value)
+  //   inputUsename.value=""
+  // }
 
 getGameSets(){
   this.gameService.getGameSets().subscribe(data=>{
@@ -108,5 +107,9 @@ getGameSets(){
   setGameset(gameSetId: number) {
       this.selectedGamesetId=gameSetId
     this.selectedGamesetName=this.gameSets.filter(x=>x.gameSetId===gameSetId)[0].gameSetName
+  }
+
+  handleFiendsAdded(friends: string[]) {
+      this.filterFriends=friends
   }
 }

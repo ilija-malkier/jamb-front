@@ -8,6 +8,7 @@ import {PagedGameRequestResponse} from "./paged-game-request-response";
 import {GamesetDropdown} from "./gameset-dropdown";
 import {GameDetailsResponse} from "./game-details-response";
 import {GameSetInfo} from "./game-set-info";
+import {SearchedFriends} from "./searched-friends";
 
 export interface CustomResponse {
   timeStamp:Date;
@@ -26,7 +27,8 @@ export interface CustomResponse {
     results?:ResultResponse,
     game_requests?:PagedGameRequestResponse
     gameSetResponseList?:GameSetInfo[],
-    game?:GameDetailsResponse
+    game?:GameDetailsResponse,
+    matching_usernames?:SearchedFriends[]
 
 
 

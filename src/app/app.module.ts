@@ -43,6 +43,7 @@ import { GameDetailsComponent } from './game/game-details/game-details.component
 import { WinCardComponent } from './game/win-card/win-card.component';
 import { WinListComponent } from './game/win-list/win-list.component';
 import {GameDetailsResolver} from "./route-guards/game-details-resolver.service";
+import { AutocompleateComponent } from './reusables/autocompleate/autocompleate.component';
 
 
 const routes:Routes=[
@@ -103,6 +104,7 @@ const routes:Routes=[
     GameDetailsComponent,
     WinCardComponent,
     WinListComponent,
+    AutocompleateComponent,
 
   ],
     imports: [

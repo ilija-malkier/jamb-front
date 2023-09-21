@@ -42,12 +42,10 @@ export class CalculateGameComponent implements OnInit{
 
   validateCell(rowIndex: number, columnIndex: number, rowLength: number, value: string) {
     let sheetDatumElement = this.sheetData[rowIndex][columnIndex];
-    let valueNumber=parseInt(value)
-    if(sheetDatumElement.value!=valueNumber){
-      sheetDatumElement.value=valueNumber
+    if(sheetDatumElement.value!=value){
+      sheetDatumElement.value=value
        this.sheetData[rowIndex][columnIndex]=sheetDatumElement
       this.sheetService.validateCell(rowIndex,columnIndex,rowLength,sheetDatumElement).subscribe(data=>{
-
         sheetDatumElement.valid=data.data.isValid
         this.sheetData[rowIndex][columnIndex]=sheetDatumElement
 
@@ -63,9 +61,9 @@ export class CalculateGameComponent implements OnInit{
       console.log(this.currentScore.resultsMaxMinRows)
       console.log(this.currentScore.resultsFirstSixRows.length)
         for (let i = 1; i <this.currentScore.resultsFirstSixRows.length; i++) {
-          this.sheetData[6][i]={valid:true,value:this.currentScore.resultsFirstSixRows[i-1]}
-          this.sheetData[9][i]={valid:true,value:this.currentScore.resultsMaxMinRows[i-1]}
-          this.sheetData[this.sheetData.length-1][i]={valid:true,value:this.currentScore.resultsLastRows[i-1]}
+          this.sheetData[6][i]={valid:true,value:this.currentScore.resultsFirstSixRows[i-1].toString()}
+          this.sheetData[9][i]={valid:true,value:this.currentScore.resultsMaxMinRows[i-1].toString()}
+          this.sheetData[this.sheetData.length-1][i]={valid:true,value:this.currentScore.resultsLastRows[i-1].toString()}
         }
         this.sumOfresultsMaxMinRows=this.currentScore.resultsMaxMinRows[this.currentScore.resultsMaxMinRows.length-1]
         this.sumOfresultsFirstSixRows=this.currentScore.resultsFirstSixRows[this.currentScore.resultsFirstSixRows.length-1]

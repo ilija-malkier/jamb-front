@@ -1,0 +1,18 @@
+<div class="w-100">
+  <div class="w-100 d-flex" style="overflow: hidden">
+    <input (input)="onInputChange()" [(ngModel)]="friendSearchText" class="form-control w-100 " list="datalistOptions" id="playerNameInput" placeholder="Type to search..."
+           #playerNameInput
+           >
+    <div (click)="addFilterFriends(playerNameInput)" class="col-1 d-flex justify-content-center align-items-center">
+      <i class="bi bi-plus" style="color: var(--primary-color);font-size:40px"></i>
+    </div>
+  </div>
+    <div class="w-100 d-flex ">
+      <datalist id="datalistOptions">
+        <option *ngFor="let post of searchedFriends" [value]="post">
+      </datalist>
+      <div *ngFor="let chip of filterFriends" class="w-25  mx-2 my-2 d-flex flex-row justify-content-start align-content-center ">
+        <app-chip class="w-25" chipName="{{chip}}" (removeChipEmmiter)="removeFilterFriends($event)"></app-chip>
+      </div>
+    </div>
+</div>
