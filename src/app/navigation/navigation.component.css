@@ -5,15 +5,14 @@
   display: inline-block;
   position: relative;
 }
-.dropdown.active{
-  color:red;
+
+.active{
+  color:var(--bs-black) !important;
 }
 .dropdown{
   color: var(--link-inactive);
 }
-.nav-item-p.active{
-  color:var(--bs-black)
-}
+
 .nav-item-p.active::after {
   content: "";
   position: absolute;

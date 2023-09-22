@@ -1,7 +1,7 @@
 import {GameRequestResponse} from "./game-request-response";
 
 export interface PagedGameRequestResponse {
-  friends:GameRequestResponse[],
+   gameRequests:GameRequestResponse[],
    pageNumber:number,
    pageSize:number,
    totalElements:number

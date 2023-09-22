@@ -4,8 +4,6 @@
     <h4>Pending Requests</h4>
   </div>
   <div class="mt-4" >
-    <ng-container *ngIf="$games | async as gameRequests">
-
 
       <table class="table table-striped">
         <thead>
@@ -16,6 +14,7 @@
         </tr>
         </thead>
         <tbody>
+        <ng-container *ngIf="($games | async) as gameRequests">
         <tr *ngFor="let gameRequest of gameRequests?.appData | slice:0:maxGames">
           <td class="text-center">{{gameRequest.username}}</td>
           <td class="text-center">{{gameRequest.gameDate | date}}</td>
@@ -28,13 +27,15 @@
           <app-upload-sheet [gameId]="gameRequest.gameId" [joinGame]="true" ></app-upload-sheet>
 
         </tr>
+        </ng-container>
+
         </tbody>
+
       </table>
       <div class="w-100  d-flex justify-content-end">
         <app-game-list-pagination [totalPages]="this.customRound(this.totalElements/this.maxGames)"></app-game-list-pagination>
       </div>
 
-    </ng-container>
   </div>
 
 

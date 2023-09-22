@@ -20,7 +20,7 @@ a:hover {
   padding: 7rem 0; }
 
 h2 {
-  font-size: 16px; }
+  font-size: 20px; }
 
 
 
@@ -59,7 +59,7 @@ h2 {
   border-bottom-left-radius: 7px;
   border-bottom-right-radius: 7px; }
 .half .contents .form-group label, .half .bg .form-group label {
-  font-size: 8px;
+  font-size: 12px;
   display: block;
   margin-bottom: 0;
   color: #b3b3b3; }
@@ -67,8 +67,8 @@ h2 {
   margin-top: -10px; }
 .half .contents .form-control, .half .bg .form-control {
   border: none;
-  padding: 0;
-  font-size: 15px;
+  padding: 0.7rem;
+  font-size: 20px;
   border-radius: 0; }
 .half .contents .form-control:active, .half .contents .form-control:focus, .half .bg .form-control:active, .half .bg .form-control:focus {
   outline: none;
@@ -84,14 +84,14 @@ h2 {
   text-decoration: underline; }
 
 .half .btn {
-  height: 35px;
+  height:50px;
   padding-left: 30px;
   padding-right: 30px; }
 
 .half .forgot-pass {
   position: relative;
   top: 2px;
-  font-size: 10px; }
+  font-size: 15px; }
 
 .social-login a {
   display: block;
@@ -122,7 +122,7 @@ h2 {
   padding-left: 30px;
   margin-bottom: 15px;
   cursor: pointer;
-  font-size: 10px; }
+  font-size: 15px; }
 .control .caption {
   position: relative;
   top: .2rem;
@@ -192,14 +192,14 @@ h2 {
 .login-btn{
   background: var(--primary-color);
   color: var(--white-color);
-  font-size: medium;
+  font-size: large;
 }
 .header-login{
   color: var(--bs-black);
   margin-bottom: 50px;
 }
 .register-text{
-  font-size: 13px;
+  font-size: 16px;
   color: var(--text-dark);
   font-weight: 500;
   text-decoration: underline;

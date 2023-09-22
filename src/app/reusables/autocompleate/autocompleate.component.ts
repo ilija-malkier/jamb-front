@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {da} from "date-fns/locale";
+import {da, fr} from "date-fns/locale";
 import {FriendsService} from "../../../services/friends.service";
 import {FormControl} from "@angular/forms";
 
@@ -21,6 +21,7 @@ export class AutocompleateComponent {
     this.filterFriends.push(inputUsename.value)
     inputUsename.value=""
     this.filterFriendsEventEmitter.emit(this.filterFriends)
+    this.searchedFriends=[]
 
   }
 
@@ -44,9 +45,18 @@ export class AutocompleateComponent {
   // }
 
   onInputChange() {
+    if(this.friendSearchText==='') {
+      this.searchedFriends=[]
+      return
+    }
     this.service.serachFriends(this.friendSearchText).subscribe(data=>{
           this.searchedFriends= data.data.matching_usernames.map(element=>element.username)
-      console.log(this.searchedFriends)
+
     })
+  }
+
+  chooseFriend(friend: string) {
+    this.friendSearchText=friend
+    this.onInputChange()
   }
 }

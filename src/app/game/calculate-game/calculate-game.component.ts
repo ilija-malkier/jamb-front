@@ -7,6 +7,8 @@ import {GameService} from "../../../services/game.service";
 import {ModalService} from "../../../services/modal.service";
 import {CreateGameModalComponent} from "../../modals/create-game-modal/create-game-modal.component";
 import {da} from "date-fns/locale";
+import * as alertifyjs from "alertifyjs";
+import {DomSanitizer} from "@angular/platform-browser";
 @Component({
   selector: 'app-calculate-game',
   templateUrl: './calculate-game.component.html',
@@ -23,7 +25,9 @@ export class CalculateGameComponent implements OnInit{
   sumOfresultsFirstSixRows=0
   sumOfresultsMaxMinRows=0
   sumOfresultsLastRows=0
-  constructor(private router:Router,private sheetService:SheetService,private gameService:GameService,private modalService:ModalService) {
+  imageBase64=''
+
+  constructor(private sanitizer: DomSanitizer,private router:Router,private sheetService:SheetService,private gameService:GameService,private modalService:ModalService) {
 
     const dataObject = this.router.getCurrentNavigation().extras.state['table']
     const dataImage = this.router.getCurrentNavigation().extras.state['image']
@@ -33,7 +37,6 @@ export class CalculateGameComponent implements OnInit{
     this.image=dataImage
     this.joinGame=joinGame
     this.gameId=gameId
-
   }
 
   get numberArray(): number[] {
@@ -58,8 +61,7 @@ export class CalculateGameComponent implements OnInit{
   calculateSheet() {
     this.sheetService.calculateSheet(this.sheetData).subscribe(data=>{
         this.currentScore=data.data?.results
-      console.log(this.currentScore.resultsMaxMinRows)
-      console.log(this.currentScore.resultsFirstSixRows.length)
+
         for (let i = 1; i <this.currentScore.resultsFirstSixRows.length; i++) {
           this.sheetData[6][i]={valid:true,value:this.currentScore.resultsFirstSixRows[i-1].toString()}
           this.sheetData[9][i]={valid:true,value:this.currentScore.resultsMaxMinRows[i-1].toString()}
@@ -68,8 +70,7 @@ export class CalculateGameComponent implements OnInit{
         this.sumOfresultsMaxMinRows=this.currentScore.resultsMaxMinRows[this.currentScore.resultsMaxMinRows.length-1]
         this.sumOfresultsFirstSixRows=this.currentScore.resultsFirstSixRows[this.currentScore.resultsFirstSixRows.length-1]
         this.sumOfresultsLastRows=this.currentScore.resultsLastRows[this.currentScore.resultsLastRows.length-1]
-      console.log(this.sheetData[9])
-      console.log(this.sheetData[6])
+
 
 
     }
@@ -90,9 +91,36 @@ export class CalculateGameComponent implements OnInit{
     this.currentScore=null;
   }
 
-  saveGame() {
+   saveGame() {
+    console.log(this.currentScore)
+    if(this.currentScore===undefined || this.currentScore.result===null || this.currentScore.result===0) {
+      alertifyjs.warning('Please calculate final result of the game to proceed')
+      return
+    }
+    if(this.joinGame) {
+      let reader = new FileReader();
+      reader.onloadend =  ()=> {
 
-    this.modalService.toggleModal(CreateGameModalComponent.createGameModalId)
+        const parts =   reader.result.toString().split(",");
+        if (parts.length === 2) {
+          this.imageBase64 = parts[1];
+          this.gameService.joinGame(this.gameId,this.imageBase64,this.currentScore.result).subscribe(data=>{
+            alertifyjs.success("Successfully joined game")
+            this.router.navigate(['account/game'])
+          },error => alertifyjs.error('Error occured.Please try again later'))
+
+        } else {
+          console.error("Invalid data URL format");
+        }
+      };
+      reader.onerror = function (error) {
+        console.log('Error: ', error);
+      };
+       reader.readAsDataURL(this.image);
+
+
+    }
+    else this.modalService.toggleModal(CreateGameModalComponent.createGameModalId)
 
   }
 

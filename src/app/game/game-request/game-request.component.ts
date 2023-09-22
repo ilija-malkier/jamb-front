@@ -24,18 +24,13 @@ export class GameRequestComponent implements OnInit{
   currentPage=0
   totalElements=0
   constructor(private gameService:GameService,private modalService:ModalService) {
-
-    this.gameService.getGameRequests(this.currentPage)
     this.handleGames();
+    this.gameService.getGameRequests(this.currentPage)
   }
   ngOnInit(): void {
-
-
-
   }
   customRound(number: number): number {
     const decimalPart = number - Math.floor(number);
-
     const roundedDecimal = Math.ceil(decimalPart);
     return Math.floor(number) + roundedDecimal;
   }
@@ -52,7 +47,7 @@ export class GameRequestComponent implements OnInit{
           this.gameService.emitTotalGameRequests(this.totalElements)
           return {
             dataState: DataState.SUCCESS,
-            appData: element?.data?.game_requests.friends
+            appData: element?.data?.game_requests.gameRequests
           }
         })
       )

@@ -86,7 +86,7 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
       error => {
         this.isLoading=false
         this.showError=true
-        this.errorMessage="Something went wrong.Please try again later."
+        this.errorMessage=error.error.message
         },
       ()=>{
         console.log("finished")

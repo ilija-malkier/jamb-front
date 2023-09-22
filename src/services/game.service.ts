@@ -8,6 +8,7 @@ import {GameCreateRequest} from "../app/model/game-create-request";
 import {GameSetCreateRequest} from "../app/model/game-set-create-request";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 import {HttpClient} from "@angular/common/http";
+import * as alertifyjs from "alertifyjs";
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,7 @@ export class GameService {
   }
 
   getPages(){
-    return  this.httpClient.get<CustomResponse>("http://localhost:8081/games/count")
+    return  this.httpClient.get<CustomResponse>("http://localhost:8081/games/total")
   }
 
 
@@ -108,7 +109,6 @@ export class GameService {
   }
 
   getGameRequests(page:number){
-
     this.$gameRequests.next(
     this.httpClient.get<CustomResponse>("http://localhost:8081/games/requests",{
       params:{
@@ -125,9 +125,7 @@ export class GameService {
 
   joinGame(gameId:number,image:string,score:number) {
 
-    this.httpClient.put<CustomResponse>("http://localhost:8081/games/request/approve",{gameId:gameId,image:image,score:score}).subscribe(data=>{
-      console.log(data)
-    })
+   return this.httpClient.put<CustomResponse>("http://localhost:8081/games/request/approve",{gameId:gameId,image:image,score:score})
   }
 
   getGameSets() {

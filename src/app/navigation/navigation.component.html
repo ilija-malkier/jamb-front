@@ -4,7 +4,7 @@
   <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='register'}" (click)="changeActiveNav('register')"  *ngIf="!(auth.$isLogin |async)"  routerLink="/register">Register</p>
   <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='support'}" (click)="changeActiveNav('support')"  *ngIf="(auth.$isLogin |async)"  routerLink="/support">Support</p>
   <div class="dropdown" [ngClass]="{'active':activeRoute==='account'}"  *ngIf="(auth.$isLogin |async)"  >
-    <p  class=" mx-3  dropdown-toggle"  data-bs-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
+    <p  class=" mx-3  dropdown-toggle"  [ngClass]="{'active':activeRoute==='account'}"  data-bs-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
       Account
     </p>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

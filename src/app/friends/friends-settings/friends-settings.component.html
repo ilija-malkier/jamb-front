@@ -53,8 +53,8 @@
         <td class="text-center">{{friendRequest?.username}}</td>
         <td class="text-center">
           <div>
-          <button class="btn text-white" style="background: var(--primary-color)">Accept</button>
-          <button class="btn">Decline</button>
+          <button (click)="acceptFriendRequest(friendRequest.username)" class="btn text-white" style="background: var(--primary-color)">Accept</button>
+          <button (click)="declineFriendRequest(friendRequest.username)" class="btn">Decline</button>
         </div>
         </td>
       </tr>

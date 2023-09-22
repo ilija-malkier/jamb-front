@@ -96,4 +96,22 @@ export class FriendsSettingsComponent implements OnInit{
   getMaxFriends(){
     return this.friendsService.maxFriends
   }
+
+  acceptFriendRequest(username: string) {
+    this.friendsService.acceptFriend(username).subscribe(data=>{
+      alertifyjs.success("Friend request accepted")
+      this.friendsService.getFriendRequests(this.currentPageFriendsRequests)
+
+    })
+
+  }
+
+  declineFriendRequest(username: string) {
+    this.friendsService.declineFriend(username).subscribe(data=>{
+      alertifyjs.success("Friend request declined")
+      this.friendsService.getFriendRequests(this.currentPageFriendsRequests)
+
+
+    })
+  }
 }

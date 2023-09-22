@@ -70,4 +70,12 @@ export class FriendsService {
   serachFriends(friendSearchText: string) {
     return this.http.get<CustomResponse>("http://localhost:8081/player/friends/find",{params:{name:friendSearchText}})
   }
+
+  acceptFriend(username: string) {
+   return this.http.put<CustomResponse>("http://localhost:8081/player/request/approve",{username:username})
+  }
+  declineFriend(username:string){
+    return this.http.put<CustomResponse>("http://localhost:8081/player/request/decline",{username:username})
+
+  }
 }
