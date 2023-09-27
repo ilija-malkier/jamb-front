@@ -41,6 +41,12 @@ export class AuthService implements OnInit{
       this.router.navigate(["login"])
   }
 
+  public invalidateLoginValues(){
+    localStorage.setItem("access_token",null)
+    localStorage.setItem("refresh_token",null)
+    this.$isLogin.next(false)
+    this.router.navigate(["login"])
+  }
   ngOnInit(): void {
 
   }

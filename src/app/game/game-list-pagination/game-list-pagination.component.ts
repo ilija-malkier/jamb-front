@@ -20,7 +20,9 @@ export class GameListPaginationComponent implements OnInit{
     this.getPageNumber();
   }
 
-  constructor(private gameService:GameService) {}
+  constructor(private gameService:GameService) {
+
+  }
 
   get numberArray(): number[] {
     return Array.from({ length: this.totalPages  }, (_, index) => index);
@@ -66,7 +68,6 @@ export class GameListPaginationComponent implements OnInit{
   private customRound(number: number): number {
     const decimalPart = number - Math.floor(number);
     const roundedDecimal = Math.ceil(decimalPart);
-    // console.log(decimalPart +"-"+roundedDecimal)
     return Math.floor(number) + roundedDecimal;
   }
 

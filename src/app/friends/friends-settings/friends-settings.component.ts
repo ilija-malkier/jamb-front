@@ -44,17 +44,17 @@ export class FriendsSettingsComponent implements OnInit{
   private handleFriends() {
     this.friendsService.$friends.subscribe(data => {
       this.$friends = data.pipe(
-        startWith({dataState: DataState.LOADING}),
-        catchError(err => {
-          return of({dataState: DataState.ERROR, error: err})
-        }),
+
         map((element: CustomResponse) => {
           this.totalElementsFriends=element?.data?.friends.totalElements
           return {
             dataState: DataState.SUCCESS,
             appData: element?.data?.friends.friends
           }
-        })
+        }),startWith({dataState: DataState.LOADING}),
+        catchError(err => {
+          return of({dataState: DataState.ERROR, error: err})
+        }),
       )
     })
   }
@@ -62,17 +62,17 @@ export class FriendsSettingsComponent implements OnInit{
   private handleFriendRequests() {
     this.friendsService.$friendRequest.subscribe(data => {
       this.$friendsRequests = data.pipe(
-        startWith({dataState: DataState.LOADING}),
-        catchError(err => {
-          return of({dataState: DataState.ERROR, error: err})
-        }),
+
         map((element: CustomResponse) => {
           this.totalElementsFriendsRequests=element?.data?.friend_requests.totalElements
           return {
             dataState: DataState.SUCCESS,
             appData: element?.data?.friend_requests?.friends
           }
-        })
+        }),startWith({dataState: DataState.LOADING}),
+        catchError(err => {
+          return of({dataState: DataState.ERROR, error: err})
+        }),
       )
     })
   }
@@ -114,4 +114,6 @@ export class FriendsSettingsComponent implements OnInit{
 
     })
   }
+
+  protected readonly DataState = DataState;
 }

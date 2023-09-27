@@ -9,4 +9,5 @@ export class ButtonIconComponent {
   @Input() text:string=''
   @Input() icon:string='';
   @Input() color:string='--primary-color';
+  @Input() isLoading:boolean=false
 }

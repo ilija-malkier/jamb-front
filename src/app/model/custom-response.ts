@@ -9,6 +9,7 @@ import {GamesetDropdown} from "./gameset-dropdown";
 import {GameDetailsResponse} from "./game-details-response";
 import {GameSetInfo} from "./game-set-info";
 import {SearchedFriends} from "./searched-friends";
+import {ImageResponse} from "./image-response";
 
 export interface CustomResponse {
   timeStamp:Date;
@@ -16,7 +17,8 @@ export interface CustomResponse {
   status:string;
   message:string;
   developerMessage:string;
-  data:{gameFilterResponses?:GameFilterResponse[],
+  data:{
+    gameFilterResponses?:GameFilterResponse[],
     total_games?:HomeStatistics,
     access_token?:string,
     gameCount?:number,
@@ -28,7 +30,8 @@ export interface CustomResponse {
     game_requests?:PagedGameRequestResponse
     gameSetResponseList?:GameSetInfo[],
     game?:GameDetailsResponse,
-    matching_usernames?:SearchedFriends[]
+    matching_usernames?:SearchedFriends[],
+    players_image?:ImageResponse
 
 
 

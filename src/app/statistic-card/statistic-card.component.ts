@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {DataState} from "../model/data-state";
 
 @Component({
   selector: 'app-statistic-card',
@@ -10,9 +11,12 @@ export class StatisticCardComponent {
   @Input() percent:string='';
   @Input("value") value:string='';
   @Input() image:string='assets/images/rook.png';
+  @Input() state:DataState=DataState.LOADING
   protected readonly isFinite = isFinite;
   protected readonly parseInt = parseInt;
   protected readonly isNaN = isNaN;
 
+
+  protected readonly DataState = DataState;
 
 }

@@ -26,7 +26,7 @@
                 <input type="checkbox" checked="checked"/>
                 <div class="control__indicator"></div>
               </label>
-              <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>
+              <span class="ml-auto"><a routerLink="/reset-password" href="#" class="forgot-pass">Forgot Password</a></span>
             </div>
 
             <button [ngClass]="{'disabled': form.invalid && showErrorMessage}"  type="submit" value="Sign Up" class="btn  w-100 btn-block login-btn" >

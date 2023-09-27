@@ -11,7 +11,7 @@
         <p>Scoreboard</p>
       </div>
       <div>
-        <app-win-list  [players]="game.players"></app-win-list>
+        <app-win-list  [players]="game.players" (eventViewImageEmitter)="handleViewImage($event)"></app-win-list>
       </div>
     </div>
     <div class=" col-6 d-flex flex-column justify-content-center">

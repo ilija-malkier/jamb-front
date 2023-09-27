@@ -24,6 +24,7 @@ export class RestartPasswordComponent {
       alertifyjs.success('Request for password reset is send.')
     },error => {
       alertifyjs.error('Could not reset password,please try again later.')
+      this.isLoading=false
 
     },()=>{
       this.isLoading=false

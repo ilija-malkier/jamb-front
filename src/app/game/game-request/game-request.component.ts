@@ -38,10 +38,7 @@ export class GameRequestComponent implements OnInit{
   private handleGames() {
     this.gameService.$gameRequests.subscribe(data => {
       this.$games = data.pipe(
-        startWith({dataState: DataState.LOADING}),
-        catchError(err => {
-          return of({dataState: DataState.ERROR, error: err})
-        }),
+
         map((element: CustomResponse) => {
           this.totalElements=element?.data?.game_requests.totalElements
           this.gameService.emitTotalGameRequests(this.totalElements)
@@ -49,6 +46,10 @@ export class GameRequestComponent implements OnInit{
             dataState: DataState.SUCCESS,
             appData: element?.data?.game_requests.gameRequests
           }
+        }),
+      startWith({dataState: DataState.LOADING}),
+        catchError(err => {
+          return of({dataState: DataState.ERROR, error: err})
         })
       )
     })
@@ -68,4 +69,6 @@ export class GameRequestComponent implements OnInit{
       this.currentPage=0
       this.gameService.getGameRequests(this.currentPage)
   }
+
+  protected readonly DataState = DataState;
 }

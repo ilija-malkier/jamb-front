@@ -28,11 +28,11 @@ export class GameService {
   $gameRequests:BehaviorSubject<Observable<CustomResponse>> = new BehaviorSubject(new Observable<CustomResponse>())
   totalGameRequests$:BehaviorSubject<number> = new BehaviorSubject<number>(0);
   constructor(private httpClient:HttpClient) {
-    this.games$.next( this.httpClient.get<CustomResponse>("http://localhost:8081/games/filter"))
+
   }
 
   getPages(){
-    return  this.httpClient.get<CustomResponse>("http://localhost:8081/games/total")
+    return  this.httpClient.get<CustomResponse>("http://localhost:8081/games/count")
   }
 
 
@@ -119,7 +119,7 @@ export class GameService {
 
   declineGame(gameId: number) {
     this.httpClient.put<CustomResponse>("http://localhost:8081/games/request/decline",{gameId:gameId}).subscribe(data=>{
-      console.log(data)
+        alertifyjs.success(`Game ${gameId} declined.`)
     })
   }
 
@@ -134,5 +134,9 @@ export class GameService {
 
   createGameset(gamesetCreateRequest: GameSetCreateRequest) {
    return this.httpClient.post<CustomResponse>("http://localhost:8081/gameSets", gamesetCreateRequest)
+  }
+
+  viewPlayerSheet(username: string, gameId: number) {
+    return this.httpClient.get<CustomResponse>(`http://localhost:8081/games/${gameId}/${username}/image`)
   }
 }

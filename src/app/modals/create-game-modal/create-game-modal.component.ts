@@ -8,6 +8,7 @@ import {GameSetCreateRequest} from "../../model/game-set-create-request";
 import * as alertifyjs from "alertifyjs";
 import {GameSetInfo} from "../../model/game-set-info";
 import {Router} from "@angular/router";
+import {DataState} from "../../model/data-state";
 
 @Component({
   selector: 'app-create-game-modal',
@@ -18,7 +19,6 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
   createGameModalId="create-game"
   static createGameModalId="create-game"
   createGameModalTitle="Create Game"
-  isLoading: boolean;
   gameSets:GameSetInfo[]=[]
   @Input() score:number=0;
   @Input() image:File
@@ -30,7 +30,9 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
   showError=false
   errorMessage=''
   filterFriends:string[]=[]
-
+  isLoadingSaveGame:boolean=false
+  isLoadingJoinGame:boolean=false
+  isGamesetCreating:boolean=false
   constructor(private modalService:ModalService,private gameService:GameService,private router:Router) {}
   ngOnDestroy(): void {
     this.modalService.unregister(this.createGameModalId);
@@ -51,7 +53,7 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
 
 
   saveGame(form: NgForm) {
-
+    this.isLoadingSaveGame=true
     let gameSet=form.value['gameset']
     let numberOfPlayers=form.value['numofplayers']
     // const textDecoder = new TextDecoder('utf-8');
@@ -67,16 +69,13 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
         this.showError=true
         this.errorMessage="Could not create the game.Please try again later."
         console.log("error")
+      },()=>{
+        this.isLoadingSaveGame=false
       })
   }
-  // addFilterFriends(inputUsename: HTMLInputElement){
-  //   if(this.filterFriends.includes(inputUsename.value)) return;
-  //   //maybe notify user
-  //   this.filterFriends.push(inputUsename.value)
-  //   inputUsename.value=""
-  // }
 
-getGameSets(){
+
+  getGameSets(){
   this.gameService.getGameSets().subscribe(data=>{
     this.gameSets=data.data.gameSetResponseList
   });
@@ -87,7 +86,11 @@ getGameSets(){
   }
 
   saveGameset(formCreateGameset: NgForm) {
-    if(formCreateGameset.invalid) return
+    this.isGamesetCreating=true
+    if(formCreateGameset.invalid){
+      this.isGamesetCreating=false
+      return
+    }
    let gamesetCreateRequest=<GameSetCreateRequest> formCreateGameset.value
     gamesetCreateRequest={... gamesetCreateRequest,gameIds:[]}
     this.gameService.createGameset(gamesetCreateRequest).subscribe(data=>{
@@ -97,7 +100,10 @@ getGameSets(){
       alertifyjs.success("Gameset "+ gamesetCreateRequest.name +" created.")
     },error => {
       alertifyjs.error("Gameset with that name already exists")
+    },()=>{
+      this.isGamesetCreating=false
     })
+    console.log(this.filterFriends)
   }
 
   exitGameset() {
@@ -112,4 +118,6 @@ getGameSets(){
   handleFiendsAdded(friends: string[]) {
       this.filterFriends=friends
   }
+
+  protected readonly DataState = DataState;
 }

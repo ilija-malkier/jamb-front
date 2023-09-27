@@ -25,23 +25,23 @@ export class GameListComponent implements OnInit{
     this.gameService.filter(filterRequest,sortField,sortDirection);
   }
   ngOnInit(): void {
-
     this.gameService.games$.subscribe(data=>{
-
       this.gameLists= data.pipe(
-            startWith({dataState:DataState.LOADING}),
-            catchError(err => {
-              return of({dataState:DataState.ERROR,error:err})
-            }),
-            map((element:CustomResponse )=>{
 
+            map((element:CustomResponse )=>{
+                  console.log(element)
               return {
                 dataState:DataState.SUCCESS,
                 appData:element?.data?.gameFilterResponses
               }
-            })
+            }),
+        startWith({dataState:DataState.LOADING}),
+        catchError(err => {
+          return of({dataState:DataState.ERROR,error:err})
+        })
       )
     })
+    this.gameService.filterForPage(0)
   }
 
 

@@ -44,12 +44,15 @@ import { WinCardComponent } from './game/win-card/win-card.component';
 import { WinListComponent } from './game/win-list/win-list.component';
 import {GameDetailsResolver} from "./route-guards/game-details-resolver.service";
 import { AutocompleateComponent } from './reusables/autocompleate/autocompleate.component';
+import {CommonModule} from "@angular/common";
+import { LoadingModalComponent } from './modals/loading-modal/loading-modal.component';
 
 
 const routes:Routes=[
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
   {path:'home',component:HomeComponent,canActivate:[navigationRouteGuard]},
+  {path:'reset-password',component:RestartPasswordComponent},
   {path:'support',component:SupportComponent,canActivate:[navigationRouteGuard]},
   {path:'account',children:[
       {path:'settings',component:NotFoundPageComponent},
@@ -105,10 +108,12 @@ const routes:Routes=[
     WinCardComponent,
     WinListComponent,
     AutocompleateComponent,
+    LoadingModalComponent,
 
   ],
     imports: [
         BrowserModule,
+        CommonModule,
         FormsModule,
         RouterOutlet,
         HttpClientModule,

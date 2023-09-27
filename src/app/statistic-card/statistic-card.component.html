@@ -2,10 +2,15 @@
   <div class="d-flex p-3 justify-content-center flex-column align-items-center">
     <p>{{title}}</p>
     <h2>{{value}}</h2>
-    <p *ngIf="(isFinite(parseInt(percent)) && !isNaN(parseInt(percent))); else p" style="opacity: 0.5">{{percent}}%</p>
-    <ng-template #p>
-      <p style="opacity: 0.5">0%</p>
-    </ng-template>
+      <ng-container *ngIf="state==DataState.LOADING">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="width: 50px;height: 50px"></span>
+      </ng-container>
+      <ng-container *ngIf="state==DataState.SUCCESS">
+        <p *ngIf="(isFinite(parseInt(percent)) && !isNaN(parseInt(percent))); else p" style="opacity: 0.5">{{percent}}%</p>
+        <ng-template #p>
+          <p style="opacity: 0.5">0%</p>
+        </ng-template>
+      </ng-container>
   </div>
   <div class="ms-4">
     <img [src]="image">

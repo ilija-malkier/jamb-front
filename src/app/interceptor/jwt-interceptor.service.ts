@@ -38,7 +38,6 @@ export class JwtInterceptor implements HttpInterceptor {
         if(error.status===401 && this.tokenService.hasRefreshToken()){
           return this.tokenService.refreshAccessToken().pipe(
             switchMap((data)=>{
-              console.log(data.data.access_token)
               this.tokenService.setRefreshToken(data.data.access_token)
               request = request.clone({
                 headers: request.headers.set("Authorization", `Bearer ${this.tokenService.getAccessToken()}`)
@@ -47,6 +46,7 @@ export class JwtInterceptor implements HttpInterceptor {
             }),
             catchError((refreshTokenError:any)=>{
               console.log("refresh token error")
+              this.authService.invalidateLoginValues()
               return throwError(refreshTokenError)
             })
 

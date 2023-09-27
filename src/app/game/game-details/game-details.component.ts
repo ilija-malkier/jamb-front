@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {CustomResponse} from "../../model/custom-response";
 import {GameDetailsResponse} from "../../model/game-details-response";
+import {GameService} from "../../../services/game.service";
 
 @Component({
   selector: 'app-game-details',
@@ -11,8 +12,7 @@ import {GameDetailsResponse} from "../../model/game-details-response";
 export class GameDetailsComponent implements OnInit{
 
   game:GameDetailsResponse=null
-  constructor(private activatedRoute:ActivatedRoute) {
-  }
+  constructor(private activatedRoute:ActivatedRoute,private gameService:GameService) {}
 
 
   ngOnInit(): void {
@@ -21,4 +21,11 @@ export class GameDetailsComponent implements OnInit{
     console.log(this.game)
   }
 
+  protected readonly event = event;
+
+  handleViewImage(username:string) {
+    this.gameService.viewPlayerSheet(username,this.game.gameId).subscribe(data=>{
+      this.game.image=data.data.players_image.image
+    })
+  }
 }

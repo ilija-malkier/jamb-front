@@ -16,18 +16,23 @@ export class HomeStatisticsComponent implements OnInit{
   $statistics:Observable<AppState<HomeStatistics>> = new Observable<AppState<HomeStatistics>>()
   constructor(private statisticsService:StatisticsService) {
 
-    this.statisticsService.$homeStatistics.subscribe(
 
+  }
+
+
+  ngOnInit(): void {
+    this.statisticsService.$homeStatistics.subscribe(
       next=>{
         this.$statistics=  next.pipe(
 
-          startWith({dataState: DataState.LOADING}),
-           map(  (response:CustomResponse )=>{
+          map(  (response:CustomResponse )=>{
+            console.log(response)
             return {
               dataState:DataState.SUCCESS,
               appData: response.data?.total_games
             }
           }),
+          startWith({dataState: DataState.LOADING}),
           catchError(err => {
             return of({dataState:DataState.ERROR,error:err})
           }),
@@ -35,12 +40,8 @@ export class HomeStatisticsComponent implements OnInit{
         )
       }
     )
-  }
 
-
-  ngOnInit(): void {
-
-
+    this.statisticsService.getHomeStatistic()
   }
 
 

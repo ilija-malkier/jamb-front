@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PlayerGameDetailsResponse} from "../../model/player-game-details-response";
+import {GameService} from "../../../services/game.service";
+import {da} from "date-fns/locale";
 
 @Component({
   selector: 'app-win-card',
@@ -19,7 +21,12 @@ export class WinCardComponent implements OnInit{
     this.randomColor = `rgb(${randomR}, ${randomG}, ${randomB})`;
   }
 
+  constructor(private gameService:GameService) {
+  }
+
   ngOnInit(): void {
     this.generateRandomColor()
   }
+
+
 }

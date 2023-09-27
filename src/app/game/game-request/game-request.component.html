@@ -5,28 +5,36 @@
   </div>
   <div class="mt-4" >
 
-      <table class="table table-striped">
-        <thead>
+      <table class="table table-striped ">
+        <thead class="">
         <tr>
           <th class="text-center" scope="col">From</th>
           <th class="text-center" scope="col">Date</th>
           <th class="text-center" scope="col">Action</th>
         </tr>
         </thead>
-        <tbody>
-        <ng-container *ngIf="($games | async) as gameRequests">
-        <tr *ngFor="let gameRequest of gameRequests?.appData | slice:0:maxGames">
-          <td class="text-center">{{gameRequest.username}}</td>
-          <td class="text-center">{{gameRequest.gameDate | date}}</td>
-          <td class="text-center">
-            <div class="d-flex justify-content-center">
-              <button class="btn btn-link" (click)="acceptGame(gameRequest.gameId)" style="color:var(--primary-color)"> Accept</button>
-              <button class="btn btn-link text-dark"  (click)="declineGame(gameRequest.gameId)"> Decline</button>
-            </div>
-          </td>
-          <app-upload-sheet [gameId]="gameRequest.gameId" [joinGame]="true" ></app-upload-sheet>
 
-        </tr>
+        <tbody class="w-100 ">
+        <ng-container *ngIf="($games | async) as gameRequests" class="w-100 ">
+          <div *ngIf="gameRequests.dataState==DataState.LOADING">
+            <span class="spinner-border m-2 spinner-border-sm" role="status" aria-hidden="true" style="width: 50px;height: 50px"></span>
+
+          </div>
+          <div *ngIf="gameRequests.dataState==DataState.SUCCESS" class="w-100 ">
+            <tr *ngFor="let gameRequest of gameRequests?.appData | slice:0:maxGames">
+              <td class="text-center">{{gameRequest.username}}</td>
+              <td class="text-center">{{gameRequest.gameDate | date}}</td>
+              <td class="text-center">
+                <div class="d-flex justify-content-center">
+                  <button class="btn btn-link" (click)="acceptGame(gameRequest.gameId)" style="color:var(--primary-color)"> Accept</button>
+                  <button class="btn btn-link text-dark"  (click)="declineGame(gameRequest.gameId)"> Decline</button>
+                </div>
+              </td>
+              <app-upload-sheet [gameId]="gameRequest.gameId" [joinGame]="true" ></app-upload-sheet>
+
+            </tr>
+          </div>
+
         </ng-container>
 
         </tbody>

@@ -26,6 +26,7 @@ export class CalculateGameComponent implements OnInit{
   sumOfresultsMaxMinRows=0
   sumOfresultsLastRows=0
   imageBase64=''
+  isLoadingJoinGame:boolean=false
 
   constructor(private sanitizer: DomSanitizer,private router:Router,private sheetService:SheetService,private gameService:GameService,private modalService:ModalService) {
 
@@ -98,6 +99,7 @@ export class CalculateGameComponent implements OnInit{
       return
     }
     if(this.joinGame) {
+      this.isLoadingJoinGame=true;
       let reader = new FileReader();
       reader.onloadend =  ()=> {
 
@@ -106,6 +108,7 @@ export class CalculateGameComponent implements OnInit{
           this.imageBase64 = parts[1];
           this.gameService.joinGame(this.gameId,this.imageBase64,this.currentScore.result).subscribe(data=>{
             alertifyjs.success("Successfully joined game")
+            this.isLoadingJoinGame=false
             this.router.navigate(['account/game'])
           },error => alertifyjs.error('Error occured.Please try again later'))
 

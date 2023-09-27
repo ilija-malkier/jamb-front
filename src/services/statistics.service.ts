@@ -11,7 +11,7 @@ export class StatisticsService {
 
   $homeStatistics:BehaviorSubject<Observable<CustomResponse>> =new BehaviorSubject<Observable<CustomResponse>>(new Observable<CustomResponse>())
   constructor(private http:HttpClient) {
-    this.getHomeStatistic()
+  
   }
 
   getHomeStatistic(){

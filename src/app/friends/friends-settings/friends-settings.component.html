@@ -17,6 +17,10 @@
           <th class="text-center" scope="col">Action</th>
         </tr>
         </thead>
+        <div *ngIf="friends.dataState==DataState.LOADING">
+          <span class="m-3 spinner-border spinner-border-sm" role="status" aria-hidden="true" style="width: 30px;height: 30px"></span>
+
+        </div>
         <tbody>
         <tr *ngFor="let friend of friends?.appData | slice:0:getMaxFriends()">
           <td class="text-center">{{friend.firstname+' ' +friend.lastname}}</td>
@@ -46,6 +50,10 @@
         <th class="text-center" scope="col">Action</th>
       </tr>
       </thead>
+      <div *ngIf="friendsRequests.dataState==DataState.LOADING">
+        <span class="m-3 spinner-border spinner-border-sm" role="status" aria-hidden="true" style="width: 30px;height: 30px"></span>
+
+      </div>
       <tbody>
 
       <tr *ngFor="let friendRequest of friendsRequests?.appData | slice:0:getMaxFriends()">

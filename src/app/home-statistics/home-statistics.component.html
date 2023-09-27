@@ -1,18 +1,16 @@
-<div class=" py-4 d-flex" *ngIf="$statistics | async as stats">
+<div class=" py-4 d-flex" *ngIf="($statistics | async) as stats">
 
-<ng-container *ngIf="stats.dataState===DataState.LOADING">
-  <p>Loading</p>
-</ng-container>
-  <ng-container *ngIf="stats.dataState===DataState.SUCCESS">
-    <app-statistic-card   class="mx-4" title="Total Games" [value]="stats.appData?.totalGames"   image="assets/images/dice.png">
+
+
+
+    <app-statistic-card  [state]="stats.dataState" class="mx-4" title="Total Games" [value]="stats.appData?.totalGames"   image="assets/images/dice.png">
     </app-statistic-card>
-    <app-statistic-card class="mx-4" title="Games Won" [value]="stats.appData?.gamesWon" [percent]="(parseInt(stats.appData?.gamesWon)/parseInt(stats.appData?.totalGames) *100).toString()" image="assets/images/rook.png">
+    <app-statistic-card class="mx-4" [state]="stats.dataState" title="Games Won" [value]="stats.appData?.gamesWon" [percent]="(parseInt(stats.appData?.gamesWon)/parseInt(stats.appData?.totalGames) *100).toFixed(2).toString()" image="assets/images/rook.png">
     </app-statistic-card>
-    <app-statistic-card class="mx-4" title="Games Lost" [value]="stats.appData?.gamesLost" [percent]="(parseInt(stats.appData?.gamesLost)/parseInt(stats.appData?.totalGames) *100).toString()"  image="assets/images/broken-queen.png">
+    <app-statistic-card class="mx-4"  [state]="stats.dataState" title="Games Lost" [value]="stats.appData?.gamesLost" [percent]="(parseInt(stats.appData?.gamesLost)/parseInt(stats.appData?.totalGames) *100).toFixed(2).toString()"  image="assets/images/broken-queen.png">
     </app-statistic-card>
-</ng-container>
+
   <ng-container *ngIf="stats.dataState===DataState.ERROR">
-
 </ng-container>
 
 

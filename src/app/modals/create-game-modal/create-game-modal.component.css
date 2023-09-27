@@ -25,3 +25,6 @@
   border:solid 1px var(--red-color) !important;
 
 }
+button{
+  border: none;
+}

@@ -11,6 +11,7 @@ export class FriendsService {
 
   $friendRequest:BehaviorSubject<Observable<CustomResponse>> =new BehaviorSubject(new Observable<CustomResponse>())
   $friends:BehaviorSubject<Observable<CustomResponse>> =new BehaviorSubject(new Observable<CustomResponse>())
+
    maxFriends=3;
 
   constructor(private http:HttpClient) { }
@@ -50,7 +51,7 @@ export class FriendsService {
   }
 
   findFriends(value: string) {
-   return this.http.get<CustomResponse>("http://localhost:8081/player/friends/new/find",{
+    return this.http.get<CustomResponse>("http://localhost:8081/player/friends/new/find",{
       params:{
         find:value
       }

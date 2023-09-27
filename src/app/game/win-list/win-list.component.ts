@@ -1,5 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {PlayerGameDetailsResponse} from "../../model/player-game-details-response";
+import {GameService} from "../../../services/game.service";
 
 @Component({
   selector: 'app-win-list',
@@ -9,4 +10,10 @@ import {PlayerGameDetailsResponse} from "../../model/player-game-details-respons
 export class WinListComponent {
 
   @Input() players:PlayerGameDetailsResponse[]
+  @Output() eventViewImageEmitter:EventEmitter<string>=new EventEmitter<string>()
+
+
+  viewPlayerSheet(username: string) {
+    this.eventViewImageEmitter.emit(username)
+  }
 }

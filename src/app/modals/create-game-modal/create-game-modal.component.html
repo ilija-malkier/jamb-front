@@ -4,6 +4,28 @@
     <form class="d-flex flex-column justify-content-center align-items-center" (ngSubmit)="saveGame(form)" #form=ngForm>
 
       <div class="d-flex mt-3 flex-column justify-content-start align-items-center w-100">
+        <div class="d-flex flex-column w-100">
+          <label >Gameset</label>
+          <div class="dropdown w-100 d-flex align-items-center ">
+
+
+            <button  type="button"  style="border: solid 1px var(--link-inactive);height: 40px" class="btn col-11  text-start  dropdown-toggle"  data-bs-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
+              {{selectedGamesetName}}
+            </button>
+            <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+              <li *ngFor="let gameset of gameSets"><a  (click)="setGameset(gameset.gameSetId)" class="dropdown-item" >{{gameset.gameSetName}}</a></li>
+              <div class="d-flex w-100  align-items-center ">
+
+              </div>
+
+            </div>
+            <div class="div col-1 d-flex justify-content-center align-items-center">
+              <i class="bi bi-plus" (click)="createNewGameset()" style="color: var(--primary-color);font-size:40px"></i>
+
+            </div>
+
+          </div>
+        </div>
 
         <div class="w-100 d-flex justify-content-start">
           <p>Fiends Name</p>
@@ -19,34 +41,8 @@
             </div>
 
           </div>
-          <div class=" h-100 align-items-center d-flex chip-holder ">
-
-
-          </div>
-
-
         </div>
 
-
-
-
-      <div class="dropdown w-100 d-flex align-items-center ">
-        <button  type="button"  style="border: solid 1px var(--link-inactive);height: 40px" class="btn col-11  text-start  dropdown-toggle"  data-bs-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
-          {{selectedGamesetName}}
-        </button>
-        <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
-          <li *ngFor="let gameset of gameSets"><a  (click)="setGameset(gameset.gameSetId)" class="dropdown-item" >{{gameset.gameSetName}}</a></li>
-          <div class="d-flex w-100  align-items-center ">
-
-          </div>
-
-        </div>
-        <div class="div col-1 d-flex justify-content-center align-items-center">
-          <i class="bi bi-plus" (click)="createNewGameset()" style="color: var(--primary-color);font-size:40px"></i>
-
-        </div>
-
-      </div>
 
       <div class="d-flex justify-content-center mt-3 align-items-start flex-column  w-100 ">
         <label for="numofplayers">Add Number Of Players</label>
@@ -54,11 +50,19 @@
       </div>
 
       <div class="d-flex mt-5 justify-content-end w-100 align-items-center">
-        <button class="btn mx-2 border-0" (click)="cancelGameCreation()" [disabled]="isLoading " type="button">Cancel
+        <button class="btn mx-2 border-0" (click)="cancelGameCreation()" [disabled]="isLoadingSaveGame " type="button">Cancel
         </button>
-        <button type="submit" class="btn text-white px-3" style="background: var(--primary-color)">Create</button>
-      </div>
 
+        <button type="submit" class="btn text-white" style="background: var(--primary-color)">
+          <ng-container *ngIf="isLoadingSaveGame">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading...
+          </ng-container>
+          <div *ngIf="!isLoadingSaveGame">
+            Create
+          </div>
+        </button>
+      </div>
     </form>
   </div>
   <ng-template #gameset >
@@ -78,9 +82,17 @@
       </div>
 
       <div class="w-100  mt-4 justify-content-end d-flex">
-        <button type="button" class="btn text-dark" (click)="exitGameset()">Cancel</button>
+        <button type="button" class="btn text-dark" (click)="exitGameset()" [disabled]="isGamesetCreating">Cancel</button>
 
-        <button type="submit" class="btn text-white" style="background: var(--primary-color)">Create</button>
+        <button type="submit" class="btn text-white" style="background: var(--primary-color)">
+          <ng-container *ngIf="isGamesetCreating">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading...
+          </ng-container>
+          <div *ngIf="!isGamesetCreating">
+            Create
+          </div>
+        </button>
 
       </div>
     </form>

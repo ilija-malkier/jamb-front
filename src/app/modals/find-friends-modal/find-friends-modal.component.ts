@@ -17,6 +17,7 @@ export class FindFriendsModalComponent implements OnInit,OnDestroy{
   static findFriendsModalId="find-friends"
   findFriendsModalTitle="Find Friends"
   foundFriends:Friend[]=[]
+  isLoadgin:boolean=false
   constructor(private modalService:ModalService,private friendsService:FriendsService) {}
 
   ngOnInit(): void {
@@ -33,8 +34,10 @@ export class FindFriendsModalComponent implements OnInit,OnDestroy{
       this.foundFriends=[]
       return
     }
+    this.isLoadgin=true
     this.friendsService.findFriends(value).subscribe(data=>{
       this.foundFriends= <Friend[]>(<FindFriends> data.data).matching_usernames
+      this.isLoadgin=false
     })
   }
   closeModal() {

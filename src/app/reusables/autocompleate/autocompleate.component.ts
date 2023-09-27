@@ -9,12 +9,13 @@ import {FormControl} from "@angular/forms";
   styleUrls: ['./autocompleate.component.css']
 })
 export class AutocompleateComponent {
-  filterFriends:string[]=[]
+  filterFriends:string[]=[];
   @Output() filterFriendsEventEmitter:EventEmitter<string[]> = new EventEmitter<string[]>()
   friendSearchText: string='';
-  searchedFriends:string[]=[]
-  constructor(private service: FriendsService) {
-  }
+  searchedFriends:string[]=[];
+  isLoadingFriends:boolean=false;
+  constructor(private service: FriendsService) {}
+
   addFilterFriends(inputUsename: HTMLInputElement){
     if(this.filterFriends.includes(inputUsename.value) || !this.searchedFriends.includes(inputUsename.value)) return;
     //maybe notify user
@@ -22,37 +23,27 @@ export class AutocompleateComponent {
     inputUsename.value=""
     this.filterFriendsEventEmitter.emit(this.filterFriends)
     this.searchedFriends=[]
-
+    this.isLoadingFriends=false
   }
-
 
   removeFilterFriends(username:string){
     this.filterFriends= this.filterFriends.filter(playerUsername=>playerUsername!==username);
     this.filterFriendsEventEmitter.emit(this.filterFriends)
   }
 
-
-
-
   ngOnInit() {
   }
-
-
-
-  // nameValue(name: any) {
-  //   this.username = name;
-  //   console.log(this.username);
-  // }
 
   onInputChange() {
     if(this.friendSearchText==='') {
       this.searchedFriends=[]
       return
     }
+    this.isLoadingFriends=true
     this.service.serachFriends(this.friendSearchText).subscribe(data=>{
-          this.searchedFriends= data.data.matching_usernames.map(element=>element.username)
-
-    })
+      if(this.isLoadingFriends===false) return
+      this.searchedFriends= data.data.matching_usernames.map(element=>element.username)
+    },error => {},()=>{this.isLoadingFriends=false})
   }
 
   chooseFriend(friend: string) {

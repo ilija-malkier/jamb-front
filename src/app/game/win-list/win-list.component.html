@@ -1,4 +1,4 @@
 <div *ngFor="let player of players">
-  <app-win-card [player]="player"></app-win-card>
+  <app-win-card (click)="viewPlayerSheet(player.username)" [player]="player"></app-win-card>
 
 </div>
