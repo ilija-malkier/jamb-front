@@ -29,27 +29,25 @@ export class LoginComponent{
   login(form: NgForm) {
     let loginRequest=form.value as UserLoginRequest;
 
-
-
     this.checkForErrors(form);
     if(!this.showErrorMessage){
 
       this.appState={dataState: DataState.LOADING}
-      delay(1000)
+
 
       this.auth.login(loginRequest).subscribe(
         (customResponse)=>{
-
-
          let loginResponse=customResponse.data ;
           localStorage.setItem("access_token",loginResponse.access_token)
           localStorage.setItem("refresh_token",loginResponse.refresh_token)
+          this.auth.username=loginRequest.username
           this.auth.$isLogin.next(true)
         },
         error => {
           this.appState={dataState:DataState.ERROR}
           this.showErrorMessage=true;
-          this.errorMessage="Could not perform wanted operation.Please try again later."
+          // this.errorMessage="Could not perform wanted operation.Please try again later."
+          this.errorMessage=error.error.message
         },
         ()=>{
           this.appState={dataState:DataState.DONE}

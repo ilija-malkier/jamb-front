@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, ViewEncapsulation} from '@angular/core';
 import {GameFilterResponse} from "../../model/game-filter-response";
 import {GameStatus} from "../../model/game-status";
 import {Router} from "@angular/router";
@@ -8,7 +8,9 @@ import {LoadingModalComponent} from "../../modals/loading-modal/loading-modal.co
 @Component({
   selector: 'app-game-history-card',
   templateUrl: './game-history-card.component.html',
-  styleUrls: ['./game-history-card.component.css']
+  styleUrls: ['./game-history-card.component.css'],
+  //nije htelo da renderuje kao child komponentu taj css nije raido dok ovo nisam ubacio
+  encapsulation: ViewEncapsulation.None
 })
 export class GameHistoryCard {
 

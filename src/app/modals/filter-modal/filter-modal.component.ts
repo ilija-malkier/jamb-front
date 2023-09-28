@@ -23,14 +23,14 @@ export class FilterModalComponent  implements OnInit,OnDestroy{
 
   addFilterFriends(inputUsename: HTMLInputElement){
 
-    if(this.filterFriends.includes(inputUsename.value)) return;
+    if(this.filterFriends.includes(inputUsename.value) || inputUsename.value.length==0) return;
     //maybe notify user
     this.filterFriends.push(inputUsename.value)
     inputUsename.value=""
   }
   addFilterWiners(inputUsename: HTMLInputElement){
 
-    if(this.filterWiners.includes(inputUsename.value)) return;
+    if(this.filterWiners.includes(inputUsename.value) || inputUsename.value.length==0) return;
     //maybe notify user
     this.filterWiners.push(inputUsename.value)
     inputUsename.value=""

@@ -19,6 +19,7 @@
         <select [(ngModel)]="filterRequest.game_status" name="game_status" class="form-select form-select " aria-label=".form-select-lg example">
           <option value="{{GameStatus.in_progress.toString() }}">{{GameStatus.in_progress.toString()}}</option>
           <option value="{{GameStatus.completed.toString() }}">{{GameStatus.completed.toString()}}</option>
+          <option value="null">{{GameStatus.all.toString()}}</option>
         </select>
     </div>
     <div class="d-flex mt-3 flex-column justify-content-start align-items-center w-100">

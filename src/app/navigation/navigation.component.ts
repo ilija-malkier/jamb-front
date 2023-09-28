@@ -11,14 +11,10 @@ import {GameService} from "../../services/game.service";
 export class NavigationComponent implements OnInit{
 
   activeRoute:string="login";
-  isLogin=false
+
   totalGameRequests=0;
 
-  constructor(private router:Router,public auth:AuthService,private  gameService:GameService) {
-  // gameService.totalGameRequests$.subscribe(data=>{
-  //   this.totalGameRequests=data
-  // })
-
+  constructor(private router:Router,public auth:AuthService) {
   }
 
   public changeActiveNav(active:string){
@@ -29,10 +25,11 @@ export class NavigationComponent implements OnInit{
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        // Your code to handle the URL change
 
-        this.activeRoute=    event.url.substring(1,event.url.length);
+          this.activeRoute=    event.url.substring(1,event.url.length);
       }
     });
   }
+
+  protected readonly localStorage = localStorage;
 }

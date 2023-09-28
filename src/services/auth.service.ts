@@ -16,14 +16,11 @@ import {Route, Router} from "@angular/router";
 export class AuthService implements OnInit{
 
   public $isLogin:BehaviorSubject<boolean>=new BehaviorSubject<boolean>(false);
-
+  public username:string='';
   constructor(private http:HttpClient,private modalService:ModalService,private router:Router) {
-
-
-
   }
 
-  $register:Observable<CustomResponse>;
+
   public login(loginRequest: UserLoginRequest){
 
     return this.http.post<CustomResponse>("http://localhost:8081/user/login",loginRequest)
@@ -38,6 +35,7 @@ export class AuthService implements OnInit{
     localStorage.setItem("access_token",null)
     localStorage.setItem("refresh_token",null)
     this.$isLogin.next(false)
+    this.username='';
       this.router.navigate(["login"])
   }
 
@@ -45,6 +43,7 @@ export class AuthService implements OnInit{
     localStorage.setItem("access_token",null)
     localStorage.setItem("refresh_token",null)
     this.$isLogin.next(false)
+    this.username='';
     this.router.navigate(["login"])
   }
   ngOnInit(): void {

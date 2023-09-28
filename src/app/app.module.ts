@@ -46,6 +46,7 @@ import {GameDetailsResolver} from "./route-guards/game-details-resolver.service"
 import { AutocompleateComponent } from './reusables/autocompleate/autocompleate.component';
 import {CommonModule} from "@angular/common";
 import { LoadingModalComponent } from './modals/loading-modal/loading-modal.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 const routes:Routes=[
@@ -55,7 +56,7 @@ const routes:Routes=[
   {path:'reset-password',component:RestartPasswordComponent},
   {path:'support',component:SupportComponent,canActivate:[navigationRouteGuard]},
   {path:'account',children:[
-      {path:'settings',component:NotFoundPageComponent},
+      {path:'settings',component:SettingsComponent},
       {path:'game',component:GameRequestComponent},
       {path:'friends',component:FriendsSettingsComponent},
       {path:'activate',component:VerifyEmailComponent},
@@ -109,6 +110,7 @@ const routes:Routes=[
     WinListComponent,
     AutocompleateComponent,
     LoadingModalComponent,
+    SettingsComponent,
 
   ],
     imports: [

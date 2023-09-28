@@ -1,23 +1,69 @@
-<div class="p-3 d-flex justify-content-end align-items-center">
-  <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='home'}" (click)="changeActiveNav('home')" *ngIf="auth.$isLogin |async " routerLink="/home">Home</p>
-  <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='login'}" (click)="changeActiveNav('login')"  *ngIf="!(auth.$isLogin |async)"  routerLink="/login">Login</p>
-  <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='register'}" (click)="changeActiveNav('register')"  *ngIf="!(auth.$isLogin |async)"  routerLink="/register">Register</p>
-  <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='support'}" (click)="changeActiveNav('support')"  *ngIf="(auth.$isLogin |async)"  routerLink="/support">Support</p>
-  <div class="dropdown" [ngClass]="{'active':activeRoute==='account'}"  *ngIf="(auth.$isLogin |async)"  >
-    <p  class=" mx-3  dropdown-toggle"  [ngClass]="{'active':activeRoute==='account'}"  data-bs-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
-      Account
-    </p>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item"  (click)="changeActiveNav('account')" routerLink="/account/friends">Friends</a>
-      <div class="d-flex w-100 align-items-center ">
-        <a class="dropdown-item"  (click)="changeActiveNav('account')" routerLink="/account/game">Game</a>
-        <div class="circle me-2" *ngIf="totalGameRequests!=0">
-          {{totalGameRequests}}
-        </div>
-      </div>
-      <a class="dropdown-item"   (click)="changeActiveNav('account')" routerLink="/account/settings">Settings</a>
-      <a class="dropdown-item" (click)="auth.logout()"  *ngIf="auth.$isLogin |async " >Logout</a>
+<!--<div class="p-3 d-flex justify-content-end align-items-center " style="background: var(&#45;&#45;gray-color)">-->
+<!--  <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='home'}" (click)="changeActiveNav('home')" *ngIf="auth.$isLogin |async " routerLink="/home">Home</p>-->
+<!--  <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='login'}" (click)="changeActiveNav('login')"  *ngIf="!(auth.$isLogin |async)"  routerLink="/login">Login</p>-->
+<!--  <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='register'}" (click)="changeActiveNav('register')"  *ngIf="!(auth.$isLogin |async)"  routerLink="/register">Register</p>-->
+<!--  <p class="mx-3 nav-item-p" [ngClass]="{'active':activeRoute==='support'}" (click)="changeActiveNav('support')"  *ngIf="(auth.$isLogin |async)"  routerLink="/support">Support</p>-->
+<!--  <div class="dropdown d-flex" [ngClass]="{'active':activeRoute==='account'}"  *ngIf="(auth.$isLogin |async)"  >-->
+<!--    <div  class=" mx-3  dropdown-toggle d-flex align-items-center"    data-bs-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">-->
+<!--    <p *ngIf="auth.$isLogin; else accountText " [ngClass]="{'active':activeRoute==='account'}">{{auth.username}}</p>-->
+<!--    <ng-template #accountText>-->
+<!--      Account-->
+<!--    </ng-template>-->
+<!--    </div>-->
+
+<!--    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
+<!--      <a class="dropdown-item"  (click)="changeActiveNav('account')" routerLink="/account/friends">Friends</a>-->
+<!--      <div class="d-flex w-100 align-items-center ">-->
+<!--        <a class="dropdown-item"  (click)="changeActiveNav('account')" routerLink="/account/game">Game</a>-->
+<!--        <div class="circle me-2" *ngIf="totalGameRequests!=0">-->
+<!--          {{totalGameRequests}}-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <a class="dropdown-item"   (click)="changeActiveNav('account')" routerLink="/account/settings">Settings</a>-->
+<!--      <a class="dropdown-item" (click)="auth.logout()"  *ngIf="auth.$isLogin |async " >Logout</a>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <p class="mx-4 nav-item-p"></p>-->
+<!--</div>-->
+<nav class="navbar navbar-expand-sm navbar-light" id="neubar">
+  <div class="container">
+<!--    <a class="navbar-brand" ><img src="/static_files/images/logos/logo_2.png" height="60" /></a>-->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto ">
+        <li class="nav-item">
+          <a class="nav-link mx-2 " [ngClass]="{'active':activeRoute==='login'}" (click)="changeActiveNav('login')"  *ngIf="!(auth.$isLogin |async)" aria-current="page" routerLink="/login" >Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2 " [ngClass]="{'active':activeRoute==='register'}" (click)="changeActiveNav('register')" *ngIf="!(auth.$isLogin |async)" aria-current="page" routerLink="/register">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2 " [ngClass]="{'active':activeRoute==='home'}" (click)="changeActiveNav('home')" aria-current="page" *ngIf="auth.$isLogin |async " routerLink="/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2" [ngClass]="{'active':activeRoute==='support'}" (click)="changeActiveNav('support')" *ngIf="auth.$isLogin |async " routerLink="/support">Support</a>
+        </li>
+
+        <li class="nav-item dropdown" [ngClass]="{'active':activeRoute==='account'}" *ngIf="auth.$isLogin |async ">
+          <div  class=" mx-3  dropdown-toggle d-flex align-items-center"    data-bs-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
+                <p *ngIf="auth.$isLogin; else accountText " >{{auth.username}}</p>
+                <ng-template #accountText>
+                  Account
+                </ng-template>
+                </div>
+
+
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" (click)="changeActiveNav('account')" routerLink="/account/friends" >Friends</a></li>
+            <li><a class="dropdown-item" (click)="changeActiveNav('account')" routerLink="/account/game" >Games</a></li>
+            <li><a class="dropdown-item"  (click)="changeActiveNav('account')" routerLink="/account/settings" >Settings</a></li>
+            <li><a class="dropdown-item"  (click)="auth.logout()"  *ngIf="auth.$isLogin |async " >Logout</a></li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </div>
-  <p class="mx-4 nav-item-p"></p>
-</div>
+</nav>
