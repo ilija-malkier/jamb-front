@@ -23,12 +23,12 @@ export class NavigationComponent implements OnInit{
 
   ngOnInit(): void {
 
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-
-          this.activeRoute=    event.url.substring(1,event.url.length);
-      }
-    });
+    // this.router.events.subscribe((event) => {
+    //   if (event instanceof NavigationEnd) {
+    //
+    //       this.activeRoute=    event.url.substring(1,event.url.length);
+    //   }
+    // });
   }
 
   protected readonly localStorage = localStorage;

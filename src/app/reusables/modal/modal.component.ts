@@ -7,7 +7,7 @@ import {ModalService} from "../../../services/modal.service";
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent {
-  @Input() modalid='';
+  @Input() modalId='';
   @Input() title='';
   @Output() closeEventEmitter:EventEmitter<void>=new EventEmitter<void>()
   @Input() disableExit:boolean=false
@@ -16,12 +16,12 @@ export class ModalComponent {
   }
 
   isModalOpen(){
-    let b = this.modalService.isModalOpen(this.modalid);
-    return !b;
+   return !this.modalService.isModalOpen(this.modalId);
+
   }
   closeModal($event: Event) {
     $event.preventDefault();
     this.closeEventEmitter.emit();
-    this.modalService.closeModal(this.modalid);
+    this.modalService.closeModal(this.modalId);
   }
 }

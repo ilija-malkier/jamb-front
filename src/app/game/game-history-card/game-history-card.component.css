@@ -2,7 +2,7 @@
 .our_solution_category .solution_cards_box {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
 }
 .solution_cards_box .solution_card {
   flex: 0 50%;
@@ -67,7 +67,18 @@
   font-size: 15px;
   margin-bottom: 15px;
 }
+.solution_card{
+ display: flex;
+  flex-direction: column;
+}
+.hover_color_bubble{
+  flex:1;
+}
 
+
+.solu_description{
+  flex:1;
+}
 .solution_card .solu_description button {
   border: 0;
   border-radius: 15px;

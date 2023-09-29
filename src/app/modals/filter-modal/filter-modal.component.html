@@ -1,6 +1,6 @@
-<app-modal [modalid]="filterModelId" [title]="filterModalTitle">
+<app-modal [modalId]="filterModelId" [title]="filterModalTitle">
 
-  <form #form="ngForm" (ngSubmit)="filterHistory(form)">
+  <form #form="ngForm" (ngSubmit)="filterHistory(form)" class="bg-warning w-100">
     <div class="d-flex justify-content-around">
       <div class="d-flex justify-content-center flex-column">
         <label class="w-100 text-center" for="date_from">Date From</label>

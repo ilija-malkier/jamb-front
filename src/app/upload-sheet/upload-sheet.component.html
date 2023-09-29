@@ -1,4 +1,4 @@
-<app-modal [disableExit]="isLoadingImage|| isLoading" (closeEventEmitter)="closeModal(form)" [modalid]="uploadSheetModalId" [title]="uploadSheetModalTitle">
+<app-modal  [disableExit]="isLoadingImage|| isLoading" (closeEventEmitter)="closeModal(form)" [modalId]="uploadSheetModalId" [title]="uploadSheetModalTitle">
   <app-error-baner [show]="showError" [text]="errorMessage"></app-error-baner>
 
   <form class="mt-2 d-flex flex-column justify-content-around" (ngSubmit)="uploadSheet(form)" #form="ngForm" enctype="multipart/form-data">

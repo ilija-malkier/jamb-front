@@ -1,4 +1,4 @@
-<app-modal [modalid]="createGameModalId" [title]="createGameModalTitle">
+<app-modal [modalId]="createGameModalId" [title]="createGameModalTitle">
   <div *ngIf="!createNewGamesetContent ; else gameset">
     <app-error-baner [text]="errorMessage" [show]="showError" ></app-error-baner>
     <form class="d-flex flex-column justify-content-center align-items-center" (ngSubmit)="saveGame(form)" #form=ngForm>

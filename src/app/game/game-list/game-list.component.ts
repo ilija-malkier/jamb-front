@@ -17,10 +17,22 @@ import {SortDirection} from "../../model/sort-direction";
 })
 export class GameListComponent implements OnInit{
   gameLists:Observable<AppState<GameFilterResponse[]>> = new Observable<AppState<GameFilterResponse[]>>();
-
+  gamesLength:number=0;
+  gameIndex:number=0;
+  evenList:GameFilterResponse[]=[]
+  oddList:GameFilterResponse[]=[]
   constructor(private gameService:GameService) {
   }
+  get numberArray(): number[] {
+    return Array.from({ length: this.customRound(this.gamesLength/2) }, (_, index) => index);
+  }
 
+  private customRound(number: number): number {
+    const decimalPart = number - Math.floor(number);
+    const roundedDecimal = Math.ceil(decimalPart);
+    console.log(Math.floor(number) + roundedDecimal)
+    return Math.floor(number) + roundedDecimal;
+  }
   public filter(filterRequest:FilterRequest,sortField:string,sortDirection:SortDirection){
     this.gameService.filter(filterRequest,sortField,sortDirection);
   }
@@ -30,6 +42,10 @@ export class GameListComponent implements OnInit{
 
             map((element:CustomResponse )=>{
                   console.log(element)
+              this.gamesLength=element?.data?.gameFilterResponses.length
+              this.gameIndex=0;
+                 this.evenList= element?.data?.gameFilterResponses.filter((x,y)=>y%2==0)
+                 this.oddList= element?.data?.gameFilterResponses.filter((x,y)=>y%2!=0)
               return {
                 dataState:DataState.SUCCESS,
                 appData:element?.data?.gameFilterResponses
@@ -46,4 +62,8 @@ export class GameListComponent implements OnInit{
 
 
   protected readonly DataState = DataState;
+
+  load() {
+    this.gameIndex++
+  }
 }

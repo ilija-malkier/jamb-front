@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit{
   protected sortField="date"
   protected sortDirection:SortDirection=SortDirection.desc
 
-  @ViewChild("gameList") gameList:GameListComponent
+  @ViewChild("gameList",{static:false}) gameList:GameListComponent
 
 
   private filterRequest:FilterRequest={date_from:null,date_to:null,game_status:null,player_names:null,winner_names:null}
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit{
 
   ngOnInit(): void {
     this.filterGames()
-
+    console.log(this.modalService.isAnyModalOpen())
   }
 
   openFilter() {

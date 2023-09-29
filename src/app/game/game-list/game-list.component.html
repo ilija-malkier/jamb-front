@@ -1,6 +1,9 @@
-<div *ngIf="(gameLists | async) as games;">
+<div *ngIf="(gameLists | async) as games;" class="w-100">
   <ng-container *ngIf="(games.dataState === DataState.LOADING)">
-    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="width: 50px;height: 50px"></span>
+    <div class="w-100 d-flex justify-content-center mt-4">
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="width: 50px;height: 50px"></span>
+
+    </div>
 
   </ng-container>
 <!--    <app-game-history-card [game]="game" *ngFor="let game of games?.appData"></app-game-history-card>-->
@@ -8,29 +11,27 @@
   <br><br><br><br><br>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-  <div class="section_our_solution">
-    <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12">
-        <div class="our_solution_category" *ngFor="let game of games?.appData;let i=index">
+  <div class="section_our_solution w-100 ">
+    <div class="row w-100">
+      <div class="col-lg-12 col-md-12 col-sm-12 w-100">
+        <div class="our_solution_category w-100" >
+          <div class="solution_cards_box w-100 m-2">
 
 
-            <div class="solution_cards_box "  >
+              <app-game-history-card *ngFor="let even of evenList" [game]="even"></app-game-history-card>
 
-              <app-game-history-card [game]="games[i]"  ></app-game-history-card >
-            </div>
-<!--            <div class="solution_cards_box sol_card_top_3" >-->
-<!--              <app-game-history-card *ngIf="games[i+1]" [game]="games[i+1]" ></app-game-history-card>-->
-<!--            </div>-->
+          </div>
+          <div class="solution_cards_box sol_card_top_3 m-2">
 
+              <app-game-history-card *ngFor="let odd of oddList" [game]="odd"></app-game-history-card>
 
-
-
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <ng-container *ngIf="games.appData?.length==0" class="bg-danger">
+  <ng-container *ngIf="games.appData?.length==0" class="">
     <img src="../../../assets/images/no_data.png">
   </ng-container>
 
