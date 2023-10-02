@@ -171,3 +171,13 @@
     margin: 0 auto;
   }
 }
+.custom-status{
+  position: absolute;
+  width: 10px;
+  background: var(--game-state-color);
+  height: 100%;
+  bottom: 0%;
+  left:99%;
+  border-radius: 10px;
+
+}

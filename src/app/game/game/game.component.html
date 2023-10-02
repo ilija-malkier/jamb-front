@@ -1,0 +1,22 @@
+<div class="d-flex  container pt-2">
+  <app-filter-games  (filterRequestEmmiter)="filterSubmit($event)" class="col-4 "></app-filter-games>
+  <div class="w-100 p-4">
+    <app-game-list-pagination  ></app-game-list-pagination>
+
+    <div class="d-flex  justify-content-end  w-100">
+
+      <p  class=" mx-3  dropdown-toggle"  style="font-size: large" data-bs-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
+        {{sortField? (sortField | capitalizeFirstLetter) +" "+ (sortDirection.toString() | uppercase) : "Sort"}}
+      </p>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" (click)="setSort('date',SortDirection.asc)">Date asc</a>
+        <a class="dropdown-item" (click)="setSort('date',SortDirection.desc)">Date desc</a>
+      </div>
+    </div>
+    <hr>
+    <app-game-list  class="col-8" #gameList>
+    </app-game-list>
+  </div>
+
+
+</div>

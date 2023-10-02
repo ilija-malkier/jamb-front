@@ -26,7 +26,6 @@ import { SupportComponent } from './support/support.component';
 import { SetNewPasswordComponent } from './set-new-password/set-new-password.component';
 import { GameRequestComponent } from './game/game-request/game-request.component';
 import { CalculateGameComponent } from './game/calculate-game/calculate-game.component';
-import { FilterModalComponent } from './modals/filter-modal/filter-modal.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { RegistrationModalComponent } from './modals/registration-modal/registration-modal.component';
 import {JwtInterceptor, JwtInterceptorConst} from "./interceptor/jwt-interceptor.service";
@@ -47,12 +46,15 @@ import { AutocompleateComponent } from './reusables/autocompleate/autocompleate.
 import {CommonModule} from "@angular/common";
 import { LoadingModalComponent } from './modals/loading-modal/loading-modal.component';
 import { SettingsComponent } from './settings/settings.component';
+import { GameComponent } from './game/game/game.component';
+import { FilterGamesComponent } from './game/game/filter-games/filter-games.component';
 
 
 const routes:Routes=[
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
   {path:'home',component:HomeComponent,canActivate:[navigationRouteGuard]},
+  {path:'game',component:GameComponent,canActivate:[navigationRouteGuard]},
   {path:'reset-password',component:RestartPasswordComponent},
   {path:'support',component:SupportComponent,canActivate:[navigationRouteGuard]},
   {path:'account',children:[
@@ -96,7 +98,6 @@ const routes:Routes=[
     SetNewPasswordComponent,
     GameRequestComponent,
     CalculateGameComponent,
-    FilterModalComponent,
     RegistrationModalComponent,
     CustomImageComponent,
     HomeStatisticsComponent,
@@ -111,6 +112,8 @@ const routes:Routes=[
     AutocompleateComponent,
     LoadingModalComponent,
     SettingsComponent,
+    GameComponent,
+    FilterGamesComponent,
 
   ],
     imports: [

@@ -34,6 +34,7 @@ export class GameListComponent implements OnInit{
     return Math.floor(number) + roundedDecimal;
   }
   public filter(filterRequest:FilterRequest,sortField:string,sortDirection:SortDirection){
+    console.log(filterRequest)
     this.gameService.filter(filterRequest,sortField,sortDirection);
   }
   ngOnInit(): void {

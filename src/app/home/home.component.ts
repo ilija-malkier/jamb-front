@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ModalService} from "../../services/modal.service";
 import {UploadSheetComponent} from "../upload-sheet/upload-sheet.component";
-import {FilterModalComponent} from "../modals/filter-modal/filter-modal.component";
 import {FilterRequest} from "../model/filter-request";
 import {SortDirection} from "../model/sort-direction";
 import {GameListComponent} from "../game/game-list/game-list.component";
@@ -33,9 +32,7 @@ export class HomeComponent implements OnInit{
     console.log(this.modalService.isAnyModalOpen())
   }
 
-  openFilter() {
-    this.modalService.toggleModal(FilterModalComponent.filterModelId)
-  }
+
 
   filterSubmit(filterRequest: FilterRequest) {
     this.filterRequest=filterRequest;
