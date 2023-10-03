@@ -48,6 +48,8 @@ import { LoadingModalComponent } from './modals/loading-modal/loading-modal.comp
 import { SettingsComponent } from './settings/settings.component';
 import { GameComponent } from './game/game/game.component';
 import { FilterGamesComponent } from './game/game/filter-games/filter-games.component';
+import {CanvasJSAngularChartsModule} from "@canvasjs/angular-charts";
+import { AccountGamesetComponent } from './account-gameset/account-gameset.component';
 
 
 const routes:Routes=[
@@ -61,6 +63,7 @@ const routes:Routes=[
       {path:'settings',component:SettingsComponent},
       {path:'game',component:GameRequestComponent},
       {path:'friends',component:FriendsSettingsComponent},
+      {path:'gamesets',component:AccountGamesetComponent},
       {path:'activate',component:VerifyEmailComponent},
       {path: 'password/reset',component: SetNewPasswordComponent}
     ],canActivate:[navigationRouteGuard]},
@@ -114,10 +117,12 @@ const routes:Routes=[
     SettingsComponent,
     GameComponent,
     FilterGamesComponent,
+    AccountGamesetComponent,
 
   ],
     imports: [
         BrowserModule,
+      CanvasJSAngularChartsModule,
         CommonModule,
         FormsModule,
         RouterOutlet,

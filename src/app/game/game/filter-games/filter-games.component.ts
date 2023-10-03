@@ -55,4 +55,10 @@ export class FilterGamesComponent {
   protected readonly GameStatus = GameStatus;
 
 
+  clearFilter() {
+    this.filterWiners=[]
+    this.filterFriends=[]
+    this.filterRequest={date_from:null,date_to:null,game_status:null,player_names:this.filterFriends,winner_names:this.filterWiners}
+    this.filterRequestEmmiter.emit(this.filterRequest)
+  }
 }

@@ -61,7 +61,10 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
     // if(this.joinGame)
       // this.gameService.joinGame(this.gameId,this.image,this.score)
     // else
-    if(form.invalid ) return
+    if(form.invalid ) {
+      this.isLoadingSaveGame=false
+      return
+    }
       this.gameService.saveGame({players:this.filterFriends,numberOfPlayers:parseInt(numberOfPlayers),score:this.score,gameSetId:this.selectedGamesetId},this.image).subscribe(data=>{
         this.modalService.toggleModal(CreateGameModalComponent.createGameModalId)
         this.router.navigate(['home'])

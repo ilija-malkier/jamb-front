@@ -12,6 +12,7 @@ export class StatisticCardComponent {
   @Input("value") value:string='';
   @Input() image:string='assets/images/rook.png';
   @Input() state:DataState=DataState.LOADING
+  @Input() showProcent:boolean=true
   protected readonly isFinite = isFinite;
   protected readonly parseInt = parseInt;
   protected readonly isNaN = isNaN;

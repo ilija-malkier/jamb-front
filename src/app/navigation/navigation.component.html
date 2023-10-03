@@ -51,16 +51,20 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link mx-2"  routerLinkActive="active" (click)="changeActiveNav('register')" *ngIf="!(auth.$isLogin |async)"  routerLink="/register">Register</a>
+          <a class="nav-link "  routerLinkActive="active" (click)="changeActiveNav('register')" *ngIf="!(auth.$isLogin |async)"  routerLink="/register">Register</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Company
+        <li class="nav-item dropdown d-flex"  *ngIf="auth.$isLogin |async ">
+          <a routerLinkActive="active" *ngIf="auth.$isLogin |async " class="nav-link mx-2 dropdown-toggle d-flex align-items-center"  id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <p *ngIf="auth.$isLogin; else accountText " >{{auth.username}}</p>
+                            <ng-template #accountText>
+                              Account
+                            </ng-template>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Blog</a></li>
-            <li><a class="dropdown-item" href="#">About Us</a></li>
-            <li><a class="dropdown-item" href="#">Contact us</a></li>
+            <li><a class="dropdown-item" routerLink="/account/friends" >Friends</a></li>
+            <li><a class="dropdown-item" routerLink="/account/game" >Requests</a></li>
+            <li><a class="dropdown-item" routerLink="/account/gamesets" >Gameset</a></li>
+            <li><a class="dropdown-item" (click)="auth.logout()" routerLink="/login"   >Logout</a></li>
           </ul>
         </li>
       </ul>

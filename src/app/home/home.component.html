@@ -9,33 +9,11 @@
   <app-home-statistics></app-home-statistics>
 
 
-  <div class="d-flex   w-100 justify-content-around">
-   <div class="col-4  d-flex justify-content-end px-4 ">
-     <h5 class="me-4">History</h5>
-   </div>
-    <div class="d-flex text-center justify-content-center col-5 ">
-
-    </div>
-    <div class="d-flex col-3 justify-content-end">
-      <p class="mx-4"  style="cursor: pointer;font-size: large" >Filter</p>
-
-      <p  class=" mx-3  dropdown-toggle"  style="font-size: large" data-bs-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
-        {{sortField? (sortField | capitalizeFirstLetter) +" "+ (sortDirection.toString() | uppercase) : "Sort"}}
-      </p>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" (click)="setSort('date',SortDirection.asc)">Date asc</a>
-        <a class="dropdown-item" (click)="setSort('date',SortDirection.desc)">Date desc</a>
-      </div>
-    </div>
-    <div class="d-flex col-1   justify-content-end">
-    </div>
-  </div>
 
 
 
 
 
-<!--  <app-upload-sheet></app-upload-sheet>-->
-<!--  <app-filter-modal (filterRequestEmmiter)="filterSubmit($event)"></app-filter-modal>-->
-<!--  <app-loading-modal></app-loading-modal>-->
+
+  <app-upload-sheet></app-upload-sheet>
 </div>
