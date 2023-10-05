@@ -26,7 +26,7 @@ export class GameService {
   protected sortDirection: SortDirection = SortDirection.desc
   games$: BehaviorSubject<Observable<CustomResponse>> = new BehaviorSubject<Observable<CustomResponse>>(new Observable<CustomResponse>())
   $gameRequests:BehaviorSubject<Observable<CustomResponse>> = new BehaviorSubject(new Observable<CustomResponse>())
-  totalGameRequests$:BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  $gameRequestsSend:BehaviorSubject<Observable<CustomResponse>> = new BehaviorSubject(new Observable<CustomResponse>())
   constructor(private httpClient:HttpClient) {
 
   }
@@ -87,9 +87,7 @@ export class GameService {
 
   }
 
-  emitTotalGameRequests(totalGameRequets:number){
-    this.totalGameRequests$.next(totalGameRequets)
-  }
+
 
   private setParams(filterRequest: FilterRequest, sortField: string, sortDirection: SortDirection) {
     this.filterRequest=filterRequest
@@ -98,7 +96,6 @@ export class GameService {
   }
 
   saveGame(gameCreateRequest:GameCreateRequest,image:File) {
-    console.log(gameCreateRequest)
     const form = new FormData();
     form.append('file', image);
     form.append('request',  new Blob([JSON.stringify(gameCreateRequest)], {
@@ -110,7 +107,7 @@ export class GameService {
 
   getGameRequests(page:number){
     this.$gameRequests.next(
-    this.httpClient.get<CustomResponse>("http://localhost:8081/games/requests",{
+    this.httpClient.get<CustomResponse>("http://localhost:8081/games/requests/received",{
       params:{
         pageNumber:page
       }
@@ -138,5 +135,17 @@ export class GameService {
 
   viewPlayerSheet(username: string, gameId: number) {
     return this.httpClient.get<CustomResponse>(`http://localhost:8081/games/${gameId}/${username}/image`)
+  }
+
+  deleteGameRequest(gameId: number, username: string) {
+   return  this.httpClient.delete<CustomResponse>("http://localhost:8081/games/request/"+gameId+"/"+username)
+  }
+
+  getGameRequestsSend(currentPage: number) {
+      this.$gameRequestsSend.next(this.httpClient.get<CustomResponse>("http://localhost:8081/games/requests/sent"))
+  }
+
+  deleteGame(gameId: number) {
+    return this.httpClient.delete<CustomResponse>("http://localhost:8081/games/"+gameId)
   }
 }

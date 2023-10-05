@@ -1,23 +1,34 @@
 <div class="w-100">
+<div *ngIf="(gamesets$ | async) as gamesets">
 
-<!--  <table class="table table-striped">-->
-<!--    <thead>-->
-<!--    <tr>-->
-<!--      <th class="text-center" scope="col">Name</th>-->
 
-<!--      <th class="text-center" scope="col">Action</th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <div *ngIf="friends.dataState==DataState.LOADING">-->
-<!--      <span class="m-3 spinner-border spinner-border-sm" role="status" aria-hidden="true" style="width: 30px;height: 30px"></span>-->
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="text-center" scope="col">Name</th>
 
-<!--    </div>-->
-<!--    <tbody>-->
-<!--    <tr *ngFor="let friend of friends?.appData | slice:0:getMaxFriends()">-->
-<!--      <td class="text-center">{{friend.firstname+' ' +friend.lastname}}</td>-->
-<!--      <td class="text-center" style="color:var(&#45;&#45;red-color);cursor: pointer" (click)="unfriend(friend.username)">Unfriend</td>-->
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--  </table>-->
+      <th class="text-center" scope="col">Action</th>
+    </tr>
+    </thead>
+    <div *ngIf="gamesets.dataState==DataState.LOADING">
+      <span class="m-3 spinner-border spinner-border-sm" role="status" aria-hidden="true"
+            style="width: 30px;height: 30px"></span>
 
+    </div>
+    <tbody>
+    <tr *ngFor="let gameset of gamesets?.appData | slice:0:getMaxGamesets()">
+      <td class="text-center">{{gameset.gameSetName }}</td>
+      <td class="text-center">
+        <div>
+          <button (click)="deleteGameset(gameset.gameSetId,gameset.gameSetName)" class="btn text-white"
+                  style="background: var(--primary-color)">Delete
+          </button>
+          <button (click)="viewDetails(gameset.gameSetId)" class="btn">View</button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+  <app-loading-modal></app-loading-modal>
 </div>

@@ -11,6 +11,7 @@ import {FindFriendsModalComponent} from "../../modals/find-friends-modal/find-fr
 import {el} from "date-fns/locale";
 import {Friend} from "../../model/friend";
 import alertifyjs from "alertifyjs";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-friends-settings',
@@ -22,17 +23,22 @@ export class FriendsSettingsComponent implements OnInit{
 
   $friends:Observable<AppState<Friend[]>> = new Observable<AppState<Friend[]>>()
   $friendsRequests:Observable<AppState<Friend[]>> = new Observable<AppState<Friend[]>>()
+  $friendRequestsSend:Observable<AppState<Friend[]>> = new Observable<AppState<Friend[]>>()
   currentPageFriends=0
   currentPageFriendsRequests=0
+  currentPageFriendsRequestsSend=0
   totalElementsFriends=0
   totalElementsFriendsRequests=0
+  totalElementsFriendsRequestsSend=0
   constructor(private friendsService:FriendsService,private modalService:ModalService) {
   }
   ngOnInit(): void {
     this.friendsService.getFriends(this.currentPageFriends)
     this.friendsService.getFriendRequests(this.currentPageFriendsRequests)
+    this.friendsService.getFriendRequestsSend(this.currentPageFriendsRequestsSend)
     this.handleFriends();
     this.handleFriendRequests();
+    this.handleFriendRequestsSend();
   }
    customRound(number: number): number {
     const decimalPart = number - Math.floor(number);
@@ -76,10 +82,28 @@ export class FriendsSettingsComponent implements OnInit{
       )
     })
   }
+  private handleFriendRequestsSend() {
+    this.friendsService.$friendRequestsSend.subscribe(data => {
+      this.$friendRequestsSend = data.pipe(
 
-  openFindFriendsModal() {
-    this.modalService.toggleModal(FindFriendsModalComponent.findFriendsModalId)
+        map((element: CustomResponse) => {
+          this.totalElementsFriendsRequestsSend=element?.data?.friend_requests_send.totalElements
+          console.log(element)
+          return {
+            dataState: DataState.SUCCESS,
+            appData: element?.data?.friend_requests_send
+
+          }
+        }),startWith({dataState: DataState.LOADING}),
+        catchError(err => {
+          return of({dataState: DataState.ERROR, error: err})
+        }),
+      )
+    })
   }
+  // openFindFriendsModal() {
+  //   this.modalService.toggleModal(FindFriendsModalComponent.findFriendsModalId)
+  // }
 
 
   unfriend(username: string) {
@@ -110,10 +134,19 @@ export class FriendsSettingsComponent implements OnInit{
     this.friendsService.declineFriend(username).subscribe(data=>{
       alertifyjs.success("Friend request declined")
       this.friendsService.getFriendRequests(this.currentPageFriendsRequests)
-
-
     })
   }
 
+
   protected readonly DataState = DataState;
+
+
+  cancelFriendRequest(username: string) {
+    //delete from list
+    this.friendsService.cancelFriendRequest(username).subscribe(data=>{
+      alertifyjs.success("Successfully deleted request")
+    },error=>{
+      alertifyjs.error("Error while canceling request")
+    })
+  }
 }

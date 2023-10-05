@@ -11,6 +11,7 @@ export class ModalComponent {
   @Input() title='';
   @Output() closeEventEmitter:EventEmitter<void>=new EventEmitter<void>()
   @Input() disableExit:boolean=false
+  @Input() showHeader:boolean=true
 
   constructor(public modalService:ModalService) {
   }

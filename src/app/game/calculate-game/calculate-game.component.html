@@ -1,12 +1,16 @@
 
 <div class="container mt-5 ">
+  <div *ngIf="isAnyFieldInvalid()" class="bg-danger my-3 w-100">
+    <app-warning-baner [show]="true" text="You have invalid data in your sheet."></app-warning-baner>
+  </div>
   <div class="w-100 d-flex justify-content-between  mb-3">
+
     <div class="">
       <button class="btn btn-link text-decoration-none "  style="color: var(--primary-color)" (click)="calculateSheet()" [disabled]="isLoading || isCalculating || isLoadingJoinGame">Calculate</button>
     </div>
     <div class="d-flex">
-      <button class="btn mx-2 border-0" (click)="cancelGameCreation()" [disabled]="isLoading || isCalculating || isLoadingJoinGame" type="button" >Cancel</button>
-      <app-button-icon [isLoading]="isLoadingJoinGame" text="Save" (click)="saveGame()" icon="bi bi-save"></app-button-icon>
+      <button class="btn mx-2 border-0" (click)="cancelGameCreation()"   [disabled]="isLoading || isCalculating || isLoadingJoinGame" type="button" >Cancel</button>
+      <app-button-icon [isLoading]="isLoadingJoinGame" text="Save"  data-bs-toggle="modal" data-bs-target="#createGameModal"  (click)="saveGame()" icon="bi bi-save"></app-button-icon>
     </div>
   </div>
   <div class="d-flex w-100">

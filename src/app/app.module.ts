@@ -50,6 +50,12 @@ import { GameComponent } from './game/game/game.component';
 import { FilterGamesComponent } from './game/game/filter-games/filter-games.component';
 import {CanvasJSAngularChartsModule} from "@canvasjs/angular-charts";
 import { AccountGamesetComponent } from './account-gameset/account-gameset.component';
+import {GameSetDetailsResolver} from "./route-guards/game-set-details.resolver";
+import { GameSetDetailsComponent } from './gameset/game-set-details-component/game-set-details.component';
+import { ProfileComponent } from './account-gameset/profile/profile.component';
+import {ProfileResolver} from "./route-guards/profile.resolver";
+import { WarningBanerComponent } from './reusables/warning-baner/warning-baner.component';
+import { ConfirmationModalComponent } from './modals/confirmation-modal/confirmation-modal.component';
 
 
 const routes:Routes=[
@@ -58,8 +64,10 @@ const routes:Routes=[
   {path:'home',component:HomeComponent,canActivate:[navigationRouteGuard]},
   {path:'game',component:GameComponent,canActivate:[navigationRouteGuard]},
   {path:'reset-password',component:RestartPasswordComponent},
+  {path: `gameset/:id`,component:GameSetDetailsComponent,resolve:{data:GameSetDetailsResolver},canActivate:[navigationRouteGuard]},
   {path:'support',component:SupportComponent,canActivate:[navigationRouteGuard]},
   {path:'account',children:[
+      {path:'profile/:username',component:ProfileComponent,resolve: {data:ProfileResolver}},
       {path:'settings',component:SettingsComponent},
       {path:'game',component:GameRequestComponent},
       {path:'friends',component:FriendsSettingsComponent},
@@ -118,6 +126,10 @@ const routes:Routes=[
     GameComponent,
     FilterGamesComponent,
     AccountGamesetComponent,
+    GameSetDetailsComponent,
+    ProfileComponent,
+    WarningBanerComponent,
+    ConfirmationModalComponent,
 
   ],
     imports: [

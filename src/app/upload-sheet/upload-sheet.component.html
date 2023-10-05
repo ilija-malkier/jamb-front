@@ -1,53 +1,66 @@
-<app-modal  [disableExit]="isLoadingImage|| isLoading" (closeEventEmitter)="closeModal(form)" [modalId]="uploadSheetModalId" [title]="uploadSheetModalTitle">
-  <app-error-baner [show]="showError" [text]="errorMessage"></app-error-baner>
-
-  <form class="mt-2 d-flex flex-column justify-content-around" (ngSubmit)="uploadSheet(form)" #form="ngForm" enctype="multipart/form-data">
-
-
-    <div (click)="openFile(fileInput)"  class="file-input d-flex flex-column justify-content-center align-items-center" [ngClass]="{'shrink':isFileSelected}">
-      <i class="bi bi-box-arrow-in-down " style="font-size: 50px;color: var(--secondary-color)"></i>
-      <input ngModel name="image_sheet"  id="upload_image_background" #fileInput  (change)="change($event)"  class="position-absolute z-1  bg-info invisible" type="file" multiple accept="image/jpeg, image/png" />
-
-    </div>
-    <div *ngIf="showProgress"  class="d-flex w-100">
-
-      <div class="custom-outter-progress-bar w-100  border-dark rounded-3 "  >
-        <div class="custom-inner-progress-bar  border-dark rounded-3 "  style="--progress:{{ progressPercentString }}" ></div>
+<div #modal class="modal fade" id="uploadSheetModal" tabindex="-1" aria-labelledby="uploadSheetModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Upload Sheet </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="px-1">
-        <i class="bi bi-trash-fill" style="font-size: 20px;color: var(--text-dark) !important;cursor: pointer" (click)="deleteSelectedImage(form)" [ngStyle]="{'color':progress!=100? 'rgba(0, 0, 0, 0.2)' : 'black'}"></i>
+      <div class="modal-body">
+        <app-error-baner [show]="showError" [text]="errorMessage"></app-error-baner>
+        <form class="mt-2 d-flex flex-column justify-content-around" (ngSubmit)="uploadSheet(form)" #form="ngForm" enctype="multipart/form-data">
+
+
+          <div (click)="openFile(fileInput)"  class="file-input d-flex flex-column justify-content-center align-items-center" [ngClass]="{'shrink':isFileSelected}">
+            <i class="bi bi-box-arrow-in-down " style="font-size: 50px;color: var(--secondary-color)"></i>
+            <input ngModel name="image_sheet"  id="upload_image_background" #fileInput  (change)="change($event)"  class="position-absolute z-1  bg-info invisible" type="file" multiple accept="image/jpeg, image/png" />
+
+          </div>
+          <div *ngIf="showProgress"  class="d-flex w-100">
+
+            <div class="custom-outter-progress-bar w-100  border-dark rounded-3 "  >
+              <div class="custom-inner-progress-bar  border-dark rounded-3 "  style="--progress:{{ progressPercentString }}" ></div>
+            </div>
+            <div class="px-1">
+              <i class="bi bi-trash-fill"  style="font-size: 20px;color: var(--text-dark) !important;cursor: pointer" (click)="deleteSelectedImage(form)" [ngStyle]="{'color':progress!=100? 'rgba(0, 0, 0, 0.2)' : 'black'}"></i>
+            </div>
+          </div>
+
+
+
+          <div class="w-100  d-flex justify-content-between">
+            <div *ngIf="progress==100">{{this.sheetToUpload.name}}</div>
+            <div *ngIf="showProgress" class="d-flex w-100 justify-content-end">
+              <p>{{this.progress}}%</p>
+            </div>
+
+          </div>
+
+          <div  class="w-100 d-flex justify-content-center align-items-center" *ngIf="!this.isLoadingImage && this.sheetToUpload">
+            <img [src]="this.imageUrl" class="w-25" >
+
+          </div>
+
+
+          <div class="d-flex justify-content-end mt-3">
+            <button class="btn mx-2 border-0" data-bs-dismiss="modal" (click)="closeModal(form)" [disabled]="isLoading || isLoadingImage" type="button" >Cancel</button>
+            <button class="btn text-white px-3" [ngClass]="{'disable':isLoading || isLoadingImage}"   type="submit" style="background: var(--primary-color)">
+              <ng-container *ngIf="(isLoading || isLoadingImage) ;else textContainerBtn">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+              </ng-container>
+              <ng-template #textContainerBtn>
+                Upload
+              </ng-template>
+            </button>
+          </div>
+        </form>
       </div>
-    </div>
-
-
-
-      <div class="w-100  d-flex justify-content-between">
-        <div *ngIf="progress==100">{{this.sheetToUpload.name}}</div>
-        <div *ngIf="showProgress" class="d-flex w-100 justify-content-end">
-          <p>{{this.progress}}%</p>
-        </div>
-
-      </div>
-
-    <div  class="w-100 d-flex justify-content-center align-items-center" *ngIf="!this.isLoadingImage && this.sheetToUpload">
-      <img [src]="this.imageUrl" class="w-25" >
 
     </div>
+  </div>
+</div>
 
 
-    <div class="d-flex justify-content-end mt-3">
-      <button class="btn mx-2 border-0" (click)="closeModal(form)" [disabled]="isLoading || isLoadingImage" type="button" >Cancel</button>
-      <button class="btn text-white px-3" [ngClass]="{'disable':isLoading || isLoadingImage}"   type="submit" style="background: var(--primary-color)">
-        <ng-container *ngIf="(isLoading || isLoadingImage) ;else textContainerBtn">
-          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-          Loading...
-        </ng-container>
-        <ng-template #textContainerBtn>
-          Upload
-        </ng-template>
-      </button>
-    </div>
-   </form>
 
 
-</app-modal>
+

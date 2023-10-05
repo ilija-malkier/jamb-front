@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div>
-    <app-button-icon icon="bi bi-search" (click)="openFindFriendsModal()" text="Find New Friends"></app-button-icon>
+    <app-button-icon icon="bi bi-search" data-bs-toggle="modal" data-bs-target="#findFriendsModal"  text="Find New Friends"></app-button-icon>
   </div>
   <div class="mt-4">
     <h4>My Friends</h4>
@@ -40,8 +40,7 @@
   <div class="mt-5">
     <h4>Friends Request</h4>
   </div>
-  <div class="mt-4" >
-    <ng-container *ngIf="$friendsRequests | async as friendsRequests">
+  <ng-container *ngIf="$friendsRequests | async as friendsRequests">
     <table class="table table-striped">
       <thead>
       <tr>
@@ -61,19 +60,61 @@
         <td class="text-center">{{friendRequest?.username}}</td>
         <td class="text-center">
           <div>
-          <button (click)="acceptFriendRequest(friendRequest.username)" class="btn text-white" style="background: var(--primary-color)">Accept</button>
-          <button (click)="declineFriendRequest(friendRequest.username)" class="btn">Decline</button>
-        </div>
+            <button (click)="acceptFriendRequest(friendRequest.username)" class="btn text-white" style="background: var(--primary-color)">Accept</button>
+            <button (click)="declineFriendRequest(friendRequest.username)" class="btn">Decline</button>
+          </div>
         </td>
       </tr>
       </tbody>
     </table>
-      <div class="w-100  d-flex justify-content-end">
-        <app-friends-requests-list-pagination [totalPages]="this.customRound(this.totalElementsFriendsRequests/getMaxFriends())"></app-friends-requests-list-pagination>
-      </div>
+    <div class="w-100  d-flex justify-content-end">
+      <app-friends-requests-list-pagination [totalPages]="this.customRound(this.totalElementsFriendsRequests/getMaxFriends())"></app-friends-requests-list-pagination>
+    </div>
 
-    </ng-container>
+  </ng-container>
+
+
+  <div class="dropdown-divider"></div>
+  <div class="mt-5">
+    <h4>Friends Request Send</h4>
   </div>
+
+  <ng-container *ngIf="$friendRequestsSend | async as friendRequestsSend">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th class="text-center" scope="col">Fullname</th>
+        <th class="text-center" scope="col">Username</th>
+        <th class="text-center" scope="col">Action</th>
+      </tr>
+      </thead>
+      <div *ngIf="friendRequestsSend.dataState==DataState.LOADING">
+        <span class="m-3 spinner-border spinner-border-sm" role="status" aria-hidden="true" style="width: 30px;height: 30px"></span>
+
+      </div>
+      <tbody>
+
+      <tr *ngFor="let friendRequestsSend of friendRequestsSend?.appData | slice:0:getMaxFriends()">
+        <td class="text-center">{{friendRequestsSend?.firstname+ ' ' + friendRequestsSend?.lastname}}</td>
+        <td class="text-center">{{friendRequestsSend?.username}}</td>
+        <td class="text-center">
+          <div>
+            <button (click)="cancelFriendRequest(friendRequestsSend.username)" class="btn text-white" style="background: var(--primary-color)">Cancel</button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="w-100  d-flex justify-content-end">
+      <app-friends-requests-list-pagination [totalPages]="this.customRound(this.totalElementsFriendsRequests/getMaxFriends())"></app-friends-requests-list-pagination>
+    </div>
+
+  </ng-container>
+</div>
+
+
+<div class="mt-4" >
+
 
   <app-find-friends-modal></app-find-friends-modal>
 </div>

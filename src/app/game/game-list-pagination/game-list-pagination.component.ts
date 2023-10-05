@@ -17,22 +17,23 @@ export class GameListPaginationComponent implements OnInit{
    itemsPerPage:number=9;
   currentPage:number =1;
   ngOnInit(): void {
-    this.getPageNumber();
+    // this.getPageNumber();
   }
 
   constructor(private gameService:GameService) {
-
   }
 
   get numberArray(): number[] {
+
     return Array.from({ length: this.totalPages  }, (_, index) => index);
   }
-  public getPageNumber(){
-    this.gameService.getPages().subscribe((total)=>{
-      let totalItems=total.data.gameCount as number;
-      this.totalPages=this.customRound(totalItems/this.itemsPerPage);
-    });
-  }
+  // public getPageNumber(){
+  //
+  //   this.gameService.getPages().subscribe((total)=>{
+  //     let totalItems=total.data.gameCount as number;
+  //     this.totalPages=this.customRound(totalItems/this.itemsPerPage);
+  //   });
+  // }
 
 
   canGoBack() {

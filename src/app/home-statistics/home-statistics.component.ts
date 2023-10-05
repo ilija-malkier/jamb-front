@@ -31,7 +31,6 @@ export class HomeStatisticsComponent implements OnInit{
         this.$statistics=  next.pipe(
 
           map(  (response:CustomResponse )=>{
-            console.log(response)
             this.gamesWon=response.data?.total_games.gamesWon
             this.gamesLost=response.data?.total_games.gamesLost
             this.totalGames=response.data?.total_games.totalGames

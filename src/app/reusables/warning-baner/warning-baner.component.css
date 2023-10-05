@@ -1,0 +1,4 @@
+.error-banner{
+  background: var(--yellow-color);
+  color: var(--bs-black)
+}
