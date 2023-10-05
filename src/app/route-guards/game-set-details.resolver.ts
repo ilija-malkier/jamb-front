@@ -17,7 +17,7 @@ export class GameSetDetailsResolver implements Resolve<Observable<CustomResponse
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):  Observable<CustomResponse> {
   let gameSetId=    route.paramMap.get('id');
 
-    this.modalService.toggleModal(LoadingModalComponent.loadingModalId)
+    // this.modalService.toggleModal(LoadingModalComponent.loadingModalId)
 
 
 

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {UserRegisterRequest} from "../model/user-register-request";
@@ -17,6 +17,7 @@ import {RegistrationModalComponent} from "../modals/registration-modal/registrat
 export class RegisterComponent implements OnInit{
   errorMessage='';
   showErrorMessage=false;
+  @ViewChild("registrationModal" ) registrationModal:RegistrationModalComponent;
   appState:AppState<CustomResponse>={dataState: DataState.INIT};
   constructor(private auth:AuthService,private modalService:ModalService) {
   }
@@ -35,7 +36,6 @@ export class RegisterComponent implements OnInit{
 
           if(error.status===409){
             this.errorMessage="User with that username already exists."
-
           }else if(error.status===400){
             this.errorMessage=error.error.message
           }
@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit{
         },
         ()=>{
           this.appState={dataState:DataState.DONE}
-          this.modalService.toggleModal(RegistrationModalComponent.registerModalId);
+          this.registrationModal.openModal()
           form.resetForm()
         }
       )

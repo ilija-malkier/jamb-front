@@ -1,13 +1,12 @@
 
 
 
-<div class="d-lg-flex half h-100 ">
-  <div class="bg order-1 order-md-2" style="background-image: url('assets/images/dice.jpg');" ></div>
+<div class="d-lg-flex half h-100 justify-content-center">
   <div class="contents order-2   justify-content-center order-md-1">
 
     <div class="h-100 w-100">
       <div class="row  d-flex flex-column h-100 w-100 align-items-center justify-content-center">
-        <div class="col-md-7">
+        <div class="col-md-7 p-4" style="border-radius: 1rem;  box-shadow: 0 5px 3px 0 rgba(0,0,0,.1), 0 3px 4px 0 rgba(0,0,0,.06);">
           <div class="mb-4">
             <h3 class="header-login">Sign Up</h3>
             <app-error-baner [show]="showErrorMessage" [text]="errorMessage"></app-error-baner>
@@ -59,4 +58,4 @@
   </div>
 
 </div>
-<app-registration-modal #registrationMoal></app-registration-modal>
+<app-registration-modal #registrationModal></app-registration-modal>

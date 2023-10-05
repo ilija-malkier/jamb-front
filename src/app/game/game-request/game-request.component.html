@@ -49,7 +49,10 @@
       <h4>Send Requests</h4>
     </div>
 
-    <table class="table table-striped ">
+    <ng-container *ngIf="($gamesRequestsSend | async) as gameRequestsSend" class="w-100 ">
+      <div><button *ngIf="gameRequestsSend.appData.length>0" class="btn" (click)="deleteAllGameRequestSend()">Delete All</button></div>
+
+      <table class="table table-striped ">
       <thead class="">
       <tr>
         <th class="text-center  col-4" scope="col">To</th>
@@ -59,7 +62,7 @@
       </thead>
 
       <tbody class="w-100 ">
-      <ng-container *ngIf="($gamesRequestsSend | async) as gameRequestsSend" class="w-100 ">
+
         <div *ngIf="gameRequestsSend.dataState==DataState.LOADING">
           <span class="spinner-border m-2 spinner-border-sm" role="status" aria-hidden="true" style="width: 50px;height: 50px"></span>
         </div>
@@ -77,11 +80,12 @@
           </tr>
         </div>
 
-      </ng-container>
+
 
       </tbody>
 
     </table>
+    </ng-container>
     <div class="w-100  d-flex justify-content-end">
       <app-game-list-pagination [totalPages]="this.customRound(this.totalElementsRequestsSend/this.maxGames)"></app-game-list-pagination>
     </div>

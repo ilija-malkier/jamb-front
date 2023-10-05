@@ -105,4 +105,12 @@ export class GameRequestComponent implements OnInit{
   }
 
 
+  deleteAllGameRequestSend() {
+    this.gameService.deleteAllSendGameRequests().subscribe(data=>{
+      alertifyjs.success("Successfully deleted all game request")
+    },error=>{
+      alertifyjs.error("Could not delete all game request.Please try again later.")
+
+    })
+  }
 }

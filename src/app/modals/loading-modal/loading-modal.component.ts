@@ -1,28 +1,27 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ModalService} from "../../../services/modal.service";
+import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 
 @Component({
   selector: 'app-loading-modal',
   templateUrl: './loading-modal.component.html',
   styleUrls: ['./loading-modal.component.css']
 })
-export class LoadingModalComponent implements OnInit,OnDestroy{
-  loadingModalId="loading"
-  static loadingModalId="loading"
-  loadingGModalTitle="Loading"
-  @ViewChild('modal') myModal:ElementRef;
+export class LoadingModalComponent implements OnDestroy{
 
-  constructor(private modalService:ModalService) {
-  }
-  toggleModal(){
-    this.myModal.nativeElement.click();
+  modalRef:BsModalRef
+  @ViewChild("template") template:TemplateRef<any>
+  constructor(private modalServicebs: BsModalService) {}
+
+
+  openModal() {
+    this.modalRef = this.modalServicebs.show(this.template);
   }
   ngOnDestroy(): void {
-    this.modalService.unregister(this.loadingModalId);
+    // this.modalRef.hide()
   }
 
-  ngOnInit(): void {
-    this.modalService.register(this.loadingModalId);
-
+  closeModal() {
+    this.modalRef.hide()
   }
 }

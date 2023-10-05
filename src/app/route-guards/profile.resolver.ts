@@ -17,7 +17,7 @@ export class ProfileResolver implements Resolve<Observable<CustomResponse>>
 }
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):  Observable<CustomResponse> {
   let username=    route.paramMap.get('username');
-  this.modalService.toggleModal(LoadingModalComponent.loadingModalId)
+  // this.modalService.toggleModal(LoadingModalComponent.loadingModalId)
   return  this.userService.getProfileDetails(username)
 
 }

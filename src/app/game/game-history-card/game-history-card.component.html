@@ -73,10 +73,12 @@
     </div>
     <div class="d-flex align-items-center">
       <img src="assets/images/trophy.png" width="40px">
-      <p class="ms-3" style="font-size: 1.2rem">{{game.winner.username}}</p>
+      <p class="ms-3" style="font-size: 1.2rem">{{game.winner?.username}}</p>
     </div>
     <div class=" mt-1 w-100 d-flex justify-content-center">
       <button (click)="navigateToGameDetails()" type="button" class="read_more_btn">View Game</button>
     </div>
   </div>
 </div >
+<app-loading-modal #modal ></app-loading-modal>
+

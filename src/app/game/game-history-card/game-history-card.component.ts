@@ -1,4 +1,4 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
+import {Component, Input, ViewChild, ViewEncapsulation} from '@angular/core';
 import {GameFilterResponse} from "../../model/game-filter-response";
 import {GameStatus} from "../../model/game-status";
 import {Router} from "@angular/router";
@@ -15,6 +15,7 @@ import {LoadingModalComponent} from "../../modals/loading-modal/loading-modal.co
 export class GameHistoryCard {
 
   @Input() game:GameFilterResponse=null
+@ViewChild("modal") modal:LoadingModalComponent
 
   protected readonly top = top;
   protected readonly GameStatus = GameStatus;
@@ -22,7 +23,7 @@ export class GameHistoryCard {
   constructor(private router:Router,private modalService:ModalService) {}
 
   navigateToGameDetails() {
-    this.modalService.toggleModal(LoadingModalComponent.loadingModalId)
+    // this.modal.openModal()
     this.router.navigate(['/game',this.game.gameId])
   }
 }

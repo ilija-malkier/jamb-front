@@ -36,6 +36,7 @@ export class GameDetailsComponent implements OnInit{
   }
   ngOnInit(): void {
     this.getGameSets()
+    console.log("cao")
    let data= <CustomResponse>this.activatedRoute.snapshot.data['data']
     this.game=data.data.game
   }
@@ -58,7 +59,7 @@ export class GameDetailsComponent implements OnInit{
   }
 
   deleteGame() {
-    this.modalService.toggleModal(LoadingModalComponent.loadingModalId)
+    // this.modalService.toggleModal(LoadingModalComponent.loadingModalId)
 
     this.gameService.deleteGame(this.game.gameId).subscribe(data=>{
       alertifyjs.success("Successfully deleted game")
@@ -67,7 +68,7 @@ export class GameDetailsComponent implements OnInit{
       alertifyjs.error("Unable to delete the game.Please try again later.")
 
     },()=>{
-      this.modalService.toggleModal(LoadingModalComponent.loadingModalId)
+      // this.modalService.toggleModal(LoadingModalComponent.loadingModalId)
 
     })
   }

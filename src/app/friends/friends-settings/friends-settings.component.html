@@ -40,6 +40,7 @@
   <div class="mt-5">
     <h4>Friends Request</h4>
   </div>
+
   <ng-container *ngIf="$friendsRequests | async as friendsRequests">
     <table class="table table-striped">
       <thead>
@@ -78,8 +79,9 @@
   <div class="mt-5">
     <h4>Friends Request Send</h4>
   </div>
-
   <ng-container *ngIf="$friendRequestsSend | async as friendRequestsSend">
+    <div><button *ngIf="friendRequestsSend.appData.length>0" class="btn" (click)="deleteAllFriendRequestSend()">Delete All</button></div>
+
     <table class="table table-striped">
       <thead>
       <tr>

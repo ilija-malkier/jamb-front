@@ -56,6 +56,7 @@ import { ProfileComponent } from './account-gameset/profile/profile.component';
 import {ProfileResolver} from "./route-guards/profile.resolver";
 import { WarningBanerComponent } from './reusables/warning-baner/warning-baner.component';
 import { ConfirmationModalComponent } from './modals/confirmation-modal/confirmation-modal.component';
+import {ModalModule} from "ngx-bootstrap/modal";
 
 
 const routes:Routes=[
@@ -66,13 +67,13 @@ const routes:Routes=[
   {path:'reset-password',component:RestartPasswordComponent},
   {path: `gameset/:id`,component:GameSetDetailsComponent,resolve:{data:GameSetDetailsResolver},canActivate:[navigationRouteGuard]},
   {path:'support',component:SupportComponent,canActivate:[navigationRouteGuard]},
+  {path:'account/activate',component:VerifyEmailComponent},
   {path:'account',children:[
       {path:'profile/:username',component:ProfileComponent,resolve: {data:ProfileResolver}},
       {path:'settings',component:SettingsComponent},
       {path:'game',component:GameRequestComponent},
       {path:'friends',component:FriendsSettingsComponent},
       {path:'gamesets',component:AccountGamesetComponent},
-      {path:'activate',component:VerifyEmailComponent},
       {path: 'password/reset',component: SetNewPasswordComponent}
     ],canActivate:[navigationRouteGuard]},
   {path:'game',children:[
@@ -140,6 +141,7 @@ const routes:Routes=[
         RouterOutlet,
         HttpClientModule,
         RouterModule.forRoot(routes),
+      ModalModule.forRoot()
 
     ],
   providers: [HttpClient,JwtInterceptorConst,StatisticsService],

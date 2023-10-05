@@ -1,11 +1,13 @@
-<div class="w-100">
+<div class="container mt-5">
+  <div class="w-100">
 
-  <p>{{gameset?.description}}</p>
-  <p>{{gameset?.gameSetName}}</p>
+    <p>{{gameset?.description}}</p>
+    <p>{{gameset?.gameSetName}}</p>
 
-  <div *ngFor="let game of gameset.games">
-    <p>{{game.gameId}}</p>
-    <button class="btn btn-primary" (click)="removeFromGameset(game.gameId)">Remove</button>
+    <div *ngFor="let game of gameset.games">
+      <p>{{game.gameId}}</p>
+      <button class="btn btn-primary" (click)="removeFromGameset(game.gameId)">Remove</button>
+    </div>
+
   </div>
-
 </div>

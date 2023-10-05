@@ -92,4 +92,8 @@ export class FriendsService {
   cancelFriendRequest(username: string) {
     return this.http.post<CustomResponse>("http://localhost:8081/player/request/unsend",{"username":username})
   }
+
+  deleteAllSendRequests() {
+    return this.http.delete<CustomResponse>("http://localhost:8081/player/requests/delete")
+  }
 }

@@ -149,4 +149,12 @@ export class FriendsSettingsComponent implements OnInit{
       alertifyjs.error("Error while canceling request")
     })
   }
+
+  deleteAllFriendRequestSend() {
+    this.friendsService.deleteAllSendRequests().subscribe(data=>{
+      alertifyjs.success("Successfully deleted all request")
+    },error=>{
+      alertifyjs.error("Error while deleting request")
+    })
+  }
 }
