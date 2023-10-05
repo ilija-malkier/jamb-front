@@ -10,6 +10,8 @@ import {GameDetailsResponse} from "./game-details-response";
 import {GameSetInfo} from "./game-set-info";
 import {SearchedFriends} from "./searched-friends";
 import {ImageResponse} from "./image-response";
+import {GameSetDetailsResponse} from "./game-set-details-response";
+import {PlayerResponse} from "./player-response";
 
 export interface CustomResponse {
   timeStamp:Date;
@@ -25,11 +27,15 @@ export interface CustomResponse {
     refresh_token?:string,
     friends?:PlayerFriend,
     friend_requests?:PlayerFriendRequest,
+    friend_requests_send?:PlayerFriend,
     isValid?:boolean,
     results?:ResultResponse,
-    game_requests?:PagedGameRequestResponse
+    received_game_requests?:PagedGameRequestResponse
+    sent_game_requests?:PagedGameRequestResponse
     gameSetResponseList?:GameSetInfo[],
     game?:GameDetailsResponse,
+    player?:PlayerResponse,
+    gameSet?:GameSetDetailsResponse,
     matching_usernames?:SearchedFriends[],
     players_image?:ImageResponse
 

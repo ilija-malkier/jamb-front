@@ -46,11 +46,9 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
 
   }
 
-  cancelGameCreation() {
-    this.modalService.closeModal(this.createGameModalId)
-  }
-
-
+  // cancelGameCreation() {
+  //   this.modalService.closeModal(this.createGameModalId)
+  // }
 
   saveGame(form: NgForm) {
     this.isLoadingSaveGame=true
@@ -77,13 +75,13 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
       })
   }
 
-
   getGameSets(){
   this.gameService.getGameSets().subscribe(data=>{
     this.gameSets=data.data.gameSetResponseList
   });
 
 }
+
   createNewGameset() {
     this.createNewGamesetContent=true;
   }
@@ -106,7 +104,6 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
     },()=>{
       this.isGamesetCreating=false
     })
-    console.log(this.filterFriends)
   }
 
   exitGameset() {

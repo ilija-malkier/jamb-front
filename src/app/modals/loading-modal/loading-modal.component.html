@@ -1,7 +1,17 @@
-<app-modal [modalId]="loadingModalId" [title]="loadingGModalTitle">
-  <div class="w-100 p-3 d-flex justify-content-center">
-    <span style="width: 100px;height: 100px"  class="spinner-border spinner-border-sm mx-2" role="status" aria-hidden="true"></span>
+  <div #modal class="modal fade" id="loadingModal" tabindex="-1" aria-labelledby="loadingModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Loading...</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="w-100 p-3 d-flex flex-column align-items-center justify-content-center">
+            <span style="width: 40px;height: 40px"  class="mb-3 spinner-border spinner-border-sm mx-2" role="status" aria-hidden="true"></span>
+          </div>
+        </div>
 
+      </div>
+    </div>
   </div>
 
-</app-modal>

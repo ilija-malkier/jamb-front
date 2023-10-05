@@ -4,6 +4,8 @@ import {CustomResponse} from "../app/model/custom-response";
 import {RequestResetPasswordRequest} from "../app/model/request-reset-password-request";
 import {da} from "date-fns/locale";
 import {PasswordResetRequest} from "../app/model/password-reset-request";
+import {AuthService} from "./auth.service";
+import {UpdatePlayerRequest} from "../app/model/update-player-request";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,6 @@ export class UserService {
     let params = new HttpParams().set('token', token);
 
     this.http.put<CustomResponse>(" http://localhost:8081/user/password/reset",new PasswordResetRequest(newPassword),{params:params}).subscribe(data=>{
-      console.log(data)
     })
   }
 
@@ -28,9 +29,25 @@ export class UserService {
 
   activateAccount(token: string) {
     let params = new HttpParams().set('token', token);
-
     this.http.get<CustomResponse>("http://localhost:8081/user/activate",{ params: params }).subscribe(data=>{
-      console.log(data)
     })
+  }
+
+  getProfileDetails(username: string){
+   return this.http.get<CustomResponse>("http://localhost:8081/player/"+username)
+  }
+
+  updateProfile(updatePlayerRequest: UpdatePlayerRequest) {
+    return this.http.patch<CustomResponse>(" http://localhost:8081/player",updatePlayerRequest)
+  }
+
+  restartPasswordProfile(password: string, oldPassword: string) {
+    console.log("password" + password)
+    console.log("oldpassword" + oldPassword)
+      return this.http.put<CustomResponse>("http://localhost:8081/user/password/change",{"oldPassword":oldPassword,"newPassword":password})
+  }
+
+  deactivateAccount() {
+    return this.http.put<CustomResponse>("http://localhost:8081/user/deactivate",null)
   }
 }

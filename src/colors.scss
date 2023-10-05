@@ -2,7 +2,9 @@
 :root
 {
   --primary-color: #33AAD1;
+  --on-primary-color: white;
   --primary-color-inactive: rgb(41,151,231,0.5);
+  --background-contrast: #3E4145;
   --link-inactive: rgb(0,0,0,0.2);
   --text-dark: #3E4145;
   --text-light: #FFFFFF;
@@ -17,4 +19,5 @@
   --red-color-transparent:rgb(253,96,96,0.7);;
   --green-color:#20CC03;
   --yellow-color:#DDC704;
+  --black: #1E1E1EFF
 }

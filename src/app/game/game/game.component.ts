@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {FilterRequest} from "../../model/filter-request";
 import {GameService} from "../../../services/game.service";
 import {GameListComponent} from "../game-list/game-list.component";
@@ -13,6 +13,7 @@ export class GameComponent {
 
 
   @ViewChild("gameList",{static:false}) gameList:GameListComponent
+
   protected sortField="date"
   protected sortDirection:SortDirection=SortDirection.asc
   private filterRequest:FilterRequest={date_from:null,date_to:null,game_status:null,player_names:null,winner_names:null}

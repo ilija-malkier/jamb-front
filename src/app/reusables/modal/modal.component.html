@@ -1,10 +1,10 @@
-<div class="disable-scroll z-3  w-100 h-100 bg-dark position-absolute top-0 start-0 end-0 bottom-0 z-2 opacity-25 " [hidden]="isModalOpen()">
+<div class="disable-scroll z-3   w-100 h-100 bg-dark position-absolute top-0 start-0 end-0 bottom-0 z-2 opacity-50 " [hidden]="isModalOpen()">
 
 </div>
-<div class="position-absolute   mx-auto my-auto center-absolute  w-50 h-50  "  [hidden]="isModalOpen()" [id]="modalId"   >
-  <div class="modal-dialog z-3 opacity-100 bg-da  ">
-    <div class="modal-content">
-      <div class="modal-header  rounded-top-3  p-3 " style="background: var(--primary-color-darker);">
+<div class="position-absolute    mx-auto my-auto center-absolute  w-50 h-50  "  [hidden]="isModalOpen()" [id]="modalId"   >
+  <div class="modal-dialog z-3   opacity-100 bg-da  ">
+    <div class="modal-content custom-modal">
+      <div class="modal-header rounded-top-3  p-3 " *ngIf="showHeader" style="background: var(--primary-color-darker);">
         <h5 class="modal-title text-white" id="exampleModalLabel">{{title}}</h5>
         <button type="button" [disabled]="disableExit"  (click)="closeModal($event)" class="btn-close btn-close-white" aria-label="Close"></button>
       </div>

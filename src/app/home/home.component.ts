@@ -23,13 +23,12 @@ export class HomeComponent implements OnInit{
   constructor(private modalService:ModalService) {
   }
 
-  openModal() {
-    this.modalService.toggleModal(UploadSheetComponent.uploadSheetModalId);
-  }
+  // openModal() {
+  //   this.modalService.toggleModal(UploadSheetComponent.uploadSheetModalId);
+  // }
 
   ngOnInit(): void {
     this.filterGames()
-    console.log(this.modalService.isAnyModalOpen())
   }
 
 

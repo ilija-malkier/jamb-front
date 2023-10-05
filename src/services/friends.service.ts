@@ -11,6 +11,7 @@ export class FriendsService {
 
   $friendRequest:BehaviorSubject<Observable<CustomResponse>> =new BehaviorSubject(new Observable<CustomResponse>())
   $friends:BehaviorSubject<Observable<CustomResponse>> =new BehaviorSubject(new Observable<CustomResponse>())
+  $friendRequestsSend:BehaviorSubject<Observable<CustomResponse>> =new BehaviorSubject(new Observable<CustomResponse>())
 
    maxFriends=3;
 
@@ -39,7 +40,14 @@ export class FriendsService {
       }
     }))
   }
-
+  getFriendRequestsSend(page: number) {
+    this.$friendRequestsSend.next(this.http.get<CustomResponse>("http://localhost:8081/player/requests/received",{
+      params:{
+        pageNumber:page,
+        pageSize:this.maxFriends
+      }
+    }))
+  }
 
   filterForPage(currentPage: number) {
 
@@ -78,5 +86,10 @@ export class FriendsService {
   declineFriend(username:string){
     return this.http.put<CustomResponse>("http://localhost:8081/player/request/decline",{username:username})
 
+  }
+
+
+  cancelFriendRequest(username: string) {
+    return this.http.post<CustomResponse>("http://localhost:8081/player/request/unsend",{"username":username})
   }
 }

@@ -12,6 +12,8 @@ import {GameService} from "../../../services/game.service";
 import {GameRequestResponse} from "../../model/game-request-response";
 import {PagedGameRequestResponse} from "../../model/paged-game-request-response";
 import {UploadSheetComponent} from "../../upload-sheet/upload-sheet.component";
+import {error} from "@angular/compiler-cli/src/transformers/util";
+import * as alertifyjs from "alertifyjs";
 
 @Component({
   selector: 'app-game-request',
@@ -21,11 +23,16 @@ import {UploadSheetComponent} from "../../upload-sheet/upload-sheet.component";
 export class GameRequestComponent implements OnInit{
   maxGames=10;
   $games:Observable<AppState<GameRequestResponse[]>> = new Observable<AppState<GameRequestResponse[]>>()
+  $gamesRequestsSend:Observable<AppState<GameRequestResponse[]>> = new Observable<AppState<GameRequestResponse[]>>()
   currentPage=0
   totalElements=0
+  currentPageRequestsSend=0
+  totalElementsRequestsSend=0
   constructor(private gameService:GameService,private modalService:ModalService) {
     this.handleGames();
+    this.handleGamesRequestSend();
     this.gameService.getGameRequests(this.currentPage)
+    this.gameService.getGameRequestsSend(this.currentPage)
   }
   ngOnInit(): void {
   }
@@ -40,11 +47,10 @@ export class GameRequestComponent implements OnInit{
       this.$games = data.pipe(
 
         map((element: CustomResponse) => {
-          this.totalElements=element?.data?.game_requests.totalElements
-          this.gameService.emitTotalGameRequests(this.totalElements)
+          this.totalElements=element?.data?.received_game_requests.totalElements
           return {
             dataState: DataState.SUCCESS,
-            appData: element?.data?.game_requests.gameRequests
+            appData: element?.data?.received_game_requests.gameRequests
           }
         }),
       startWith({dataState: DataState.LOADING}),
@@ -55,7 +61,24 @@ export class GameRequestComponent implements OnInit{
     })
   }
 
+  private handleGamesRequestSend() {
+    this.gameService.$gameRequests.subscribe(data => {
+      this.$gamesRequestsSend = data.pipe(
 
+        map((element: CustomResponse) => {
+          this.totalElementsRequestsSend=element?.data?.sent_game_requests.totalElements
+          return {
+            dataState: DataState.SUCCESS,
+            appData: element?.data?.sent_game_requests.gameRequests
+          }
+        }),
+        startWith({dataState: DataState.LOADING}),
+        catchError(err => {
+          return of({dataState: DataState.ERROR, error: err})
+        })
+      )
+    })
+  }
 
   openFindFriendsModal() {
     this.modalService.toggleModal(FindFriendsModalComponent.findFriendsModalId)
@@ -71,4 +94,15 @@ export class GameRequestComponent implements OnInit{
   }
 
   protected readonly DataState = DataState;
+
+  removeGameRequest(gameId: number, username: string) {
+    this.gameService.deleteGameRequest(gameId,username).subscribe(data=>{
+      alertifyjs.success("Successfully deleted game request")
+    },error=>{
+      alertifyjs.error("Could not delete game request.Please try again later.")
+
+    })
+  }
+
+
 }

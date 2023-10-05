@@ -40,6 +40,17 @@ export class CalculateGameComponent implements OnInit{
     this.gameId=gameId
   }
 
+   isAnyFieldInvalid(): boolean {
+    for (const row of this.sheetData) {
+      for (const cell of row) {
+        if (!cell.valid) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   get numberArray(): number[] {
     return Array.from({ length: this.sheetData[0].length  }, (_, index) => index);
   }
@@ -93,7 +104,6 @@ export class CalculateGameComponent implements OnInit{
   }
 
    saveGame() {
-    console.log(this.currentScore)
     if(this.currentScore===undefined || this.currentScore.result===null || this.currentScore.result===0) {
       alertifyjs.warning('Please calculate final result of the game to proceed')
       return
@@ -123,7 +133,7 @@ export class CalculateGameComponent implements OnInit{
 
 
     }
-    else this.modalService.toggleModal(CreateGameModalComponent.createGameModalId)
+    // else this.modalService.toggleModal(CreateGameModalComponent.createGameModalId)
 
   }
 

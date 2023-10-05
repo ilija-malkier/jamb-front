@@ -1,0 +1,11 @@
+<div class="w-100">
+
+  <p>{{gameset?.description}}</p>
+  <p>{{gameset?.gameSetName}}</p>
+
+  <div *ngFor="let game of gameset.games">
+    <p>{{game.gameId}}</p>
+    <button class="btn btn-primary" (click)="removeFromGameset(game.gameId)">Remove</button>
+  </div>
+
+</div>

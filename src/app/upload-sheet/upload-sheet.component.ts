@@ -72,7 +72,6 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
     formData.append('file', this.sheetToUpload);
     this.httpClient.post("http://localhost:8081/sheet/upload",formData).subscribe(
       next=>{
-        console.log(next)
         const navigationExtras: NavigationExtras = {
           state: {
             table: next,
@@ -154,7 +153,7 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
   };
 
   closeModal(form:NgForm) {
-    this.modalService.toggleModal(UploadSheetComponent.uploadSheetModalId);
+    // this.modalService.toggleModal(UploadSheetComponent.uploadSheetModalId);
     this.restartVariables(form)
   }
 
@@ -174,6 +173,7 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
   }
 
   deleteSelectedImage(form:NgForm) {
+    if(this.isLoading || this.isLoadingImage) return
     this.restartVariables(form)
   }
 
