@@ -1,7 +1,7 @@
 <div class="d-flex  container pt-2">
   <app-filter-games  (filterRequestEmmiter)="filterSubmit($event)" class="col-4 "></app-filter-games>
   <div class="w-100 p-4">
-    <app-game-list-pagination  ></app-game-list-pagination>
+    <app-game-list-pagination [totalPages]="totalPages"  ></app-game-list-pagination>
 
     <div class="d-flex  justify-content-end  w-100">
 

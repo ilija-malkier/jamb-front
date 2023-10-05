@@ -15,32 +15,26 @@ export class GameListPaginationComponent implements OnInit{
 
   @Input() totalPages:number=0
    itemsPerPage:number=9;
-  currentPage:number =1;
+  currentPage:number =0;
   ngOnInit(): void {
-    // this.getPageNumber();
+
   }
 
   constructor(private gameService:GameService) {
   }
 
   get numberArray(): number[] {
-
+    console.log(this.totalPages)
     return Array.from({ length: this.totalPages  }, (_, index) => index);
   }
-  // public getPageNumber(){
-  //
-  //   this.gameService.getPages().subscribe((total)=>{
-  //     let totalItems=total.data.gameCount as number;
-  //     this.totalPages=this.customRound(totalItems/this.itemsPerPage);
-  //   });
-  // }
+
 
 
   canGoBack() {
-    return 0 != this.currentPage - 1
+    return 0 <= this.currentPage - 1
   }
   canGoForward(){
-    return this.totalPages>=this.currentPage+1
+    return this.totalPages>this.currentPage+1
   }
 
 
@@ -66,10 +60,6 @@ export class GameListPaginationComponent implements OnInit{
   private getNotesForCurrPage(){
     this.gameService.filterForPage(this.currentPage);
   }
-  private customRound(number: number): number {
-    const decimalPart = number - Math.floor(number);
-    const roundedDecimal = Math.ceil(decimalPart);
-    return Math.floor(number) + roundedDecimal;
-  }
+
 
 }
