@@ -14,12 +14,22 @@ import {ActivatedRoute} from "@angular/router";
 export class RestartPasswordComponent {
 
   isLoading=false
-  constructor(private userService:UserService,private activeRoute:ActivatedRoute) {
+  showErrorMessage=false
+  constructor(private userService:UserService) {
 
   }
 
   sendRequestForPasswordReset(form: NgForm){
     this.isLoading=true;
+    this.showErrorMessage=false
+    let request=form.value as RequestResetPasswordRequest
+    console.log(form.invalid && form.submitted)
+    if(form.invalid && form.submitted){
+      this.isLoading=false;
+      this.showErrorMessage=true
+
+      return
+    }
     this.userService.sendRequestForResetPassword(form.value as RequestResetPasswordRequest).subscribe(data=>{
       alertifyjs.success('Request for password reset is send.')
     },error => {
@@ -30,6 +40,8 @@ export class RestartPasswordComponent {
       this.isLoading=false
     })
   }
+
+
 
   protected readonly DataState = DataState;
 }
