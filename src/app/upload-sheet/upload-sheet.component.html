@@ -11,7 +11,7 @@
 
 
           <div (click)="openFile(fileInput)"  class="file-input d-flex flex-column justify-content-center align-items-center" [ngClass]="{'shrink':isFileSelected}">
-            <i class="bi bi-box-arrow-in-down " style="font-size: 50px;color: var(--secondary-color)"></i>
+            <i class="bi bi-box-arrow-in-down " style="font-size: 50px;color: var(--black)"></i>
             <input ngModel name="image_sheet"  id="upload_image_background" #fileInput  (change)="change($event)"  class="position-absolute z-1  bg-info invisible" type="file" multiple accept="image/jpeg, image/png" />
 
           </div>
