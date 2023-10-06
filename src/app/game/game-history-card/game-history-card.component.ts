@@ -23,7 +23,7 @@ export class GameHistoryCard {
   constructor(private router:Router,private modalService:ModalService) {}
 
   navigateToGameDetails() {
-    // this.modal.openModal()
+    this.modal.openModal()
     this.router.navigate(['/game',this.game.gameId])
   }
 }

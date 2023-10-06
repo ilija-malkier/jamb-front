@@ -80,7 +80,7 @@
     <h4>Friends Request Send</h4>
   </div>
   <ng-container *ngIf="$friendRequestsSend | async as friendRequestsSend">
-    <div><button *ngIf="friendRequestsSend.appData.length>0" class="btn" (click)="deleteAllFriendRequestSend()">Delete All</button></div>
+    <div><button *ngIf="friendRequestsSend.appData?.length>0" class="btn" (click)="deleteAllFriendRequestSend()">Delete All</button></div>
 
     <table class="table table-striped">
       <thead>
@@ -108,7 +108,7 @@
       </tbody>
     </table>
     <div class="w-100  d-flex justify-content-end">
-      <app-friends-requests-list-pagination [totalPages]="this.customRound(this.totalElementsFriendsRequests/getMaxFriends())"></app-friends-requests-list-pagination>
+      <app-friends-requests-list-pagination [totalPages]="this.customRound(this.totalElementsFriendsRequestsSend/getMaxFriends())"></app-friends-requests-list-pagination>
     </div>
 
   </ng-container>

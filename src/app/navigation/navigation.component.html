@@ -44,12 +44,9 @@
         <li class="nav-item">
           <a class="nav-link mx-2"  routerLinkActive="active"   *ngIf="auth.$isLogin |async " routerLink="/game">Game</a>
         </li>
-
-
         <li class="nav-item">
-          <a class="nav-link mx-2"  routerLinkActive="active"  *ngIf="!(auth.$isLogin |async)"  routerLink="/login">Login</a>
+          <a class="nav-link mx-2"  routerLinkActive="active"  *ngIf="!(auth.$isLogin |async)"   routerLink="/login">Login</a>
         </li>
-
         <li class="nav-item">
           <a class="nav-link "  routerLinkActive="active"  *ngIf="!(auth.$isLogin |async)"  routerLink="/register">Register</a>
         </li>
@@ -65,7 +62,7 @@
             <li><a class="dropdown-item" routerLink="/account/game" >Requests</a></li>
             <li><a class="dropdown-item" routerLink="/account/gamesets" >Gameset</a></li>
             <li><a class="dropdown-item" routerLink="/account/profile/ilija" >Account</a></li>
-            <li><a class="dropdown-item" (click)="auth.logout()" routerLink="/login"   >Logout</a></li>
+            <li><a class="dropdown-item" (click)="auth.logout()" routerLink="/login">Logout</a></li>
           </ul>
         </li>
       </ul>

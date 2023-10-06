@@ -20,7 +20,6 @@ export class RegistrationModalComponent implements OnDestroy{
     this.modalRef = this.modalServicebs.show(this.template);
   }
   ngOnDestroy(): void {
-    this.modalRef.hide()
   }
 
   closeModal() {

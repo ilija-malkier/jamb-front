@@ -50,7 +50,7 @@
     </div>
 
     <ng-container *ngIf="($gamesRequestsSend | async) as gameRequestsSend" class="w-100 ">
-      <div><button *ngIf="gameRequestsSend.appData.length>0" class="btn" (click)="deleteAllGameRequestSend()">Delete All</button></div>
+      <div><button *ngIf="gameRequestsSend.appData?.length>0" class="btn" (click)="deleteAllGameRequestSend()">Delete All</button></div>
 
       <table class="table table-striped ">
       <thead class="">

@@ -1,22 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {NavigationEnd, Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
-import {GameService} from "../../services/game.service";
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css']
 })
-export class NavigationComponent implements OnInit{
+export class NavigationComponent implements OnInit {
 
-  activeRoute:string="login";
 
-  totalGameRequests=0;
-
-  constructor(private router:Router,public auth:AuthService) {
+  constructor(public auth: AuthService) {
   }
-
 
 
   ngOnInit(): void {
@@ -30,4 +24,6 @@ export class NavigationComponent implements OnInit{
   }
 
   protected readonly localStorage = localStorage;
+
+
 }

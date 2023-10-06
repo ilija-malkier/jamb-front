@@ -4,6 +4,7 @@ import {UploadSheetComponent} from "../upload-sheet/upload-sheet.component";
 import {FilterRequest} from "../model/filter-request";
 import {SortDirection} from "../model/sort-direction";
 import {GameListComponent} from "../game/game-list/game-list.component";
+import {LoadingModalComponent} from "../modals/loading-modal/loading-modal.component";
 
 @Component({
   selector: 'app-home',
@@ -15,6 +16,7 @@ export class HomeComponent implements OnInit{
 
   protected sortField="date"
   protected sortDirection:SortDirection=SortDirection.desc
+  @ViewChild("modal") modal:UploadSheetComponent
 
   @ViewChild("gameList",{static:false}) gameList:GameListComponent
 
@@ -39,7 +41,7 @@ export class HomeComponent implements OnInit{
   }
 
   filterGames(){
-    this.gameList.filter(this.filterRequest,this.sortField,this.sortDirection)
+    this.gameList?.filter(this.filterRequest,this.sortField,this.sortDirection)
   }
 
   setSort(sort: string, sortDirection: SortDirection) {
@@ -51,5 +53,7 @@ export class HomeComponent implements OnInit{
   protected readonly SortDirection = SortDirection;
 
 
-
+  openUploadSheet() {
+    this.modal.openModal()
+  }
 }

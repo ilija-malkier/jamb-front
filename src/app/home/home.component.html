@@ -1,7 +1,7 @@
 
 <div class="py-4  mt-5 w-100 container flex-column d-flex justify-content-center align-items-center">
   <div class="w-100">
-    <app-button-icon  icon="bi bi-box-arrow-in-down" data-bs-toggle="modal" data-bs-target="#uploadSheetModal"   text="Upload Sheet">
+    <app-button-icon (click)="openUploadSheet()" icon="bi bi-box-arrow-in-down"  text="Upload Sheet">
     </app-button-icon>
   </div>
 
@@ -15,5 +15,5 @@
 
 
 
-  <app-upload-sheet></app-upload-sheet>
+  <app-upload-sheet #modal></app-upload-sheet>
 </div>

@@ -24,7 +24,6 @@ export class GameListPaginationComponent implements OnInit{
   }
 
   get numberArray(): number[] {
-    console.log(this.totalPages)
     return Array.from({ length: this.totalPages  }, (_, index) => index);
   }
 

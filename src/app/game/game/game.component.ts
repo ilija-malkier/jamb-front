@@ -3,7 +3,6 @@ import {FilterRequest} from "../../model/filter-request";
 import {GameService} from "../../../services/game.service";
 import {GameListComponent} from "../game-list/game-list.component";
 import {SortDirection} from "../../model/sort-direction";
-
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',

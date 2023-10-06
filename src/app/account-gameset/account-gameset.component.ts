@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {DataState} from "../model/data-state";
 import {catchError, map, Observable, of, startWith} from "rxjs";
 import {AppState} from "../model/app-state";
@@ -8,6 +8,7 @@ import * as alertifyjs from "alertifyjs";
 import {Router} from "@angular/router";
 import {GameSetDetailsResponse} from "../model/game-set-details-response";
 import {GameSetInfo} from "../model/game-set-info";
+import {LoadingModalComponent} from "../modals/loading-modal/loading-modal.component";
 
   @Component({
     selector: 'app-account-gameset',
@@ -18,6 +19,7 @@ import {GameSetInfo} from "../model/game-set-info";
 
     gamesets$:Observable<AppState<GameSetInfo[]>> =new Observable<AppState<GameSetInfo[]>>()
     private maxGamesets:number=10;
+    @ViewChild("modal") modal:LoadingModalComponent
 
     constructor(private gamesetService:GamesetService,private router:Router) {
     }
@@ -56,6 +58,7 @@ import {GameSetInfo} from "../model/game-set-info";
     }
 
     viewDetails(id:number) {
+      this.modal.openModal()
       this.router.navigate(['/gameset',id])
     }
 
