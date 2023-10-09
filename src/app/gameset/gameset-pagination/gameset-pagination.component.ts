@@ -1,26 +1,23 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {GameService} from "../../../services/game.service";
-import {catchError, map, Observable, of, startWith, tap} from "rxjs";
-import {AppState} from "../../model/app-state";
-import {DataState} from "../../model/data-state";
-import {CustomResponse} from "../../model/custom-response";
+import {GamesetService} from "../../../services/gameset.service";
 
 @Component({
-  selector: 'app-game-list-pagination',
-  templateUrl: './game-list-pagination.component.html',
-  styleUrls: ['./game-list-pagination.component.css']
+  selector: 'app-gameset-pagination',
+  templateUrl: './gameset-pagination.component.html',
+  styleUrls: ['./gameset-pagination.component.css']
 })
-export class GameListPaginationComponent implements OnInit{
+export class GamesetPaginationComponent {
 
 
   @Input() totalPages:number=0
-   itemsPerPage:number=10;
+  itemsPerPage:number=10;
   currentPage:number =0;
   ngOnInit(): void {
 
   }
 
-  constructor(private gameService:GameService) {
+  constructor(private gamesetService:GamesetService) {
   }
 
   get numberArray(): number[] {
@@ -57,8 +54,7 @@ export class GameListPaginationComponent implements OnInit{
   }
 
   private getNotesForCurrPage(){
-    this.gameService.filterForPage(this.currentPage);
+    this.gamesetService.filterForPage(this.currentPage);
   }
-
 
 }

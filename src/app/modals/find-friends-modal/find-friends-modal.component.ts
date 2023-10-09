@@ -36,7 +36,8 @@ export class FindFriendsModalComponent implements OnInit,OnDestroy{
     }
     this.isLoadgin=true
     this.friendsService.findFriends(value).subscribe(data=>{
-      this.foundFriends= <Friend[]>(<FindFriends> data.data).matching_usernames
+      console.log(data)
+      this.foundFriends= <Friend[]> data.data.matching_usernames
       this.isLoadgin=false
     })
   }

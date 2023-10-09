@@ -1,0 +1,18 @@
+.icon-hover:hover{
+  font-size: 40px;
+
+}
+.icon-hover{
+  font-size: 30px;
+  transition: .2s ease-in-out;
+}
+.icon-holder{
+  height: 50px;
+}
+.profile-btn{
+  background: var(--primary-color);
+  color: var(--on-primary-color);
+}
+.invalid-input {
+  border: solid 1px var(--red-color) !important;
+}

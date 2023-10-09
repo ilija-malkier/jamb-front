@@ -3,7 +3,7 @@
 <div class="w-100">
 <div *ngIf="(gamesets$ | async) as gamesets">
 
-
+  <button class="btn " (click)="openCreateGamesetModal()" style="background: var(--primary-color);color:var(--on-primary-color)">Create</button>
   <table class="table table-striped">
     <thead>
     <tr>
@@ -18,21 +18,21 @@
 
     </div>
     <tbody>
-    <tr *ngFor="let gameset of gamesets?.appData | slice:0:getMaxGamesets()">
+    <tr *ngFor="let gameset of gamesets?.appData?.gameSetResponse | slice:0:getMaxGamesets()">
       <td class="text-center">{{gameset.gameSetName }}</td>
       <td class="text-center">
         <div>
-          <button (click)="deleteGameset(gameset.gameSetId,gameset.gameSetName)" class="btn text-white"
-                  style="background: var(--primary-color)">Delete
-          </button>
-          <button (click)="viewDetails(gameset.gameSetId)" class="btn">View</button>
+          <i class="bi bi-trash-fill btn"  style="font-size: 20px;color: var(--text-dark) !important" (click)="deleteGameset(gameset.gameSetId,gameset.gameSetName)" ></i>
+
+          <i class="bi bi-eye-fill btn" style="font-size: 20px;color: var(--text-dark) !important" (click)="viewDetails(gameset.gameSetId)"></i>
         </div>
       </td>
     </tr>
     </tbody>
   </table>
+  <app-gameset-pagination [totalPages]="customRound(gamesets?.appData?.totalElements/this.maxGamesets)" ></app-gameset-pagination>
 </div>
-  <app-loading-modal></app-loading-modal>
 </div>
 </div>
 <app-loading-modal #modal ></app-loading-modal>
+<app-create-gameset-modal #createGamesetModal></app-create-gameset-modal>

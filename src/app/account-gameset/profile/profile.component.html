@@ -30,8 +30,8 @@
               <div class="d-flex flex-column justify-content-start align-items-center w-100">
                 <div *ngFor="let gameset of profile.gameSets | slice:0:5;let i=index" class="d-flex mb-2   justify-content-start w-100 align-items-center">
                   <p>{{i+1}}.</p>
-                  <p style="font-size: x-large;font-weight: 500" class="card-title col-2 text-center align-self-center p-0 ">{{gameset.gameSetName}}</p>
-                  <p class="card-text col-10">{{gameset.description | slice:0:10}} </p>
+                  <p style="font-size: x-large;font-weight: 500" class="card-title text-start  col-4  align-self-center p-0 ">{{gameset.gameSetName}}</p>
+                  <p class="card-text col-8">{{gameset.description | slice:0:10}} {{gameset.description.length>10? '...' : ''}} </p>
                 </div>
               </div>
             </div>

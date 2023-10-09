@@ -1,0 +1,10 @@
+<div class="w-100  d-flex justify-content-center align-items-center ">
+
+  <i  [ngClass]="{'not-active':!canGoBack()}" style="cursor: pointer" class="bi bi-caret-left-fill" (click)="backPage()"></i>
+  <div class="mx-4 ">
+    <span *ngFor="let i of numberArray" class="mx-1 p-1 rounded-2" style="cursor: pointer;font-size: medium" [ngStyle]="{'color': (i===currentPage)? 'white': 'gray','background':(i===currentPage)? 'var(--black)':'transparent' }" (click)="toPage(i)">{{i+1}}</span>
+  </div>
+
+  <i style="cursor: pointer" class="bi bi-caret-right-fill" [ngClass]="{'not-active':!canGoForward()}" (click)="nextPage()"></i>
+
+</div>

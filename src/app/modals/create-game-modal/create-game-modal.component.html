@@ -1,9 +1,7 @@
-<div class="modal fade" id="createGameModal" tabindex="-1" aria-labelledby="createGameModal" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
+<ng-template #template>
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Save Game</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div *ngIf="!createNewGamesetContent ; else gameset">
@@ -56,7 +54,7 @@
             </div>
 
             <div class="d-flex mt-5 justify-content-end w-100 align-items-center">
-              <button class="btn mx-2 border-0"  [disabled]="isLoadingSaveGame "  data-bs-dismiss="modal" type="button">Cancel
+              <button class="btn mx-2 border-0"  [disabled]="isLoadingSaveGame "  (click)="closeModal()" type="button">Cancel
               </button>
 
               <button type="submit" class="btn text-white" style="background: var(--primary-color)">
@@ -106,9 +104,7 @@
 
       </div>
 
-    </div>
-  </div>
-</div>
+</ng-template>
 
 
 

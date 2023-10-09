@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ModalService} from "../../../services/modal.service";
 import {PlayerFriend} from "../../model/player-friend";
 import {NgForm} from "@angular/forms";
@@ -9,6 +9,7 @@ import * as alertifyjs from "alertifyjs";
 import {GameSetInfo} from "../../model/game-set-info";
 import {Router} from "@angular/router";
 import {DataState} from "../../model/data-state";
+import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 
 @Component({
   selector: 'app-create-game-modal',
@@ -33,11 +34,21 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
   isLoadingSaveGame:boolean=false
   isLoadingJoinGame:boolean=false
   isGamesetCreating:boolean=false
-  constructor(private modalService:ModalService,private gameService:GameService,private router:Router) {}
+
+  modalRef:BsModalRef
+  @ViewChild("template") template:TemplateRef<any>
+  constructor(private modalService:ModalService,private gameService:GameService,private router:Router,private modalServicebs:BsModalService) {}
   ngOnDestroy(): void {
     this.modalService.unregister(this.createGameModalId);
   }
+  openModal() {
+    this.modalRef = this.modalServicebs.show(this.template);
+  }
 
+
+  closeModal() {
+    this.modalRef.hide()
+  }
   isModalOpen(){
   }
   ngOnInit(): void {
@@ -77,7 +88,7 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
 
   getGameSets(){
   this.gameService.getGameSets().subscribe(data=>{
-    this.gameSets=data.data.gameSetResponseList
+    this.gameSets=data.data.gameSetResponseList?.gameSetResponse
   });
 
 }

@@ -1,8 +1,69 @@
 <div class="container mt-5">
-  <div class="w-100">
 
-    <p>{{gameset?.description}}</p>
-    <p>{{gameset?.gameSetName}}</p>
+
+  <div class="w-100">
+    <div *ngIf="isEditMode"  class="card mb-3" >
+      <div class="card-body  p-0">
+        <div class="card-body ">
+          <div class="row mb-3">
+            <div class="col-sm-3  d-flex justify-content-start align-items-center">
+              <h6 class="mb-0">Name</h6>
+            </div>
+            <div class="col-sm-9   text-secondary">
+              <input required [ngClass]="{'invalid-input':this.updateError}" [(ngModel)]="name" type="text" name="name" class="form-control">
+            </div>
+          </div>
+          <hr>
+          <div class="row mb-3">
+            <div class="col-sm-3 d-flex justify-content-start align-items-center">
+              <h6 class="mb-0">Description</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              <input required  [ngClass]="{'invalid-input':this.updateError}" [(ngModel)]="description" type="text" name="description" class="form-control">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="row">
+              <div class="col-sm-12">
+                <a class="btn me-2 " (click)="backFromEdit()">Back</a>
+
+                <a class="btn profile-btn" (click)="saveGamesetChanges()">Save</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div  *ngIf="!isEditMode" class="card mb-3">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Name</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            {{gameset.gameSetName}}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Description</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            {{gameset.description}}
+          </div>
+        </div>
+        <hr>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <a class="btn profile-btn " (click)="toggleEdit()">Edit</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div *ngFor="let game of gameset.games">
       <p>{{game.gameId}}</p>

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Cell} from "../../model/cell";
 import {SheetService} from "../../../services/sheet.service";
@@ -27,6 +27,7 @@ export class CalculateGameComponent implements OnInit{
   sumOfresultsLastRows=0
   imageBase64=''
   isLoadingJoinGame:boolean=false
+  @ViewChild("modal") createGameModal:CreateGameModalComponent
 
   constructor(private sanitizer: DomSanitizer,private router:Router,private sheetService:SheetService,private gameService:GameService,private modalService:ModalService) {
 
@@ -108,6 +109,7 @@ export class CalculateGameComponent implements OnInit{
       alertifyjs.warning('Please calculate final result of the game to proceed')
       return
     }
+    this.createGameModal.openModal()
     if(this.joinGame) {
       this.isLoadingJoinGame=true;
       let reader = new FileReader();
@@ -119,6 +121,7 @@ export class CalculateGameComponent implements OnInit{
           this.gameService.joinGame(this.gameId,this.imageBase64,this.currentScore.result).subscribe(data=>{
             alertifyjs.success("Successfully joined game")
             this.isLoadingJoinGame=false
+            this.createGameModal.closeModal()
             this.router.navigate(['account/game'])
           },error => alertifyjs.error('Error occured.Please try again later'))
 

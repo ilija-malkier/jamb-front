@@ -57,12 +57,14 @@ import {ProfileResolver} from "./route-guards/profile.resolver";
 import { WarningBanerComponent } from './reusables/warning-baner/warning-baner.component';
 import { ConfirmationModalComponent } from './modals/confirmation-modal/confirmation-modal.component';
 import {ModalModule} from "ngx-bootstrap/modal";
+import { CreateGamesetModalComponent } from './modals/create-gameset-modal/create-gameset-modal.component';
+import { GamesetPaginationComponent } from './gameset/gameset-pagination/gameset-pagination.component';
 
 
 const routes:Routes=[
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
-  {path:'home',component:HomeComponent,canActivate:[navigationRouteGuard]},
+  {path:'home',component:HomeComponent},
   {path:'game',component:GameComponent,canActivate:[navigationRouteGuard]},
   {path:'reset-password',component:RestartPasswordComponent},
   {path: `gameset/:id`,component:GameSetDetailsComponent,resolve:{data:GameSetDetailsResolver},canActivate:[navigationRouteGuard]},
@@ -131,6 +133,8 @@ const routes:Routes=[
     ProfileComponent,
     WarningBanerComponent,
     ConfirmationModalComponent,
+    CreateGamesetModalComponent,
+    GamesetPaginationComponent,
 
   ],
     imports: [

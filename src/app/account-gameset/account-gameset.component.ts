@@ -9,6 +9,8 @@ import {Router} from "@angular/router";
 import {GameSetDetailsResponse} from "../model/game-set-details-response";
 import {GameSetInfo} from "../model/game-set-info";
 import {LoadingModalComponent} from "../modals/loading-modal/loading-modal.component";
+import {CreateGamesetModalComponent} from "../modals/create-gameset-modal/create-gameset-modal.component";
+import {GamesetGameResponse} from "../model/gameset-game-response";
 
   @Component({
     selector: 'app-account-gameset',
@@ -17,9 +19,10 @@ import {LoadingModalComponent} from "../modals/loading-modal/loading-modal.compo
   })
   export class AccountGamesetComponent implements OnInit{
 
-    gamesets$:Observable<AppState<GameSetInfo[]>> =new Observable<AppState<GameSetInfo[]>>()
-    private maxGamesets:number=10;
+    gamesets$:Observable<AppState<GamesetGameResponse>> =new Observable<AppState<GamesetGameResponse>>()
+     maxGamesets:number=10;
     @ViewChild("modal") modal:LoadingModalComponent
+    @ViewChild("createGamesetModal") createGamesetModalComponent:CreateGamesetModalComponent
 
     constructor(private gamesetService:GamesetService,private router:Router) {
     }
@@ -64,5 +67,15 @@ import {LoadingModalComponent} from "../modals/loading-modal/loading-modal.compo
 
     getMaxGamesets() {
       return this.maxGamesets;
+    }
+
+    openCreateGamesetModal() {
+      this.createGamesetModalComponent.openModal()
+    }
+
+     customRound(number: number): number {
+      const decimalPart = number - Math.floor(number);
+      const roundedDecimal = Math.ceil(decimalPart);
+      return Math.floor(number) + roundedDecimal;
     }
   }

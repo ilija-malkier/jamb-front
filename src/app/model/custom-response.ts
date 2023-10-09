@@ -12,6 +12,8 @@ import {SearchedFriends} from "./searched-friends";
 import {ImageResponse} from "./image-response";
 import {GameSetDetailsResponse} from "./game-set-details-response";
 import {PlayerResponse} from "./player-response";
+import {GamesetGameResponse} from "./gameset-game-response";
+import {GameSetResponse} from "./game-set-response";
 
 export interface CustomResponse {
   timeStamp:Date;
@@ -32,12 +34,13 @@ export interface CustomResponse {
     results?:ResultResponse,
     received_game_requests?:PagedGameRequestResponse
     sent_game_requests?:PagedGameRequestResponse
-    gameSetResponseList?:GameSetInfo[],
+    gameSetResponseList?:GamesetGameResponse,
     game?:GameDetailsResponse,
     player?:PlayerResponse,
     gameSet?:GameSetDetailsResponse,
     matching_usernames?:SearchedFriends[],
-    players_image?:ImageResponse
+    players_image?:ImageResponse,
+    GameGamesetResponseList:GamesetGameResponse
 
 
 

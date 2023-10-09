@@ -39,4 +39,12 @@ export class GamesetService implements OnInit{
   getGameSets() {
      this.gameSet$.next( this.http.get<CustomResponse>("http://localhost:8081/gameSets/info"))
   }
+
+  filterForPage(currentPage: number) {
+
+  }
+
+  updateGameset(name: string, description: string,gamesetid:number) {
+    return this.http.patch<CustomResponse>(" http://localhost:8081/gameSets/"+gamesetid,{'name':name,'description':description})
+  }
 }

@@ -152,4 +152,8 @@ export class GameService {
   deleteAllSendGameRequests() {
     return this.httpClient.delete<CustomResponse>("http://localhost:8081/games/requests/delete")
   }
+
+  getGameSetsForGame(gameId:number) {
+    return this.httpClient.get<CustomResponse>("http://localhost:8081/gameSets/game/"+gameId)
+  }
 }

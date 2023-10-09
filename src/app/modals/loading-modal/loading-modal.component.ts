@@ -31,6 +31,6 @@ export class LoadingModalComponent implements OnDestroy{
   }
 
   closeModal() {
-    this.modalRef.hide()
+    this.modalRef?.hide()
   }
 }

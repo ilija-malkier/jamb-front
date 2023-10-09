@@ -5,6 +5,8 @@ import {FilterRequest} from "../model/filter-request";
 import {SortDirection} from "../model/sort-direction";
 import {GameListComponent} from "../game/game-list/game-list.component";
 import {LoadingModalComponent} from "../modals/loading-modal/loading-modal.component";
+import {AuthService} from "../../services/auth.service";
+import {Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -22,7 +24,7 @@ export class HomeComponent implements OnInit{
 
 
   private filterRequest:FilterRequest={date_from:null,date_to:null,game_status:null,player_names:null,winner_names:null}
-  constructor(private modalService:ModalService) {
+  constructor(private modalService:ModalService,private  authService:AuthService,private router:Router) {
   }
 
   // openModal() {
@@ -55,5 +57,14 @@ export class HomeComponent implements OnInit{
 
   openUploadSheet() {
     this.modal.openModal()
+  }
+
+  startNow() {
+    if(this.authService.$isLogin.value){
+      this.router.navigate(['login'])
+    }else{
+      this.router.navigate(['games'])
+
+    }
   }
 }

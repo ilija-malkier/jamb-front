@@ -9,6 +9,7 @@ import {error} from "@angular/compiler-cli/src/transformers/util";
 import * as alertifyjs from "alertifyjs";
 import {LoadingModalComponent} from "../../modals/loading-modal/loading-modal.component";
 import {ModalService} from "../../../services/modal.service";
+import {da} from "date-fns/locale";
 
 @Component({
   selector: 'app-game-details',
@@ -25,20 +26,25 @@ export class GameDetailsComponent implements OnInit{
   constructor(private activatedRoute:ActivatedRoute,private gameService:GameService,private gameSetService:GamesetService,private router:Router,private modalService:ModalService) {}
 
   getGameSets(){
-    this.gameService.getGameSets().subscribe(data=>{
-      this.gameSets=data.data.gameSetResponseList
+    this.gameService.getGameSetsForGame(this.game.gameId).subscribe(data=>{
+      console.log(data)
+
+      this.gameSets=data.data.GameGamesetResponseList?.gameSetResponse
     });
 
+  }
+
+  removeGameset(gameset){
   }
   setGameset(gameSetId: number) {
     this.selectedGamesetId=gameSetId
     this.selectedGamesetName=this.gameSets.filter(x=>x.gameSetId===gameSetId)[0].gameSetName
   }
   ngOnInit(): void {
-    this.getGameSets()
-    console.log("cao")
+
    let data= <CustomResponse>this.activatedRoute.snapshot.data['data']
     this.game=data.data.game
+    this.getGameSets()
   }
 
   protected readonly event = event;
@@ -51,7 +57,18 @@ export class GameDetailsComponent implements OnInit{
 
   addGameToGameset() {
 
-    this.gameSetService.addGameToGameset(this.game.gameId,this.selectedGamesetId)
+    this.gameSetService.addGameToGameset(this.game.gameId,this.selectedGamesetId).subscribe(data=>{
+      this.game.gameSets.push({gameSetName:this.selectedGamesetName,gameSetId:this.selectedGamesetId})
+      this.gameSets=this.gameSets.filter(gameset=>gameset.gameSetId!=this.selectedGamesetId)
+      this.restartGameSetVaribles()
+    },error=>{
+
+    })
+  }
+
+  private restartGameSetVaribles() {
+    this.selectedGamesetId=-1
+    this.selectedGamesetName='Select'
   }
 
   toggleEditMode() {
@@ -72,4 +89,6 @@ export class GameDetailsComponent implements OnInit{
 
     })
   }
+
+
 }
