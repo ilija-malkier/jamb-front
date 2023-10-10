@@ -3,6 +3,7 @@ import {GameStatus} from "../../../model/game-status";
 import {FilterRequest} from "../../../model/filter-request";
 import {ModalService} from "../../../../services/modal.service";
 import {NgForm} from "@angular/forms";
+import {ChipEmmit} from "../../../model/chip-emmit";
 
 @Component({
   selector: 'app-filter-games',
@@ -36,11 +37,12 @@ export class FilterGamesComponent {
     inputUsename.value=""
   }
 
-  removeFilterFriends(username:string){
-    this.filterFriends= this.filterFriends.filter(playerUsername=>playerUsername!==username);
+  removeFilterFriends(chipEmmit: ChipEmmit){
+    this.filterFriends= this.filterFriends.filter(playerUsername=>playerUsername!==chipEmmit.chipName);
   }
-  removeFilterWinners(username:string){
-    this.filterWiners= this.filterWiners.filter(playerUsername=>playerUsername!==username);
+
+  removeFilterWinners(chipEmmit: ChipEmmit){
+    this.filterWiners= this.filterWiners.filter(playerUsername=>playerUsername!==chipEmmit.chipName);
   }
 
 

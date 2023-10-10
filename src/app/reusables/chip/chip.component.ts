@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {ChipEmmit} from "../../model/chip-emmit";
 
 @Component({
   selector: 'app-chip',
@@ -8,8 +9,9 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 export class ChipComponent {
 
   @Input("chipName") chipName:string=""
-  @Output() removeChipEmmiter:EventEmitter<string> =new EventEmitter<string>()
+  @Output() removeChipEmmiter:EventEmitter<ChipEmmit> =new EventEmitter<ChipEmmit>()
+  @Input("chipId") chipId:number=-1
   removeChip() {
-    this.removeChipEmmiter.emit(this.chipName)
+    this.removeChipEmmiter.emit({chipName:this.chipName,chipId:this.chipId})
   }
 }

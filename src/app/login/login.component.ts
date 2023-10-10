@@ -28,7 +28,6 @@ export class LoginComponent{
 
   login(form: NgForm) {
     let loginRequest=form.value as UserLoginRequest;
-
     this.checkForErrors(form);
     if(!this.showErrorMessage){
 

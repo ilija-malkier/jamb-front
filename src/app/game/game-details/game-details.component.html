@@ -12,7 +12,7 @@
     <p>Game played: <b style="font-size: 1.5rem">{{game.date | date}}</b></p>
   </div>
   <div class="d-flex ">
-    <app-chip  class="me-2" (removeChipEmmiter)="removeGameset($event)"  *ngFor="let gameset of game.gameSets" [chipName]="gameset.gameSetName"></app-chip>
+    <app-chip  class="me-2" (removeChipEmmiter)="removeGameset($event)" [chipId]="gameset.gameSetId"  *ngFor="let gameset of game.gameSets" [chipName]="gameset.gameSetName"></app-chip>
   </div>
   <div>
 
@@ -49,7 +49,7 @@
         {{selectedGamesetName}}
       </button>
       <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
-        <li *ngFor="let gameset of gameSets"><a  (click)="setGameset(gameset.gameSetId)" class="dropdown-item" >{{gameset.gameSetName}}</a></li>
+        <li *ngFor="let gameset of gameSetsToAdd"><a (click)="setGameset(gameset.gameSetId)" class="dropdown-item" >{{gameset.gameSetName}}</a></li>
         <div class="d-flex w-100  align-items-center ">
         </div>
 

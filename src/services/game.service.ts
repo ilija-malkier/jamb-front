@@ -156,4 +156,8 @@ export class GameService {
   getGameSetsForGame(gameId:number) {
     return this.httpClient.get<CustomResponse>("http://localhost:8081/gameSets/game/"+gameId)
   }
+
+  removeGameFromGameset(gamesetId: number, gameId: number) {
+    return this.httpClient.delete<CustomResponse>("http://localhost:8081/games/"+gameId+"/sets/"+gamesetId)
+  }
 }

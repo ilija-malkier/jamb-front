@@ -10,6 +10,7 @@ import * as alertifyjs from "alertifyjs";
 import {LoadingModalComponent} from "../../modals/loading-modal/loading-modal.component";
 import {ModalService} from "../../../services/modal.service";
 import {da} from "date-fns/locale";
+import {ChipEmmit} from "../../model/chip-emmit";
 
 @Component({
   selector: 'app-game-details',
@@ -19,7 +20,7 @@ import {da} from "date-fns/locale";
 export class GameDetailsComponent implements OnInit{
 
   game:GameDetailsResponse=null
-  gameSets:GameSetInfo[]=[]
+  gameSetsToAdd:GameSetInfo[]=[]
   selectedGamesetId:number=-1
   selectedGamesetName:string='Select'
   isEditMode:boolean=false
@@ -29,16 +30,30 @@ export class GameDetailsComponent implements OnInit{
     this.gameService.getGameSetsForGame(this.game.gameId).subscribe(data=>{
       console.log(data)
 
-      this.gameSets=data.data.GameGamesetResponseList?.gameSetResponse
+      this.gameSetsToAdd=data.data.GameGamesetResponseList?.gameSetResponse
     });
 
   }
 
-  removeGameset(gameset){
+  removeGameset(gameset: ChipEmmit){
+
+    this.gameService.removeGameFromGameset(gameset.chipId,this.game.gameId).subscribe(data=>{
+      alertifyjs.success("Game deleted from gameset " +gameset)
+      this.game.gameSets = this.game.gameSets.filter(element=>{
+        if(element.gameSetId!=gameset.chipId){
+          this.gameSetsToAdd.push({gameSetName:element.gameSetName,gameSetId:element.gameSetId})
+          return false
+        }
+        return true
+      })
+
+    },error=>{
+      alertifyjs.error("Could not delete game from gameset "+gameset)
+    })
   }
   setGameset(gameSetId: number) {
     this.selectedGamesetId=gameSetId
-    this.selectedGamesetName=this.gameSets.filter(x=>x.gameSetId===gameSetId)[0].gameSetName
+    this.selectedGamesetName=this.gameSetsToAdd.filter(x=>x.gameSetId===gameSetId)[0].gameSetName
   }
   ngOnInit(): void {
 
@@ -59,7 +74,7 @@ export class GameDetailsComponent implements OnInit{
 
     this.gameSetService.addGameToGameset(this.game.gameId,this.selectedGamesetId).subscribe(data=>{
       this.game.gameSets.push({gameSetName:this.selectedGamesetName,gameSetId:this.selectedGamesetId})
-      this.gameSets=this.gameSets.filter(gameset=>gameset.gameSetId!=this.selectedGamesetId)
+      this.gameSetsToAdd=this.gameSetsToAdd.filter(gameset=>gameset.gameSetId!=this.selectedGamesetId)
       this.restartGameSetVaribles()
     },error=>{
 

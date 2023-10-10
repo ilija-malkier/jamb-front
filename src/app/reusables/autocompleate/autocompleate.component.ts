@@ -2,6 +2,7 @@ import {Component, EventEmitter, Output} from '@angular/core';
 import {da, fr} from "date-fns/locale";
 import {FriendsService} from "../../../services/friends.service";
 import {FormControl} from "@angular/forms";
+import {ChipEmmit} from "../../model/chip-emmit";
 
 @Component({
   selector: 'app-autocompleate',
@@ -26,8 +27,8 @@ export class AutocompleateComponent {
     this.isLoadingFriends=false
   }
 
-  removeFilterFriends(username:string){
-    this.filterFriends= this.filterFriends.filter(playerUsername=>playerUsername!==username);
+  removeFilterFriends(chipEmmit: ChipEmmit){
+    this.filterFriends= this.filterFriends.filter(playerUsername=>playerUsername!==chipEmmit.chipName);
     this.filterFriendsEventEmitter.emit(this.filterFriends)
   }
 
