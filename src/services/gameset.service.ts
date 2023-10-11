@@ -13,7 +13,7 @@ export class GamesetService implements OnInit{
   constructor(private  http:HttpClient) { }
 
   ngOnInit(): void {
-    this.gameSet$.next(this.http.get<CustomResponse>("http://localhost:8081/gameSets"))
+    // this.gameSet$.next(this.http.get<CustomResponse>("http://localhost:8081/gameSets"))
   }
 
   deleteGameset(id: number) {

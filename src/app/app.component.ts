@@ -14,9 +14,9 @@ export class AppComponent implements OnInit{
 
   constructor(private modalService:ModalService) {}
 
-  isModalOpen(){
-    return this.modalService.isAnyModalOpen()
-  }
+  // isModalOpen(){
+  //   return this.modalService.isAnyModalOpen()
+  // }
   ngOnInit(): void {
     let token = localStorage.getItem("access_token")
 

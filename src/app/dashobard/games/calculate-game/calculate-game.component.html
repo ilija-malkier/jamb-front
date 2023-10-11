@@ -1,0 +1,53 @@
+
+<div class="content mt-5 ">
+  <div *ngIf="isAnyFieldInvalid()" class="bg-danger my-3 w-100">
+    <app-warning-baner [show]="true" text="You have invalid data in your sheet."></app-warning-baner>
+  </div>
+  <div class="w-100 d-flex justify-content-between  mb-3">
+
+    <div class="">
+      <button class="btn btn-link text-decoration-none "  style="color: var(--primary-color)" (click)="calculateSheet()" [disabled]="isLoading || isCalculating || isLoadingJoinGame">Calculate</button>
+    </div>
+    <div class="d-flex">
+      <button class="btn mx-2 border-0" (click)="cancelGameCreation()"   [disabled]="isLoading || isCalculating || isLoadingJoinGame" type="button" >Cancel</button>
+      <app-button-icon [isLoading]="isLoadingJoinGame" text="Save"  data-bs-toggle="modal" data-bs-target="#createGameModal"  (click)="saveGame()" icon="bi bi-save"></app-button-icon>
+    </div>
+  </div>
+  <div class="d-flex w-100">
+    <table class="table table-bordered col-11">
+      <thead>
+      <tr>
+        <th class="text-center" *ngFor="let i of numberArray"  scope="col">{{i+1}}</th>
+        <th>Sum</th>
+      </tr>
+
+      </thead>
+      <tbody>
+
+      <tr *ngFor="let data of sheetData; let rowIndex = index">
+        <td  [ngClass]="{'invalid-cell':!cell.valid}" *ngFor="let cell of data; let columnIndex = index">
+          <input #input (focusout)="validateCell(rowIndex,columnIndex,data.length,input.value)"  [ngClass]="{'invalid-cell':!cell.valid}" class="form-control cell-input text-center" [value]="cell.value">
+        </td>
+
+        <td  *ngIf="rowIndex===6">{{sumOfresultsFirstSixRows}}
+        </td>
+        <td   *ngIf="rowIndex===9">{{sumOfresultsMaxMinRows}}
+        </td>
+        <td   *ngIf="rowIndex===sheetData.length-1">{{sumOfresultsLastRows}}
+        </td>
+
+
+
+      </tr>
+      </tbody>
+
+    </table>
+
+  </div>
+  <div class="w-100 d-flex justify-content-end">
+    <label class="fw-bold" *ngIf="currentScore && currentScore.result">{{currentScore.result}}</label>
+  </div>
+<app-create-game-modal [gameId]="this.gameId" [joinGame]="joinGame" [image]="image" [score]="currentScore?.result"></app-create-game-modal>
+
+</div>
+

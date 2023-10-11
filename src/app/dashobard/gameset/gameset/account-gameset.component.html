@@ -1,0 +1,38 @@
+<div class="content ">
+<p>Gamesets</p>
+<!--<div class="w-100">-->
+<!--<div *ngIf="(gamesets$ | async) as gamesets">-->
+
+<!--  <button class="btn " (click)="openCreateGamesetModal()" style="background: var(&#45;&#45;primary-color);color:var(&#45;&#45;on-primary-color)">Create</button>-->
+<!--  <table class="table table-striped">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--      <th class="text-center" scope="col">Name</th>-->
+
+<!--      <th class="text-center" scope="col">Action</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <div *ngIf="gamesets.dataState==DataState.LOADING">-->
+<!--      <span class="m-3 spinner-border spinner-border-sm" role="status" aria-hidden="true"-->
+<!--            style="width: 30px;height: 30px"></span>-->
+
+<!--    </div>-->
+<!--    <tbody>-->
+<!--    <tr *ngFor="let gameset of gamesets?.appData?.gameSetResponse | slice:0:getMaxGamesets()">-->
+<!--      <td class="text-center">{{gameset.gameSetName }}</td>-->
+<!--      <td class="text-center">-->
+<!--        <div>-->
+<!--          <i class="bi bi-trash-fill btn"  style="font-size: 20px;color: var(&#45;&#45;text-dark) !important" (click)="deleteGameset(gameset.gameSetId,gameset.gameSetName)" ></i>-->
+
+<!--          <i class="bi bi-eye-fill btn" style="font-size: 20px;color: var(&#45;&#45;text-dark) !important" (click)="viewDetails(gameset.gameSetId)"></i>-->
+<!--        </div>-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--  </table>-->
+<!--  <app-gameset-pagination [totalPages]="customRound(gamesets?.appData?.totalElements/this.maxGamesets)" ></app-gameset-pagination>-->
+<!--</div>-->
+<!--</div>-->
+</div>
+<!--<app-loading-modal #modal ></app-loading-modal>-->
+<!--<app-create-gameset-modal #createGamesetModal></app-create-gameset-modal>-->
