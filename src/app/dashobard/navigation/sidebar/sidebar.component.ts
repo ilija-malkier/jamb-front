@@ -15,7 +15,7 @@ export const ROUTES: RouteInfo[] = [
     class: ''
   },
   {
-    path: 'home1',
+    path: 'games',
     title: 'Games',
     rtlTitle: '',
     icon: 'icon-controller',
@@ -23,7 +23,7 @@ export const ROUTES: RouteInfo[] = [
   },
 
   {
-    path: "home2",
+    path: "gamesets",
     title: "Gamesets",
     rtlTitle: "خرائط",
     icon: "icon-pin",

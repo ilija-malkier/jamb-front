@@ -8,7 +8,9 @@
   border-radius: 6px;
   background: #2a2a42;
 }
-
+.invalid-input{
+  border: solid 1px var(--error-dark-color) !important;
+}
 header{
   font-size: 28px;
   font-weight: 600;

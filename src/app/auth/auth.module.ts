@@ -14,12 +14,9 @@ import {SignUpComponent} from './sign-up/sign-up.component';
 
 var routes: Routes = [
   {path: '', redirectTo: 'sign-in', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
-  {path: 'home1', component: HomeComponent},
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
   {path: "logout", redirectTo: "/login", pathMatch: "full"}
-
 ]
 
 @NgModule({
@@ -40,5 +37,6 @@ var routes: Routes = [
     RouterModule.forChild(routes),
 
   ],
+  exports:[RouterModule]
 })
 export class AuthModule { }

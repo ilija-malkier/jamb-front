@@ -13,13 +13,7 @@ import {ProfileComponent} from "./account/profile/profile.component";
 
 
 var routes: Routes = [
-
-
-
-
   {path: 'home', component: HomeComponent},
-  {path: 'home1', component: HomeComponent},
-  {path: 'home2', component: HomeComponent},
   {
     path: 'games',
     loadChildren: () => import('src/app/dashobard/games/game.module').then(m => m.GameModule)
@@ -33,7 +27,6 @@ var routes: Routes = [
   {
     path: 'gamesets',
     loadChildren: () => import('src/app/dashobard/gameset/gamesets.module').then(m => m.GamesetsModule)
-
   }
 ]
 

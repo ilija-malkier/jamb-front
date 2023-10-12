@@ -48,7 +48,7 @@ console.warn("app module loaded")
     //User defined modules
 
   ],
-  providers: [HttpClient],
+  providers: [],
   exports: [
 
   ],

@@ -18,32 +18,30 @@ const routes: Routes = [
   //   ]
   // },
   {
+    path: 'auth',
+    component:AuthComponent,
+    loadChildren: () => import('src/app/auth/auth.module').then(m => m.AuthModule)
+  },
+  {
     //kada sam ovde stavio u path nije htel oda radi
     path: 'dashboard',
     component: DashobardComponent,
      loadChildren: () => import('src/app/dashobard/dashboard.module').then(m => m.DashboardModule)
     //kada imamo loadChildren on lazy loaduje ostale module kako nam treba,nece sve odjednom da load
   },
-  {
-    path: 'auth',
-    component:AuthComponent,
-     loadChildren: () => import('src/app/auth/auth.module').then(m => m.AuthModule)
-  },
+
 ]
 
 
 // {path:'auth',children:[
 //     {path: '',loadChildren:()=>import('./auth/auth.module').then(m=>m.AuthModule)}
 //   ]},
-
 // {path:'home',component:HomeComponent},
 // {path:'game',component:GameComponent,canActivate:[navigationRouteGuard]},
 // {path:'reset-password',component:RestartPasswordComponent},
 // {path: `gameset/:id`,component:GameSetDetailsComponent,resolve:{data:GameSetDetailsResolver},canActivate:[navigationRouteGuard]},
 // {path:'support',component:SupportComponent,canActivate:[navigationRouteGuard]},
 // {path:'account/activate',component:VerifyEmailComponent},
-
-
 // {
 //   path:'account',children:[
 //     {path: '',loadChildren:()=>import('./account/account.module').then(m=>m.AccountModule)}
@@ -66,7 +64,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes,{ enableTracing: true })
+    RouterModule.forRoot(routes)
   ]
 })
 export class RoutingModule {

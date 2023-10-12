@@ -27,7 +27,8 @@
             "styles": [
               "src/assets/scss/black-dashboard.scss",
               "src/assets/css/nucleo-icons.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "src/colors.scss"
 
             ],
             "scripts": [

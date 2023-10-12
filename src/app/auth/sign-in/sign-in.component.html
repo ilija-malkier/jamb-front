@@ -1,21 +1,24 @@
 <div style="width: 100%;height: 100vh" class="d-flex align-items-center justify-content-center">
   <div class="form login ">
     <div class="form-content">
-      <header>Sign in</header>
-      <form action="#">
+      <header class="text-white">Sign in</header>
+
+        <app-error-baner [show]="showErrorMessage" [text]="errorMessage"></app-error-baner>
+
+      <form #form="ngForm" (ngSubmit)="login(form)">
         <div class="form-group">
-          <label for="email">Email address</label>
-          <input type="email" class="form-control" id="email" placeholder="name@example.com">
+          <label for="username">Username</label>
+          <input ngModel required type="text" class="form-control " id="username" name="username" placeholder="user123" [ngClass]="{'invalid-input': showErrorMessage}">
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="email" class="form-control" id="password" placeholder="test!#123">
+          <input ngModel required type="password" class="form-control" id="password" name="password"  placeholder="test!#123" [ngClass]="{'invalid-input': showErrorMessage}">
         </div>
         <div class="form-link">
           <a href="#" class="forgot-pass">Forgot password?</a>
         </div>
         <div class="mt-4">
-          <button type="button" class="w-100 animation-on-hover btn btn-primary">Sign in</button>
+          <button type="submit" class="w-100 animation-on-hover btn btn-primary">Sign in</button>
         </div>
       </form>
       <div class="form-link">
