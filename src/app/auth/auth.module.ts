@@ -1,24 +1,24 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {RegisterComponent} from "./register/register.component";
 import {LoginComponent} from "./login/login.component";
-import {AppModule} from "../app.module";
 import {RegistrationModalComponent} from "../modals/registration-modal/registration-modal.component";
 import {FormsModule} from "@angular/forms";
 import {AppCommonModule} from "../app-common/app-common.module";
 import {RouterModule, RouterOutlet, Routes} from "@angular/router";
-import { AuthComponent } from '../auth/auth.component';
-import { SignInComponent } from './sign-in/sign-in.component';
+import {AuthComponent} from '../auth/auth.component';
+import {SignInComponent} from './sign-in/sign-in.component';
 import {HomeComponent} from "../dashobard/home/home.component";
+import {SignUpComponent} from './sign-up/sign-up.component';
 
 
-var routes:Routes=[
-  { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
+var routes: Routes = [
+  {path: '', redirectTo: 'sign-in', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'home1', component: HomeComponent},
-  {path:'sign-in',component:SignInComponent},
-  {path:'sign-up',component:RegisterComponent},
-  {path:"logout",redirectTo:"/login",pathMatch:"full"}
+  {path: 'sign-in', component: SignInComponent},
+  {path: 'sign-up', component: SignUpComponent},
+  {path: "logout", redirectTo: "/login", pathMatch: "full"}
 
 ]
 
@@ -28,7 +28,8 @@ var routes:Routes=[
     RegisterComponent,
     RegistrationModalComponent,
     AuthComponent,
-    SignInComponent
+    SignInComponent,
+    SignUpComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +37,8 @@ var routes:Routes=[
     CommonModule,
     AppCommonModule,
     RouterOutlet,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+
   ],
 })
 export class AuthModule { }

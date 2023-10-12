@@ -25,9 +25,6 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
-              "node_modules/primeng/resources/primeng.min.css",
-              "node_modules/primeflex/primeflex.css",
               "src/assets/scss/black-dashboard.scss",
               "src/assets/css/nucleo-icons.css",
               "node_modules/ngx-toastr/toastr.css"
