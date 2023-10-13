@@ -28,6 +28,7 @@ export class AuthService implements OnInit{
   }
 
   register(userRegisterRequest: UserRegisterRequest) {
+    console.log(userRegisterRequest)
     return this.http.post<CustomResponse>("http://localhost:8081/user/register",userRegisterRequest);
   }
 

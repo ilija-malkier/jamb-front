@@ -1,24 +1,47 @@
-<div style="width: 100%;height: 100vh" class="d-flex  align-items-center justify-content-center">
+<div style="width: 100%;height: 100%;" class="d-flex   align-items-center justify-content-center">
 
-<div class="form signup">
+<div class="form signup ">
     <div class="form-content">
       <header>Signup</header>
-      <form action="#">
+      <app-error-baner [show]="showErrorMessage" [text]="errorMessage"></app-error-baner>
+      <form #form="ngForm" (ngSubmit)="register(form)">
         <div class="form-group">
-          <label for="email">Email address</label>
-          <input type="email" class="form-control" id="email" placeholder="name@example.com">
+          <label for="firstname">First Name</label>
+          <input ngModel name="first_name" type="text" class="form-control" id="firstname" placeholder="John" [ngClass]="{'invalid-input': showErrorMessage}">
+        </div>
+        <div class="form-group">
+          <label for="lastname">Last Name</label>
+          <input ngModel name="last_name" type="text" class="form-control" id="lastname" placeholder="Wick" [ngClass]="{'invalid-input': showErrorMessage}">
+        </div>
+        <div class="form-group">
+          <label for="username">Email Address</label>
+          <input ngModel name="email" type="text" class="form-control" id="email" placeholder="johnwick@example.com" [ngClass]="{'invalid-input': showErrorMessage}">
+        </div>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input ngModel name="username" type="text" class="form-control" id="username" placeholder="johnwick" [ngClass]="{'invalid-input': showErrorMessage}">
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="test123#">
+          <input ngModel name="password" type="password" class="form-control" id="password" placeholder="test123#" [ngClass]="{'invalid-input': showErrorMessage}">
         </div>
+
         <div class="form-group">
           <label for="password-confirm">Confirm Password</label>
-          <input type="password" class="form-control" id="password-confirm" placeholder="test123#">
+          <input ngModel name="confirmPassword" type="password" class="form-control" id="password-confirm" placeholder="test123#" [ngClass]="{'invalid-input': showErrorMessage}">
         </div>
-        <div class="mt-4">
-          <button type="button" class="w-100 animation-on-hover btn btn-primary">Sign up</button>
-        </div>
+        <button [ngClass]="{'disabled': form.invalid && showErrorMessage}"  type="submit" value="Sign Up" class="btn mt-4  w-100 animation-on-hover  btn-primary" >
+
+                          <ng-container *ngIf="(appState.dataState === DataState.LOADING) ;else textContainerBtn">
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Loading...
+                          </ng-container>
+                          <ng-template #textContainerBtn>
+                            Sign Up
+                          </ng-template>
+
+
+                      </button>
       </form>
       <div class="form-link">
         <span>Already have an account? <a  routerLink="/auth/sign-in"  class="link login-link">Login</a></span>

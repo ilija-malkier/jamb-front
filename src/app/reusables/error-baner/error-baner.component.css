@@ -1,5 +1,6 @@
 .error-banner{
   border-radius: 0.2rem;
   background: var(--error-dark-color);
-  color: var(--on-error-dark-color)
+  color: var(--on-error-dark-color);
+  text-align: center;
 }

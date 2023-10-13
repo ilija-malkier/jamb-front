@@ -1,7 +1,7 @@
 
 
 .form {
-  position: absolute;
+
   max-width: 430px;
   width: 100%;
   padding: 30px;
@@ -9,6 +9,9 @@
   background: #2a2a42;
 }
 
+.invalid-input{
+  border: solid 1px var(--error-dark-color) !important;
+}
 header{
   font-size: 28px;
   font-weight: 600;
@@ -18,7 +21,6 @@ header{
 
 .form .field{
   position: relative;
-  margin-top: 20px;
 
 }
 .field input,

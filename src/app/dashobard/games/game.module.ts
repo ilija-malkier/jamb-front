@@ -21,13 +21,15 @@ import {CreateGameModalComponent} from "../../modals/create-game-modal/create-ga
 import {GameSetDetailsComponent} from "../gameset/game-set-details-component/game-set-details.component";
 import {FormsModule} from "@angular/forms";
 import {GameRequestComponent} from "./game-request/game-request.component";
+import {navigationRouteGuard} from "../../angular-system/route-guards/navigation-route.guard";
 
 console.warn("game module loaded")
 var routes:Routes=[
-  {path:'',component:GameComponent},
-  {path:':id',component:GameDetailsComponent,resolve:{data:GameDetailsResolver}},
-  {path: 'create',component: CalculateGameComponent},
-  {path:'requests',component:GameRequestComponent},
+  {path:'',component:GameComponent ,canActivate:[navigationRouteGuard]},
+
+  {path:':id',component:GameDetailsComponent,resolve:{data:GameDetailsResolver} ,canActivate:[navigationRouteGuard]},
+  {path: 'create',component: CalculateGameComponent ,canActivate:[navigationRouteGuard]},
+  {path:'requests',component:GameRequestComponent ,canActivate:[navigationRouteGuard]},
 
 ]
 

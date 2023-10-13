@@ -1,9 +1,9 @@
 
 
 .form {
-  position: absolute;
   max-width: 430px;
   width: 100%;
+
   padding: 30px;
   border-radius: 6px;
   background: #2a2a42;
@@ -20,7 +20,7 @@ header{
 
 .form .field{
   position: relative;
-  margin-top: 20px;
+
 
 }
 .field input,

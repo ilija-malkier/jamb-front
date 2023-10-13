@@ -10,14 +10,23 @@ import {AuthComponent} from '../auth/auth.component';
 import {SignInComponent} from './sign-in/sign-in.component';
 import {HomeComponent} from "../dashobard/home/home.component";
 import {SignUpComponent} from './sign-up/sign-up.component';
-
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import {VerifyEmailComponent} from "./verify-email/verify-email.component";
+import {LottiePlayer} from "@lottiefiles/lottie-player";
+import {LottieModule} from "ngx-lottie";
+import player from 'lottie-web';
 
 var routes: Routes = [
   {path: '', redirectTo: 'sign-in', pathMatch: 'full'},
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
-  {path: "logout", redirectTo: "/login", pathMatch: "full"}
+  {path: "logout", redirectTo: "/login", pathMatch: "full"},
+  {path:'account/activate',component:VerifyEmailComponent},
 ]
+export function playerFactory() { // add this line
+  return player; // add this line
+} // add this line
+
 
 @NgModule({
   declarations: [
@@ -26,13 +35,17 @@ var routes: Routes = [
     RegistrationModalComponent,
     AuthComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    NavBarComponent,
+    VerifyEmailComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     CommonModule,
     AppCommonModule,
+    LottieModule.forRoot({ player: playerFactory}) ,
+
     RouterOutlet,
     RouterModule.forChild(routes),
 

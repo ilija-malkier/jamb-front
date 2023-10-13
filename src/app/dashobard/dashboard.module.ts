@@ -10,6 +10,7 @@ import {SidebarComponent} from "./navigation/sidebar/sidebar.component";
 import {NavbarComponent} from "./navigation/navbar/navbar.component";
 import {GameComponent} from "./games/game/game.component";
 import {ProfileComponent} from "./account/profile/profile.component";
+import {navigationRouteGuard} from "../angular-system/route-guards/navigation-route.guard";
 
 
 var routes: Routes = [
@@ -17,16 +18,18 @@ var routes: Routes = [
   {
     path: 'games',
     loadChildren: () => import('src/app/dashobard/games/game.module').then(m => m.GameModule)
+    ,canActivate:[navigationRouteGuard]
 
   },
   {
     path: 'account',
     loadChildren: () => import('src/app/dashobard/account/account.module').then(m => m.AccountModule)
-
+    ,canActivate:[navigationRouteGuard]
   },
   {
     path: 'gamesets',
     loadChildren: () => import('src/app/dashobard/gameset/gamesets.module').then(m => m.GamesetsModule)
+    ,canActivate:[navigationRouteGuard]
   }
 ]
 

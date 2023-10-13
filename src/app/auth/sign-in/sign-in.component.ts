@@ -47,7 +47,7 @@ export class SignInComponent {
           this.appState={dataState:DataState.DONE}
           form.resetForm()
           if(localStorage.getItem("access_token"))
-            this.router.navigate(["home"])
+            this.router.navigate(["dashboard","home"])
         }
       )
     }

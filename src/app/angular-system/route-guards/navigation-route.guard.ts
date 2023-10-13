@@ -10,7 +10,7 @@ export const navigationRouteGuard: CanActivateFn = (route, state) => {
   let tokenService=inject(TokenService)
   let res = tokenService.hasAccessToken()
   if(!res){
-    router.navigate(['login']);
+    router.navigate(['auth','sign-in']);
     authService.$isLogin.next(false)
     return false;
   }

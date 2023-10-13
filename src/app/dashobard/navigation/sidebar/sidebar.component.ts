@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AuthService} from "../../../../services/auth.service";
 declare interface RouteInfo {
   path: string;
   title: string;
@@ -62,10 +63,17 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent {
   menuItems: any[];
 
-  constructor() {}
+  constructor(private authService:AuthService) {}
 
   ngOnInit() {
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
+    this.menuItems = ROUTES.map(menuItem =>{
+      if(menuItem.title==='Account'){
+        menuItem.path+='/'+this.authService.username
+      }
+      return menuItem;
+    } );
+
+
   }
   isMobileMenu() {
     if (window.innerWidth > 991) {
