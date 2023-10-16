@@ -101,3 +101,192 @@
 // Angular Differences
 
 @import "black-dashboard/angular-differences/angular-differences";
+
+
+.pagination {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  border-radius: .25rem
+}
+.white-content .card:not(.card-white) .pagination .page-item:not(.active) .page-link {
+  color: #1d253b
+}
+
+.white-content .card:not(.card-white) .pagination .page-item:not(.active) .page-link:hover {
+  background: hsla(0,0%,60%,.1)
+}
+
+div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+  margin: 2px 0;
+  white-space: nowrap;
+  justify-content: flex-end
+}
+@media (max-width: 767.98px) {
+  div.dataTables_paginate ul.pagination .page-item:first-of-type,div.dataTables_paginate ul.pagination .page-item:last-of-type,div.dataTables_paginate ul.pagination .page-item:nth-of-type(2),div.dataTables_paginate ul.pagination .page-item:nth-of-type(8) {
+    display:none!important
+  }
+}
+@media (max-width: 767.98px) {
+  div.dataTables_paginate ul.pagination .page-item:first-of-type,div.dataTables_paginate ul.pagination .page-item:last-of-type,div.dataTables_paginate ul.pagination .page-item:nth-of-type(2),div.dataTables_paginate ul.pagination .page-item:nth-of-type(8) {
+    display:none!important
+  }
+}
+.pagination .page-item .page-link {
+  border: 0;
+  border-radius: 30px!important;
+  transition: all .3s;
+  margin: 0 3px;
+  min-width: 30px;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none
+}
+
+.pagination .page-item .page-link:focus,.pagination .page-item .page-link:hover {
+  background-color: hsla(0,0%,100%,.1);
+  color: #fff;
+  border: none;
+  box-shadow: none
+}
+
+.pagination .arrow-margin-left,.pagination .arrow-margin-right {
+  position: absolute
+}
+
+.pagination .arrow-margin-right {
+  right: 0
+}
+
+.pagination .arrow-margin-left {
+  left: 0
+}
+
+.pagination .page-item.active>.page-link {
+  color: #fff;
+  box-shadow: 0 1px 20px 0 rgba(0,0,0,.1)
+}
+
+.pagination .page-item.active>.page-link,.pagination .page-item.active>.page-link:focus,.pagination .page-item.active>.page-link:hover {
+  background: #e14eca;
+  background-image: linear-gradient(to bottom left,#e14eca,#ba54f5,#e14eca);
+  background-size: 210% 210%;
+  background-position: 100% 0;
+  color: #fff
+}
+
+.pagination .page-item.disabled>.page-link {
+  opacity: .5
+}
+
+.pagination.pagination-info .page-item.active>.page-link,.pagination.pagination-info .page-item.active>.page-link:focus,.pagination.pagination-info .page-item.active>.page-link:hover {
+  background: #1d8cf8;
+  background-image: linear-gradient(to bottom left,#1d8cf8,#3358f4,#1d8cf8);
+  background-size: 210% 210%;
+  background-position: 100% 0
+}
+
+.pagination.pagination-success .page-item.active>.page-link,.pagination.pagination-success .page-item.active>.page-link:focus,.pagination.pagination-success .page-item.active>.page-link:hover {
+  background: #00f2c3;
+  background-image: linear-gradient(to bottom left,#00f2c3,#0098f0,#00f2c3);
+  background-size: 210% 210%;
+  background-position: 100% 0
+}
+
+.pagination.pagination-primary .page-item.active>.page-link,.pagination.pagination-primary .page-item.active>.page-link:focus,.pagination.pagination-primary .page-item.active>.page-link:hover {
+  background: #e14eca;
+  background-image: linear-gradient(to bottom left,#e14eca,#ba54f5,#e14eca);
+  background-size: 210% 210%;
+  background-position: 100% 0
+}
+
+.pagination.pagination-warning .page-item.active>.page-link,.pagination.pagination-warning .page-item.active>.page-link:focus,.pagination.pagination-warning .page-item.active>.page-link:hover {
+  background: #ff8d72;
+  background-image: linear-gradient(to bottom left,#ff8d72,#ff6491,#ff8d72);
+  background-size: 210% 210%;
+  background-position: 100% 0
+}
+
+.pagination.pagination-danger .page-item.active>.page-link,.pagination.pagination-danger .page-item.active>.page-link:focus,.pagination.pagination-danger .page-item.active>.page-link:hover {
+  background: #fd5d93;
+  background-image: linear-gradient(to bottom left,#fd5d93,#ec250d,#fd5d93);
+  background-size: 210% 210%;
+  background-position: 100% 0
+}
+
+.pagination.pagination-neutral .page-item>.page-link {
+  color: #fff
+}
+
+.pagination.pagination-neutral .page-item>.page-link:focus,.pagination.pagination-neutral .page-item>.page-link:hover {
+  background-color: hsla(0,0%,100%,.2);
+  color: #fff
+}
+
+.pagination.pagination-neutral .page-item.active>.page-link,.pagination.pagination-neutral .page-item.active>.page-link:focus,.pagination.pagination-neutral .page-item.active>.page-link:hover {
+  background-color: #fff;
+  border-color: #fff;
+  color: #e14eca
+}
+.pagination .page-item .page-link {
+  border: 0;
+  border-radius: 30px!important;
+  transition: all .3s;
+  margin: 0 3px;
+  min-width: 30px;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none
+}
+
+.pagination-lg .page-link {
+  padding: .75rem 1.5rem;
+  font-size: .99925rem;
+  line-height: 1.625rem
+}
+
+.pagination-lg .page-item:first-child .page-link {
+  border-top-left-radius: .4285rem;
+  border-bottom-left-radius: .4285rem
+}
+
+.pagination-lg .page-item:last-child .page-link {
+  border-top-right-radius: .4285rem;
+  border-bottom-right-radius: .4285rem
+}
+
+.pagination-sm .page-link {
+  padding: .25rem .5rem;
+  font-size: .75rem;
+  line-height: 1.5
+}
+
+.pagination-sm .page-item:first-child .page-link {
+  border-top-left-radius: .2857rem;
+  border-bottom-left-radius: .2857rem
+}
+
+.pagination-sm .page-item:last-child .page-link {
+  border-top-right-radius: .2857rem;
+  border-bottom-right-radius: .2857rem
+}
+.pagination {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  border-radius: .25rem
+}
+
+.white-content .card:not(.card-white) .pagination .page-item:not(.active) .page-link {
+  color: #1d253b
+}
+
+.white-content .card:not(.card-white) .pagination .page-item:not(.active) .page-link:hover {
+  background: hsla(0,0%,60%,.1)
+}

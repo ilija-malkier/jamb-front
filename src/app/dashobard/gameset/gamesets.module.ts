@@ -28,7 +28,7 @@ var routes = [
     RouterModule.forChild(routes),
     FormsModule
   ],
-  exports:[RouterModule]
+    exports: [RouterModule, GamesetPaginationComponent]
 })
 export class GamesetsModule {
 }

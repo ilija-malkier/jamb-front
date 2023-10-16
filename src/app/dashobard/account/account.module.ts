@@ -20,6 +20,8 @@ import {FormsModule} from "@angular/forms";
 import {StopTypingDirective} from "../../angular-system/directive/stop-typing.directive";
 import {AppCommonModule} from "../../app-common/app-common.module";
 import {SupportComponent} from "./support/support.component";
+import {GamesetPaginationComponent} from "../gameset/gameset-pagination/gameset-pagination.component";
+import {GamesetsModule} from "../gameset/gamesets.module";
 
 
 console.warn("account module loaded")
@@ -57,7 +59,8 @@ var routes = [
     CommonModule,
     FormsModule,
     AppCommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    GamesetsModule,
   ],
   exports:[RouterModule]
 })

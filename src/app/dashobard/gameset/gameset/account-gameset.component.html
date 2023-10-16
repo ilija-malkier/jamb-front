@@ -3,12 +3,11 @@
 <div class="w-100">
 <div *ngIf="(gamesets$ | async) as gamesets">
 
-  <button class="btn btn-primary" (click)="openCreateGamesetModal()" style="">Create</button>
+  <button class="btn btn-primary" data-toggle="modal" data-target="#createGameset" style="">Create</button>
   <table class="table table-striped">
     <thead>
     <tr>
       <th class="text-center" scope="col">Name</th>
-
       <th class="text-center" scope="col">Action</th>
     </tr>
     </thead>
@@ -17,7 +16,7 @@
             style="width: 30px;height: 30px"></span>
     </div>
     <tbody>
-    <tr *ngFor="let gameset of gamesets?.appData?.gameSetResponse | slice:0:getMaxGamesets()">
+    <tr *ngFor="let gameset of gamesets?.appData?.gameSetResponse | slice:0:getItemsPerPage()">
       <td class="text-center">{{gameset.gameSetName }}</td>
       <td class="text-center " >
         <button type="button" rel="tooltip" class="btn btn-success btn-link btn-icon btn-sm" (click)="viewDetails(gameset.gameSetId)">
@@ -30,9 +29,12 @@
     </tr>
     </tbody>
   </table>
-<!--  <app-gameset-pagination [totalPages]="customRound(gamesets?.appData?.totalElements/this.maxGamesets)" ></app-gameset-pagination>-->
+
+
+<app-gameset-pagination  [totalPages]="gamesets?.appData?.totalElements" [itemsPerPage]="itemsPerPage"></app-gameset-pagination>
 </div>
 </div>
 </div>
 <!--<app-loading-modal #modal ></app-loading-modal>-->
-<!--<app-create-gameset-modal #createGamesetModal></app-create-gameset-modal>-->
+<app-create-gameset-modal #createGamesetModal></app-create-gameset-modal>
+

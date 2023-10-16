@@ -1,41 +1,46 @@
-<ng-template #template>
-  <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">Upload Sheet </h5>
-    <button type="button" class="btn-close" [disabled]="this.isGamesetCreating"
-            (click)="closeModal()" aria-label="Close"></button>
-  </div>
-  <div class="modal-body">
-    <form #formCreateGameset="ngForm" (ngSubmit)="saveGameset(formCreateGameset)">
-
-      <div>
-        <label for="gameset_name">Name</label>
-        <input required ngModel [ngClass]="{'invalid': formCreateGameset.submitted && formCreateGameset.invalid}"
-               #gamesetName type="text" class="form-control m-0 w-100" name="name" id="gameset_name">
-
-      </div>
-
-      <div class="mt-2">
-        <label for="gameset_desc">Description</label>
-        <input required ngModel [ngClass]="{'invalid': formCreateGameset.submitted && formCreateGameset.invalid}"
-               #gamesetDescription type="text" class="form-control m-0 w-100" name="description" id="gameset_desc">
-
-      </div>
-
-      <div class="w-100  mt-4 justify-content-end d-flex">
-        <button type="button" class="btn text-dark" (click)="exitGameset()" [disabled]="isGamesetCreating">Cancel
+<div class="modal fade" class="modal fade" id="createGameset" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Create Gameset</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="tim-icons icon-simple-remove"></i>
         </button>
+      </div>
+      <div class="modal-body">
+        <form #formCreateGameset="ngForm" (ngSubmit)="saveGameset(formCreateGameset)">
 
-        <button type="submit" class="btn text-white" style="background: var(--primary-color)">
-          <ng-container *ngIf="isGamesetCreating">
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-            Loading...
-          </ng-container>
-          <div *ngIf="!isGamesetCreating">
-            Create
+          <div>
+            <label for="gameset_name">Name</label>
+            <input required ngModel [ngClass]="{'invalid': formCreateGameset.submitted && formCreateGameset.invalid}"
+                   #gamesetName type="text" class="form-control m-0 w-100 text-dark" name="name" id="gameset_name">
+
           </div>
-        </button>
 
+          <div class="mt-2">
+            <label for="gameset_desc">Description</label>
+            <input required ngModel [ngClass]="{'invalid': formCreateGameset.submitted && formCreateGameset.invalid}"
+                   #gamesetDescription type="text" class="form-control m-0 w-100 text-dark" name="description" id="gameset_desc">
+          </div>
+
+
+          <div class="w-100  d-flex justify-content-end mt-3">
+            <button type="button" id="closeDialog" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">
+              <ng-container *ngIf="isGamesetCreating">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+              </ng-container>
+              <div *ngIf="!isGamesetCreating">
+                Create
+              </div>
+            </button>
+
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
   </div>
-</ng-template>
+</div>
+

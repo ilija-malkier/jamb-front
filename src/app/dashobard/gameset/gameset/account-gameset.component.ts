@@ -20,10 +20,8 @@ import {GamesetGameResponse} from "../../../model/gameset-game-response";
   export class AccountGamesetComponent implements OnInit{
 
     gamesets$:Observable<AppState<GamesetGameResponse>> =new Observable<AppState<GamesetGameResponse>>()
-     maxGamesets:number=10;
+    itemsPerPage:number=10;
     @ViewChild("modal") modal:LoadingModalComponent
-    @ViewChild("createGamesetModal") createGamesetModalComponent:CreateGamesetModalComponent
-
     constructor(private gamesetService:GamesetService,private router:Router) {
     }
 
@@ -65,17 +63,10 @@ import {GamesetGameResponse} from "../../../model/gameset-game-response";
       this.router.navigate(['/gameset',id])
     }
 
-    getMaxGamesets() {
-      return this.maxGamesets;
+    getItemsPerPage() {
+      return this.itemsPerPage;
     }
 
-    openCreateGamesetModal() {
-      this.createGamesetModalComponent.openModal()
-    }
 
-     customRound(number: number): number {
-      const decimalPart = number - Math.floor(number);
-      const roundedDecimal = Math.ceil(decimalPart);
-      return Math.floor(number) + roundedDecimal;
-    }
+
   }

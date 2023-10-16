@@ -10,18 +10,23 @@ import {GamesetService} from "../../../../services/gameset.service";
 export class GamesetPaginationComponent {
 
 
-  @Input() totalPages:number=0
-  itemsPerPage:number=10;
+  @Input() totalPages:number;
+  @Input() itemsPerPage:number;
   currentPage:number =0;
+  calculatedTotalPages=0;
   ngOnInit(): void {
-
   }
-
+  customRound(number: number): number {
+    const decimalPart = number - Math.floor(number);
+    const roundedDecimal = Math.ceil(decimalPart);
+    return Math.floor(number) + roundedDecimal;
+  }
   constructor(private gamesetService:GamesetService) {
   }
 
   get numberArray(): number[] {
-    return Array.from({ length: this.totalPages  }, (_, index) => index);
+    this.calculatedTotalPages=this.customRound(this.totalPages/this.itemsPerPage)
+    return Array.from({ length: this.calculatedTotalPages  }, (_, index) => index);
   }
 
 
@@ -30,7 +35,7 @@ export class GamesetPaginationComponent {
     return 0 <= this.currentPage - 1
   }
   canGoForward(){
-    return this.totalPages>this.currentPage+1
+    return this.calculatedTotalPages>this.currentPage+1
   }
 
 
@@ -57,4 +62,5 @@ export class GamesetPaginationComponent {
     this.gamesetService.filterForPage(this.currentPage);
   }
 
+  protected readonly top = top;
 }
