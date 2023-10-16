@@ -15,15 +15,12 @@ import {LoadingModalComponent} from "../../../modals/loading-modal/loading-modal
 export class GameHistoryCard {
 
   @Input() game:GameFilterResponse=null
-@ViewChild("modal") modal:LoadingModalComponent
+// @ViewChild("modal") modal:LoadingModalComponent
 
   protected readonly top = top;
   protected readonly GameStatus = GameStatus;
 
-  constructor(private router:Router,private modalService:ModalService) {}
+  constructor(private router:Router) {}
 
-  navigateToGameDetails() {
-    this.modal.openModal()
-    this.router.navigate(['/game',this.game.gameId])
-  }
+
 }

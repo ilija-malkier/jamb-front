@@ -22,6 +22,7 @@ import {DashboardModule} from "./dashobard/dashboard.module";
 import {SidebarComponent} from "./dashobard/navigation/sidebar/sidebar.component";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ToastrModule} from "ngx-toastr";
+import {JwtInterceptorConst} from "./angular-system/interceptor/jwt-interceptor.service";
 
 
 console.warn("app module loaded")
@@ -48,9 +49,8 @@ console.warn("app module loaded")
     //User defined modules
 
   ],
-  providers: [],
+  providers: [JwtInterceptorConst],
   exports: [
-
   ],
   bootstrap: [AppComponent]
 })

@@ -62,7 +62,7 @@
   <div class="solu_title row-3">
 
     <h3 class="m-0">Demo 1</h3>
-    <p class="mt-0" style="font-size: 0.9rem;opacity: 50%">{{game.datePlayed |date}}</p>
+    <p class="mt-0 text-dark" style="font-size: 0.9rem;opacity: 50%">{{game.datePlayed |date}}</p>
   </div>
 
   <div class="solu_description row-2 d-flex   flex-column justify-content-between">
@@ -73,12 +73,12 @@
     </div>
     <div class="d-flex align-items-center">
       <img src="../../../../assets/images/trophy.png" width="40px">
-      <p class="ms-3" style="font-size: 1.2rem">{{game.winner?.username}}</p>
+      <p class="text-dark" style="font-size: 1.2rem;margin-left: 10px">{{game.winner?.username}}</p>
     </div>
     <div class=" mt-1 w-100 d-flex justify-content-center">
-      <button (click)="navigateToGameDetails()" type="button" class="read_more_btn">View Game</button>
+<!--      <button (click)="navigateToGameDetails()" type="button" class="read_more_btn">View Game</button>-->
     </div>
   </div>
 </div >
-<app-loading-modal #modal ></app-loading-modal>
+<!--<app-loading-modal #modal ></app-loading-modal>-->
 

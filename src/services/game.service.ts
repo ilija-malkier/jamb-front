@@ -49,6 +49,7 @@ export class GameService {
     this.setParams(filterRequest,sortField,sortDirection)
 
     let params = this.createParams();
+    console.log(filterRequest)
     this.games$.next(
         this.httpClient.get<CustomResponse>("http://localhost:8081/games/filter",{
           params:params

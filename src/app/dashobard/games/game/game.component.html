@@ -1,23 +1,30 @@
 
 <div class="d-flex  content ">
-<!--  <app-filter-games  (filterRequestEmmiter)="filterSubmit($event)" class="col-4 "></app-filter-games>-->
-<!--  <div class="w-100 p-4">-->
-<!--    <app-game-list-pagination [totalPages]="totalPages"  ></app-game-list-pagination>-->
 
-<!--    <div class="d-flex  justify-content-end  w-100">-->
+          <app-game-list  class="w-50" #gameList>
+          </app-game-list>
 
-<!--      <p  class=" mx-3  dropdown-toggle"  style="font-size: large" data-bs-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">-->
-<!--        {{sortField? (sortField | capitalizeFirstLetter) +" "+ (sortDirection.toString() | uppercase) : "Sort"}}-->
-<!--      </p>-->
-<!--      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
-<!--        <a class="dropdown-item" (click)="setSort('date',SortDirection.asc)">Date asc</a>-->
-<!--        <a class="dropdown-item" (click)="setSort('date',SortDirection.desc)">Date desc</a>-->
+
+
+
+<!--  <div class=" d-flex w-100">-->
+<!--      <app-filter-games  (filterRequestEmmiter)="filterSubmit($event)" class="col-2 bg-primary "></app-filter-games>-->
+<!--      <div class="w-100 col-10 bg-info p-4">-->
+<!--&lt;!&ndash;        <app-game-list-pagination [totalPages]="totalPages"  ></app-game-list-pagination>&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="d-flex  justify-content-end  w-100">&ndash;&gt;-->
+<!--&lt;!&ndash;          <p  class=" mx-3  dropdown-toggle"  style="font-size: large" data-bs-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">&ndash;&gt;-->
+<!--&lt;!&ndash;            {{sortField? (sortField | capitalizeFirstLetter) +" "+ (sortDirection.toString() | uppercase) : "Sort"}}&ndash;&gt;-->
+<!--&lt;!&ndash;          </p>&ndash;&gt;-->
+<!--&lt;!&ndash;          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">&ndash;&gt;-->
+<!--&lt;!&ndash;            <a class="dropdown-item" (click)="setSort('date',SortDirection.asc)">Date asc</a>&ndash;&gt;-->
+<!--&lt;!&ndash;            <a class="dropdown-item" (click)="setSort('date',SortDirection.desc)">Date desc</a>&ndash;&gt;-->
+<!--&lt;!&ndash;          </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <hr>&ndash;&gt;-->
 <!--      </div>-->
-<!--    </div>-->
-<!--    <hr>-->
-<!--    <app-game-list  class="col-8" #gameList>-->
-<!--    </app-game-list>-->
 <!--  </div>-->
 
-<p>Games</p>
+
+
+
 </div>
