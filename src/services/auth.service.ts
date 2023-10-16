@@ -37,7 +37,7 @@ export class AuthService implements OnInit{
     localStorage.setItem("refresh_token",null)
     this.$isLogin.next(false)
     this.username='';
-      this.router.navigate(["login"])
+      this.router.navigate(["auth","sign-in"])
   }
 
   public invalidateLoginValues(){
@@ -45,7 +45,7 @@ export class AuthService implements OnInit{
     localStorage.setItem("refresh_token",null)
     this.$isLogin.next(false)
     this.username='';
-    this.router.navigate(["login"])
+    this.router.navigate(["auth","sign-in"])
   }
   ngOnInit(): void {
 

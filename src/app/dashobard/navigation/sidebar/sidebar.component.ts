@@ -69,6 +69,7 @@ export class SidebarComponent {
     this.menuItems = ROUTES.map(menuItem =>{
       if(menuItem.title==='Account'){
         menuItem.path+='/'+this.authService.username
+        console.log(menuItem.path)
       }
       return menuItem;
     } );

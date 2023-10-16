@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ROUTES} from "../sidebar/sidebar.component";
 import {Location} from "@angular/common";
+import {AuthService} from "../../../../services/auth.service";
 
 @Component({
   selector: 'app-navbar',
@@ -24,7 +25,8 @@ export class NavbarComponent implements OnInit,OnDestroy{
     location: Location,
     private element: ElementRef,
     private router: Router,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private authService:AuthService
   ) {
     this.location = location;
     this.sidebarVisible = false;
@@ -192,5 +194,9 @@ export class NavbarComponent implements OnInit,OnDestroy{
   }
   ngOnDestroy(){
     window.removeEventListener("resize", this.updateColor);
+  }
+
+  logout() {
+      this.authService.logout()
   }
 }

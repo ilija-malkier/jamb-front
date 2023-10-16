@@ -32,21 +32,21 @@ import {GamesetGameResponse} from "../../../model/gameset-game-response";
       protected readonly DataState = DataState;
 
     ngOnInit(): void {
-      // this.gamesetService.getGameSets()
-      // this.gamesetService.gameSet$.subscribe(data=>{
-      //   this.gamesets$=data.pipe(
-      //
-      //     map((element: CustomResponse) => {
-      //       return {
-      //         dataState: DataState.SUCCESS,
-      //         appData: element?.data?.gameSetResponseList
-      //       }
-      //     }),startWith({dataState: DataState.LOADING}),
-      //     catchError(err => {
-      //       return of({dataState: DataState.ERROR, error: err})
-      //     }),
-      //   )
-      // })
+      this.gamesetService.getGameSets()
+      this.gamesetService.gameSet$.subscribe(data=>{
+        this.gamesets$=data.pipe(
+
+          map((element: CustomResponse) => {
+            return {
+              dataState: DataState.SUCCESS,
+              appData: element?.data?.gameSetResponseList
+            }
+          }),startWith({dataState: DataState.LOADING}),
+          catchError(err => {
+            return of({dataState: DataState.ERROR, error: err})
+          }),
+        )
+      })
     }
 
     deleteGameset(id: number,name:string) {

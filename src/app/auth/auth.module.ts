@@ -20,7 +20,7 @@ var routes: Routes = [
   {path: '', redirectTo: 'sign-in', pathMatch: 'full'},
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
-  {path: "logout", redirectTo: "/login", pathMatch: "full"},
+  {path: "logout", redirectTo: "/auth/sign-in", pathMatch: "full"},
   {path:'account/activate',component:VerifyEmailComponent},
 ]
 export function playerFactory() { // add this line
