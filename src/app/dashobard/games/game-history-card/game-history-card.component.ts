@@ -1,7 +1,7 @@
 import {Component, Input, ViewChild, ViewEncapsulation} from '@angular/core';
 import {GameFilterResponse} from "../../../model/game-filter-response";
 import {GameStatus} from "../../../model/game-status";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ModalService} from "../../../../services/modal.service";
 import {LoadingModalComponent} from "../../../modals/loading-modal/loading-modal.component";
 
@@ -20,7 +20,11 @@ export class GameHistoryCard {
   protected readonly top = top;
   protected readonly GameStatus = GameStatus;
 
-  constructor(private router:Router) {}
+  constructor(private router:Router,private activeRoute:ActivatedRoute) {}
 
 
+  navigateToGameDetails() {
+
+    this.router.navigate([this.game.gameId],{relativeTo:this.activeRoute})
+  }
 }
