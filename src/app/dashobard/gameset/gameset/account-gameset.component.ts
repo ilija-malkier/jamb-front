@@ -22,6 +22,8 @@ import {GamesetGameResponse} from "../../../model/gameset-game-response";
     gamesets$:Observable<AppState<GamesetGameResponse>> =new Observable<AppState<GamesetGameResponse>>()
     itemsPerPage:number=10;
     @ViewChild("modal") modal:LoadingModalComponent
+    show=false;
+
     constructor(private gamesetService:GamesetService,private router:Router) {
     }
 

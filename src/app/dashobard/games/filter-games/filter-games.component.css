@@ -1,8 +1,19 @@
-.accordion-button:not(.collapsed) {
-  background-color: transparent !important;
-  color: inherit;
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
 }
 
-button.accordion-button:focus{
-  box-shadow: inherit;
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--text-dark)
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-dark)
 }

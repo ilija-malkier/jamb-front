@@ -1,10 +1,19 @@
-<div class="w-100  d-flex justify-content-center align-items-center ">
+<nav aria-label="...">
+  <ul class="pagination justify-content-end">
+    <li class="page-item " [ngClass]="{'disabled':!canGoBack()}">
+      <a class="page-link"   (click)="backPage()" tabindex="-1">Previous</a>
+    </li>
+    <div class="mx-4 d-flex ">
+      <li *ngFor="let i of numberArray" class="page-item " [ngClass]="{'active':currentPage===i}">
+        <span class="page-link d-flex" (click)="toPage(i)">
+        {{i+1}}
+          <span class="sr-only">(current)</span>
+      </span>
+      </li>
+    </div>
+    <li class="page-item" [ngClass]="{'disabled':!canGoForward()}">
+      <a class="page-link"  (click)="nextPage()">Next</a>
+    </li>
+  </ul>
+</nav>
 
-  <i  [ngClass]="{'not-active':!canGoBack()}" style="cursor: pointer" class="bi bi-caret-left-fill" (click)="backPage()"></i>
-  <div class="mx-4 ">
-    <span *ngFor="let i of numberArray" class="mx-1 p-1 rounded-2" style="cursor: pointer;font-size: medium" [ngStyle]="{'color': (i===currentPage)? 'white': 'gray','background':(i===currentPage)? 'var(--black)':'transparent' }" (click)="toPage(i)">{{i+1}}</span>
-  </div>
-
-  <i style="cursor: pointer" class="bi bi-caret-right-fill" [ngClass]="{'not-active':!canGoForward()}" (click)="nextPage()"></i>
-
-</div>

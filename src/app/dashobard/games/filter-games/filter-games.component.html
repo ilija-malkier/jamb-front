@@ -1,131 +1,105 @@
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-start ">
 
-  <form #form="ngForm" (ngSubmit)="filterHistory(form)" class="form-group w-100">
+  <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#filterModal">Filter</button>
 
-    <div class=" mt-5   mb-3 d-flex justify-content-center">
-      <button type="submit" class="btn btn-primary text-white px-4" >Apply</button>
-      <button type="button" (click)="clearFilter()" class="btn btn-link text-decoration-none text-dark mx-2">Clear</button>
-    </div>
-    <div class="accordion" id="accordionExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingOne">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                  aria-expanded="true" aria-controls="collapseOne">
-            Date
+
+  <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="filterModal2">Filter</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            <i class="tim-icons icon-simple-remove"></i>
           </button>
-        </h2>
-
-        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-             data-bs-parent="#accordionExample">
-          <div class="p-3">
-            <div class="d-flex justify-content-start flex-column  ">
-              <label class="w-100 text-start" for="date_from">Date From</label>
-              <input [(ngModel)]="filterRequest.date_from" type="date" class="form-control" id="date_from"
-                     name="date_from">
-            </div>
-            <div class="d-flex mt-4 justify-content-center flex-column">
-              <label class="w-100 text-start" for="date_from">Date To</label>
-              <input value="{{filterRequest.date_to}}" [(ngModel)]="filterRequest.date_to" type="date"
-                     class="form-control" id="date_to" name="date_to">
-            </div>
-          </div>
-
         </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingTwo">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            Game Status
-          </button>
-        </h2>
-        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-             data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <div class=" input-group">
-              <select [(ngModel)]="filterRequest.game_status" name="game_status" class="form-select form-select "
-                      aria-label=".form-select-lg example">
-                <option
-                  value="{{GameStatus.IN_PROGRESS.toString().replace(' ','_')}}">{{GameStatus.IN_PROGRESS.toString()}}</option>
-                <option value="{{GameStatus.completed.toString() }}">{{GameStatus.completed.toString()}}</option>
-                <option value="null">{{GameStatus.all.toString()}}</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingThree">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            Friends
-          </button>
-        </h2>
-        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-             data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-
-
-            <div class="w-100 h-100  align-items-center d-flex chip-holder ">
-              <input #playerNameInput type="text" class="form-control w-100" name="player_name_input"
-                     id="player_name_input">
-              <div (click)="addFilterFriends(playerNameInput)"
-                   class="col-1 d-flex justify-content-center align-items-center">
-                <i class="bi bi-plus" style="color: var(--primary-color);font-size:40px"></i>
+        <div class="modal-body">
+          <form #form="ngForm" (ngSubmit)="filterHistory(form)" class="form-group w-100 ">
+            <div class="">
+              <div class="d-flex justify-content-start flex-column">
+                <label class="w-100 text-start" for="date_from">Date From</label>
+                <input [(ngModel)]="filterRequest.date_from" type="date" class="form-control text-dark "  id="date_from"
+                       name="date_from">
               </div>
-
-            </div>
-            <div class=" h-100 align-items-center flex-column d-flex chip-holder ">
-
-              <div *ngFor="let chip of filterFriends"
-                   class="col mx-2 my-2 d-flex justify-content-start align-content-center ">
-                <app-chip chipName="{{chip}}" (removeChipEmmiter)="removeFilterFriends($event)"></app-chip>
+              <div class="d-flex  justify-content-center flex-column">
+                <label class="w-100 text-start" for="date_from">Date To</label>
+                <input value="{{filterRequest.date_to}}" [(ngModel)]="filterRequest.date_to" type="date"
+                       class="form-control text-dark" id="date_to" name="date_to">
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingFour">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-            Winner
-          </button>
-        </h2>
-        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingThree"
-             data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <div
-              class="row justify-content-center
-                           w-100">
 
-              <div class="w-100 h-100  align-items-center d-flex chip-holder ">
-                <input #winnerNameInput type="text" class="form-control w-100" name="player_name_input"
-                       id="winner_name_input">
-                <div (click)="addFilterWiners(winnerNameInput)"
-                     class="col-1 d-flex justify-content-center align-items-center">
-                  <i class="bi   bi-plus " style="color: var(--primary-color);font-size:40px"></i>
+            <div>
+              <div class="form-group ">
+                <label for="inputState">Game Status</label>
+                <select [(ngModel)]="filterRequest.game_status" id="inputState" class="form-control text-dark" name="game_status">
+                  <option class="text-dark " value="null">{{GameStatus.all.toString()}}</option>
+                  <option class="text-dark"
+                          value="{{GameStatus.IN_PROGRESS.toString().replace(' ','_')}}">{{GameStatus.IN_PROGRESS.toString()}}</option>
+                  <option class="text-dark"
+                          value="{{GameStatus.completed.toString() }}">{{GameStatus.completed.toString()}}</option>
+
+                </select>
+              </div>
+            </div>
+            <div class="">
+                <div>
+                  <label for="player_name_input">Friends</label>
+
+                  <div class="w-100 h-100   align-items-center d-flex chip-holder    ">
+
+                    <input #playerNameInput type="text" class="form-control col-11 text-dark" name="player_name_input"
+                           id="player_name_input">
+                    <div (click)="addFilterFriends(playerNameInput)"
+                         class="col-1  h-100 d-flex justify-content-center align-items-center">
+                        <i class="tim-icons icon-simple-add  w-100 h-100" style="font-size: 1.2rem" ></i>
+
+
+                    </div>
+
+                  </div>
                 </div>
+                <div class=" h-100 align-items-center  d-flex chip-holder "style="overflow: auto">
 
-              </div>
-              <div class=" h-100  align-items-center d-flex flex-column chip-holder ">
+                  <div *ngFor="let chip of filterFriends"
+                       class=" mx-2 my-2 d-flex justify-content-start align-content-center ">
+                    <app-chip chipName="{{chip}}" (removeChipEmmiter)="removeFilterFriends($event)"></app-chip>
+                  </div>
+                </div>
+            </div>
+            <div class="">
+              <div>
+                <label for="winner_name_input">Winner</label>
+                <div class="w-100 h-100   align-items-center d-flex chip-holder    ">
+
+                  <input #winnerNameInput type="text" class="form-control col-11 text-dark" name="winner_name_input"
+                         id="winner_name_input">
+                  <div (click)="addFilterWiners(winnerNameInput)"
+                       class="col-1  h-100 d-flex justify-content-center align-items-center">
+                    <i class="tim-icons icon-simple-add  w-100 h-100" style="font-size: 1.2rem" ></i>
+
+
+                  </div>
+
+                </div>
+                </div>
+              <div class="h-100 align-items-center  d-flex chip-holder  " style="overflow: auto">
 
                 <div *ngFor="let chip of filterWiners"
-                     class="col mx-2 my-2 d-flex flex-column justify-content-start align-content-center ">
+                     class=" mx-2 my-2 d-flex justify-content-start align-content-center ">
                   <app-chip chipName="{{chip}}" (removeChipEmmiter)="removeFilterWinners($event)"></app-chip>
                 </div>
               </div>
-
-
             </div>
-          </div>
+          </form>
 
-
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearFilter()">Close</button>
+          <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="filterHistory(form)">Filter Games</button>
         </div>
       </div>
     </div>
+  </div>
 
 
-  </form>
 
 </div>

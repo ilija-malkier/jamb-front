@@ -4,6 +4,7 @@ import {catchError, map, Observable, of, startWith, tap} from "rxjs";
 import {AppState} from "../../../model/app-state";
 import {DataState} from "../../../model/data-state";
 import {CustomResponse} from "../../../model/custom-response";
+import {GamesetService} from "../../../../services/gameset.service";
 
 @Component({
   selector: 'app-game-list-pagination',
@@ -13,18 +14,23 @@ import {CustomResponse} from "../../../model/custom-response";
 export class GameListPaginationComponent implements OnInit{
 
 
-  @Input() totalPages:number=0
-   itemsPerPage:number=10;
+  @Input() totalPages:number;
+  @Input() itemsPerPage:number;
   currentPage:number =0;
+  calculatedTotalPages=0;
   ngOnInit(): void {
-
   }
-
-  constructor(private gameService:GameService) {
+  customRound(number: number): number {
+    const decimalPart = number - Math.floor(number);
+    const roundedDecimal = Math.ceil(decimalPart);
+    return Math.floor(number) + roundedDecimal;
+  }
+  constructor(private gamesetService:GamesetService) {
   }
 
   get numberArray(): number[] {
-    return Array.from({ length: this.totalPages  }, (_, index) => index);
+    this.calculatedTotalPages=this.customRound(this.totalPages/this.itemsPerPage)
+    return Array.from({ length: this.calculatedTotalPages  }, (_, index) => index);
   }
 
 
@@ -33,7 +39,7 @@ export class GameListPaginationComponent implements OnInit{
     return 0 <= this.currentPage - 1
   }
   canGoForward(){
-    return this.totalPages>this.currentPage+1
+    return this.calculatedTotalPages>this.currentPage+1
   }
 
 
@@ -57,7 +63,7 @@ export class GameListPaginationComponent implements OnInit{
   }
 
   private getNotesForCurrPage(){
-    this.gameService.filterForPage(this.currentPage);
+    this.gamesetService.filterForPage(this.currentPage);
   }
 
 

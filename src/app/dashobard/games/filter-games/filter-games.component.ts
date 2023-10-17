@@ -4,6 +4,7 @@ import {FilterRequest} from "../../../model/filter-request";
 import {ModalService} from "../../../../services/modal.service";
 import {NgForm} from "@angular/forms";
 import {ChipEmmit} from "../../../model/chip-emmit";
+import {SortDirection} from "../../../model/sort-direction";
 
 @Component({
   selector: 'app-filter-games',
@@ -63,4 +64,6 @@ export class FilterGamesComponent {
     this.filterRequest={date_from:null,date_to:null,game_status:null,player_names:this.filterFriends,winner_names:this.filterWiners}
     this.filterRequestEmmiter.emit(this.filterRequest)
   }
+
+  protected readonly SortDirection = SortDirection;
 }

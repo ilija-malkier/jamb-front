@@ -3,6 +3,7 @@ import {FilterRequest} from "../../../model/filter-request";
 import {GameService} from "../../../../services/game.service";
 import {GameListComponent} from "../game-list/game-list.component";
 import {SortDirection} from "../../../model/sort-direction";
+import {GameStatus} from "../../../model/game-status";
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
@@ -19,7 +20,9 @@ export class GameComponent implements OnInit{
   private filterRequest:FilterRequest={date_from:null,date_to:null,game_status:null,player_names:null,winner_names:null}
 
 
-  constructor(private gameService:GameService) {}
+  constructor(private gameService:GameService) {
+    this.getPageNumber()
+  }
   filterSubmit(filterRequest: FilterRequest) {
     this.filterRequest=filterRequest;
     this.filterGames()
@@ -27,16 +30,11 @@ export class GameComponent implements OnInit{
 
   public getPageNumber(){
     this.gameService.getPages().subscribe((total)=>{
-      let totalItems=total.data.gameCount as number;
-      this.totalPages=this.customRound(totalItems/this.itemsPerPage);
+      this.totalPages=total.data.gameCount as number;
     });
   }
 
-  private customRound(number: number): number {
-    const decimalPart = number - Math.floor(number);
-    const roundedDecimal = Math.ceil(decimalPart);
-    return Math.floor(number) + roundedDecimal;
-  }
+
   private filterGames() {
       this.gameList.filter(this.filterRequest,this.sortField,this.sortDirection)
     // this.gameService.filter(this.filterRequest,this.sortField,this.sortDirection)
@@ -47,10 +45,13 @@ export class GameComponent implements OnInit{
   setSort(sort: string, sortDirection: SortDirection) {
     this.sortField=sort
     this.sortDirection=sortDirection
+    console.log(sort)
     this.filterGames()
   }
 
   ngOnInit(): void {
     // this.getPageNumber()
   }
+
+    protected readonly GameStatus = GameStatus;
 }
