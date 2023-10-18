@@ -4,6 +4,7 @@ import {GameService} from "../../../../services/game.service";
 import {GameListComponent} from "../game-list/game-list.component";
 import {SortDirection} from "../../../model/sort-direction";
 import {GameStatus} from "../../../model/game-status";
+import {GameListPaginationComponent} from "../game-list-pagination/game-list-pagination.component";
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
@@ -13,8 +14,8 @@ export class GameComponent implements OnInit{
 
 
   @ViewChild("gameList",{static:false}) gameList:GameListComponent
-  totalPages:number=0
-  itemsPerPage:number=10
+  @ViewChild("gamelistPagination") gameListPagination:GameListPaginationComponent
+
   protected sortField="date"
   protected sortDirection:SortDirection=SortDirection.asc
   private filterRequest:FilterRequest={date_from:null,date_to:null,game_status:null,player_names:null,winner_names:null}
@@ -30,7 +31,7 @@ export class GameComponent implements OnInit{
 
   public getPageNumber(){
     this.gameService.getPages().subscribe((total)=>{
-      this.totalPages=total.data.gameCount as number;
+      this.gameListPagination.setTotalPages(total.data.gameCount as number)
     });
   }
 
@@ -54,4 +55,8 @@ export class GameComponent implements OnInit{
   }
 
     protected readonly GameStatus = GameStatus;
+
+  getmaxGamePage() {
+    return this.gameService.maxGameRequestsElements;
+  }
 }

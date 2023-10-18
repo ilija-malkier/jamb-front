@@ -18,7 +18,7 @@
   </div>
 
 
-  <app-game-list-pagination [totalPagesInput]="totalPages" [itemsPerPageInput]="itemsPerPage"  ></app-game-list-pagination>
+  <app-game-list-pagination  #gamelistPagination [itemsPerPageInput]="getmaxGamePage()"  ></app-game-list-pagination>
 
 
           <app-game-list  class="w-50" #gameList>

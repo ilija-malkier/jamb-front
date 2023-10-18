@@ -15,11 +15,9 @@ import {PaginationHandler} from "../../../reusables/pagination-handler";
 export class GameListPaginationComponent extends PaginationHandler{
 
 
-  @Input() totalPagesInput = 0
   @Input() itemsPerPageInput = 0
   ngOnInit(): void {
-    super.totalPages=this.totalPagesInput
-    super.itemsPerPage=this.totalPagesInput
+    super.itemsPerPage=this.itemsPerPageInput
   }
 
   constructor(private gamesetService:GamesetService) {

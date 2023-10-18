@@ -21,10 +21,7 @@ export class FriendsRequestsReceivedListPaginationComponent extends PaginationHa
     super()
   }
 
-  setTotalPages(totalPagesInput :number){
-    super.totalPages=totalPagesInput
 
-  }
 
   getNotesForCurrPage() {
     this.friendsService.filterForPage(this.currentPage);

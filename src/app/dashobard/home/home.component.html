@@ -91,8 +91,8 @@
   <div class="card card-stats" style="margin-top: 0.5rem">
     <div class="card-body">
       <h3>Recent Games</h3>
-        <div class="row" style="padding-left: 20px">
-          <div *ngIf="(recentGames$ | async) as recentGames" class="flex-container "  >
+        <div class="row " style="padding-left: 20px">
+          <div *ngIf="(recentGames$ | async) as recentGames" class="flex-container  "  >
             <div class="card mx-2  d-flex flex-item  "  *ngFor="let recentGame of recentGames?.appData" >
               <div class="card-body position-relative">
                 <h4 class="card-title">Game {{recentGame?.gameId}}</h4>
@@ -110,15 +110,15 @@
                   <p class="text-white text-center  " style="font-size: 1.2rem;">{{recentGame?.winner?.username}}</p>
 
               </div>
+
             </div>
-            <div class="card mx-2 d-flex flex-item "  style="background: var(--secondary-color) !important;"   >
+            <div class="card mx-2 d-flex flex-item show-more-item"   routerLink="dashboard/games"  >
               <div class="card-body d-flex justify-content-center align-items-center  " style="padding: 0px !important;">
                 <i class="p-0 tim-icons icon-simple-add text-white " style="font-size: x-large;margin-right: 0.6rem"></i>
 
                 <h2 class=" p-0 m-0">See All</h2>
               </div>
             </div>
-
 
 
           </div>

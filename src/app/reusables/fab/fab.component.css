@@ -1,0 +1,7 @@
+.fab{
+  transition: .3s ease-in;
+}
+.fab:hover{
+  background: var(--secondary-color) !important;
+  scale: 115%;
+}

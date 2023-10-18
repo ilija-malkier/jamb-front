@@ -22,10 +22,7 @@ export class FriendsListPaginationComponent extends PaginationHandler implements
     super()
   }
 
-  setTotalPages(totalPagesInput :number){
-    super.totalPages=totalPagesInput
 
-  }
 
   getNotesForCurrPage() {
     this.friendsService.filterForPage(this.currentPage);

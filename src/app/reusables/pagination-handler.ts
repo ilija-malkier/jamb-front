@@ -8,12 +8,16 @@ export abstract class PaginationHandler {
   constructor() {
 
   }
+  setTotalPages(totalPagesInput :number){
+    this.totalPages=totalPagesInput
+
+  }
   canGoBack() {
     return 0 <= this.currentPage - 1
   }
 
   canGoForward() {
-    return this.totalPages > this.currentPage +1
+    return this.calculatedTotalPages > this.currentPage +1
   }
 
   get numberArray(): number[] {
