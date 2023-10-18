@@ -39,7 +39,11 @@ export class GameListComponent implements OnInit{
   ngOnInit(): void {
     this.gameService.games$.subscribe(data=>{
       this.gameLists= data.pipe(
-
+        startWith({dataState:DataState.LOADING}),
+        catchError(err => {
+          console.log(err)
+          return of({dataState:DataState.ERROR,error:err})
+        }),
         map((element:CustomResponse )=>{
               this.gamesLength=element?.data?.gameFilterResponses.length
               this.gameIndex=0;
@@ -51,11 +55,7 @@ export class GameListComponent implements OnInit{
                 appData:element?.data?.gameFilterResponses
               }
             }),
-        startWith({dataState:DataState.LOADING}),
-        catchError(err => {
-          console.log(err)
-          return of({dataState:DataState.ERROR,error:err})
-        })
+
       )
     })
     this.gameService.filterForPage(0)

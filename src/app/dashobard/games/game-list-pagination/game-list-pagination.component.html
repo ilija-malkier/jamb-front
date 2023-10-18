@@ -1,5 +1,8 @@
-<nav aria-label="...">
-  <ul class="pagination justify-content-end">
+<div class="w-100 d-flex justify-content-center">
+
+
+<nav class=" d-flex justify-content-center align-items-center   w-75  p-4   ">
+  <ul class="pagination d-flex  justify-content-center ">
     <li class="page-item " [ngClass]="{'disabled':!canGoBack()}">
       <a class="page-link"   (click)="backPage()" tabindex="-1">Previous</a>
     </li>
@@ -16,4 +19,4 @@
     </li>
   </ul>
 </nav>
-
+</div>

@@ -7,6 +7,12 @@ import {GameListComponent} from "../games/game-list/game-list.component";
 import {LoadingModalComponent} from "../../modals/loading-modal/loading-modal.component";
 import {AuthService} from "../../../services/auth.service";
 import {Route, Router} from "@angular/router";
+import {GameService} from "../../../services/game.service";
+import {catchError, map, Observable, of, startWith} from "rxjs";
+import {AppState} from "../../model/app-state";
+import {DataState} from "../../model/data-state";
+import {CustomResponse} from "../../model/custom-response";
+import {GameFilterResponse} from "../../model/game-filter-response";
 
 @Component({
   selector: 'app-home',
@@ -18,53 +24,50 @@ export class HomeComponent implements OnInit{
 
   protected sortField="date"
   protected sortDirection:SortDirection=SortDirection.desc
+  recentGames$:Observable<AppState<GameFilterResponse[]>> =new Observable<AppState<GameFilterResponse[]>>();
   @ViewChild("modal") modal:UploadSheetComponent
-
   @ViewChild("gameList",{static:false}) gameList:GameListComponent
 
 
   private filterRequest:FilterRequest={date_from:null,date_to:null,game_status:null,player_names:null,winner_names:null}
-  constructor(private modalService:ModalService,private  authService:AuthService,private router:Router) {
+  constructor(private gameService:GameService,private  authService:AuthService,private router:Router) {
   }
 
-  // openModal() {
-  //   this.modalService.toggleModal(UploadSheetComponent.uploadSheetModalId);
-  // }
 
   ngOnInit(): void {
-    // this.filterGames()
+    this.gameService.getRecentGames();
+    this.getRecentGames();
+  }
+
+
+  getRecentGames(){
+    this.gameService.recentGames$.subscribe(data=>{
+      this.recentGames$=data.pipe(
+        startWith({dataState:DataState.LOADING}),
+        catchError(err => {
+          console.log(err)
+          return of({dataState:DataState.ERROR,error:err})
+        }),
+        map((element:CustomResponse )=>{
+
+          console.log(element)
+          return {
+            dataState:DataState.SUCCESS,
+            appData:element?.data?.gameFilterResponses
+          }
+        }),
+      )
+    },error => {
+
+    })
   }
 
 
 
-  filterSubmit(filterRequest: FilterRequest) {
-    this.filterRequest=filterRequest;
-    this.filterGames()
-  }
-
-  filterGames(){
-    this.gameList?.filter(this.filterRequest,this.sortField,this.sortDirection)
-  }
-
-  setSort(sort: string, sortDirection: SortDirection) {
-      this.sortField=sort
-      this.sortDirection=sortDirection
-      this.filterGames()
-  }
 
   protected readonly SortDirection = SortDirection;
 
 
-  openUploadSheet() {
-    this.modal.openModal()
-  }
 
-  startNow() {
-    if(this.authService.$isLogin.value){
-      this.router.navigate(['login'])
-    }else{
-      this.router.navigate(['games'])
 
-    }
-  }
 }

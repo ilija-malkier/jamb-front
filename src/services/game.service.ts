@@ -27,6 +27,7 @@ export class GameService {
   games$: BehaviorSubject<Observable<CustomResponse>> = new BehaviorSubject<Observable<CustomResponse>>(new Observable<CustomResponse>())
   $gameRequests:BehaviorSubject<Observable<CustomResponse>> = new BehaviorSubject(new Observable<CustomResponse>())
   $gameRequestsSend:BehaviorSubject<Observable<CustomResponse>> = new BehaviorSubject(new Observable<CustomResponse>())
+  recentGames$:BehaviorSubject<Observable<CustomResponse>> = new BehaviorSubject<Observable<CustomResponse>>(new Observable<CustomResponse>());
   constructor(private httpClient:HttpClient) {
 
   }
@@ -160,5 +161,10 @@ export class GameService {
 
   removeGameFromGameset(gamesetId: number, gameId: number) {
     return this.httpClient.delete<CustomResponse>("http://localhost:8081/games/"+gameId+"/sets/"+gamesetId)
+  }
+
+  getRecentGames() {
+    let params={sortField:'date',sortDirection:SortDirection.desc,pageSize:5}
+    this.recentGames$.next(this.httpClient.get<CustomResponse>("http://localhost:8081/games/filter",{params:params}))
   }
 }

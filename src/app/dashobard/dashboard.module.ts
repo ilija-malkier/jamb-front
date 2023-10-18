@@ -11,6 +11,7 @@ import {NavbarComponent} from "./navigation/navbar/navbar.component";
 import {GameComponent} from "./games/game/game.component";
 import {ProfileComponent} from "./account/profile/profile.component";
 import {navigationRouteGuard} from "../angular-system/route-guards/navigation-route.guard";
+import {AppCommonModule} from "../app-common/app-common.module";
 
 
 var routes: Routes = [
@@ -51,14 +52,15 @@ console.warn("dashboard module loaded")
     NavbarComponent,
     HomeComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    NgbModule,
-    RouterOutlet,
-    RouterLink,
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        NgbModule,
+        RouterOutlet,
+        RouterLink,
+        AppCommonModule,
 
-  ],
+    ],
   exports: [RouterModule]
 })
 export class DashboardModule {
