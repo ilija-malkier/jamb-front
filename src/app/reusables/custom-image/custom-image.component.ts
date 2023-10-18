@@ -10,6 +10,7 @@ export class CustomImageComponent implements OnInit{
 
   @Input("left") left:string
   @Input("username") username:string
+  @Input("font-size") fontSize:string="25px"
 
   randomColor='';
 

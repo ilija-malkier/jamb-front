@@ -9,8 +9,6 @@
   left: 50%; /* Move the image 50% to the right from the left edge of the container */
   transform: translate(-50%, -50%);
 }
-.text-image{
-  font-size: 25px;
-}
+
 
 
