@@ -9,11 +9,11 @@ import {SettingsComponent} from "./settings/settings.component";
 import {ProfileResolver} from "../../angular-system/route-guards/profile.resolver";
 import {RouterModule} from "@angular/router";
 import {RestartPasswordComponent} from "./restart-password/restart-password.component";
-import {UploadSheetComponent} from "./upload-sheet/upload-sheet.component";
+import {UploadSheetComponent} from "../../reusables/upload-sheet/upload-sheet.component";
 import {FindFriendsModalComponent} from "../../modals/find-friends-modal/find-friends-modal.component";
 import {
-  FriendsRequestsListPaginationComponent
-} from "./friends-requests-list-pagination/friends-requests-list-pagination.component";
+  FriendsRequestsSendListPaginationComponent
+} from "./friends-requests-send-list-pagination/friends-requests-send-list-pagination.component";
 import {FriendsListPaginationComponent} from "./friends-list-pagination/friends-list-pagination.component";
 import {CreateGamesetModalComponent} from "../../modals/create-gameset-modal/create-gameset-modal.component";
 import {FormsModule} from "@angular/forms";
@@ -22,18 +22,21 @@ import {AppCommonModule} from "../../app-common/app-common.module";
 import {SupportComponent} from "./support/support.component";
 import {GamesetPaginationComponent} from "../gameset/gameset-pagination/gameset-pagination.component";
 import {GamesetsModule} from "../gameset/gamesets.module";
+import {DashboardModule} from "../dashboard.module";
+import { FriendsRequestsReceivedListPaginationComponent } from './friends-requests-received-list-pagination/friends-requests-received-list-pagination.component';
 
 
 console.warn("account module loaded")
 
 var routes = [
 
-  {path: ':username', component: ProfileComponent, resolve: {data: ProfileResolver}},
   {path: 'settings', component: SettingsComponent},
   {path: 'friends', component: FriendsSettingsComponent},
   {path: 'gamesets', component: AccountGamesetComponent},
   {path: 'password/reset', component: SetNewPasswordComponent},
-  {path: 'support', component: SupportComponent}
+  {path: 'support', component: SupportComponent},
+  {path: ':username', component: ProfileComponent, resolve: {data: ProfileResolver}},
+
   // ],canActivate:[navigationRouteGuard]},
 ]
 
@@ -45,13 +48,13 @@ var routes = [
     AccountGamesetComponent,
     SetNewPasswordComponent,
     RestartPasswordComponent,
-    UploadSheetComponent,
     FindFriendsModalComponent,
-    FriendsRequestsListPaginationComponent,
+    FriendsRequestsSendListPaginationComponent,
     FriendsListPaginationComponent,
     CreateGamesetModalComponent,
     ProfileComponent,
-    SupportComponent
+    SupportComponent,
+    FriendsRequestsReceivedListPaginationComponent,
 
 
   ],
@@ -61,8 +64,9 @@ var routes = [
     AppCommonModule,
     RouterModule.forChild(routes),
     GamesetsModule,
+    DashboardModule,
   ],
-  exports:[RouterModule]
+    exports: [RouterModule]
 })
 export class AccountModule {
 }

@@ -22,14 +22,16 @@ import {GameSetDetailsComponent} from "../gameset/game-set-details-component/gam
 import {FormsModule} from "@angular/forms";
 import {GameRequestComponent} from "./game-request/game-request.component";
 import {navigationRouteGuard} from "../../angular-system/route-guards/navigation-route.guard";
+import {DashboardModule} from "../dashboard.module";
 
 console.warn("game module loaded")
 var routes:Routes=[
+
+  {path: 'create',component: CalculateGameComponent ,canActivate:[navigationRouteGuard]},
+  {path:'requests',component:GameRequestComponent ,canActivate:[navigationRouteGuard]},
   {path:'',component:GameComponent ,canActivate:[navigationRouteGuard]},
 
   {path:':id',component:GameDetailsComponent,resolve:{data:GameDetailsResolver} ,canActivate:[navigationRouteGuard]},
-  {path: 'create',component: CalculateGameComponent ,canActivate:[navigationRouteGuard]},
-  {path:'requests',component:GameRequestComponent ,canActivate:[navigationRouteGuard]},
 
 ]
 
@@ -46,12 +48,13 @@ var routes:Routes=[
     CreateGameModalComponent,
 
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    AppCommonModule,
-    FormsModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        AppCommonModule,
+        FormsModule,
+        DashboardModule
+    ],
   exports:[RouterModule]
 })
 export class GameModule { }

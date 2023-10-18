@@ -1,8 +1,15 @@
-<ng-template #template>
 
+
+
+
+<div class="modal fade" id="uploadsheetmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Upload Sheet </h5>
-        <button type="button" class="btn-close" [disabled]="this.isLoadingImage || this.isLoading" (click)="closeModal(null)" aria-label="Close"></button>
+        <h2 class="modal-title" id="uploadsheetmodal-title">Upload Sheet </h2>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="tim-icons icon-simple-remove"></i>
+        </button>
       </div>
       <div class="modal-body">
         <app-error-baner [show]="showError" [text]="errorMessage"></app-error-baner>
@@ -38,24 +45,24 @@
             <img [src]="this.imageUrl" class="w-25" >
 
           </div>
-          <div class="d-flex justify-content-end mt-3">
-            <button class="btn mx-2 border-0"(click)="closeModal(form)" [disabled]="isLoading || isLoadingImage" type="button" >Cancel</button>
-            <button class="btn text-white px-3" [ngClass]="{'disable':isLoading || isLoadingImage}"   type="submit" style="background: var(--primary-color)">
-              <ng-container *ngIf="(isLoading || isLoadingImage) ;else textContainerBtn">
-                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                Loading...
-              </ng-container>
-              <ng-template #textContainerBtn>
-                Upload
-              </ng-template>
-            </button>
-          </div>
+
         </form>
       </div>
+      <div class="modal-footer d-flex justify-content-end mt-3">
 
 
-</ng-template>
+          <button class="btn mx-2 border-0"(click)="closeModal(form)" [disabled]="isLoading || isLoadingImage" type="button" data-dismiss="modal" >Cancel</button>
+          <button class="btn text-white px-3" [ngClass]="{'disable':isLoading || isLoadingImage}"   type="submit" style="background: var(--primary-color)">
+            <ng-container *ngIf="(isLoading || isLoadingImage) ;else textContainerBtn">
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              Loading...
+            </ng-container>
+            <ng-template #textContainerBtn>
+              Upload
+            </ng-template>
+          </button>
 
-
-
-
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ModalService} from "../../../services/modal.service";
-import {UploadSheetComponent} from "../account/upload-sheet/upload-sheet.component";
+import {UploadSheetComponent} from "../../reusables/upload-sheet/upload-sheet.component";
 import {FilterRequest} from "../../model/filter-request";
 import {SortDirection} from "../../model/sort-direction";
 import {GameListComponent} from "../games/game-list/game-list.component";

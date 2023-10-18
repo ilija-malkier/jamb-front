@@ -37,10 +37,24 @@ export const ROUTES: RouteInfo[] = [
   //   class: ""
   // },
   {
+    path: "account/friends",
+    title: "Friends",
+    rtlTitle: "الرموز",
+    icon: "icon-satisfied",
+    class: ""
+  },
+  {
+    path: "games/requests",
+    title: "Requests",
+    rtlTitle: "الرموز",
+    icon: "icon-vector",
+    class: ""
+  },
+  {
     path: "account",
     title: "Account",
     rtlTitle: "الرموز",
-    icon: "icon-single-02",
+    icon: "icon-badge",
     class: ""
   },
 

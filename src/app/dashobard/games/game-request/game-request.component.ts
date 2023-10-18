@@ -11,7 +11,7 @@ import {FindFriendsModalComponent} from "../../../modals/find-friends-modal/find
 import {GameService} from "../../../../services/game.service";
 import {GameRequestResponse} from "../../../model/game-request-response";
 import {PagedGameRequestResponse} from "../../../model/paged-game-request-response";
-import {UploadSheetComponent} from "../../account/upload-sheet/upload-sheet.component";
+import {UploadSheetComponent} from "../../../reusables/upload-sheet/upload-sheet.component";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 import * as alertifyjs from "alertifyjs";
 
@@ -21,7 +21,7 @@ import * as alertifyjs from "alertifyjs";
   styleUrls: ['./game-request.component.css']
 })
 export class GameRequestComponent implements OnInit{
-  maxGames=10;
+
   $games:Observable<AppState<GameRequestResponse[]>> = new Observable<AppState<GameRequestResponse[]>>()
   $gamesRequestsSend:Observable<AppState<GameRequestResponse[]>> = new Observable<AppState<GameRequestResponse[]>>()
   currentPage=0
@@ -112,5 +112,9 @@ export class GameRequestComponent implements OnInit{
       alertifyjs.error("Could not delete all game request.Please try again later.")
 
     })
+  }
+
+  getMaxGameRequests(){
+    return this.gameService.maxGameRequestsElements
   }
 }

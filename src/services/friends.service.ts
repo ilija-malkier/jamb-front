@@ -9,7 +9,7 @@ import {FriendRequestRequest} from "../app/model/friend-request-request";
 })
 export class FriendsService {
 
-  $friendRequest:BehaviorSubject<Observable<CustomResponse>> =new BehaviorSubject(new Observable<CustomResponse>())
+  $friendRequestReceived:BehaviorSubject<Observable<CustomResponse>> =new BehaviorSubject(new Observable<CustomResponse>())
   $friends:BehaviorSubject<Observable<CustomResponse>> =new BehaviorSubject(new Observable<CustomResponse>())
   $friendRequestsSend:BehaviorSubject<Observable<CustomResponse>> =new BehaviorSubject(new Observable<CustomResponse>())
 
@@ -24,7 +24,7 @@ export class FriendsService {
   }
 
   getFriendRequests(page: number){
-    this.$friendRequest.next(this.http.get<CustomResponse>("http://localhost:8081/player/requests/received",{
+    this.$friendRequestReceived.next(this.http.get<CustomResponse>("http://localhost:8081/player/requests/received",{
       params:{
         pageNumber:page,
         pageSize:this.maxFriends
@@ -41,7 +41,7 @@ export class FriendsService {
     }))
   }
   getFriendRequestsSend(page: number) {
-    this.$friendRequestsSend.next(this.http.get<CustomResponse>("http://localhost:8081/player/requests/received",{
+    this.$friendRequestsSend.next(this.http.get<CustomResponse>("http://localhost:8081/player/requests/sent",{
       params:{
         pageNumber:page,
         pageSize:this.maxFriends

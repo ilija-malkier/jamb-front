@@ -12,6 +12,10 @@ import {GameComponent} from "./games/game/game.component";
 import {ProfileComponent} from "./account/profile/profile.component";
 import {navigationRouteGuard} from "../angular-system/route-guards/navigation-route.guard";
 import {AppCommonModule} from "../app-common/app-common.module";
+import {AccountModule} from "./account/account.module";
+import {UploadSheetComponent} from "../reusables/upload-sheet/upload-sheet.component";
+import {FormsModule} from "@angular/forms";
+import {FabComponent} from "../reusables/fab/fab.component";
 
 
 var routes: Routes = [
@@ -50,18 +54,21 @@ console.warn("dashboard module loaded")
     DashobardComponent,
     SidebarComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    UploadSheetComponent,
+    FabComponent
   ],
-    imports: [
-        CommonModule,
-        RouterModule.forChild(routes),
-        NgbModule,
-        RouterOutlet,
-        RouterLink,
-        AppCommonModule,
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    NgbModule,
+    RouterOutlet,
+    RouterLink,
+    AppCommonModule,
+    FormsModule,
 
-    ],
-  exports: [RouterModule]
+  ],
+  exports: [RouterModule, FabComponent]
 })
 export class DashboardModule {
 }

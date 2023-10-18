@@ -1,21 +1,20 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {GameService} from "../../../../services/game.service";
+import {Component, Input, OnInit} from '@angular/core';
 import {FriendsService} from "../../../../services/friends.service";
 import {PaginationHandler} from "../../../reusables/pagination-handler";
 
 @Component({
-  selector: 'app-friends-list-pagination',
-  templateUrl: './friends-list-pagination.component.html',
-  styleUrls: ['./friends-list-pagination.component.css']
+  selector: 'app-friends-requests-send-list-pagination',
+  templateUrl: './friends-requests-send-list-pagination.component.html',
+  styleUrls: ['./friends-requests-send-list-pagination.component.css']
 })
-export class FriendsListPaginationComponent extends PaginationHandler implements OnInit{
+export class FriendsRequestsSendListPaginationComponent extends PaginationHandler implements OnInit{
 
 
   @Input() itemsPerPageInput = 0
 
   ngOnInit(): void {
 
-    super.itemsPerPage=this.itemsPerPageInput;
+  super.itemsPerPage=this.itemsPerPageInput;
   }
 
   constructor(private friendsService: FriendsService) {

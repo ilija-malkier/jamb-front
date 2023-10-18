@@ -22,7 +22,7 @@
 
           </div>
           <div *ngIf="gameRequests.dataState==DataState.SUCCESS" class="w-100 ">
-            <tr *ngFor="let gameRequest of gameRequests?.appData | slice:0:maxGames">
+            <tr *ngFor="let gameRequest of gameRequests?.appData | slice:0:getMaxGameRequests()">
               <td class="text-center">{{gameRequest.username}}</td>
               <td class="text-center">{{gameRequest.gameDate | date}}</td>
               <td class="text-center">
@@ -31,7 +31,7 @@
                   <button class="btn btn-link text-dark"  (click)="declineGame(gameRequest.gameId)"> Decline</button>
                 </div>
               </td>
-              <app-upload-sheet [gameId]="gameRequest.gameId" [joinGame]="true" ></app-upload-sheet>
+<!--              <app-upload-sheet [gameId]="gameRequest.gameId" [joinGame]="true" ></app-upload-sheet>-->
 
             </tr>
           </div>
@@ -42,7 +42,7 @@
 
       </table>
       <div class="w-100  d-flex justify-content-end">
-        <app-game-list-pagination [totalPages]="this.customRound(this.totalElements/this.maxGames)"></app-game-list-pagination>
+        <app-game-list-pagination [totalPagesInput]="this.totalElements" [itemsPerPageInput]="getMaxGameRequests()"></app-game-list-pagination>
       </div>
 
 
@@ -68,7 +68,7 @@
           <span class="spinner-border m-2 spinner-border-sm" role="status" aria-hidden="true" style="width: 50px;height: 50px"></span>
         </div>
         <div *ngIf="gameRequestsSend.dataState==DataState.SUCCESS" class="w-100 ">
-          <tr *ngFor="let gameRequest of gameRequestsSend?.appData | slice:0:maxGames">
+          <tr *ngFor="let gameRequest of gameRequestsSend?.appData | slice:0:getMaxGameRequests()">
             <td class="text-center">{{gameRequest.username}}</td>
             <td class="text-center">{{gameRequest.gameDate | date}}</td>
             <td class="text-center">
@@ -76,7 +76,7 @@
                 <button class="btn btn-link text-dark"  (click)="removeGameRequest(gameRequest.gameId,gameRequest.username)"> Delete</button>
               </div>
             </td>
-            <app-upload-sheet [gameId]="gameRequest.gameId" [joinGame]="true" ></app-upload-sheet>
+<!--            <app-upload-sheet [gameId]="gameRequest.gameId" [joinGame]="true" ></app-upload-sheet>-->
 
           </tr>
         </div>
@@ -88,7 +88,7 @@
     </table>
     </ng-container>
     <div class="w-100  d-flex justify-content-end">
-      <app-game-list-pagination [totalPages]="this.customRound(this.totalElementsRequestsSend/this.maxGames)"></app-game-list-pagination>
+      <app-game-list-pagination [totalPagesInput]="this.totalElementsRequestsSend" [itemsPerPageInput]="getMaxGameRequests()"></app-game-list-pagination>
     </div>
 
   </div>

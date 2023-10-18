@@ -1,19 +1,14 @@
-<div class="d-flex">
+<button  type="button"  style="background: var({{color}})" class="btn px-3  text-white" [disabled]="isLoading">
+  <div class="d-flex justify-content-center">
+    <i class="me-2" [class]="icon"></i>
+    <ng-container *ngIf="isLoading">
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      Loading...
+    </ng-container>
+    <div *ngIf="!isLoading">
+      {{text}}
 
-     <button style="background: var({{color}})" class="btn px-3 upload-button text-white" [disabled]="isLoading">
-       <div class="d-flex justify-content-center">
-         <i class="me-2" [class]="icon"></i>
-         <ng-container *ngIf="isLoading">
-           <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-           Loading...
-         </ng-container>
-         <div *ngIf="!isLoading">
-           {{text}}
+    </div>
+  </div>
 
-         </div>
-       </div>
-
-     </button>
-
-</div>
-
+</button>

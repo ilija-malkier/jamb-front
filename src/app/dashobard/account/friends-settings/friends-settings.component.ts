@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FriendsService} from "../../../../services/friends.service";
 import {catchError, map, Observable, of, startWith} from "rxjs";
 import {AppState} from "../../../model/app-state";
@@ -12,6 +12,11 @@ import {el} from "date-fns/locale";
 import {Friend} from "../../../model/friend";
 import alertifyjs from "alertifyjs";
 import {error} from "@angular/compiler-cli/src/transformers/util";
+import {PlayerFriendRequestSend} from "../../../model/player-friend-request-send";
+import {FriendSendRequestDetails} from "../../../model/friend-send-request-details";
+import {
+  FriendsRequestsSendListPaginationComponent
+} from "../friends-requests-send-list-pagination/friends-requests-send-list-pagination.component";
 
 @Component({
   selector: 'app-friends-settings',
@@ -22,29 +27,26 @@ export class FriendsSettingsComponent implements OnInit{
 
 
   $friends:Observable<AppState<Friend[]>> = new Observable<AppState<Friend[]>>()
-  $friendsRequests:Observable<AppState<Friend[]>> = new Observable<AppState<Friend[]>>()
-  $friendRequestsSend:Observable<AppState<Friend[]>> = new Observable<AppState<Friend[]>>()
   currentPageFriends=0
-  currentPageFriendsRequests=0
+  @ViewChild("friends") friends:FriendsRequestsSendListPaginationComponent
+
+
+  $friendsRequests:Observable<AppState<Friend[]>> = new Observable<AppState<Friend[]>>()
+  currentPageFriendsRequests  =0
+  @ViewChild("friendsRequestsReceived") friendsRequestsReceived:FriendsRequestsSendListPaginationComponent
+
+
+  $friendRequestsSend:Observable<AppState<FriendSendRequestDetails[]>> = new Observable<AppState<FriendSendRequestDetails[]>>()
   currentPageFriendsRequestsSend=0
-  totalElementsFriends=0
-  totalElementsFriendsRequests=0
-  totalElementsFriendsRequestsSend=0
-  constructor(private friendsService:FriendsService,private modalService:ModalService) {
-  }
+  @ViewChild("friendsRequestsSend") friendsRequestsSend:FriendsRequestsSendListPaginationComponent
+  constructor(private friendsService:FriendsService,private modalService:ModalService) {}
   ngOnInit(): void {
     this.friendsService.getFriends(this.currentPageFriends)
     this.friendsService.getFriendRequests(this.currentPageFriendsRequests)
     this.friendsService.getFriendRequestsSend(this.currentPageFriendsRequestsSend)
     this.handleFriends();
-    this.handleFriendRequests();
+    this.handleFriendRequestsReceived();
     this.handleFriendRequestsSend();
-  }
-   customRound(number: number): number {
-    const decimalPart = number - Math.floor(number);
-
-     const roundedDecimal = Math.ceil(decimalPart);
-    return Math.floor(number) + roundedDecimal;
   }
 
   private handleFriends() {
@@ -52,7 +54,8 @@ export class FriendsSettingsComponent implements OnInit{
       this.$friends = data.pipe(
 
         map((element: CustomResponse) => {
-          this.totalElementsFriends=element?.data?.friends.totalElements
+
+          this.friends.setTotalPages(element?.data?.friends.totalElements)
           return {
             dataState: DataState.SUCCESS,
             appData: element?.data?.friends.friends
@@ -65,15 +68,17 @@ export class FriendsSettingsComponent implements OnInit{
     })
   }
 
-  private handleFriendRequests() {
-    this.friendsService.$friendRequest.subscribe(data => {
+  private handleFriendRequestsReceived() {
+    this.friendsService.$friendRequestReceived.subscribe(data => {
       this.$friendsRequests = data.pipe(
 
         map((element: CustomResponse) => {
-          this.totalElementsFriendsRequests=element?.data?.friend_requests.totalElements
+
+          this.friendsRequestsReceived.setTotalPages(element?.data?.friend_requests.totalElements)
+
           return {
             dataState: DataState.SUCCESS,
-            appData: element?.data?.friend_requests?.friends
+            appData: element?.data?.friend_requests?.requests
           }
         }),startWith({dataState: DataState.LOADING}),
         catchError(err => {
@@ -87,11 +92,11 @@ export class FriendsSettingsComponent implements OnInit{
       this.$friendRequestsSend = data.pipe(
 
         map((element: CustomResponse) => {
-          this.totalElementsFriendsRequestsSend=element?.data?.friend_requests_send.totalElements
-          console.log(element)
+
+          this.friendsRequestsSend.setTotalPages(element?.data?.friend_requests_send.totalElements)
           return {
             dataState: DataState.SUCCESS,
-            appData: element?.data?.friend_requests_send
+            appData: element?.data?.friend_requests_send.requests
 
           }
         }),startWith({dataState: DataState.LOADING}),
@@ -101,9 +106,6 @@ export class FriendsSettingsComponent implements OnInit{
       )
     })
   }
-  // openFindFriendsModal() {
-  //   this.modalService.toggleModal(FindFriendsModalComponent.findFriendsModalId)
-  // }
 
 
   unfriend(username: string) {
@@ -125,7 +127,6 @@ export class FriendsSettingsComponent implements OnInit{
     this.friendsService.acceptFriend(username).subscribe(data=>{
       alertifyjs.success("Friend request accepted")
       this.friendsService.getFriendRequests(this.currentPageFriendsRequests)
-
     })
 
   }
@@ -139,7 +140,6 @@ export class FriendsSettingsComponent implements OnInit{
 
 
   protected readonly DataState = DataState;
-
 
   cancelFriendRequest(username: string) {
     //delete from list

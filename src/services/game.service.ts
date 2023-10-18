@@ -28,6 +28,7 @@ export class GameService {
   $gameRequests:BehaviorSubject<Observable<CustomResponse>> = new BehaviorSubject(new Observable<CustomResponse>())
   $gameRequestsSend:BehaviorSubject<Observable<CustomResponse>> = new BehaviorSubject(new Observable<CustomResponse>())
   recentGames$:BehaviorSubject<Observable<CustomResponse>> = new BehaviorSubject<Observable<CustomResponse>>(new Observable<CustomResponse>());
+  maxGameRequestsElements: number=10;
   constructor(private httpClient:HttpClient) {
 
   }

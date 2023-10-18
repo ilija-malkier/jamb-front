@@ -14,6 +14,8 @@ import {GameSetDetailsResponse} from "./game-set-details-response";
 import {PlayerResponse} from "./player-response";
 import {GamesetGameResponse} from "./gameset-game-response";
 import {GameSetResponse} from "./game-set-response";
+import {PlayerFriendResponse} from "./player-friend-response";
+import {PlayerFriendRequestSend} from "./player-friend-request-send";
 
 export interface CustomResponse {
   timeStamp:Date;
@@ -27,9 +29,9 @@ export interface CustomResponse {
     access_token?:string,
     gameCount?:number,
     refresh_token?:string,
-    friends?:PlayerFriend,
+    friends?:PlayerFriendResponse,
     friend_requests?:PlayerFriendRequest,
-    friend_requests_send?:PlayerFriend,
+    friend_requests_send?:PlayerFriendRequestSend,
     isValid?:boolean,
     results?:ResultResponse,
     received_game_requests?:PagedGameRequestResponse

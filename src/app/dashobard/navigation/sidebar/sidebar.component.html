@@ -11,7 +11,7 @@
 <div class="sidebar-wrapper">
   <ul class="nav">
     <li
-      routerLinkActive="active"
+      routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
       *ngFor="let menuItem of menuItems"
       class="{{ menuItem.class }} nav-item"
     >

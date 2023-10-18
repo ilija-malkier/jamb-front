@@ -1,10 +1,10 @@
 import {Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {ModalService} from "../../../../services/modal.service";
+import {ModalService} from "../../../services/modal.service";
 import {NgForm} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {delay} from "rxjs";
 import {NavigationEnd, NavigationExtras, Router} from "@angular/router";
-import {DataState} from "../../../model/data-state";
+import {DataState} from "../../model/data-state";
 import {fi} from "date-fns/locale";
 import {Ng2ImgMaxService} from "ng2-img-max";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
@@ -37,7 +37,7 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
   @Input() gameId:number=-1
   modalRef:BsModalRef
   @ViewChild("template") template:TemplateRef<any>
-  constructor(private sanitizer: DomSanitizer,private modalService:ModalService,private httpClient:HttpClient,private router:Router,private ng2ImgMax: Ng2ImgMaxService,private modalServicebs: BsModalService) {
+  constructor(private sanitizer: DomSanitizer,private httpClient:HttpClient,private router:Router,private ng2ImgMax: Ng2ImgMaxService) {
     this.router.events.subscribe(e=>{
       if(e instanceof  NavigationEnd){
 
@@ -161,9 +161,7 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
   };
 
 
-  openModal() {
-    this.modalRef = this.modalServicebs.show(this.template);
-  }
+
 
   closeModal(form:NgForm) {
     this.modalRef?.hide()
