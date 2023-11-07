@@ -1,0 +1,82 @@
+
+.choice-upload-template{
+  transition: .5s ease-in;
+  margin-right: 1rem;
+  padding: 15% 0px;
+  flex:1;
+
+
+}
+
+
+.choice-custom-template{
+  transition: .5s ease-in;
+  padding: 15% 0px;
+  flex:1;
+
+}
+
+
+.choice-custom-template {
+
+  border-radius: 3px;
+  background: linear-gradient(to right, var(--primary-color) 50%, transparent 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: all .5s ease-out;
+}
+
+.choice-custom-template:hover {
+  background-position: left bottom;
+}
+.choice-upload-template {
+
+  border-radius: 3px;
+  background: linear-gradient(to left, var(--primary-color) 50%, transparent 50%);
+  background-size: 200% 100%;
+  background-position: left bottom;
+  transition: all .5s ease-out;
+}
+
+.choice-upload-template:hover {
+  background-position: right bottom;
+}
+
+
+.line-1{
+  position: relative;
+  top: 50%;
+  margin: 0 auto;
+  border-right: 2px solid rgba(255,255,255,.75);
+  font-size: 180%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  transform: translateY(-50%);
+
+}
+.hide-text{
+  opacity: 0;
+}
+
+.typing-demo {
+  width: 61ch;
+  animation: typing 2s steps(61), blink .5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  font-family: monospace;
+  text-align: center;
+}
+
+@keyframes typing {
+  from {
+    width: 0
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent
+  }
+}
