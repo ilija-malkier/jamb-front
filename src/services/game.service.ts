@@ -9,6 +9,7 @@ import {GameSetCreateRequest} from "../app/model/game-set-create-request";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 import {HttpClient} from "@angular/common/http";
 import * as alertifyjs from "alertifyjs";
+import {SaveTemplate} from "../app/model/save-template";
 
 @Injectable({
   providedIn: 'root'
@@ -167,5 +168,9 @@ export class GameService {
   getRecentGames() {
     let params={sortField:'date',sortDirection:SortDirection.desc,pageSize:5}
     this.recentGames$.next(this.httpClient.get<CustomResponse>("http://localhost:8081/games/filter",{params:params}))
+  }
+
+  saveTemplateToFavorites(saveTemplate:SaveTemplate){
+    return this.httpClient.post<CustomResponse>(" http://localhost:8081/template/favourite",saveTemplate)
   }
 }

@@ -18,6 +18,7 @@ import {FormsModule} from "@angular/forms";
 import {FabComponent} from "../reusables/fab/fab.component";
 import { FriendAddCardComponent } from './common/friend-add-card/friend-add-card.component';
 import { GamesetAddCardComponent } from './common/gameset-add-card/gameset-add-card.component';
+import { ToggleTemplateButtonComponent } from './common/toggle-template-button/toggle-template-button.component';
 
 
 var routes: Routes = [
@@ -60,7 +61,8 @@ console.warn("dashboard module loaded")
     UploadSheetComponent,
     FabComponent,
     FriendAddCardComponent,
-    GamesetAddCardComponent
+    GamesetAddCardComponent,
+    ToggleTemplateButtonComponent
   ],
   imports: [
     CommonModule,
@@ -72,7 +74,7 @@ console.warn("dashboard module loaded")
     FormsModule,
 
   ],
-    exports: [RouterModule, FabComponent, FriendAddCardComponent, GamesetAddCardComponent, UploadSheetComponent]
+  exports: [RouterModule, FabComponent, FriendAddCardComponent, GamesetAddCardComponent, UploadSheetComponent, ToggleTemplateButtonComponent]
 })
 export class DashboardModule {
 }

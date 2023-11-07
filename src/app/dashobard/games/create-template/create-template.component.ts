@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
+import {GameService} from "../../../../services/game.service";
+import {SaveTemplate} from "../../../model/save-template";
 
 @Component({
   selector: 'app-create-template',
@@ -8,11 +10,21 @@ import {Router} from "@angular/router";
 })
 export class CreateTemplateComponent {
 
-  constructor(private router:Router) {
+
+  templateColumns:String[]=['1','1','1','1','1','1','1','1','1','1'];
+  triling:boolean=true;
+  topicName:string
+  constructor(private router:Router,private gameService:GameService) {
+
   }
 
   crateTemplateWithSave() {
+    this.saveToFavorites();
     this.navigateToEditSceen()
+  }
+
+  private saveToFavorites() {
+    this.gameService.saveTemplateToFavorites(new SaveTemplate(this.templateColumns.toString(),this.triling,this.topicName))
   }
   navigateToEditSceen(){
     this.router.navigate(['/dashboard/games/templates/edit'])
@@ -20,6 +32,16 @@ export class CreateTemplateComponent {
 
   createTemplateWithoutSave() {
     this.navigateToEditSceen()
+  }
 
+  handleToggle($event: { isColumn: boolean; columnIndex: number; columnValue: boolean }) {
+
+      if(!$event.isColumn){
+        //triling
+        this.triling=$event.columnValue
+      }else{
+        this.templateColumns[$event.columnIndex]=$event.columnValue? '0' : '1';
+      }
+    console.log(this.templateColumns)
   }
 }
