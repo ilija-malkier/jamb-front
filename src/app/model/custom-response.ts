@@ -16,6 +16,7 @@ import {GamesetGameResponse} from "./gameset-game-response";
 import {GameSetResponse} from "./game-set-response";
 import {PlayerFriendResponse} from "./player-friend-response";
 import {PlayerFriendRequestSend} from "./player-friend-request-send";
+import {TemplateInfo} from "./template-info";
 
 export interface CustomResponse {
   timeStamp:Date;
@@ -42,7 +43,8 @@ export interface CustomResponse {
     gameSet?:GameSetDetailsResponse,
     matching_usernames?:SearchedFriends[],
     players_image?:ImageResponse,
-    GameGamesetResponseList:GamesetGameResponse
+    GameGamesetResponseList:GamesetGameResponse,
+    templateResponses:TemplateInfo[]
 
 
 

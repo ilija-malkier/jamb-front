@@ -61,8 +61,8 @@ import {GamesetGameResponse} from "../../../model/gameset-game-response";
     }
 
     viewDetails(id:number) {
-      this.modal.openModal()
-      this.router.navigate(['/gameset',id])
+
+      this.router.navigate(['/gamesets',id])
     }
 
     getItemsPerPage() {

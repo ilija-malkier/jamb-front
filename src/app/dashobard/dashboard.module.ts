@@ -16,6 +16,8 @@ import {AccountModule} from "./account/account.module";
 import {UploadSheetComponent} from "../reusables/upload-sheet/upload-sheet.component";
 import {FormsModule} from "@angular/forms";
 import {FabComponent} from "../reusables/fab/fab.component";
+import { FriendAddCardComponent } from './common/friend-add-card/friend-add-card.component';
+import { GamesetAddCardComponent } from './common/gameset-add-card/gameset-add-card.component';
 
 
 var routes: Routes = [
@@ -56,7 +58,9 @@ console.warn("dashboard module loaded")
     NavbarComponent,
     HomeComponent,
     UploadSheetComponent,
-    FabComponent
+    FabComponent,
+    FriendAddCardComponent,
+    GamesetAddCardComponent
   ],
   imports: [
     CommonModule,
@@ -68,7 +72,7 @@ console.warn("dashboard module loaded")
     FormsModule,
 
   ],
-  exports: [RouterModule, FabComponent]
+    exports: [RouterModule, FabComponent, FriendAddCardComponent, GamesetAddCardComponent, UploadSheetComponent]
 })
 export class DashboardModule {
 }

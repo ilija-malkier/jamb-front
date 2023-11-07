@@ -15,12 +15,15 @@ import {VerifyEmailComponent} from "./verify-email/verify-email.component";
 import {LottiePlayer} from "@lottiefiles/lottie-player";
 import {LottieModule} from "ngx-lottie";
 import player from 'lottie-web';
+import {PasswordResetRequest} from "../model/password-reset-request";
+import {RestartPasswordComponent} from "./restart-password/restart-password.component";
 
 var routes: Routes = [
   {path: '', redirectTo: 'sign-in', pathMatch: 'full'},
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
   {path: "logout", redirectTo: "/auth/sign-in", pathMatch: "full"},
+  {path:"password/reset",component:RestartPasswordComponent},
   {path:'account/activate',component:VerifyEmailComponent},
 ]
 export function playerFactory() { // add this line

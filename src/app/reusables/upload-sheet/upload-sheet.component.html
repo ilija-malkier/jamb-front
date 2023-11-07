@@ -11,13 +11,15 @@
           <i class="tim-icons icon-simple-remove"></i>
         </button>
       </div>
+
       <div class="modal-body">
+
         <app-error-baner [show]="showError" [text]="errorMessage"></app-error-baner>
+
         <form class="mt-2 d-flex flex-column justify-content-around" (ngSubmit)="uploadSheet(form)" #form="ngForm" enctype="multipart/form-data">
 
-
           <div (click)="openFile(fileInput)"  class="file-input d-flex flex-column justify-content-center align-items-center" [ngClass]="{'shrink':isFileSelected}">
-            <i class="bi bi-box-arrow-in-down " style="font-size: 50px;color: var(--black)"></i>
+            <i class="tim-icons icon-cloud-upload-94" style="font-size: 50px;color: var(--black)"></i>
             <input ngModel name="image_sheet"  id="upload_image_background" #fileInput  (change)="change($event)"  class="position-absolute z-1  bg-info invisible" type="file" multiple accept="image/jpeg, image/png" />
 
           </div>
@@ -29,6 +31,7 @@
             <div class="px-1">
               <i class="bi bi-trash-fill"  style="font-size: 20px;color: var(--text-dark) !important;cursor: pointer" (click)="deleteSelectedImage(form)" [ngStyle]="{'color':progress!=100? 'rgba(0, 0, 0, 0.2)' : 'black'}"></i>
             </div>
+
           </div>
 
 
@@ -45,24 +48,24 @@
             <img [src]="this.imageUrl" class="w-25" >
 
           </div>
+          <div class="modal-footer d-flex justify-content-end mt-3">
 
+
+            <button class="btn mx-2 border-0"(click)="closeModal(form)" [disabled]="isLoading || isLoadingImage" type="button" data-dismiss="modal" >Cancel</button>
+            <button class="btn btn-primary text-white px-3" [ngClass]="{'disable':isLoading || isLoadingImage}"   type="submit" >
+              <ng-container *ngIf="(isLoading || isLoadingImage) ;else textContainerBtn">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+              </ng-container>
+              <ng-template #textContainerBtn>
+                Upload
+              </ng-template>
+            </button>
+
+          </div>
         </form>
       </div>
-      <div class="modal-footer d-flex justify-content-end mt-3">
 
-
-          <button class="btn mx-2 border-0"(click)="closeModal(form)" [disabled]="isLoading || isLoadingImage" type="button" data-dismiss="modal" >Cancel</button>
-          <button class="btn text-white px-3" [ngClass]="{'disable':isLoading || isLoadingImage}"   type="submit" style="background: var(--primary-color)">
-            <ng-container *ngIf="(isLoading || isLoadingImage) ;else textContainerBtn">
-              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-              Loading...
-            </ng-container>
-            <ng-template #textContainerBtn>
-              Upload
-            </ng-template>
-          </button>
-
-      </div>
     </div>
   </div>
 </div>

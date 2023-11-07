@@ -30,7 +30,7 @@ export class CalculateGameComponent implements OnInit{
   isLoadingJoinGame:boolean=false
   @ViewChild("modal") createGameModal:CreateGameModalComponent
 
-  constructor(private sanitizer: DomSanitizer,private router:Router,private sheetService:SheetService,private gameService:GameService,private modalService:ModalService) {
+  constructor(private sanitizer: DomSanitizer,private router:Router,private sheetService:SheetService,private gameService:GameService) {
 
     // const dataObject = this.router.getCurrentNavigation().extras.state['table']
     // const dataImage = this.router.getCurrentNavigation().extras.state['image']

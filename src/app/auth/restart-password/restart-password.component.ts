@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import {UserService} from "../../../../services/user.service";
+import {UserService} from "../../../services/user.service";
 import {NgForm} from "@angular/forms";
-import {RequestResetPasswordRequest} from "../../../model/request-reset-password-request";
+import {RequestResetPasswordRequest} from "../../model/request-reset-password-request";
 import * as alertifyjs from "alertifyjs";
-import {DataState} from "../../../model/data-state";
+import {DataState} from "../../model/data-state";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({

@@ -87,6 +87,7 @@ export class GameDetailsComponent implements OnInit{
   }
 
   toggleEditMode() {
+    console.log("ovde")
     this.isEditMode=!this.isEditMode
   }
 

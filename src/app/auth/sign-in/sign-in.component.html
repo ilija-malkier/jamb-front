@@ -15,7 +15,7 @@
           <input ngModel required type="password" class="form-control" id="password" name="password"  placeholder="test!#123" [ngClass]="{'invalid-input': showErrorMessage}">
         </div>
         <div class="form-link">
-          <a href="#" class="forgot-pass">Forgot password?</a>
+          <a routerLink="/auth/password/reset" class="forgot-pass">Forgot password?</a>
         </div>
         <div class="mt-4">
           <button type="submit" class="w-100 animation-on-hover btn btn-primary">Sign in</button>

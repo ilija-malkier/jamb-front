@@ -37,12 +37,12 @@ export class CreateGameModalComponent implements OnInit,OnDestroy{
 
   modalRef:BsModalRef
   @ViewChild("template") template:TemplateRef<any>
-  constructor(private modalService:ModalService,private gameService:GameService,private router:Router,private modalServicebs:BsModalService) {}
+  constructor(private modalService:ModalService,private gameService:GameService,private router:Router) {}
   ngOnDestroy(): void {
     this.modalService.unregister(this.createGameModalId);
   }
   openModal() {
-    this.modalRef = this.modalServicebs.show(this.template);
+
   }
 
 

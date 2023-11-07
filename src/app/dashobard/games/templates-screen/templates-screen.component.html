@@ -1,0 +1,21 @@
+<div class="content ">
+  <div class="d-flex   p-3  justify-content-center align-items-center">
+    <button class="btn-primary btn " routerLink="/dashboard/games/templates/create">Create New</button>
+  </div>
+  <hr style="background: var(--white-color)" class="w-50">
+  <div class="d-flex  flex-column p-3">
+    <h2>Favorites</h2>
+    <div class="px- d-flex">
+    <ng-container *ngIf="favouriteTemplates | async as favTemplates">
+        <div
+          *ngFor="let favTemplate of favTemplates.appData"
+          class="bg-info p-4 mx-3 d-flex justify-content-center align-items-center"
+             style="border-radius: 10px;width: 15rem;height: 15rem">
+          <div>
+            <h3 class="p-0 m-0">{{favTemplate.templateName}}</h3>
+          </div>
+        </div>
+    </ng-container>
+    </div>
+  </div>
+</div>

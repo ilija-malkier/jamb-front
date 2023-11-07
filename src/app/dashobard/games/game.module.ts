@@ -23,12 +23,27 @@ import {FormsModule} from "@angular/forms";
 import {GameRequestComponent} from "./game-request/game-request.component";
 import {navigationRouteGuard} from "../../angular-system/route-guards/navigation-route.guard";
 import {DashboardModule} from "../dashboard.module";
+import { GameCreateComponent } from './game-create/game-create.component';
+import { TemplateScreenComponent } from './template-screen/template-screen.component';
+import { TemplatesScreenComponent } from './templates-screen/templates-screen.component';
+import { CustomTemplateComponent } from './custom-template/custom-template.component';
+import { CreateTemplateComponent } from './create-template/create-template.component';
+import { AddCopPlayerComponent } from './add-cop-player/add-cop-player.component';
+import { AddFriendsComponent } from './add-friends/add-friends.component';
+import { AddGamesetsComponent } from './add-gamesets/add-gamesets.component';
 
 console.warn("game module loaded")
 var routes:Routes=[
 
-  {path: 'create',component: CalculateGameComponent ,canActivate:[navigationRouteGuard]},
+  {path: 'create',component: GameCreateComponent ,canActivate:[navigationRouteGuard]},
+  {path: 'calculate',component: CalculateGameComponent ,canActivate:[navigationRouteGuard]},
   {path:'requests',component:GameRequestComponent ,canActivate:[navigationRouteGuard]},
+  {path:'templates',component:TemplatesScreenComponent ,canActivate:[navigationRouteGuard]},
+  {path:'templates/create',component:CreateTemplateComponent ,canActivate:[navigationRouteGuard]},
+  {path:'templates/edit',component:CalculateGameComponent ,canActivate:[navigationRouteGuard]},
+  {path:'templates/cop-player',component:AddCopPlayerComponent ,canActivate:[navigationRouteGuard]},
+  {path:'templates/friends',component:AddCopPlayerComponent ,canActivate:[navigationRouteGuard]},
+  {path:'templates/gamesets',component:AddGamesetsComponent ,canActivate:[navigationRouteGuard]},
   {path:'',component:GameComponent ,canActivate:[navigationRouteGuard]},
 
   {path:':id',component:GameDetailsComponent,resolve:{data:GameDetailsResolver} ,canActivate:[navigationRouteGuard]},
@@ -46,6 +61,14 @@ var routes:Routes=[
     GameWinListComponent,
     GameWinCardComponent,
     CreateGameModalComponent,
+    GameCreateComponent,
+    TemplateScreenComponent,
+    TemplatesScreenComponent,
+    CustomTemplateComponent,
+    CreateTemplateComponent,
+    AddCopPlayerComponent,
+    AddFriendsComponent,
+    AddGamesetsComponent,
 
   ],
     imports: [

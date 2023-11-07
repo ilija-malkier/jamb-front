@@ -65,6 +65,7 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
   //   reader.readAsArrayBuffer(file);
   // }
   uploadSheet(form: NgForm) {
+     console.log(form)
     this.isLoading=true
     this.showError=false
     this.errorMessage=''
@@ -89,7 +90,7 @@ export class UploadSheetComponent implements OnInit,OnDestroy{
             gameId:this.gameId
           }
         };
-        this.router.navigate(["game/create"],navigationExtras)
+        this.router.navigate(["games/calculate"],navigationExtras)
       },
       error => {
         this.isLoading=false

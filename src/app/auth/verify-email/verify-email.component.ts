@@ -37,6 +37,5 @@ export class VerifyEmailComponent implements  OnInit{
       let token=data['token']
       this.userService.activateAccount(token)
     })
-
   }
 }

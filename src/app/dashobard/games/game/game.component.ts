@@ -59,4 +59,6 @@ export class GameComponent implements OnInit{
   getmaxGamePage() {
     return this.gameService.maxGameRequestsElements;
   }
+
+
 }

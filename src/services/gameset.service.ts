@@ -29,6 +29,7 @@ export class GamesetService implements OnInit{
   }
 
   addGameToGameset(gameId: number,gameSetId) {
+    console.log(gameId+" "+gameSetId)
     return this.http.patch<CustomResponse>("http://localhost:8081/games",{"gameSetId":gameSetId},{
       params:{
         gameId:gameId,

@@ -8,7 +8,7 @@ import {ProfileComponent} from "./profile/profile.component";
 import {SettingsComponent} from "./settings/settings.component";
 import {ProfileResolver} from "../../angular-system/route-guards/profile.resolver";
 import {RouterModule} from "@angular/router";
-import {RestartPasswordComponent} from "./restart-password/restart-password.component";
+import {RestartPasswordComponent} from "../../auth/restart-password/restart-password.component";
 import {UploadSheetComponent} from "../../reusables/upload-sheet/upload-sheet.component";
 import {FindFriendsModalComponent} from "../../modals/find-friends-modal/find-friends-modal.component";
 import {

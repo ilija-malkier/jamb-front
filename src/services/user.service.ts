@@ -6,12 +6,14 @@ import {da} from "date-fns/locale";
 import {PasswordResetRequest} from "../app/model/password-reset-request";
 import {AuthService} from "./auth.service";
 import {UpdatePlayerRequest} from "../app/model/update-player-request";
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
+  favouritesTemplates:BehaviorSubject<Observable<CustomResponse>> = new BehaviorSubject<Observable<CustomResponse>>(new Observable<CustomResponse>());
   constructor(private http:HttpClient) { }
 
 
@@ -49,5 +51,9 @@ export class UserService {
 
   deactivateAccount() {
     return this.http.put<CustomResponse>("http://localhost:8081/user/deactivate",null)
+  }
+
+  getFavoriteTemplates(){
+    this.favouritesTemplates.next(this.http.get<CustomResponse>("http://localhost:8081/template"))
   }
 }
