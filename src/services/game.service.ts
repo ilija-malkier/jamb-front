@@ -171,6 +171,7 @@ export class GameService {
   }
 
   saveTemplateToFavorites(saveTemplate:SaveTemplate){
-    return this.httpClient.post<CustomResponse>(" http://localhost:8081/template/favourite",saveTemplate)
+
+    return this.httpClient.post<CustomResponse>("http://localhost:8081/template/favourite",saveTemplate)
   }
 }

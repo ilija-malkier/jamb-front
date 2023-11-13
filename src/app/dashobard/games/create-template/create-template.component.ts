@@ -15,23 +15,25 @@ export class CreateTemplateComponent {
   triling:boolean=true;
   topicName:string
   constructor(private router:Router,private gameService:GameService) {
-
   }
 
-  crateTemplateWithSave() {
-    this.saveToFavorites();
-    this.navigateToEditSceen()
+async crateTemplateWithSave() {
+    await this.saveToFavorites();
   }
 
-  private saveToFavorites() {
-    this.gameService.saveTemplateToFavorites(new SaveTemplate(this.templateColumns.toString(),this.triling,this.topicName))
+  private async  saveToFavorites() {
+    this.gameService.saveTemplateToFavorites(new SaveTemplate(this.templateColumns.toString(),this.triling,this.topicName)).subscribe(data=>{
+      this.navigateToCopPlayer()
+    })
   }
-  navigateToEditSceen(){
-    this.router.navigate(['/dashboard/games/templates/edit'])
+
+  navigateToCopPlayer(){
+    this.router.navigate(['dashboard/games/templates/cop-player'])
   }
 
   createTemplateWithoutSave() {
-    this.navigateToEditSceen()
+    console.log("cao")
+    this.navigateToCopPlayer()
   }
 
   handleToggle($event: { isColumn: boolean; columnIndex: number; columnValue: boolean }) {

@@ -9,7 +9,7 @@ import {DataState} from "../../../model/data-state";
 @Component({
   selector: 'app-templates-screen',
   templateUrl: './templates-screen.component.html',
-  styleUrls: ['./templates-screen.component.css']
+  styleUrls: ['./templates-screen.component.scss']
 })
 export class TemplatesScreenComponent implements OnInit{
 

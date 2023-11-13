@@ -3,3 +3,7 @@
   grid-template-columns: repeat(11,1fr);
   grid-template-rows: repeat(17,1fr);
 }
+
+.btn-link:hover{
+  color: var(--text-dark) !important;
+}
