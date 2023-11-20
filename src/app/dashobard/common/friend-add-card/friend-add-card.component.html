@@ -1,10 +1,21 @@
-<div class="d-flex text-center mt-4  align-items-center flex-column" style="border: solid 1px var(--white-color);border-radius: 10px;width: 200px;height: 200px">
-  <div class="d-flex justify-content-end   w-100 px-3 pt-3">
-    <i class="tim-icons icon-simple-add" style="font-size: x-large;color: var(--white-color)"></i>
-  </div>
-  <div class="d-flex   justify-content-center flex-column h-100">
-    <img src="favicon.ico" class="rounded-circle" width="80">
-    <p class="mt-2" style="font-size: large">Name</p>
+<div class="d-flex text-center mt-4 align-items-center flex-column card-container"
+     [style.transform]="isPlusHovered ? 'scale(1.1)' : 'scale(1)'"
+     [ngStyle]="{ 'border-color': isSelected ? 'var(--primary)' : 'white' }"
+     (mouseenter)="isPlusHovered = true"
+     (mouseleave)="isPlusHovered = false"
+     style="border: solid 1px var(--white-color); border-radius: 10px; width: 200px; height: 200px; transition: 300ms ease;"
+>
+  <div class="d-flex justify-content-end w-100 px-3 pt-3">
+    <div class="plus-container">
+      <i class="tim-icons  add-icon hi-icon hi-icon-link plus-icon" [ngClass]="icon"
+         style="font-size: x-large; color: var(--white-color)"
+         (click)="selectCoP()"
+      ></i>
+    </div>
   </div>
 
+  <div class="d-flex justify-content-center flex-column h-100">
+    <app-custom-image-relative-p [username]="friend.username"></app-custom-image-relative-p>
+    <p class="mt-2" style="font-size: large">{{ friend.username }}</p>
+  </div>
 </div>

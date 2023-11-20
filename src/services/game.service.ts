@@ -170,8 +170,5 @@ export class GameService {
     this.recentGames$.next(this.httpClient.get<CustomResponse>("http://localhost:8081/games/filter",{params:params}))
   }
 
-  saveTemplateToFavorites(saveTemplate:SaveTemplate){
 
-    return this.httpClient.post<CustomResponse>("http://localhost:8081/template/favourite",saveTemplate)
-  }
 }

@@ -10,7 +10,7 @@
         <div
           *ngFor="let favTemplate of favTemplates.appData"
           class="bg-info p-4  d-flex justify-content-center align-items-center fav-item"
-             style="border-radius: 10px;width: 15rem;height: 15rem;cursor: pointer">
+             style="border-radius: 10px;width: 15rem;height: 15rem;cursor: pointer" (click)="handleSelectedTemplate(favTemplate)">
           <div>
             <h3 class="p-0 m-0">{{favTemplate.templateName}}</h3>
           </div>

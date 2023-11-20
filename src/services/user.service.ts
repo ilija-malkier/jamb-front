@@ -13,7 +13,6 @@ import {BehaviorSubject, Observable} from "rxjs";
 })
 export class UserService {
 
-  favouritesTemplates:BehaviorSubject<Observable<CustomResponse>> = new BehaviorSubject<Observable<CustomResponse>>(new Observable<CustomResponse>());
   constructor(private http:HttpClient) { }
 
 
@@ -53,7 +52,5 @@ export class UserService {
     return this.http.put<CustomResponse>("http://localhost:8081/user/deactivate",null)
   }
 
-  getFavoriteTemplates(){
-    this.favouritesTemplates.next(this.http.get<CustomResponse>("http://localhost:8081/template"))
-  }
+
 }

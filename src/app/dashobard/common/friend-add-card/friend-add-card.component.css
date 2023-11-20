@@ -1,0 +1,38 @@
+.add-icon{
+
+  transition: 200ms ease;
+}
+
+.add-icon:hover{
+
+}
+
+.plus-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.plus-icon {
+  font-size: 24px;
+  color: white;
+}
+
+.plus-container:hover {
+  background-color: var(--primary-color);
+  transform: scale(1.2); /* Scale the plus container on hover */
+}
+.card-container{
+  transition: transform 0.3s ease;
+}
+.plus-container:hover + .card-container:hover{
+  transform: scaleX(1.2);
+  background: #00f2c3;
+}

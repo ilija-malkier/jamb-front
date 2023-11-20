@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
 import {GameService} from "../../../../services/game.service";
 import {SaveTemplate} from "../../../model/save-template";
+import {TemplateService} from "../../../../services/template.service";
 
 @Component({
   selector: 'app-create-template',
@@ -14,7 +15,7 @@ export class CreateTemplateComponent {
   templateColumns:String[]=['1','1','1','1','1','1','1','1','1','1'];
   triling:boolean=true;
   topicName:string
-  constructor(private router:Router,private gameService:GameService) {
+  constructor(private router:Router,private gameService:GameService,private templateService:TemplateService) {
   }
 
 async crateTemplateWithSave() {
@@ -22,7 +23,7 @@ async crateTemplateWithSave() {
   }
 
   private async  saveToFavorites() {
-    this.gameService.saveTemplateToFavorites(new SaveTemplate(this.templateColumns.toString(),this.triling,this.topicName)).subscribe(data=>{
+    this.templateService.saveTemplateToFavorites(new SaveTemplate(this.templateColumns.toString(),this.triling,this.topicName)).subscribe(data=>{
       this.navigateToCopPlayer()
     })
   }

@@ -13,7 +13,7 @@ export class FriendsService {
   $friends:BehaviorSubject<Observable<CustomResponse>> =new BehaviorSubject(new Observable<CustomResponse>())
   $friendRequestsSend:BehaviorSubject<Observable<CustomResponse>> =new BehaviorSubject(new Observable<CustomResponse>())
 
-   maxFriends=3;
+   maxFriends=10;
 
   constructor(private http:HttpClient) { }
   private baseURL = 'https://jsonplaceholder.typicode.com/users';

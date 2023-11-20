@@ -31,24 +31,30 @@ import { CreateTemplateComponent } from './create-template/create-template.compo
 import { AddCopPlayerComponent } from './add-cop-player/add-cop-player.component';
 import { AddFriendsComponent } from './add-friends/add-friends.component';
 import { AddGamesetsComponent } from './add-gamesets/add-gamesets.component';
+import { CoFriendsListComponent } from './co-friends-list/co-friends-list.component';
+import { CoFriendsPaginationComponent } from './co-friends-pagination/co-friends-pagination.component';
+import {
+  FriendAddCardUnselectComponent
+} from "../../reusables/friend-add-card-unselect/friend-add-card-unselect.component";
+import {AccountModule} from "../account/account.module";
 
 console.warn("game module loaded")
-var routes:Routes=[
+  var routes:Routes=[
 
-  {path: 'create',component: GameCreateComponent ,canActivate:[navigationRouteGuard]},
-  {path: 'calculate',component: CalculateGameComponent ,canActivate:[navigationRouteGuard]},
-  {path:'requests',component:GameRequestComponent ,canActivate:[navigationRouteGuard]},
-  {path:'templates',component:TemplatesScreenComponent ,canActivate:[navigationRouteGuard]},
-  {path:'templates/create',component:CreateTemplateComponent ,canActivate:[navigationRouteGuard]},
-  {path:'templates/edit',component:CalculateGameComponent ,canActivate:[navigationRouteGuard]},
-  {path:'templates/cop-player',component:AddCopPlayerComponent ,canActivate:[navigationRouteGuard]},
-  {path:'templates/friends',component:AddCopPlayerComponent ,canActivate:[navigationRouteGuard]},
-  {path:'templates/gamesets',component:AddGamesetsComponent ,canActivate:[navigationRouteGuard]},
-  {path:'',component:GameComponent ,canActivate:[navigationRouteGuard]},
+    {path: 'create',component: GameCreateComponent ,canActivate:[navigationRouteGuard]},
+    {path: 'calculate',component: CalculateGameComponent ,canActivate:[navigationRouteGuard]},
+    {path:'requests',component:GameRequestComponent ,canActivate:[navigationRouteGuard]},
+    {path:'templates',component:TemplatesScreenComponent ,canActivate:[navigationRouteGuard]},
+    {path:'templates/create',component:CreateTemplateComponent ,canActivate:[navigationRouteGuard]},
+    {path:'templates/edit',component:CalculateGameComponent ,canActivate:[navigationRouteGuard]},
+    {path:'templates/cop-player',component:AddCopPlayerComponent ,canActivate:[navigationRouteGuard]},
+    {path:'templates/friends',component:AddFriendsComponent ,canActivate:[navigationRouteGuard]},
+    {path:'templates/gamesets',component:AddGamesetsComponent ,canActivate:[navigationRouteGuard]},
+    {path:'',component:GameComponent ,canActivate:[navigationRouteGuard]},
 
-  {path:':id',component:GameDetailsComponent,resolve:{data:GameDetailsResolver} ,canActivate:[navigationRouteGuard]},
+    {path:':id',component:GameDetailsComponent,resolve:{data:GameDetailsResolver} ,canActivate:[navigationRouteGuard]},
 
-]
+  ]
 
 @NgModule({
   declarations: [
@@ -69,15 +75,19 @@ var routes:Routes=[
     AddCopPlayerComponent,
     AddFriendsComponent,
     AddGamesetsComponent,
+    CoFriendsListComponent,
+    CoFriendsPaginationComponent,
+    FriendAddCardUnselectComponent
 
   ],
-    imports: [
-        CommonModule,
-        RouterModule.forChild(routes),
-        AppCommonModule,
-        FormsModule,
-        DashboardModule
-    ],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    AppCommonModule,
+    FormsModule,
+    DashboardModule,
+    AccountModule
+  ],
   exports:[RouterModule]
 })
 export class GameModule { }

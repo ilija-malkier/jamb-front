@@ -1,29 +1,47 @@
 <div class="content d-flex flex-column">
   <div>
-    <p style="font-size: xx-large">Add Co-Op Player</p>
+    <p style="font-size: xx-large">Add Friends</p>
     <p style="opacity: 50%" class="text-white">Add friend to play together as a team</p>
   </div>
-  <div class="d-flex justify-content-end p-4">
+  <div class="  p-4">
 
-    <div class="d-flex ">
-      <div class="form-group mx-2  h-100 d-flex align-items-center">
-        <input type="email" class="form-control" id="exampleInputEmail1"  placeholder="Search...">
+    <div class="d-flex justify-content-between w-100  align-items-center">
+
+        <app-friends-list-pagination #friends [itemsPerPageInput]="getMaxFriends()"></app-friends-list-pagination>
+
+      <div class="d-flex  ">
+        <div class="form-group mx-2">
+          <input  [(ngModel)]="searchText" type="text" class="form-control" id="exampleInputEmail1" placeholder="Search...">
+        </div>
+        <button (click)="searchCoP()" class="btn btn-secondary" style="height: min-content" >
+          <i class="tim-icons icon-zoom-split"></i>
+        </button>
       </div>
-      <button class="btn btn-secondary">
-        <i class="tim-icons icon-zoom-split"></i>
-      </button>
+
     </div>
   </div>
-  <div class="p-4 " style="flex: 1 ">
-
-    <app-friend-add-card></app-friend-add-card>
+  <div class="p-4 d-flex justify-content-start" style="flex: 1;flex-wrap: wrap;gap: 30px "
+       *ngIf="$friends | async  as friends">
+    <div *ngFor="let friend of friends?.appData | slice:0:getMaxFriends()">
+      <app-friend-add-card icon="icon-simple-add" (selectedCop)="handleFriendSelected($event)"
+                           [friend]="friend"></app-friend-add-card>
+    </div>
   </div>
 
-  <div class="d-flex justify-content-between">
-    <button class="btn" >Back</button>
+  <div class=" mb-4">
+    <p style="font-size: x-large">Added Friends</p>
+    <hr>
+    <div class="d-flex px-4  justify-content-start" style="gap:30px;transition: 300ms ease">
+      <app-friend-add-card icon="icon-simple-delete" (selectedCop)="handleDiselectFriend($event)"
+                           [friend]="selectedFriend"
+                           *ngFor="let selectedFriend of selectedFriends">{{selectedFriend}}</app-friend-add-card>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between" style="gap:30px">
+    <button class="btn" (click)="back()">Back</button>
     <div class="d-flex align-items-center">
-      <p class="mx-4 px-4"  style="cursor:pointer;">Skip</p>
-      <button class="btn btn-primary" >Next</button>
+      <p class="mx-4 px-4" style="cursor:pointer;" (click)="skip()">Skip</p>
+      <button class="btn btn-primary" (click)="next()">Next</button>
     </div>
   </div>
 </div>

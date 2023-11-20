@@ -1,5 +1,8 @@
 export interface TemplateInfo {
 
-  favouriteTemplateId:number;
-  templateName:string;
+   id:number
+   playerUsername:string
+   selectedColumns:string
+   isTrillingSelected:boolean
+   templateName:string
 }

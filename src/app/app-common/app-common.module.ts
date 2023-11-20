@@ -12,6 +12,7 @@ import {ConfirmationModalComponent} from "../modals/confirmation-modal/confirmat
 import {WarningBanerComponent} from "../reusables/warning-baner/warning-baner.component";
 import {CapitalizeFirstLetterPipe} from "../angular-system/pipes/capitalize-first-letter.pipe";
 import {StopTypingDirective} from "../angular-system/directive/stop-typing.directive";
+import {CustomImageRelativePComponent} from "../reusables/custom-image-relative-p/custom-image-relative-p.component";
 
 
 
@@ -27,7 +28,9 @@ import {StopTypingDirective} from "../angular-system/directive/stop-typing.direc
     ConfirmationModalComponent,
     WarningBanerComponent,
     CapitalizeFirstLetterPipe,
-    StopTypingDirective
+    StopTypingDirective,
+    CustomImageRelativePComponent
+
   ],
   exports: [
     GameListPaginationComponent,
@@ -40,7 +43,8 @@ import {StopTypingDirective} from "../angular-system/directive/stop-typing.direc
     ConfirmationModalComponent,
     WarningBanerComponent,
     CapitalizeFirstLetterPipe,
-    StopTypingDirective
+    StopTypingDirective,
+    CustomImageRelativePComponent
 
   ],
   imports: [

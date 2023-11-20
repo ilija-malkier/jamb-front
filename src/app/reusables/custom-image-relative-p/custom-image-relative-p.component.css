@@ -1,0 +1,12 @@
+.round-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff; /* Change the text color as needed */
+  font-size: 24px; /* Change the font size as needed */
+  font-weight: bold;
+
+}

@@ -66,7 +66,7 @@ var routes = [
     GamesetsModule,
     DashboardModule,
   ],
-    exports: [RouterModule]
+    exports: [RouterModule, FriendsListPaginationComponent]
 })
 export class AccountModule {
 }
