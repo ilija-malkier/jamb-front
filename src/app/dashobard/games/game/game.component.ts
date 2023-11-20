@@ -22,6 +22,7 @@ export class GameComponent implements OnInit{
 
 
   constructor(private gameService:GameService) {
+    console.log("ovde")
     this.getPageNumber()
   }
   filterSubmit(filterRequest: FilterRequest) {
