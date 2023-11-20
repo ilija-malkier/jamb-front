@@ -26,7 +26,7 @@ export interface CustomResponse {
   message:string;
   developerMessage:string;
   data:{
-    gameFilterResponses?:GameFilterResponse[],
+    gameFilterResponses?:{size:number,gameFilterResponseList:GameFilterResponse[]},
     total_games?:HomeStatistics,
     access_token?:string,
     gameCount?:number,

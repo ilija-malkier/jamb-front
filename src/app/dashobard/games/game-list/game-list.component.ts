@@ -45,14 +45,14 @@ export class GameListComponent implements OnInit{
           return of({dataState:DataState.ERROR,error:err})
         }),
         map((element:CustomResponse )=>{
-              this.gamesLength=element?.data?.gameFilterResponses.length
+              this.gamesLength=element?.data?.gameFilterResponses.gameFilterResponseList.length
               this.gameIndex=0;
-                 this.evenList= element?.data?.gameFilterResponses.filter((x,y)=>y%2==0)
-                 this.oddList= element?.data?.gameFilterResponses.filter((x,y)=>y%2!=0)
+                 this.evenList= element?.data?.gameFilterResponses.gameFilterResponseList.filter((x,y)=>y%2==0)
+                 this.oddList= element?.data?.gameFilterResponses.gameFilterResponseList.filter((x,y)=>y%2!=0)
               console.log(element)
               return {
                 dataState:DataState.SUCCESS,
-                appData:element?.data?.gameFilterResponses
+                appData:element?.data?.gameFilterResponses.gameFilterResponseList
               }
             }),
 

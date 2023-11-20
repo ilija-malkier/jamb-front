@@ -50,10 +50,10 @@ export class HomeComponent implements OnInit{
         }),
         map((element:CustomResponse )=>{
 
-          console.log(element)
+          console.log(element?.data?.gameFilterResponses)
           return {
             dataState:DataState.SUCCESS,
-            appData:element?.data?.gameFilterResponses
+            appData:element?.data?.gameFilterResponses.gameFilterResponseList
           }
         }),
       )
