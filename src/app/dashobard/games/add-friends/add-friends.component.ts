@@ -25,10 +25,10 @@ export class AddFriendsComponent implements OnInit {
   @ViewChild("friends") friends: FriendsRequestsSendListPaginationComponent
 
   searchText: string = ''
-  template:TemplateCreatedResponse
+  template: TemplateCreatedResponse
 
-  constructor(private friendsService: FriendsService,private gameService:GameService,private router:Router,private draftGameService:DraftGameService) {
-      this.template=<TemplateCreatedResponse> this.router.getCurrentNavigation().extras.state['data']
+  constructor(private friendsService: FriendsService, private gameService: GameService, private router: Router, private draftGameService: DraftGameService) {
+    this.template = <TemplateCreatedResponse>this.router.getCurrentNavigation().extras.state['data']
 
   }
 
@@ -98,14 +98,20 @@ export class AddFriendsComponent implements OnInit {
   }
 
   next(strings: string[]) {
-    this.draftGameService.addFriends(this.selectedFriends.map(x => x.username), this.template.templateId, this.template.type)     .subscribe(
-      data=>{
+    this.draftGameService.addFriends(this.selectedFriends.map(x => x.username), this.template.templateId, this.template.type).subscribe(
+      data => {
         console.log(data)
       }
     )
 
   }
-  skip(){
+
+  skip() {
+    this.draftGameService.addFriends(null,this.template.templateId,this.template.type).subscribe(
+      data => {
+        console.log(data)
+      })
 
   }
 }
+

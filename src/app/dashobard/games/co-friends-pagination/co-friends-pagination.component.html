@@ -1,0 +1,22 @@
+<div class="w-100 d-flex justify-content-center">
+
+
+  <nav class=" d-flex justify-content-center align-items-center   w-75  p-4   ">
+    <ul class="pagination d-flex  justify-content-center ">
+      <li class="page-item " [ngClass]="{'disabled':!canGoBack()}">
+        <a class="page-link"   (click)="backPage()" tabindex="-1">Previous</a>
+      </li>
+      <div class="mx-4 d-flex ">
+        <li *ngFor="let i of numberArray" class="page-item " [ngClass]="{'active':currentPage===i}">
+        <span class="page-link d-flex" (click)="toPage(i)">
+        {{i+1}}
+          <span class="sr-only">(current)</span>
+      </span>
+        </li>
+      </div>
+      <li class="page-item" [ngClass]="{'disabled':!canGoForward()}">
+        <a class="page-link"  (click)="nextPage()">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>
