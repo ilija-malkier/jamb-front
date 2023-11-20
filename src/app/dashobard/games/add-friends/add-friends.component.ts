@@ -97,7 +97,7 @@ export class AddFriendsComponent implements OnInit {
 
   }
 
-  next(strings: string[]) {
+  next() {
     this.draftGameService.addFriends(this.selectedFriends.map(x => x.username), this.template.templateId, this.template.type).subscribe(
       data => {
         console.log(data)
