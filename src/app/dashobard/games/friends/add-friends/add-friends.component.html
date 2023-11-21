@@ -9,24 +9,20 @@
 
 <!--        <app-friends-list-pagination #friends [itemsPerPageInput]="getMaxFriends()"></app-friends-list-pagination>-->
 
-      <div class="d-flex  ">
-        <div class="form-group mx-2">
+      <div class="d-flex  w-100 justify-content-end align-items-center  ">
+        <div class="form-group mx-2 p-0 m-0">
           <input  [(ngModel)]="searchText" type="text" class="form-control" id="exampleInputEmail1" placeholder="Search...">
         </div>
-        <button (click)="searchCoP()" class="btn btn-secondary" style="height: min-content" >
+        <button (click)="searchFriends()" class="btn btn-secondary" style="height: min-content" >
           <i class="tim-icons icon-zoom-split"></i>
         </button>
       </div>
 
     </div>
   </div>
-  <div class="p-4 d-flex justify-content-start" style="flex: 1;flex-wrap: wrap;gap: 30px "
-       *ngIf="$friends | async  as friends">
-    <div *ngFor="let friend of friends?.appData | slice:0:getMaxFriends()">
-      <app-friend-add-card icon="icon-simple-add" (selectedCop)="handleFriendSelected($event)"
-                           [friend]="friend"></app-friend-add-card>
-    </div>
-  </div>
+  <p style="font-size: x-large">Friends</p>
+
+  <app-add-friends-list [selectedFriends]="selectedFriends" #friendsList (friendSelectedEmitter)="handleFriendSelected($event)"></app-add-friends-list>
 
   <div class=" mb-4">
     <p style="font-size: x-large">Added Friends</p>

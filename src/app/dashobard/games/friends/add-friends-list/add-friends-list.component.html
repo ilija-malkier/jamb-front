@@ -1,0 +1,7 @@
+<div class="p-4 d-flex justify-content-start" style="flex: 1;flex-wrap: wrap;gap: 30px "
+     *ngIf="$friends | async  as friends">
+  <div *ngFor="let friend of friends?.appData | slice:0:friendsService.maxFriends">
+    <app-friend-add-card icon="icon-simple-add" (selectedCop)="handleFriendSelected($event)"
+                         [friend]="friend"></app-friend-add-card>
+  </div>
+</div>

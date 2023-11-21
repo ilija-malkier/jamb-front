@@ -1,9 +1,9 @@
 import {Component, ViewChild} from '@angular/core';
-import {FriendsService} from "../../../../services/friends.service";
-import {UploadType} from "../../../model/enum/upload-type";
+import {FriendsService} from "../../../../../services/friends.service";
+import {UploadType} from "../../../../model/enum/upload-type";
 import {Router} from "@angular/router";
-import {TemplateCreatedResponse} from "../../../model/template/template-created-response";
-import {DraftGameService} from "../../../../services/draft-game.service";
+import {TemplateCreatedResponse} from "../../../../model/template/template-created-response";
+import {DraftGameService} from "../../../../../services/draft-game.service";
 import {CoFriendsListComponent} from "../co-friends-list/co-friends-list.component";
 
 @Component({

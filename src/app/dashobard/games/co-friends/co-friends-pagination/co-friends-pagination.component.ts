@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PaginationHandler} from "../../../reusables/pagination-handler";
-import {FriendsService} from "../../../../services/friends.service";
+import {PaginationHandler} from "../../../../reusables/pagination-handler";
+import {FriendsService} from "../../../../../services/friends.service";
 
 @Component({
   selector: 'app-co-friends-pagination',
