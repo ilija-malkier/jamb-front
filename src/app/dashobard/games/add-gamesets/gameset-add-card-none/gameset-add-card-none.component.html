@@ -1,4 +1,4 @@
-<div class=" custom-card   d-flex justify-content-end flex-column   p-1" style="width:250px;background: var(--default);border: solid 2px" (click)="selectGameset()"
+<div class=" custom-card   d-flex justify-content-end flex-column   p-1" style="width:250px;background: var(--default);border: solid 2px" (click)="unselect()"
 
      [ngStyle]="{ 'border-color': isSelected ? 'var(--primary)' : 'white' }"
 >
@@ -7,7 +7,7 @@
     <img src="assets/images/paper.png">
   </div>
   <div class="d-flex custom-card-content justify-content-center align-items-center  flex-column" >
-    <p class="text-white" style="font-size: large">{{gameset.gameSetName}}</p>
+    <p class="text-white" style="font-size: large">None</p>
   </div>
 </div>
 

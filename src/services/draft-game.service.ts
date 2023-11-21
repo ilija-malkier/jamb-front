@@ -16,4 +16,8 @@ export class DraftGameService {
   addCopPlayer(selected: string,templateId:string) {
     return this.http.post<CustomResponse>("http://localhost:8081/draft/coPlayer",{"coPlayerUsername":selected,"type":"TEMPLATE",id:templateId})
   }
+
+  addGamesets(gamesets:number[],templateId,type:UploadType) {
+    return this.http.post<CustomResponse>("http://localhost:8081/draft/gameSets",{"id":templateId,"gameSetIds":gamesets,"type":type})
+  }
 }

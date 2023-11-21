@@ -1,0 +1,10 @@
+
+<div>
+  <p style="margin-bottom: 50px">Selected {{selectedNumber}}/1</p>
+
+  <div class="d-flex   justify-content-start align-items-center  w-100" style="flex: 1;flex-wrap: wrap;gap: 15px "  *ngIf="$gamesets | async as gamesets">
+    <app-gameset-add-card-none [isSelected]="selectedNumber===0" (selectedCop)="noneSelected()"></app-gameset-add-card-none>
+
+    <app-gameset-add-card [isSelected]="isSelected(gameset?.gameSetId)" (deselectGameEmitter)="handleDeselectGameset($event)" (selectGamesetEmitter)="handleSelectedGameset($event)" [gameset]="gameset" *ngFor="let gameset of gamesets?.appData"></app-gameset-add-card>
+  </div>
+</div>

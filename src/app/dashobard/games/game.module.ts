@@ -29,6 +29,8 @@ import {
   FriendAddCardUnselectComponent
 } from "../../reusables/friend-add-card-unselect/friend-add-card-unselect.component";
 import {AddFriendsListComponent} from './friends/add-friends-list/add-friends-list.component';
+import { GamesetAddCardNoneComponent } from './add-gamesets/gameset-add-card-none/gameset-add-card-none.component';
+import { GamesetAddListComponent } from './add-gamesets/gameset-add-list/gameset-add-list.component';
 
 console.warn("game module loaded")
 const routes: Routes = [
@@ -76,6 +78,8 @@ const routes: Routes = [
     CoFriendsPaginationComponent,
     FriendAddCardUnselectComponent,
     AddFriendsListComponent,
+    GamesetAddCardNoneComponent,
+    GamesetAddListComponent,
 
   ],
   imports: [
