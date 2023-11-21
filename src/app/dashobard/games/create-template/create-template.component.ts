@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {GameService} from "../../../../services/game.service";
 import {SaveTemplate} from "../../../model/save-template";

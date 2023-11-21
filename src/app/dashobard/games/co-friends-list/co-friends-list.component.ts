@@ -3,15 +3,11 @@ import {catchError, map, Observable, of, startWith} from "rxjs";
 import {CustomResponse} from "../../../model/custom-response";
 import {DataState} from "../../../model/data-state";
 import {UploadType} from "../../../model/enum/upload-type";
-import {TemplateCreatedResponse} from "../../../model/template/template-created-response";
 import {AppState} from "../../../model/app-state";
 import {Friend} from "../../../model/friend";
 import {Router} from "@angular/router";
 import {FriendsService} from "../../../../services/friends.service";
 import {TemplateService} from "../../../../services/template.service";
-import {
-  FriendsRequestsSendListPaginationComponent
-} from "../../account/friends-requests-send-list-pagination/friends-requests-send-list-pagination.component";
 import {CoFriendsPaginationComponent} from "../co-friends-pagination/co-friends-pagination.component";
 
 @Component({

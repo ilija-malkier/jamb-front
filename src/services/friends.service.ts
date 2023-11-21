@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {CustomResponse} from "../app/model/custom-response";
 import {BehaviorSubject, Observable} from "rxjs";

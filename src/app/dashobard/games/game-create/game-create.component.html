@@ -1,11 +1,11 @@
 <div class="content d-flex justify-content-center align-items-center">
 
- <div type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadsheetmodal" class="choice-upload-template d-flex justify-content-center align-items-center flex-column " (mouseenter)="hoverElement='upload-sheet'" (mouseleave)="hoverElement=''">
+ <button type="button"  data-toggle="modal" data-target="#uploadsheetmodal" class="btn btn-primary choice-upload-template d-flex justify-content-center align-items-center flex-column " (mouseenter)="hoverElement='upload-sheet'" (mouseleave)="hoverElement=''">
    <h2>Upload Sheet</h2>
    <div   [ngClass]="{'typing-demo':hoverElement==='upload-sheet','hide-text':hoverElement!='upload-sheet'}">
      <p>You can upload your own image and AI will populate the table.</p>
    </div>
- </div>
+ </button>
 
   <div class="choice-custom-template d-flex justify-content-center align-items-center flex-column "  routerLink="/dashboard/games/templates" (mouseenter)="hoverElement='custom-upload'" (mouseleave)="hoverElement=''">
     <h2>Crate Custom</h2>

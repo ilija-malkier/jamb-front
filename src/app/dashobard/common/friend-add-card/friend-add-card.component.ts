@@ -1,10 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FriendsService} from "../../../../services/friends.service";
-import {catchError, map, Observable, of, startWith} from "rxjs";
-import {CustomResponse} from "../../../model/custom-response";
-import {AppState} from "../../../model/app-state";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Friend} from "../../../model/friend";
-import {DataState} from "../../../model/data-state";
 
 @Component({
   selector: 'app-friend-add-card',

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {GameListPaginationComponent} from "../dashobard/games/game-list-pagination/game-list-pagination.component";
 import {ButtonIconComponent} from "../reusables/button-icon/button-icon.component";
 import {ChipComponent} from "../reusables/chip/chip.component";
@@ -13,7 +13,13 @@ import {WarningBanerComponent} from "../reusables/warning-baner/warning-baner.co
 import {CapitalizeFirstLetterPipe} from "../angular-system/pipes/capitalize-first-letter.pipe";
 import {StopTypingDirective} from "../angular-system/directive/stop-typing.directive";
 import {CustomImageRelativePComponent} from "../reusables/custom-image-relative-p/custom-image-relative-p.component";
-
+import {FabComponent} from "../reusables/fab/fab.component";
+import {FriendAddCardComponent} from "../dashobard/common/friend-add-card/friend-add-card.component";
+import {GamesetAddCardComponent} from "../dashobard/common/gameset-add-card/gameset-add-card.component";
+import {UploadSheetComponent} from "../reusables/upload-sheet/upload-sheet.component";
+import {
+  ToggleTemplateButtonComponent
+} from "../dashobard/common/toggle-template-button/toggle-template-button.component";
 
 
 @NgModule({
@@ -29,7 +35,12 @@ import {CustomImageRelativePComponent} from "../reusables/custom-image-relative-
     WarningBanerComponent,
     CapitalizeFirstLetterPipe,
     StopTypingDirective,
-    CustomImageRelativePComponent
+    CustomImageRelativePComponent,
+    FabComponent,
+    FriendAddCardComponent,
+    GamesetAddCardComponent,
+    UploadSheetComponent,
+    ToggleTemplateButtonComponent
 
   ],
   exports: [
@@ -44,7 +55,12 @@ import {CustomImageRelativePComponent} from "../reusables/custom-image-relative-
     WarningBanerComponent,
     CapitalizeFirstLetterPipe,
     StopTypingDirective,
-    CustomImageRelativePComponent
+    CustomImageRelativePComponent,
+    FabComponent,
+    FriendAddCardComponent,
+    GamesetAddCardComponent,
+    UploadSheetComponent,
+    ToggleTemplateButtonComponent
 
   ],
   imports: [

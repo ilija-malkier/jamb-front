@@ -1,18 +1,13 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {catchError, map, Observable, of, startWith} from "rxjs";
 import {AppState} from "../../../model/app-state";
-import {Friend} from "../../../model/friend";
-import {PlayerFriendRequest} from "../../../model/player-friend-request";
-import {FriendsService} from "../../../../services/friends.service";
 import {ModalService} from "../../../../services/modal.service";
 import {DataState} from "../../../model/data-state";
 import {CustomResponse} from "../../../model/custom-response";
 import {FindFriendsModalComponent} from "../../../modals/find-friends-modal/find-friends-modal.component";
 import {GameService} from "../../../../services/game.service";
 import {GameRequestResponse} from "../../../model/game-request-response";
-import {PagedGameRequestResponse} from "../../../model/paged-game-request-response";
 import {UploadSheetComponent} from "../../../reusables/upload-sheet/upload-sheet.component";
-import {error} from "@angular/compiler-cli/src/transformers/util";
 import * as alertifyjs from "alertifyjs";
 
 @Component({

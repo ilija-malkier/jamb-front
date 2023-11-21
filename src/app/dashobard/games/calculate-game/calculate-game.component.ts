@@ -8,7 +8,6 @@ import {Cell} from "../../../model/cell";
 import {CreateGameModalComponent} from "../../../modals/create-game-modal/create-game-modal.component";
 import {SheetService} from "../../../../services/sheet.service";
 import {GameService} from "../../../../services/game.service";
-import {ModalService} from "../../../../services/modal.service";
 
 @Component({
   selector: 'app-calculate-game',

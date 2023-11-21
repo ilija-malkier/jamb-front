@@ -5,6 +5,7 @@ import {GameListComponent} from "../game-list/game-list.component";
 import {SortDirection} from "../../../model/sort-direction";
 import {GameStatus} from "../../../model/game-status";
 import {GameListPaginationComponent} from "../game-list-pagination/game-list-pagination.component";
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
@@ -21,7 +22,7 @@ export class GameComponent implements OnInit{
   private filterRequest:FilterRequest={date_from:null,date_to:null,game_status:null,player_names:null,winner_names:null}
 
 
-  constructor(private gameService:GameService) {
+  constructor(private gameService:GameService,private router:Router) {
     console.log("ovde")
     this.getPageNumber()
   }
@@ -60,6 +61,7 @@ export class GameComponent implements OnInit{
   getmaxGamePage() {
     return this.gameService.maxGameRequestsElements;
   }
+
 
 
 }

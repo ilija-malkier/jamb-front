@@ -11,13 +11,6 @@ import {navigationRouteGuard} from "./angular-system/route-guards/navigation-rou
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 
-  // {
-  //   path:'auth',
-  //   component:AuthComponent,
-  //   children:[
-  //     {path: '',loadChildren:()=>import('./auth/auth.module').then(m=>m.AuthModule)}
-  //   ]
-  // },
   {
     path: 'auth',
     component:AuthComponent,
@@ -35,27 +28,6 @@ const routes: Routes = [
 ]
 
 
-// {path:'auth',children:[
-//     {path: '',loadChildren:()=>import('./auth/auth.module').then(m=>m.AuthModule)}
-//   ]},
-// {path:'home',component:HomeComponent},
-// {path:'game',component:GameComponent,canActivate:[navigationRouteGuard]},
-// {path:'reset-password',component:RestartPasswordComponent},
-// {path: `gameset/:id`,component:GameSetDetailsComponent,resolve:{data:GameSetDetailsResolver},canActivate:[navigationRouteGuard]},
-// {path:'support',component:SupportComponent,canActivate:[navigationRouteGuard]},
-// {
-//   path:'account',children:[
-//     {path: '',loadChildren:()=>import('./account/account.module').then(m=>m.AccountModule)}
-//   ]
-// },
-// {path:"",redirectTo:"/login",pathMatch:"full"},
-// {path:"*",component:NotFoundPageComponent}
-// {
-//   path:'game',children:[
-//     {path: '',loadChildren:()=>import('./game/game.module').then(m=>m.GameModule)}
-//   ],canActivate:[navigationRouteGuard]
-// },
-// ]
 
 @NgModule({
   declarations: [],

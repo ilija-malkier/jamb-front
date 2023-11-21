@@ -28,7 +28,7 @@ import { FriendsRequestsReceivedListPaginationComponent } from './friends-reques
 
 console.warn("account module loaded")
 
-var routes = [
+const routes = [
 
   {path: 'settings', component: SettingsComponent},
   {path: 'friends', component: FriendsSettingsComponent},
@@ -64,7 +64,6 @@ var routes = [
     AppCommonModule,
     RouterModule.forChild(routes),
     GamesetsModule,
-    DashboardModule,
   ],
     exports: [RouterModule, FriendsListPaginationComponent]
 })

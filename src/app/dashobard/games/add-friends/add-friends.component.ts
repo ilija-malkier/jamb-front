@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {catchError, map, Observable, of, skip, startWith} from "rxjs";
+import {catchError, map, Observable, of, startWith} from "rxjs";
 import {AppState} from "../../../model/app-state";
 import {Friend} from "../../../model/friend";
 import {

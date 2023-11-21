@@ -39,22 +39,27 @@ import {
 import {AccountModule} from "../account/account.module";
 
 console.warn("game module loaded")
-  var routes:Routes=[
+const routes: Routes = [
 
-    {path: 'create',component: GameCreateComponent ,canActivate:[navigationRouteGuard]},
-    {path: 'calculate',component: CalculateGameComponent ,canActivate:[navigationRouteGuard]},
-    {path:'requests',component:GameRequestComponent ,canActivate:[navigationRouteGuard]},
-    {path:'templates',component:TemplatesScreenComponent ,canActivate:[navigationRouteGuard]},
-    {path:'templates/create',component:CreateTemplateComponent ,canActivate:[navigationRouteGuard]},
-    {path:'templates/edit',component:CalculateGameComponent ,canActivate:[navigationRouteGuard]},
-    {path:'templates/cop-player',component:AddCopPlayerComponent ,canActivate:[navigationRouteGuard]},
-    {path:'templates/friends',component:AddFriendsComponent ,canActivate:[navigationRouteGuard]},
-    {path:'templates/gamesets',component:AddGamesetsComponent ,canActivate:[navigationRouteGuard]},
-    {path:'',component:GameComponent ,canActivate:[navigationRouteGuard]},
+  {path: '', component: GameComponent, canActivate: [navigationRouteGuard]},
+  {path: 'create', component: GameCreateComponent, canActivate: [navigationRouteGuard]},
+  {path: 'calculate', component: CalculateGameComponent, canActivate: [navigationRouteGuard]},
+  {path: 'requests', component: GameRequestComponent, canActivate: [navigationRouteGuard]},
+  {path: 'templates', component: TemplatesScreenComponent, canActivate: [navigationRouteGuard]},
+  {path: 'templates/create', component: CreateTemplateComponent, canActivate: [navigationRouteGuard]},
+  {path: 'templates/edit', component: CalculateGameComponent, canActivate: [navigationRouteGuard]},
+  {path: 'templates/cop-player', component: AddCopPlayerComponent, canActivate: [navigationRouteGuard]},
+  {path: 'templates/friends', component: AddFriendsComponent, canActivate: [navigationRouteGuard]},
+  {path: 'templates/gamesets', component: AddGamesetsComponent, canActivate: [navigationRouteGuard]},
 
-    {path:':id',component:GameDetailsComponent,resolve:{data:GameDetailsResolver} ,canActivate:[navigationRouteGuard]},
+  {
+    path: ':id',
+    component: GameDetailsComponent,
+    resolve: {data: GameDetailsResolver},
+    canActivate: [navigationRouteGuard]
+  },
 
-  ]
+];
 
 @NgModule({
   declarations: [
@@ -85,8 +90,6 @@ console.warn("game module loaded")
     RouterModule.forChild(routes),
     AppCommonModule,
     FormsModule,
-    DashboardModule,
-    AccountModule
   ],
   exports:[RouterModule]
 })

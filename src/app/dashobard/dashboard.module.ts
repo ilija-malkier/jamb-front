@@ -23,30 +23,26 @@ import { ToggleTemplateButtonComponent } from './common/toggle-template-button/t
 
 var routes: Routes = [
   {path: 'home', component: HomeComponent},
+  {path:'test',component:GameComponent},
   {
     path: 'games',
     loadChildren: () => import('src/app/dashobard/games/game.module').then(m => m.GameModule)
     ,canActivate:[navigationRouteGuard]
 
   },
-  {
-    path: 'account',
-    loadChildren: () => import('src/app/dashobard/account/account.module').then(m => m.AccountModule)
-    ,canActivate:[navigationRouteGuard]
-  },
-  {
-    path: 'gamesets',
-    loadChildren: () => import('src/app/dashobard/gameset/gamesets.module').then(m => m.GamesetsModule)
-    ,canActivate:[navigationRouteGuard]
-  }
+  // {
+  //   path: 'account',
+  //   loadChildren: () => import('src/app/dashobard/account/account.module').then(m => m.AccountModule)
+  //   ,canActivate:[navigationRouteGuard]
+  // },
+  // {
+  //   path: 'gamesets',
+  //   loadChildren: () => import('src/app/dashobard/gameset/gamesets.module').then(m => m.GamesetsModule)
+  //   ,canActivate:[navigationRouteGuard]
+  // }
 ]
 
-  // {path:'friends',component:FriendsSettingsComponent},
-  // {path:'gamesets',component:AccountGamesetComponent},
-  // {path: 'password/reset',component: SetNewPasswordComponent}
-  // ],canActivate:[navigationRouteGuard]},
-  // {path:'profile/:username',component:ProfileComponent,resolve: {data:ProfileResolver}},
-  // {path:'settings',component:SettingsComponent},
+
 
 
 
@@ -58,11 +54,9 @@ console.warn("dashboard module loaded")
     SidebarComponent,
     NavbarComponent,
     HomeComponent,
-    UploadSheetComponent,
-    FabComponent,
-    FriendAddCardComponent,
-    GamesetAddCardComponent,
-    ToggleTemplateButtonComponent
+
+
+
   ],
   imports: [
     CommonModule,
@@ -73,8 +67,10 @@ console.warn("dashboard module loaded")
     AppCommonModule,
     FormsModule,
 
+
+
   ],
-  exports: [RouterModule, FabComponent, FriendAddCardComponent, GamesetAddCardComponent, UploadSheetComponent, ToggleTemplateButtonComponent]
+  exports: [RouterModule]
 })
 export class DashboardModule {
 }

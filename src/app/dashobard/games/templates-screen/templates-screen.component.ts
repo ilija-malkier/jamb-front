@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../../../services/user.service";
-import {BehaviorSubject, catchError, map, Observable, of, startWith} from "rxjs";
+import {catchError, map, Observable, of, startWith} from "rxjs";
 import {AppState} from "../../../model/app-state";
 import {TemplateInfo} from "../../../model/template-info";
 import {CustomResponse} from "../../../model/custom-response";
