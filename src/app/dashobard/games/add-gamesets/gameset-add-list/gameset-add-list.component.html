@@ -1,7 +1,7 @@
 
 <div>
   <p style="margin-bottom: 50px">Selected {{selectedNumber}}/1</p>
-
+  <app-gameset-pagination [totalPages]="totalItems" [itemsPerPage]="gamesetService.maxElements"></app-gameset-pagination>
   <div class="d-flex   justify-content-start align-items-center  w-100" style="flex: 1;flex-wrap: wrap;gap: 15px "  *ngIf="$gamesets | async as gamesets">
     <app-gameset-add-card-none [isSelected]="selectedNumber===0" (selectedCop)="noneSelected()"></app-gameset-add-card-none>
 

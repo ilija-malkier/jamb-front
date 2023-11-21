@@ -31,6 +31,7 @@ import {
 import {AddFriendsListComponent} from './friends/add-friends-list/add-friends-list.component';
 import { GamesetAddCardNoneComponent } from './add-gamesets/gameset-add-card-none/gameset-add-card-none.component';
 import { GamesetAddListComponent } from './add-gamesets/gameset-add-list/gameset-add-list.component';
+import {GamesetsModule} from "../gameset/gamesets.module";
 
 console.warn("game module loaded")
 const routes: Routes = [
@@ -87,6 +88,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     AppCommonModule,
     FormsModule,
+    GamesetsModule,
   ],
   exports:[RouterModule]
 })

@@ -10,6 +10,7 @@ import {ht} from "date-fns/locale";
 export class GamesetService implements OnInit{
 
   gameSet$:BehaviorSubject<Observable<CustomResponse>> =new BehaviorSubject<Observable<CustomResponse>>(new Observable<CustomResponse>())
+  maxElements=5;
   constructor(private  http:HttpClient) { }
 
   ngOnInit(): void {

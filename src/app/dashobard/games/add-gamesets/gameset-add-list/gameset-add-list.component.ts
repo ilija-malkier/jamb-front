@@ -16,9 +16,10 @@ import {Friend} from "../../../../model/friend";
 export class GamesetAddListComponent implements OnInit{
   $gamesets:Observable<AppState<GameSetResponse[]>> =new Observable<AppState<GameSetResponse[]>>();
   selectedNumber:number=0;
+  totalItems:number=0
   selectedGameSet:GameSetResponse[]=[]
 
-  constructor(private gamesetService:GamesetService) {
+  constructor(public gamesetService:GamesetService) {
   }
   ngOnInit(): void {
     this.handleGamesets();
@@ -48,7 +49,7 @@ export class GamesetAddListComponent implements OnInit{
         map((element: CustomResponse) => {
 
           console.log(element)
-          // element?.data?.gameSetResponseList.totalElements
+          this.totalItems=element?.data?.gameSetResponseList.totalElements
           return {
             dataState: DataState.SUCCESS,
             appData: element?.data?.gameSetResponseList.gameSetResponse
