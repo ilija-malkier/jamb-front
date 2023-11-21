@@ -39,6 +39,7 @@ export abstract class PaginationHandler {
   }
 
   toPage(i: number) {
+    console.log(i)
     this.currentPage = i;
     this.getNotesForCurrPage();
   }

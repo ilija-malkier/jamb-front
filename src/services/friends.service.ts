@@ -51,7 +51,7 @@ export class FriendsService {
 
   filterForPage(currentPage: number) {
 
-    this.getFriends(currentPage - 1)
+    this.getFriends(currentPage )
   }
 
   getPages() {

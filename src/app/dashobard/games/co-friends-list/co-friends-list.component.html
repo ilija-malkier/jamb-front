@@ -1,7 +1,7 @@
 <div class="p-4 " style="flex: 1 ">
   <div class ="d-flex  justify-content-between align-items-center">
     <p>Selected {{selectedNumber}}/1</p>
-    <app-co-friends-pagination #coPlayers [itemsPerPageInput]="maxItems"></app-co-friends-pagination>
+    <app-co-friends-pagination #coPlayers [itemsPerPageInput]="friendsService.maxFriends"></app-co-friends-pagination>
   </div>
   <div class="d-flex " style="gap:20px;flex-wrap: wrap" *ngIf="$friends | async as friends">
     <app-friend-add-card-unselect [isSelected]="selectedNumber==0" (selectedCop)="noneSelected()"></app-friend-add-card-unselect>

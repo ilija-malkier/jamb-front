@@ -19,17 +19,14 @@ export class CoFriendsListComponent implements OnInit{
 
   selected:string;
   selectedNumber:number=0;
-  type:UploadType=UploadType.TEMPLATE;
-  maxItems=20;
 
   $friends:Observable<AppState<Friend[]>> = new Observable<AppState<Friend[]>>()
   currentPageFriends=0
   @ViewChild("coPlayers") coPlayersPagination:CoFriendsPaginationComponent
 
-  @Input() searchText: string=null;
 
-@Output() selectedCop:EventEmitter<string> =new EventEmitter<string>();
-  constructor(private router:Router,private friendsService:FriendsService,private templateService:TemplateService) {
+  @Output() selectedCop:EventEmitter<string> =new EventEmitter<string>();
+  constructor(private router:Router,public friendsService:FriendsService,private templateService:TemplateService) {
 
   }
 
@@ -39,10 +36,10 @@ export class CoFriendsListComponent implements OnInit{
 
    this.handleCoPlayers();
   }
-  searchCoP() {
-    console.log(this.searchText)
-    if(this.searchText===null) return
-    this.$friends=this.friendsService.serachFriends(this.searchText).pipe(
+  searchCoP(searchText) {
+    console.log(searchText)
+    if(searchText===null) return
+    this.$friends=this.friendsService.serachFriends(searchText).pipe(
       map(
         (element: CustomResponse) => {
           console.log(element)
