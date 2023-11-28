@@ -5,8 +5,6 @@ import {DataState} from "../../../../model/data-state";
 import {AppState} from "../../../../model/app-state";
 import {GameSetResponse} from "../../../../model/game-set-response";
 import {GamesetService} from "../../../../../services/gameset.service";
-import {DraftGameService} from "../../../../../services/draft-game.service";
-import {Friend} from "../../../../model/friend";
 
 @Component({
   selector: 'app-gameset-add-list',
@@ -19,7 +17,7 @@ export class GamesetAddListComponent implements OnInit{
   totalItems:number=0
   selectedGameSet:GameSetResponse[]=[]
 
-  constructor(public gamesetService:GamesetService) {
+  constructor(private gamesetService:GamesetService) {
   }
   ngOnInit(): void {
     this.handleGamesets();

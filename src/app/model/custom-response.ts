@@ -47,6 +47,7 @@ export interface CustomResponse {
     GameGamesetResponseList:GamesetGameResponse,
     templateResponses:TemplateInfo[],
     templateCreateResponse:TemplateCreatedResponse
+    templateResponse:TemplateCreatedResponse
 
 
 

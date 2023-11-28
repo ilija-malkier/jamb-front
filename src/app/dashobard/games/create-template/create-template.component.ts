@@ -1,8 +1,11 @@
 import {Component} from '@angular/core';
-import {Router} from "@angular/router";
+import {NavigationExtras, Router} from "@angular/router";
 import {GameService} from "../../../../services/game.service";
 import {SaveTemplate} from "../../../model/save-template";
 import {TemplateService} from "../../../../services/template.service";
+import {TemplateCreatedResponse} from "../../../model/template/template-created-response";
+import {UploadType} from "../../../model/enum/upload-type";
+import {Flag} from "../../../model/enum/flag";
 
 @Component({
   selector: 'app-create-template',
@@ -24,17 +27,25 @@ async crateTemplateWithSave() {
 
   private async  saveToFavorites() {
     this.templateService.saveTemplateToFavorites(new SaveTemplate(this.templateColumns.toString(),this.triling,this.topicName)).subscribe(data=>{
-      this.navigateToCopPlayer()
+      this.navigateToCopPlayer(data.data.templateResponse)
     })
   }
 
-  navigateToCopPlayer(){
-    this.router.navigate(['dashboard/games/templates/cop-player'])
+  navigateToCopPlayer(data:TemplateCreatedResponse){
+    const navigationExtras: NavigationExtras = {
+      state: {
+        data: data
+      }
+    };
+    this.router.navigate(['dashboard/games/templates/cop-player'],navigationExtras)
   }
 
   createTemplateWithoutSave() {
-    console.log("cao")
-    this.navigateToCopPlayer()
+    this.navigateToCopPlayer({templateId:null,
+      selectedColumns:this.templateColumns.toString(),
+      isTrillinSelected:null,
+      type:UploadType.TEMPLATE,
+      flag:Flag.FRIENDS})
   }
 
   handleToggle($event: { isColumn: boolean; columnIndex: number; columnValue: boolean }) {
